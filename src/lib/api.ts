@@ -16,7 +16,7 @@
 
 import { getAccessToken, supabase } from './supabase';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string | undefined;
+const API_BASE_URL = import.meta.env['VITE_API_BASE_URL'] as string | undefined;
 
 if (!API_BASE_URL) {
   throw new Error('Saknar VITE_API_BASE_URL -- sätt den i .env (se .env.example).');

@@ -25,6 +25,7 @@ import {
   type MapLayerMouseEvent,
 } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import type { FeatureCollection } from 'geojson';
 import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from '../lib/api';
 
 const LAYER_SOURCE_ID = 'layer-source';
@@ -32,7 +33,7 @@ const LAYER_CIRCLE_ID = 'layer-circles';
 const MOVE_DEBOUNCE_MS = 400;
 const MAX_BBOX_AREA_DEG2 = 25; // matchar backendens gräns, se api_server.py:s parse_bbox()
 
-const EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] };
+const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
@@ -47,7 +48,7 @@ const EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = { type: 'FeatureColl
 function toRenderableFeatureCollection(
   layer: LayerSelection,
   response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>
-): GeoJSON.FeatureCollection {
+): FeatureCollection {
   if (layer.type === 'species') {
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
