@@ -168,6 +168,10 @@ async function apiFetch<T>(
   options: RequestInit = {},
   allowRetryOn401 = true
 ): Promise<T> {
+  if (!API_BASE_URL) {
+    throw new ApiError(0, 'Backend-URL saknas (VITE_API_BASE_URL är inte satt).');
+  }
+
   const token = await getAccessToken();
 
   const headers = new Headers(options.headers);
