@@ -18,8 +18,12 @@ import { getAccessToken, supabase } from './supabase';
 
 const API_BASE_URL = import.meta.env['VITE_API_BASE_URL'] as string | undefined;
 
-if (!API_BASE_URL) {
-  throw new Error('Saknar VITE_API_BASE_URL -- sätt den i .env (se .env.example).');
+export const isApiConfigured = Boolean(API_BASE_URL);
+
+if (!isApiConfigured) {
+  // Kastar INTE vid import -- appen ska kunna renderas innan
+  // VITE_API_BASE_URL är satt; anropen misslyckas tills dess.
+  console.warn('Saknar VITE_API_BASE_URL -- sätt den i .env (se .env.example).');
 }
 
 // ---------------------------------------------------------------------
@@ -299,8 +303,8 @@ export function uploadDiscovery(params: {
   speciesId: number;
   weatherZoneId: number;
   aiConfidence: number;
-  notes?: string;
-  quantity?: string;
+  notes?: string | undefined;
+  quantity?: string | undefined;
 }): Promise<DiscoveryUploadResult> {
   const formData = new FormData();
   formData.append('file', params.file);
