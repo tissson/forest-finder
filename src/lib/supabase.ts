@@ -22,14 +22,21 @@ import { createClient, type Session } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+
+if (!isSupabaseConfigured) {
+  // Kastar INTE vid import -- det hade kraschat hela appen (inkl. SSR)
+  // innan miljövariablerna är satta. Auth-anrop misslyckas tills dess.
+  console.warn(
     'Saknar VITE_SUPABASE_URL och/eller VITE_SUPABASE_ANON_KEY. ' +
-      'Sätt dem i .env (se .env.example) -- ANVÄND INTE service role-nyckeln här.'
+      'Sätt dem i .env -- ANVÄND INTE service role-nyckeln här.'
   );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseAnonKey || 'placeholder-anon-key',
+  {
   auth: {
     // persistSession + autoRefreshToken (Supabase-default) sköter
     // förnyelse av access-token automatiskt i bakgrunden -- api.ts
