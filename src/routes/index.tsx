@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Camera, X } from "lucide-react";
 
+import { DiagnosticPanel } from "@/components/DiagnosticPanel";
 import { LayerSelector } from "@/components/LayerSelector";
 import { CameraCapture } from "@/components/CameraCapture";
 import { LogDiscoveryModal } from "@/components/LogDiscoveryModal";
@@ -80,6 +81,8 @@ function Index() {
       </div>
 
       <header className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-3 p-4">
+        <DiagnosticPanel />
+
         <div className="pointer-events-auto flex items-center gap-2">
           <span className="rounded-full bg-card/90 px-3 py-1.5 text-sm font-semibold tracking-tight text-card-foreground shadow-lg backdrop-blur">
             🍄 Svamp- & Bärprognos
