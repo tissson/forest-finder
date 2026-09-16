@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Camera, X } from "lucide-react";
 
+import { DiagnosticPanel } from "@/components/DiagnosticPanel";
 import { LayerSelector } from "@/components/LayerSelector";
 import { CameraCapture } from "@/components/CameraCapture";
 import { LogDiscoveryModal } from "@/components/LogDiscoveryModal";
