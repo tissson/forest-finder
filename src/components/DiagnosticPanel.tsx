@@ -52,7 +52,7 @@ function PanelInner() {
   }, [baseUrl]);
 
   return (
-    <div className="relative z-30 mx-4 mt-4 rounded-xl border border-amber-500/50 bg-card/95 p-3 font-mono text-[11px] leading-relaxed text-card-foreground shadow-xl backdrop-blur">
+    <div className="pointer-events-auto rounded-xl border border-amber-500/50 bg-card/95 p-3 font-mono text-[11px] leading-relaxed text-card-foreground shadow-xl backdrop-blur">
       <div className="mb-1 font-sans text-xs font-semibold text-amber-600">
         🛠 Diagnostik (endast dev)
       </div>
