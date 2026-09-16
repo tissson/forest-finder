@@ -15,9 +15,10 @@ export function DiagnosticPanel() {
 function PanelInner() {
   const [health, setHealth] = useState<HealthState>({ kind: "loading" });
 
-  const baseUrl = import.meta.env.VITE_API_BASE_URL as string | undefined;
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+  const env = import.meta.env as Record<string, string | undefined>;
+  const baseUrl = env["VITE_API_BASE_URL"];
+  const supabaseUrl = env["VITE_SUPABASE_URL"];
+  const anonKey = env["VITE_SUPABASE_ANON_KEY"];
 
   useEffect(() => {
     let cancelled = false;
