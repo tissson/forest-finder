@@ -80,10 +80,9 @@ function Index() {
         )}
       </div>
 
-      <DiagnosticPanel />
-
-
       <header className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-3 p-4">
+        <DiagnosticPanel />
+
         <div className="pointer-events-auto flex items-center gap-2">
           <span className="rounded-full bg-card/90 px-3 py-1.5 text-sm font-semibold tracking-tight text-card-foreground shadow-lg backdrop-blur">
             🍄 Svamp- & Bärprognos
