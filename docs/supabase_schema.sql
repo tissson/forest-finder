@@ -455,13 +455,14 @@ grant execute on function public.log_species_discovery(bigint, bigint, text, dou
 
 -- ------------------------------------------------------------------ bildlager --
 
-insert into storage.buckets (id, name, public)
-values ('discoveries', 'discoveries', true)
-on conflict (id) do nothing;
+-- Hinken 'discoveries' är PRIVAT (10 MB per fil) och skapas via
+-- Lovable Cloud/Supabase Storage-gränssnittet, inte via SQL.
+-- Bilder visas med tidsbegränsade signerade länkar (se getDiscoveryImageUrl).
 
-drop policy if exists "Fyndbilder är läsbara" on storage.objects;
-create policy "Fyndbilder är läsbara" on storage.objects
-  for select using (bucket_id = 'discoveries');
+drop policy if exists "Läs egna fyndbilder" on storage.objects;
+create policy "Läs egna fyndbilder" on storage.objects
+  for select to authenticated
+  using (bucket_id = 'discoveries' and (storage.foldername(name))[1] = auth.uid()::text);
 
 drop policy if exists "Ladda upp egna fyndbilder" on storage.objects;
 create policy "Ladda upp egna fyndbilder" on storage.objects
