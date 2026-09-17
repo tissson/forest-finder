@@ -1,34 +1,21 @@
 /**
  * src/lib/api.ts
  * ================
- * Klient mot vår egen FastAPI-backend (api_server.py). Bifogar
- * Supabase-JWT:n automatiskt som Authorization-header på ALLA anrop
- * (anonyma requests fungerar ändå -- backend behandlar avsaknad av
- * header som "anonym/gratis", se get_current_user() i api_server.py).
+ * Datalager mot Lovable Cloud (Supabase). Ingen separat Python/FastAPI-
+ * server längre -- allt går direkt mot databasen via den inloggade
+ * användarens session (RLS + auth.uid()) eller mot publika tabeller.
  *
- * Miljövariabel: VITE_API_BASE_URL (t.ex. https://api.dittdomän.se
- * eller http://localhost:8000 lokalt).
- *
- * Typerna nedan är medvetet skrivna för att matcha api_server.py:s
- * Pydantic-svarsmodeller FÄLT FÖR FÄLT -- om ni ändrar en respons-
- * modell i backend, uppdatera motsvarande interface här också.
+ * Funktionsnamnen och typerna här är desamma som tidigare, så
+ * komponenterna behöver inte ändras.
  */
 
-import { getAccessToken, supabase } from './supabase';
+import { supabase } from './supabase';
 
-const API_BASE_URL = import.meta.env['VITE_API_BASE_URL'] as string | undefined;
-
-export const isApiConfigured = Boolean(API_BASE_URL);
-
-if (!isApiConfigured) {
-  // Kastar INTE vid import -- appen ska kunna renderas innan
-  // VITE_API_BASE_URL är satt; anropen misslyckas tills dess.
-  console.warn('Saknar VITE_API_BASE_URL -- sätt den i .env (se .env.example).');
-}
+/** Behålls för bakåtkompatibilitet -- backend är alltid konfigurerad nu. */
+export const isApiConfigured = true;
 
 // ---------------------------------------------------------------------
-// Feltyper -- gör det möjligt för UI att skilja "kräver premium" (403)
-// från övriga fel utan att behöva tolka statuskoder på anropsplatsen.
+// Feltyper
 // ---------------------------------------------------------------------
 
 export class ApiError extends Error {
@@ -47,8 +34,30 @@ export class PremiumRequiredError extends ApiError {
   }
 }
 
+export class AuthRequiredError extends ApiError {
+  constructor(message: string) {
+    super(401, message);
+    this.name = 'AuthRequiredError';
+  }
+}
+
+/** Översätter ett Postgres-/Supabase-fel till våra feltyper. */
+function toApiError(message: string | undefined | null): ApiError {
+  const text = message ?? 'Okänt fel mot databasen.';
+  if (text.includes('PREMIUM_REQUIRED')) {
+    return new PremiumRequiredError('Det här lagret ingår i premium.');
+  }
+  if (text.includes('AUTH_REQUIRED')) {
+    return new AuthRequiredError('Du måste vara inloggad för att göra det här.');
+  }
+  if (text.includes('LOW_CONFIDENCE')) {
+    return new ApiError(422, 'Bilden kunde inte bekräftas säkert nog.');
+  }
+  return new ApiError(500, text);
+}
+
 // ---------------------------------------------------------------------
-// Svarstyper -- matchar api_server.py:s Pydantic-modeller/dict-svar.
+// Svarstyper
 // ---------------------------------------------------------------------
 
 export interface Species {
@@ -56,7 +65,7 @@ export interface Species {
   slug: string;
   name_sv: string;
   tier: 'free' | 'premium';
-  season_start: string | null; // ISO-datum (YYYY-MM-DD)
+  season_start: string | null;
   season_end: string | null;
 }
 
@@ -75,11 +84,7 @@ export interface PredictionFeature {
 
 export interface PredictionsResponse {
   type: 'FeatureCollection';
-  metadata: {
-    species_id: number;
-    obs_date: string | null;
-    count: number;
-  };
+  metadata: { species_id: number; obs_date: string | null; count: number };
   features: PredictionFeature[];
 }
 
@@ -129,12 +134,6 @@ export interface DiscoveryUploadResult {
   image_url: string;
 }
 
-// ---------------------------------------------------------------------
-// Lagerval -- delad typ mellan LayerSelector.tsx och Map.tsx, definierad
-// här (i datalagret) snarare än i en UI-komponent, så båda kan importera
-// från samma ställe utan att komponenter behöver känna till varandra.
-// ---------------------------------------------------------------------
-
 export type LayerSelection =
   | { type: 'species'; speciesId: number; speciesName: string; tier: 'free' | 'premium' }
   | { type: 'moisture' };
@@ -159,150 +158,225 @@ export interface MoistureLayerResponse {
 }
 
 // ---------------------------------------------------------------------
-// Kärnhjälpare: sköter bas-URL, JWT-header, JSON-parsing och en (1)
-// automatisk retry vid 401 efter explicit sessionsförnyelse.
+// Publika läsningar (fungerar utan inloggning)
 // ---------------------------------------------------------------------
 
-async function apiFetch<T>(
-  path: string,
-  options: RequestInit = {},
-  allowRetryOn401 = true
-): Promise<T> {
-  if (!API_BASE_URL) {
-    throw new ApiError(0, 'Backend-URL saknas (VITE_API_BASE_URL är inte satt).');
-  }
-
-  const token = await getAccessToken();
-
-  const headers = new Headers(options.headers);
-  headers.set('Accept', 'application/json');
-  if (token) headers.set('Authorization', `Bearer ${token}`);
-  // FormData sätter sin egen Content-Type (med boundary) -- rör den inte.
-  if (options.body && !(options.body instanceof FormData) && !headers.has('Content-Type')) {
-    headers.set('Content-Type', 'application/json');
-  }
-
-  const response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
-
-  if (response.status === 401 && allowRetryOn401) {
-    // Kan bero på att access-token gick ut exakt vid detta anrop,
-    // innan Supabases bakgrundsförnyelse hann agera. Försök EN gång
-    // till efter en explicit refresh -- annars, ge upp och låt felet
-    // gå vidare (t.ex. för att visa en "logga in igen"-vy).
-    const { data: refreshed } = await supabase.auth.refreshSession();
-    if (refreshed.session) {
-      return apiFetch<T>(path, options, false);
-    }
-  }
-
-  if (!response.ok) {
-    const body = await response.json().catch(() => ({ detail: response.statusText }));
-    const message = typeof body?.detail === 'string' ? body.detail : `HTTP ${response.status}`;
-    if (response.status === 403) {
-      throw new PremiumRequiredError(message);
-    }
-    throw new ApiError(response.status, message);
-  }
-
-  if (response.status === 204) {
-    return undefined as T;
-  }
-  return (await response.json()) as T;
-}
-
-// ---------------------------------------------------------------------
-// Publika endpoints (fungerar utan inloggning)
-// ---------------------------------------------------------------------
-
-export function getSpecies(): Promise<Species[]> {
-  return apiFetch<Species[]>('/species');
+export async function getSpecies(): Promise<Species[]> {
+  const { data, error } = await supabase
+    .from('species')
+    .select('id, slug, name_sv, tier, season_start, season_end')
+    .order('name_sv');
+  if (error) throw toApiError(error.message);
+  return (data ?? []) as Species[];
 }
 
 export interface GetPredictionsOptions {
-  obsDate?: string; // YYYY-MM-DD, default = senaste tillgängliga
-  minScore?: number; // default 0.05, matchar backendens default
+  obsDate?: string; // YYYY-MM-DD
+  minScore?: number;
   limit?: number;
 }
 
-/**
- * bbox: [minLon, minLat, maxLon, maxLat] (WGS84) -- t.ex. från
- * MapLibres map.getBounds() i Map.tsx.
- */
-export function getPredictions(
+/** bbox: [minLon, minLat, maxLon, maxLat] (WGS84). */
+export async function getPredictions(
   bbox: [number, number, number, number],
   speciesId: number,
   options: GetPredictionsOptions = {}
 ): Promise<PredictionsResponse> {
-  const params = new URLSearchParams({
-    bbox: bbox.join(','),
-    species_id: String(speciesId),
+  const { data, error } = await supabase.rpc('get_predictions', {
+    p_species_id: speciesId,
+    p_min_lon: bbox[0],
+    p_min_lat: bbox[1],
+    p_max_lon: bbox[2],
+    p_max_lat: bbox[3],
+    p_obs_date: options.obsDate ?? null,
+    p_min_score: options.minScore ?? 0.05,
+    p_limit: options.limit ?? 2000,
   });
-  if (options.obsDate) params.set('obs_date', options.obsDate);
-  if (options.minScore !== undefined) params.set('min_score', String(options.minScore));
-  if (options.limit !== undefined) params.set('limit', String(options.limit));
+  if (error) throw toApiError(error.message);
 
-  return apiFetch<PredictionsResponse>(`/predictions?${params.toString()}`);
+  const rows = (data ?? []) as Array<{
+    lon: number;
+    lat: number;
+    obs_date: string | null;
+    score_total: number;
+    score_soil: number | null;
+    score_forest: number | null;
+    score_weather: number | null;
+  }>;
+
+  return {
+    type: 'FeatureCollection',
+    metadata: {
+      species_id: speciesId,
+      obs_date: rows[0]?.obs_date ?? options.obsDate ?? null,
+      count: rows.length,
+    },
+    features: rows.map((r) => ({
+      type: 'Feature' as const,
+      geometry: { type: 'Point' as const, coordinates: [r.lon, r.lat] as [number, number] },
+      properties: {
+        score_total: r.score_total,
+        score_soil: r.score_soil,
+        score_forest: r.score_forest,
+        score_weather: r.score_weather,
+      },
+    })),
+  };
 }
 
-export function getCurrentChallenge(): Promise<{ active_challenge: WeeklyChallenge | null }> {
-  return apiFetch('/challenges/current');
-}
-
-export function getMoistureLayer(
+export async function getMoistureLayer(
   bbox: [number, number, number, number],
   obsDate?: string
 ): Promise<MoistureLayerResponse> {
-  const params = new URLSearchParams({ bbox: bbox.join(',') });
-  if (obsDate) params.set('obs_date', obsDate);
-  return apiFetch<MoistureLayerResponse>(`/layers/moisture?${params.toString()}`);
+  const { data, error } = await supabase.rpc('get_moisture_layer', {
+    p_min_lon: bbox[0],
+    p_min_lat: bbox[1],
+    p_max_lon: bbox[2],
+    p_max_lat: bbox[3],
+    p_obs_date: obsDate ?? null,
+    p_limit: 2000,
+  });
+  if (error) throw toApiError(error.message);
+
+  const rows = (data ?? []) as Array<{
+    lon: number;
+    lat: number;
+    obs_date: string | null;
+    moisture_score: number | null;
+    precip_7d_sum: number | null;
+    precip_10d_sum: number | null;
+    temp_mean: number | null;
+  }>;
+
+  return {
+    type: 'FeatureCollection',
+    metadata: { layer: 'moisture', obs_date: rows[0]?.obs_date ?? obsDate ?? null, count: rows.length },
+    features: rows.map((r) => ({
+      type: 'Feature' as const,
+      geometry: { type: 'Point' as const, coordinates: [r.lon, r.lat] as [number, number] },
+      properties: {
+        moisture_score: r.moisture_score,
+        precip_7d_sum: r.precip_7d_sum,
+        precip_10d_sum: r.precip_10d_sum,
+        temp_mean: r.temp_mean,
+      },
+    })),
+  };
+}
+
+export async function getCurrentChallenge(): Promise<{ active_challenge: WeeklyChallenge | null }> {
+  const today = new Date().toISOString().slice(0, 10);
+  const { data, error } = await supabase
+    .from('weekly_challenges')
+    .select('*, species(name_sv)')
+    .lte('start_date', today)
+    .gte('end_date', today)
+    .maybeSingle();
+  if (error) throw toApiError(error.message);
+  if (!data) return { active_challenge: null };
+
+  const row = data as Record<string, unknown> & { species?: { name_sv?: string } | null };
+  return {
+    active_challenge: {
+      id: row['id'] as number,
+      year: row['year'] as number,
+      week_number: row['week_number'] as number,
+      species_id: row['species_id'] as number,
+      species_name: row.species?.name_sv ?? '',
+      bonus_points: row['bonus_points'] as number,
+      badge_key: row['badge_key'] as string,
+      start_date: row['start_date'] as string,
+      end_date: row['end_date'] as string,
+    },
+  };
 }
 
 /**
- * Slår upp weather_zone_id för en koordinat. Koordinaten skickas EN
- * gång för denna slagning och sparas ALDRIG server-side (se
- * /zones/lookup i api_server.py) -- använd resultatet, kasta
- * koordinaten. Skicka ALDRIG lat/lon vidare till uploadDiscovery().
+ * Slår upp vilken 5x5 km-ruta en koordinat hör till. Koordinaten
+ * används ENDAST för slagningen och sparas aldrig -- bara zon-id:t
+ * följer med fyndet vidare.
  */
-export function lookupWeatherZone(lat: number, lon: number): Promise<{ weather_zone_id: number }> {
-  return apiFetch(`/zones/lookup?lat=${lat}&lon=${lon}`);
+export async function lookupWeatherZone(
+  lat: number,
+  lon: number
+): Promise<{ weather_zone_id: number }> {
+  const { data, error } = await supabase.rpc('lookup_weather_zone', { p_lat: lat, p_lon: lon });
+  if (error) throw toApiError(error.message);
+  return { weather_zone_id: data as number };
 }
 
 // ---------------------------------------------------------------------
-// Endpoints som kräver inloggning (backend svarar 401 annars)
+// Kräver inloggning (RLS gör att allt scopas till auth.uid())
 // ---------------------------------------------------------------------
 
-export function getMyProfile(): Promise<UserProfile> {
-  return apiFetch<UserProfile>('/user/profile');
+async function requireUserId(): Promise<string> {
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) throw new AuthRequiredError('Du måste vara inloggad.');
+  return data.user.id;
 }
 
-export function updateMyProfile(update: {
+export async function getMyProfile(): Promise<UserProfile> {
+  const { data, error } = await supabase.rpc('get_or_create_profile');
+  if (error) throw toApiError(error.message);
+  const row = (Array.isArray(data) ? data[0] : data) as UserProfile;
+  return row;
+}
+
+export async function updateMyProfile(update: {
   display_name?: string;
   avatar_url?: string;
 }): Promise<UserProfile> {
-  return apiFetch<UserProfile>('/user/profile', {
-    method: 'PATCH',
-    body: JSON.stringify(update),
-  });
+  const userId = await requireUserId();
+  const { data, error } = await supabase
+    .from('user_profiles')
+    .update(update)
+    .eq('user_id', userId)
+    .select('user_id, display_name, avatar_url, total_points, level')
+    .single();
+  if (error) throw toApiError(error.message);
+  return data as UserProfile;
 }
 
-export function getMyDiscoveries(
+export async function getMyDiscoveries(
   limit = 50,
   offset = 0
 ): Promise<{ discoveries: Discovery[]; limit: number; offset: number }> {
-  return apiFetch(`/user/discoveries?limit=${limit}&offset=${offset}`);
+  const { data, error } = await supabase
+    .from('user_discoveries')
+    .select('id, species_id, weather_zone_id, image_url, ai_confidence, points_awarded, created_at, species(name_sv)')
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1);
+  if (error) throw toApiError(error.message);
+
+  const rows = (data ?? []) as Array<Record<string, unknown> & { species?: { name_sv?: string } | null }>;
+  const discoveries: Discovery[] = rows.map((r) => ({
+    id: r['id'] as number,
+    species_id: r['species_id'] as number,
+    species_name: r.species?.name_sv ?? '',
+    weather_zone_id: r['weather_zone_id'] as number,
+    image_url: r['image_url'] as string,
+    ai_confidence: r['ai_confidence'] as number,
+    points_awarded: r['points_awarded'] as number,
+    created_at: r['created_at'] as string,
+  }));
+  return { discoveries, limit, offset };
 }
 
-export function getMyBadges(): Promise<{ badges: Badge[] }> {
-  return apiFetch('/user/badges');
+export async function getMyBadges(): Promise<{ badges: Badge[] }> {
+  const { data, error } = await supabase
+    .from('user_badges')
+    .select('badge_key, title, description, icon_url, unlocked_at')
+    .order('unlocked_at', { ascending: false });
+  if (error) throw toApiError(error.message);
+  return { badges: (data ?? []) as Badge[] };
 }
 
 /**
- * OBS: ai_confidence måste redan vara beräknad INNAN detta anrop --
- * ingen AI-bildklassificering byggs här (se api_server.py:s docstring
- * för /discoveries). Detta anrop hanterar bara upload + EXIF-strippning
- * + poänglogik server-side.
+ * Laddar upp bilden till lagringsutrymmet (privat hink, mappad per
+ * användare) och registrerar fyndet via log_species_discovery(), som
+ * räknar poäng och låser upp utmärkelser server-side.
  */
-export function uploadDiscovery(params: {
+export async function uploadDiscovery(params: {
   file: File;
   speciesId: number;
   weatherZoneId: number;
@@ -310,16 +384,48 @@ export function uploadDiscovery(params: {
   notes?: string | undefined;
   quantity?: string | undefined;
 }): Promise<DiscoveryUploadResult> {
-  const formData = new FormData();
-  formData.append('file', params.file);
-  formData.append('species_id', String(params.speciesId));
-  formData.append('weather_zone_id', String(params.weatherZoneId));
-  formData.append('ai_confidence', String(params.aiConfidence));
-  if (params.notes) formData.append('notes', params.notes);
-  if (params.quantity) formData.append('quantity', params.quantity);
+  const userId = await requireUserId();
 
-  return apiFetch<DiscoveryUploadResult>('/discoveries', {
-    method: 'POST',
-    body: formData,
+  const extension = params.file.name.split('.').pop()?.toLowerCase() ?? 'jpg';
+  const path = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from('discoveries')
+    .upload(path, params.file, {
+      contentType: params.file.type || 'image/jpeg',
+      upsert: false,
+    });
+  if (uploadError) throw toApiError(uploadError.message);
+
+  const { data, error } = await supabase.rpc('log_species_discovery', {
+    p_species_id: params.speciesId,
+    p_weather_zone_id: params.weatherZoneId,
+    p_image_url: path,
+    p_ai_confidence: params.aiConfidence,
+    p_notes: params.notes ?? null,
+    p_quantity: params.quantity ?? null,
   });
+  if (error) {
+    await supabase.storage.from('discoveries').remove([path]);
+    throw toApiError(error.message);
+  }
+
+  const row = (Array.isArray(data) ? data[0] : data) as {
+    points_awarded: number;
+    new_total_points: number;
+    badge_unlocked: string | null;
+  };
+
+  return {
+    points_awarded: row?.points_awarded ?? 0,
+    new_total_points: row?.new_total_points ?? 0,
+    badge_unlocked: row?.badge_unlocked ?? null,
+    image_url: await getDiscoveryImageUrl(path),
+  };
+}
+
+/** Skapar en tillfällig (1 h) visningslänk för en fyndbild. */
+export async function getDiscoveryImageUrl(path: string): Promise<string> {
+  const { data } = await supabase.storage.from('discoveries').createSignedUrl(path, 3600);
+  return data?.signedUrl ?? '';
 }
