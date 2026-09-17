@@ -233,7 +233,7 @@ export async function getMoistureLayer(
     p_min_lat: bbox[1],
     p_max_lon: bbox[2],
     p_max_lat: bbox[3],
-    p_obs_date: obsDate,
+    ...(obsDate ? { p_obs_date: obsDate } : {}),
     p_limit: 2000,
   });
   if (error) throw toApiError(error.message);
