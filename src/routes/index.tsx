@@ -43,7 +43,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const navigate = useNavigate();
   const [mounted, setMounted] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
   const [layer, setLayer] = useState<LayerSelection | null>(null);
   const [count, setCount] = useState<number | null>(null);
   const [captureOpen, setCaptureOpen] = useState(false);
@@ -54,6 +56,12 @@ function Index() {
   const [success, setSuccess] = useState<DiscoveryUploadResult | null>(null);
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSignedIn(Boolean(data.session)));
+    return onAuthStateChange((session) => setSignedIn(Boolean(session)));
+  }, []);
+
 
   const handleError = (error: ApiError) => {
     if (error instanceof PremiumRequiredError) {
