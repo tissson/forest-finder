@@ -188,7 +188,7 @@ export async function getPredictions(
     p_min_lat: bbox[1],
     p_max_lon: bbox[2],
     p_max_lat: bbox[3],
-    p_obs_date: options.obsDate,
+    ...(options.obsDate ? { p_obs_date: options.obsDate } : {}),
     p_min_score: options.minScore ?? 0.05,
     p_limit: options.limit ?? 2000,
   });
