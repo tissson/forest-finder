@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Camera, X } from "lucide-react";
@@ -8,6 +8,7 @@ import { LayerSelector } from "@/components/LayerSelector";
 import { CameraCapture } from "@/components/CameraCapture";
 import { LogDiscoveryModal } from "@/components/LogDiscoveryModal";
 import { DiscoverySuccessModal } from "@/components/DiscoverySuccessModal";
+import { supabase, onAuthStateChange } from "@/lib/supabase";
 import {
   ApiError,
   PremiumRequiredError,
