@@ -101,6 +101,20 @@ function Index() {
               {count} rutor
             </span>
           )}
+          <button
+            type="button"
+            onClick={() => {
+              if (signedIn) {
+                void supabase.auth.signOut();
+                toast.success("Utloggad");
+              } else {
+                navigate({ to: "/auth" });
+              }
+            }}
+            className="ml-auto rounded-full bg-card/90 px-3 py-1.5 text-xs font-medium text-card-foreground shadow backdrop-blur"
+          >
+            {signedIn ? "Logga ut" : "Logga in"}
+          </button>
         </div>
         <div className="pointer-events-auto max-w-xs">
           <LayerSelector value={layer} onChange={setLayer} className="shadow-xl backdrop-blur" />
@@ -109,12 +123,22 @@ function Index() {
 
       <button
         type="button"
-        onClick={() => setCaptureOpen(true)}
+        onClick={() => {
+          if (!signedIn) {
+            toast.info("Logga in först", {
+              description: "Du behöver ett konto för att spara fynd.",
+            });
+            navigate({ to: "/auth" });
+            return;
+          }
+          setCaptureOpen(true);
+        }}
         aria-label="Logga ett fynd"
         className="absolute bottom-7 right-5 z-20 flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-2xl transition-transform active:scale-95"
       >
         <Camera className="h-7 w-7" />
       </button>
+
 
       {captureOpen && (
         <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/60 p-4 sm:items-center">
