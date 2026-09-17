@@ -192,24 +192,32 @@ create policy "Utmaningar är publika" on public.weekly_challenges
 
 -- --------------------------------------------------- profil vid registrering --
 
-create or replace function public.handle_new_user()
-returns trigger
+-- Profilen skapas lat (vid första anropet) i stället för via en trigger på
+-- auth.users -- auth-schemat ägs av plattformen och rörs inte.
+create or replace function public.get_or_create_profile()
+returns public.user_profiles
 language plpgsql
 security definer
 set search_path = public
 as $$
+declare
+  v_user uuid := auth.uid();
+  v_profile public.user_profiles;
 begin
+  if v_user is null then
+    raise exception 'AUTH_REQUIRED: Du måste vara inloggad.';
+  end if;
+
   insert into public.user_profiles (user_id, display_name)
-  values (new.id, coalesce(new.raw_user_meta_data ->> 'display_name', split_part(new.email, '@', 1), 'Plockare'))
+  values (v_user, coalesce(split_part((auth.jwt() ->> 'email'), '@', 1), 'Plockare'))
   on conflict (user_id) do nothing;
-  return new;
+
+  select * into v_profile from public.user_profiles where user_id = v_user;
+  return v_profile;
 end;
 $$;
 
-drop trigger if exists on_auth_user_created on auth.users;
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute function public.handle_new_user();
+grant execute on function public.get_or_create_profile() to authenticated;
 
 -- ------------------------------------------------------------- 5x5 km-rutor --
 
