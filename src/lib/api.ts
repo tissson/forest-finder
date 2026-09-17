@@ -188,7 +188,7 @@ export async function getPredictions(
     p_min_lat: bbox[1],
     p_max_lon: bbox[2],
     p_max_lat: bbox[3],
-    p_obs_date: options.obsDate ?? null,
+    p_obs_date: options.obsDate,
     p_min_score: options.minScore ?? 0.05,
     p_limit: options.limit ?? 2000,
   });
@@ -233,7 +233,7 @@ export async function getMoistureLayer(
     p_min_lat: bbox[1],
     p_max_lon: bbox[2],
     p_max_lat: bbox[3],
-    p_obs_date: obsDate ?? null,
+    p_obs_date: obsDate,
     p_limit: 2000,
   });
   if (error) throw toApiError(error.message);
@@ -402,8 +402,8 @@ export async function uploadDiscovery(params: {
     p_weather_zone_id: params.weatherZoneId,
     p_image_url: path,
     p_ai_confidence: params.aiConfidence,
-    p_notes: params.notes ?? null,
-    p_quantity: params.quantity ?? null,
+    p_notes: params.notes,
+    p_quantity: params.quantity,
   });
   if (error) {
     await supabase.storage.from('discoveries').remove([path]);
