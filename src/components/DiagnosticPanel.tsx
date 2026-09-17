@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
-type HealthState =
+type CheckState =
   | { kind: "loading" }
-  | { kind: "ok"; status: number; body: string }
+  | { kind: "ok"; detail: string }
   | { kind: "error"; name: string; message: string };
 
 // Tillfällig diagnostikruta – endast utvecklingsläge (import.meta.env.DEV).
@@ -13,43 +14,62 @@ export function DiagnosticPanel() {
 }
 
 function PanelInner() {
-  const [health, setHealth] = useState<HealthState>({ kind: "loading" });
+  const [db, setDb] = useState<CheckState>({ kind: "loading" });
+  const [auth, setAuth] = useState<CheckState>({ kind: "loading" });
 
   const env = import.meta.env as Record<string, string | undefined>;
-  const baseUrl = env["VITE_API_BASE_URL"];
   const supabaseUrl = env["VITE_SUPABASE_URL"];
-  const anonKey = env["VITE_SUPABASE_ANON_KEY"];
+  const publishableKey =
+    env["VITE_SUPABASE_PUBLISHABLE_KEY"] || env["VITE_SUPABASE_ANON_KEY"];
 
   useEffect(() => {
     let cancelled = false;
+
     const run = async () => {
-      if (!baseUrl) {
-        setHealth({
-          kind: "error",
-          name: "ConfigError",
-          message: "VITE_API_BASE_URL är inte satt – ingen URL att anropa.",
-        });
-        return;
-      }
+      // 1. Databasanslutning: en liten publik läsning mot species.
       try {
-        const res = await fetch(`${baseUrl}/health`);
-        const body = await res.text();
-        if (!cancelled) setHealth({ kind: "ok", status: res.status, body });
+        const { data, error } = await supabase
+          .from("species")
+          .select("id", { count: "exact", head: false })
+          .limit(5);
+        if (cancelled) return;
+        if (error) {
+          setDb({ kind: "error", name: "PostgrestError", message: error.message });
+        } else {
+          setDb({ kind: "ok", detail: `läsning OK, ${data?.length ?? 0} arter hämtade` });
+        }
       } catch (err) {
         if (cancelled) return;
         const e = err as Error;
-        setHealth({
-          kind: "error",
-          name: e?.name ?? "Unknown",
-          message: e?.message ?? String(err),
-        });
+        setDb({ kind: "error", name: e?.name ?? "Unknown", message: e?.message ?? String(err) });
+      }
+
+      // 2. Auth: finns en giltig session/användare?
+      try {
+        const { data, error } = await supabase.auth.getSession();
+        if (cancelled) return;
+        if (error) {
+          setAuth({ kind: "error", name: "AuthError", message: error.message });
+        } else if (data.session) {
+          setAuth({
+            kind: "ok",
+            detail: `inloggad som ${data.session.user.email ?? data.session.user.id}`,
+          });
+        } else {
+          setAuth({ kind: "ok", detail: "ingen session (utloggad)" });
+        }
+      } catch (err) {
+        if (cancelled) return;
+        const e = err as Error;
+        setAuth({ kind: "error", name: e?.name ?? "Unknown", message: e?.message ?? String(err) });
       }
     };
+
     run();
     return () => {
       cancelled = true;
     };
-  }, [baseUrl]);
+  }, []);
 
   return (
     <div className="pointer-events-auto rounded-xl border border-amber-500/50 bg-card/95 p-3 font-mono text-[11px] leading-relaxed text-card-foreground shadow-xl backdrop-blur">
@@ -57,26 +77,29 @@ function PanelInner() {
         🛠 Diagnostik (endast dev)
       </div>
       <div>
-        VITE_API_BASE_URL = <strong>{baseUrl || "(saknas)"}</strong>
-      </div>
-      <div>
         VITE_SUPABASE_URL = <strong>{supabaseUrl || "(saknas)"}</strong>
       </div>
       <div>
-        VITE_SUPABASE_ANON_KEY = <strong>{anonKey ? "satt" : "saknas"}</strong>
+        Publik nyckel = <strong>{publishableKey ? "satt" : "saknas"}</strong>
       </div>
       <div className="mt-1 border-t border-border pt-1">
         <div>
-          GET {baseUrl || "(saknas)"}/health →{" "}
-          {health.kind === "loading" && "anropar…"}
-          {health.kind === "ok" && (
-            <span className="text-green-600">
-              status {health.status}: {health.body.slice(0, 300) || "(tom kropp)"}
+          Databas →{" "}
+          {db.kind === "loading" && "kontrollerar…"}
+          {db.kind === "ok" && <span className="text-green-600">{db.detail}</span>}
+          {db.kind === "error" && (
+            <span className="text-red-600">
+              {db.name}: {db.message}
             </span>
           )}
-          {health.kind === "error" && (
+        </div>
+        <div>
+          Auth →{" "}
+          {auth.kind === "loading" && "kontrollerar…"}
+          {auth.kind === "ok" && <span className="text-green-600">{auth.detail}</span>}
+          {auth.kind === "error" && (
             <span className="text-red-600">
-              {health.name}: {health.message}
+              {auth.name}: {auth.message}
             </span>
           )}
         </div>
