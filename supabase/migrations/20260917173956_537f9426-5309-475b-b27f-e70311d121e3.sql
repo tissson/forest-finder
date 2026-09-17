@@ -1,0 +1,3 @@
+alter function public.get_predictions(bigint, double precision, double precision, double precision, double precision, date, double precision, integer) security invoker;
+alter function public.get_moisture_layer(double precision, double precision, double precision, double precision, date, integer) security invoker;
+revoke execute on function public.lookup_weather_zone(double precision, double precision) from anon;
