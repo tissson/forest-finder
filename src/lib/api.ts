@@ -402,8 +402,8 @@ export async function uploadDiscovery(params: {
     p_weather_zone_id: params.weatherZoneId,
     p_image_url: path,
     p_ai_confidence: params.aiConfidence,
-    p_notes: params.notes,
-    p_quantity: params.quantity,
+    ...(params.notes ? { p_notes: params.notes } : {}),
+    ...(params.quantity ? { p_quantity: params.quantity } : {}),
   });
   if (error) {
     await supabase.storage.from('discoveries').remove([path]);
