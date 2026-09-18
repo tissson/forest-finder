@@ -127,7 +127,7 @@ function Index() {
                 navigate({ to: "/auth" });
               }
             }}
-            className="h-12 w-12 shrink-0 rounded-2xl border-border/70 bg-card/90 shadow-xl backdrop-blur-xl"
+            className="hidden h-12 w-12 shrink-0 rounded-2xl border-border/70 bg-card/90 shadow-xl backdrop-blur-xl md:inline-flex"
           >
             {signedIn ? <LogOut /> : <LogIn />}
           </Button>

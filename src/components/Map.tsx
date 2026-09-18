@@ -219,18 +219,18 @@ export function Map({
         source: LAYER_SOURCE_ID,
         paint: {
           'heatmap-weight': ['interpolate', ['linear'], ['coalesce', ['to-number', ['get', 'weight']], 0], 0, 0, 1, 1],
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 4, 0.72, 9, 1.05],
-          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 4, 60, 7, 44, 11, 25],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 4, 0.5, 7, 0.7, 11, 0.95],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 4, 110, 6, 90, 9, 60, 12, 36],
           'heatmap-color': [
             'interpolate',
             ['linear'],
             ['heatmap-density'],
             0, 'rgba(0, 0, 0, 0)',
-            0.12, low,
-            0.5, mid,
+            0.08, low,
+            0.42, mid,
             1, high,
           ],
-          'heatmap-opacity': 0.6,
+          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 4, 0.58, 9, 0.62, 12, 0.56],
         },
       });
 
@@ -265,7 +265,7 @@ export function Map({
       const high = mapColor(highToken);
       map.setPaintProperty(LAYER_HEATMAP_ID, 'heatmap-color', [
         'interpolate', ['linear'], ['heatmap-density'],
-        0, 'rgba(0, 0, 0, 0)', 0.12, low, 0.5, mid, 1, high,
+        0, 'rgba(0, 0, 0, 0)', 0.08, low, 0.42, mid, 1, high,
       ]);
     }
     fetchAndRenderLayer();

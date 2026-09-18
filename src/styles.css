@@ -244,7 +244,7 @@
 
   .maplibregl-ctrl-bottom-right {
     right: 1rem;
-    bottom: calc(6rem + env(safe-area-inset-bottom));
+    bottom: calc(7.25rem + env(safe-area-inset-bottom));
   }
 
   .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group button {
