@@ -239,8 +239,8 @@ export const Map: React.FC<MapProps> = ({
       map.getCanvas().style.cursor = "";
     };
     const handleIdle = () => {
-      if (!map.getLayer(GRID_FILL_LAYER_ID)) return;
-      onFeatureCountChange?.(map.queryRenderedFeatures({ layers: [GRID_FILL_LAYER_ID] }).length);
+      if (!map.getLayer(HIT_LAYER_ID)) return;
+      onFeatureCountChange?.(map.queryRenderedFeatures({ layers: [HIT_LAYER_ID] }).length);
     };
     const handleSourceError = (event: unknown) => {
       const status = (event as { error?: { status?: number } })?.error?.status;
@@ -249,20 +249,20 @@ export const Map: React.FC<MapProps> = ({
       }
     };
 
-    map.on("click", GRID_FILL_LAYER_ID, handleClick);
-    map.on("mouseenter", GRID_FILL_LAYER_ID, handleEnter);
-    map.on("mouseleave", GRID_FILL_LAYER_ID, handleLeave);
+    map.on("click", HIT_LAYER_ID, handleClick);
+    map.on("mouseenter", HIT_LAYER_ID, handleEnter);
+    map.on("mouseleave", HIT_LAYER_ID, handleLeave);
     map.on("idle", handleIdle);
     map.on("error", handleSourceError);
 
     return () => {
       popup.remove();
-      map.off("click", GRID_FILL_LAYER_ID, handleClick);
-      map.off("mouseenter", GRID_FILL_LAYER_ID, handleEnter);
-      map.off("mouseleave", GRID_FILL_LAYER_ID, handleLeave);
+      map.off("click", HIT_LAYER_ID, handleClick);
+      map.off("mouseenter", HIT_LAYER_ID, handleEnter);
+      map.off("mouseleave", HIT_LAYER_ID, handleLeave);
       map.off("idle", handleIdle);
       map.off("error", handleSourceError);
-      if (map.getLayer(GRID_FILL_LAYER_ID)) map.removeLayer(GRID_FILL_LAYER_ID);
+      if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
       if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
     };
   }, [isLoaded, layer, obsDate, onCellClick, onError, onFeatureCountChange]);
