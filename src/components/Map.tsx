@@ -23,7 +23,6 @@ import {
   GeolocateControl,
   setWorkerUrl,
   type GeoJSONSource,
-  type MapLayerMouseEvent,
 } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
@@ -203,7 +202,6 @@ export function Map({
       new GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
         trackUserLocation: true,
-        showUserHeading: true,
       }),
       'bottom-right'
     );
