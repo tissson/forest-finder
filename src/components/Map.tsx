@@ -1,7 +1,7 @@
 /**
  * src/components/Map.tsx
  * =======================
- * Kartkomponent med MapLibre GL JS: mjuk prognos-heatmap, klick-hantering,
+ * Kartkomponent med MapLibre GL JS: fasta prognosrutor, klick-hantering,
  * GPS-positionering och gränser för Sverige.
  */
 
@@ -21,6 +21,7 @@ import type {
   GeoJsonProperties,
   Geometry,
   Point,
+  Polygon,
 } from "geojson";
 
 import { getPredictions, getMoistureLayer, ApiError } from "../lib/api";
@@ -36,16 +37,48 @@ interface MapProps {
 }
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
-const HEATMAP_LAYER_ID = "fungi-heatmap";
+const GRID_FILL_LAYER_ID = "fungi-grid-fill";
 const MIN_VISIBLE_SCORE = 0.01;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
+const GRID_CELL_SIZE_METERS = 5_000;
+const METERS_PER_LATITUDE_DEGREE = 111_320;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
   [10.5, 55.2],
   [24.2, 69.1],
 ];
+
+function pointToFixedGridPolygon(
+  feature: Feature<Point, GeoJsonProperties>,
+): Feature<Polygon, GeoJsonProperties> | null {
+  const longitude = feature.geometry.coordinates[0];
+  const latitude = feature.geometry.coordinates[1];
+  if (longitude === undefined || latitude === undefined) return null;
+
+  const halfCellMeters = GRID_CELL_SIZE_METERS / 2;
+  const halfLatitude = halfCellMeters / METERS_PER_LATITUDE_DEGREE;
+  const longitudeMetersPerDegree =
+    METERS_PER_LATITUDE_DEGREE * Math.cos((latitude * Math.PI) / 180);
+  if (longitudeMetersPerDegree <= 0) return null;
+  const halfLongitude = halfCellMeters / longitudeMetersPerDegree;
+
+  return {
+    type: "Feature",
+    properties: feature.properties,
+    geometry: {
+      type: "Polygon",
+      coordinates: [[
+        [longitude - halfLongitude, latitude - halfLatitude],
+        [longitude + halfLongitude, latitude - halfLatitude],
+        [longitude + halfLongitude, latitude + halfLatitude],
+        [longitude - halfLongitude, latitude + halfLatitude],
+        [longitude - halfLongitude, latitude - halfLatitude],
+      ]],
+    },
+  };
+}
 
 export const Map: React.FC<MapProps> = ({
   layer,
@@ -145,9 +178,9 @@ export const Map: React.FC<MapProps> = ({
             : [];
         });
         const highestScore = Math.max(MIN_VISIBLE_SCORE, ...scoredFeatures.map(({ rawScore }) => rawScore));
-        const processedFeatures: Array<Feature<Point, GeoJsonProperties>> = scoredFeatures.map(({ geometry, properties, rawScore }) => {
+        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = scoredFeatures.flatMap(({ geometry, properties, rawScore }) => {
           const score = Math.max(0, Math.min(1, rawScore / highestScore));
-          return {
+          const pointFeature: Feature<Point, GeoJsonProperties> = {
             type: "Feature",
             geometry: {
               type: "Point",
@@ -155,9 +188,11 @@ export const Map: React.FC<MapProps> = ({
             },
             properties: { ...properties, raw_score: rawScore, score },
           };
+          const polygon = pointToFixedGridPolygon(pointFeature);
+          return polygon ? [polygon] : [];
         });
 
-        const featureCollection: FeatureCollection<Point, GeoJsonProperties> = {
+        const featureCollection: FeatureCollection<Polygon, GeoJsonProperties> = {
           type: "FeatureCollection",
           features: processedFeatures,
         };
@@ -174,60 +209,38 @@ export const Map: React.FC<MapProps> = ({
           });
         }
 
-        if (!map.getLayer(HEATMAP_LAYER_ID)) {
+        if (!map.getLayer(GRID_FILL_LAYER_ID)) {
           map.addLayer({
-            id: HEATMAP_LAYER_ID,
-            type: "heatmap",
+            id: GRID_FILL_LAYER_ID,
+            type: "fill",
             source: PREDICTIONS_SOURCE_ID,
             paint: {
-              "heatmap-weight": [
+              "fill-color": [
                 "interpolate",
                 ["linear"],
                 ["get", "score"],
-                0, 0,
-                1, 1,
+                0.0, "transparent",
+                0.2, "rgba(59, 130, 246, 0.5)",
+                0.5, "rgba(16, 185, 129, 0.6)",
+                0.8, "rgba(245, 158, 11, 0.75)",
+                1.0, "rgba(239, 68, 68, 0.85)",
               ],
-              "heatmap-intensity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                4.5, 0.8,
-                10, 2.5,
-              ],
-              "heatmap-color": [
-                "interpolate",
-                ["linear"],
-                ["heatmap-density"],
-                0, "rgba(0, 0, 0, 0)",
-                0.15, "rgba(59, 130, 246, 0.5)",
-                0.4, "rgba(16, 185, 129, 0.7)",
-                0.7, "rgba(245, 158, 11, 0.85)",
-                0.95, "rgba(239, 68, 68, 0.95)",
-              ],
-              "heatmap-radius": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                4.5, 25,
-                8, 45,
-                12, 80,
-                16, 120,
-              ],
-              "heatmap-opacity": 0.8,
+              "fill-outline-color": "rgba(255, 255, 255, 0.1)",
+              "fill-opacity": 0.75,
             },
           });
 
-          map.on("click", HEATMAP_LAYER_ID, (e: MapLayerMouseEvent) => {
+          map.on("click", GRID_FILL_LAYER_ID, (e: MapLayerMouseEvent) => {
             const feature = e.features?.[0];
             if (!feature || !onCellClick) return;
             onCellClick((feature.properties ?? {}) as Record<string, unknown>);
           });
 
-          map.on("mouseenter", HEATMAP_LAYER_ID, () => {
+          map.on("mouseenter", GRID_FILL_LAYER_ID, () => {
             map.getCanvas().style.cursor = "pointer";
           });
 
-          map.on("mouseleave", HEATMAP_LAYER_ID, () => {
+          map.on("mouseleave", GRID_FILL_LAYER_ID, () => {
             map.getCanvas().style.cursor = "";
           });
         }
