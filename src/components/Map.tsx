@@ -42,7 +42,7 @@ const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
 const GRID_CELL_KM = 5;
 const MIN_VISIBLE_VALUE = 0.08;
-const SWEDEN_LAND = swedenLandData as Feature<Polygon | MultiPolygon>;
+const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
@@ -326,7 +326,7 @@ export function Map({
       const high = mapColor(highToken);
       map.setPaintProperty(LAYER_HEATMAP_ID, 'heatmap-color', [
         'interpolate', ['linear'], ['heatmap-density'],
-        0, 'rgba(0, 0, 0, 0)', 0.25, low, 0.58, mid, 1, high,
+        0, 'rgba(0, 0, 0, 0)', 0.18, low, 0.55, mid, 1, high,
       ]);
       map.setPaintProperty(LAYER_FILL_ID, 'fill-color', [
         'interpolate', ['linear'], ['coalesce', ['to-number', ['get', 'value']], 0],
