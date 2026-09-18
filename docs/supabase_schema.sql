@@ -283,7 +283,6 @@ returns table (
 )
 language plpgsql
 stable
-security definer
 set search_path = public
 as $$
 declare
@@ -320,11 +319,11 @@ begin
     and z.center_lon between p_min_lon and p_max_lon
     and z.center_lat between p_min_lat and p_max_lat
   order by p.score_total desc
-  limit least(coalesce(p_limit, 2000), 5000);
+  limit least(greatest(coalesce(p_limit, 2000), 1), 25000);
 end;
 $$;
 
-grant execute on function public.get_predictions(bigint, double precision, double precision, double precision, double precision, date, double precision, integer) to anon, authenticated;
+grant execute on function public.get_predictions(bigint, double precision, double precision, double precision, double precision, date, double precision, integer) to anon, authenticated, service_role;
 
 create or replace function public.get_moisture_layer(
   p_min_lon double precision,
