@@ -38,8 +38,9 @@ interface MapProps {
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
 const PREDICTIONS_FILL_LAYER_ID = "predictions-zone-fill";
-const HALF_GRID_LATITUDE = 0.16;
-const HALF_GRID_LONGITUDE = 0.36;
+const METERS_PER_LATITUDE_DEGREE = 111_320;
+const HALF_CELL_SIZE_METERS = 50;
+const MIN_VISIBLE_SCORE = 0.3;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -54,17 +55,23 @@ function pointToGridPolygon(
   const latitude = feature.geometry.coordinates[1];
   if (longitude === undefined || latitude === undefined) return null;
 
+  const halfLatitude = HALF_CELL_SIZE_METERS / METERS_PER_LATITUDE_DEGREE;
+  const longitudeMetersPerDegree =
+    METERS_PER_LATITUDE_DEGREE * Math.cos((latitude * Math.PI) / 180);
+  if (longitudeMetersPerDegree <= 0) return null;
+  const halfLongitude = HALF_CELL_SIZE_METERS / longitudeMetersPerDegree;
+
   return {
     type: "Feature",
     properties: feature.properties,
     geometry: {
       type: "Polygon",
       coordinates: [[
-        [longitude - HALF_GRID_LONGITUDE, latitude - HALF_GRID_LATITUDE],
-        [longitude + HALF_GRID_LONGITUDE, latitude - HALF_GRID_LATITUDE],
-        [longitude + HALF_GRID_LONGITUDE, latitude + HALF_GRID_LATITUDE],
-        [longitude - HALF_GRID_LONGITUDE, latitude + HALF_GRID_LATITUDE],
-        [longitude - HALF_GRID_LONGITUDE, latitude - HALF_GRID_LATITUDE],
+        [longitude - halfLongitude, latitude - halfLatitude],
+        [longitude + halfLongitude, latitude - halfLatitude],
+        [longitude + halfLongitude, latitude + halfLatitude],
+        [longitude - halfLongitude, latitude + halfLatitude],
+        [longitude - halfLongitude, latitude - halfLatitude],
       ]],
     },
   };
@@ -163,7 +170,7 @@ export const Map: React.FC<MapProps> = ({
           const moisture = props["moisture_score"];
           const rawScore = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
           const score = Math.max(0, Math.min(1, rawScore));
-          if (score <= 0) return [];
+          if (score < MIN_VISIBLE_SCORE) return [];
 
           const pointFeature: Feature<Point, GeoJsonProperties> = {
             type: "Feature",
@@ -203,18 +210,24 @@ export const Map: React.FC<MapProps> = ({
                 ["linear"],
                 ["get", "score"],
                 0,
-                "rgba(187, 247, 208, 0.35)",
-                0.35,
-                "rgba(250, 204, 21, 0.85)",
-                0.7,
-                "rgba(249, 115, 22, 0.95)",
-                0.85,
-                "rgba(244, 63, 94, 0.95)",
+                "rgb(254, 240, 138)",
+                0.3,
+                "rgb(254, 240, 138)",
+                0.55,
+                "rgb(251, 146, 60)",
+                0.8,
+                "rgb(219, 39, 119)",
                 1,
-                "rgba(126, 34, 206, 1)",
+                "rgb(107, 33, 168)",
               ],
-              "fill-opacity": 0.68,
-              "fill-outline-color": "rgba(255, 255, 255, 0.22)",
+              "fill-opacity": [
+                "step",
+                ["get", "score"],
+                0,
+                MIN_VISIBLE_SCORE,
+                0.7,
+              ],
+              "fill-outline-color": "transparent",
               "fill-antialias": false,
             },
           });
