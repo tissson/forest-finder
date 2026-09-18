@@ -23,7 +23,6 @@ import {
   GeolocateControl,
   setWorkerUrl,
   type GeoJSONSource,
-  type MapLayerMouseEvent,
 } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
@@ -36,11 +35,8 @@ setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
 
 const LAYER_SOURCE_ID = 'layer-source';
 const LAYER_HEATMAP_ID = 'layer-grid-heatmap';
-const LAYER_FILL_ID = 'layer-grid-fill';
-const LAYER_OUTLINE_ID = 'layer-grid-outline';
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
-const GRID_CELL_KM = 5;
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
@@ -68,13 +64,11 @@ function toRenderableFeatureCollection(
         f.properties.score_total > MIN_VISIBLE_VALUE
         && (f.properties.score_forest ?? 0) > 0
         && isOnSwedishLand(f.geometry.coordinates)
-      )).flatMap((f) => {
-        const properties = { value: f.properties.score_total, ...f.properties };
-        return [
-          { type: 'Feature' as const, geometry: pointToGridCell(f.geometry.coordinates), properties },
-          { type: 'Feature' as const, geometry: f.geometry, properties },
-        ];
-      }),
+      )).map((f) => ({
+        type: 'Feature' as const,
+        geometry: f.geometry,
+        properties: { weight: f.properties.score_total, ...f.properties },
+      })),
     };
   }
   const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
@@ -83,36 +77,17 @@ function toRenderableFeatureCollection(
     features: r.features.filter((f) => (
       (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE
       && isOnSwedishLand(f.geometry.coordinates)
-    )).flatMap((f) => {
-      const properties = { value: f.properties.moisture_score ?? 0, ...f.properties };
-      return [
-        { type: 'Feature' as const, geometry: pointToGridCell(f.geometry.coordinates), properties },
-        { type: 'Feature' as const, geometry: f.geometry, properties },
-      ];
-    }),
+    )).map((f) => ({
+      type: 'Feature' as const,
+      geometry: f.geometry,
+      properties: { weight: f.properties.moisture_score ?? 0, ...f.properties },
+    })),
   };
 }
 
 /** Tar bort hav och större insjöar med en lokal landmask för Sverige. */
 function isOnSwedishLand(coordinates: [number, number]): boolean {
   return booleanPointInPolygon(point(coordinates), SWEDEN_LAND);
-}
-
-/** Bygger den anonymiserade 5×5 km-rutan runt databasens zoncentrum. */
-function pointToGridCell([lon, lat]: [number, number]) {
-  const halfLat = (GRID_CELL_KM / 2) / 111.32;
-  const halfLon = (GRID_CELL_KM / 2) / (111.32 * Math.cos((lat * Math.PI) / 180));
-
-  return {
-    type: 'Polygon' as const,
-    coordinates: [[
-      [lon - halfLon, lat - halfLat],
-      [lon + halfLon, lat - halfLat],
-      [lon + halfLon, lat + halfLat],
-      [lon - halfLon, lat + halfLat],
-      [lon - halfLon, lat - halfLat],
-    ]],
-  };
 }
 
 export interface MapProps {
@@ -196,7 +171,7 @@ export function Map({
 
       const rendered = toRenderableFeatureCollection(currentLayer, response);
       source?.setData(rendered);
-      onFeatureCountChange?.(rendered.features.length / 2);
+      onFeatureCountChange?.(rendered.features.length);
     } catch (err) {
       onError?.(err instanceof ApiError ? err : new ApiError(0, err instanceof Error ? err.message : 'Okänt fel'));
       source?.setData(EMPTY_FEATURE_COLLECTION);
@@ -220,10 +195,15 @@ export function Map({
       maxBounds: SWEDEN_BOUNDS,
     });
 
-    map.addControl(new NavigationControl(), 'top-right');
+    if (!window.matchMedia('(max-width: 767px)').matches) {
+      map.addControl(new NavigationControl(), 'top-right');
+    }
     map.addControl(
-      new GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true }),
-      'top-right'
+      new GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+      }),
+      'bottom-right'
     );
 
     map.on('load', () => {
@@ -238,61 +218,20 @@ export function Map({
         type: 'heatmap',
         source: LAYER_SOURCE_ID,
         paint: {
-          'heatmap-weight': ['coalesce', ['to-number', ['get', 'value']], 0],
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 5, 0.55, 9, 0.82],
-          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 5, 62, 9, 82],
+          'heatmap-weight': ['interpolate', ['linear'], ['coalesce', ['to-number', ['get', 'weight']], 0], 0, 0, 1, 1],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 4, 0.5, 7, 0.7, 11, 0.95],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 4, 110, 6, 90, 9, 60, 12, 36],
           'heatmap-color': [
             'interpolate',
             ['linear'],
             ['heatmap-density'],
             0, 'rgba(0, 0, 0, 0)',
-            0.18, low,
-            0.55, mid,
+            0.08, low,
+            0.42, mid,
             1, high,
           ],
-          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.56, 8, 0.4, 9, 0],
+          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 4, 0.58, 9, 0.62, 12, 0.56],
         },
-      });
-
-      map.addLayer({
-        id: LAYER_FILL_ID,
-        type: 'fill',
-        source: LAYER_SOURCE_ID,
-        paint: {
-          'fill-color': [
-            'interpolate',
-            ['linear'],
-            ['coalesce', ['to-number', ['get', 'value']], 0],
-            0, low,
-            0.5, mid,
-            1, high,
-          ],
-          'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0, 7, 0.18, 10, 0.58],
-        },
-      });
-
-      map.addLayer({
-        id: LAYER_OUTLINE_ID,
-        type: 'line',
-        source: LAYER_SOURCE_ID,
-        paint: {
-          'line-color': mapColor('--map-data-outline'),
-          'line-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0, 8, 0.06, 10, 0.16],
-          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0, 10, 0.5],
-        },
-      });
-
-      map.on('click', LAYER_FILL_ID, (e: MapLayerMouseEvent) => {
-        const feature = e.features?.[0];
-        if (feature && onFeatureClick) {
-          onFeatureClick(feature.properties as Record<string, number | null>);
-        }
-      });
-      map.on('mouseenter', LAYER_FILL_ID, () => {
-        map.getCanvas().style.cursor = 'pointer';
-      });
-      map.on('mouseleave', LAYER_FILL_ID, () => {
-        map.getCanvas().style.cursor = '';
       });
 
       mapRef.current = map;
@@ -326,11 +265,7 @@ export function Map({
       const high = mapColor(highToken);
       map.setPaintProperty(LAYER_HEATMAP_ID, 'heatmap-color', [
         'interpolate', ['linear'], ['heatmap-density'],
-        0, 'rgba(0, 0, 0, 0)', 0.18, low, 0.55, mid, 1, high,
-      ]);
-      map.setPaintProperty(LAYER_FILL_ID, 'fill-color', [
-        'interpolate', ['linear'], ['coalesce', ['to-number', ['get', 'value']], 0],
-        0, low, 0.5, mid, 1, high,
+        0, 'rgba(0, 0, 0, 0)', 0.08, low, 0.42, mid, 1, high,
       ]);
     }
     fetchAndRenderLayer();
