@@ -118,7 +118,7 @@ export const Map: React.FC<MapProps> = ({
           });
         }
 
-        const rawFeatures = geojson.features as Array<{
+        const rawFeatures = geojson.features as unknown as Array<{
           type: "Feature";
           geometry: Geometry;
           properties: Record<string, unknown> | null;
