@@ -14,7 +14,7 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { point } from "@turf/helpers";
-import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
+import type { Feature, FeatureCollection, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
 import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from "../lib/api";
 import swedenLandData from "../data/sweden-land.json";
 
@@ -30,16 +30,20 @@ const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
-// Storlek på kvadratiska polygoner kring varje gitterpunkt (i grader, ~0.025 ≈ 2.5km täckning)
-const HALF_GRID_SIZE_LAT = 0.015;
-const HALF_GRID_SIZE_LNG = 0.025;
+// Zoncentrumen ligger glest i underlaget. Dessa halvsteg täcker ytan mellan
+// närliggande centrum utan att lämna vita springor i det svenska gittret.
+const HALF_GRID_SIZE_LAT = 0.16;
+const HALF_GRID_SIZE_LNG = 0.36;
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: "FeatureCollection", features: [] };
 
 /**
  * Konverterar en punkt till en kvadratisk Polygon-feature för ett täckande ytlager.
  */
-function createGridPolygonFeature(coordinates: [number, number], properties: Record<string, any>): Feature<Polygon> {
+function createGridPolygonFeature(
+  coordinates: [number, number],
+  properties: GeoJsonProperties,
+): Feature<Polygon> {
   const [lng, lat] = coordinates;
   return {
     type: "Feature",
@@ -202,13 +206,11 @@ export function Map({
     map.on("load", () => {
       map.addSource(PREDICTIONS_SOURCE_ID, { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
 
-      // RIKTIGT YTLAGER (Polygon Fill)
       map.addLayer({
         id: FILL_LAYER_ID,
         type: "fill",
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          // Färg baserad på 'score' (0.0 - 1.0)
           "fill-color": [
             "interpolate",
             ["linear"],
@@ -216,20 +218,20 @@ export function Map({
             0.0,
             "transparent",
             0.15,
-            "rgba(34, 197, 94, 0.4)", // Låg (Grön)
+            "rgba(34, 197, 94, 0.4)",
             0.4,
-            "rgba(234, 179, 8, 0.6)", // Medel (Gul)
+            "rgba(234, 179, 8, 0.6)",
             0.7,
-            "rgba(249, 115, 22, 0.75)", // Hög (Orange)
+            "rgba(249, 115, 22, 0.75)",
             0.9,
-            "rgba(168, 85, 247, 0.85)", // Extrem (Lila)
+            "rgba(168, 85, 247, 0.85)",
           ],
+          "fill-outline-color": "transparent",
           "fill-opacity": 0.75,
-          "fill-antialias": true,
+          "fill-antialias": false,
         },
       });
 
-      // Klick-hantering direkt på polygon-ytorna
       map.on("click", FILL_LAYER_ID, (e: MapLayerMouseEvent) => {
         const feature = e.features?.[0];
         if (!feature) return;
