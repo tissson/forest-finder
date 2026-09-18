@@ -135,7 +135,8 @@ export const Map: React.FC<MapProps> = ({
 
     const url = tileUrl(layer, obsDate);
 
-    if (map.getLayer(GRID_FILL_LAYER_ID)) map.removeLayer(GRID_FILL_LAYER_ID);
+    if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
+    if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
     if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
 
     map.addSource(TILE_SOURCE_ID, {
@@ -145,27 +146,68 @@ export const Map: React.FC<MapProps> = ({
       maxzoom: TILE_MAX_ZOOM,
     });
 
+    // Mjuk, sömlös värmekarta utan synliga rutor.
     map.addLayer({
-      id: GRID_FILL_LAYER_ID,
-      type: "fill",
+      id: HEATMAP_LAYER_ID,
+      type: "heatmap",
       source: TILE_SOURCE_ID,
       "source-layer": TILE_SOURCE_LAYER,
       paint: {
-        "fill-color": [
+        "heatmap-weight": [
           "interpolate",
           ["linear"],
           ["get", "score"],
+          0, 0,
+          1, 1,
+        ],
+        "heatmap-intensity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          5, 1.1,
+          9, 1.6,
+          13, 2.2,
+          16, 2.8,
+        ],
+        "heatmap-color": [
+          "interpolate",
+          ["linear"],
+          ["heatmap-density"],
           0, "rgba(0, 0, 0, 0)",
           0.15, "rgba(59, 130, 246, 0.45)",
           0.4, "rgba(16, 185, 129, 0.6)",
-          0.7, "rgba(245, 158, 11, 0.75)",
+          0.7, "rgba(245, 158, 11, 0.8)",
+          0.9, "rgba(236, 72, 153, 0.85)",
           1, "rgba(147, 51, 234, 0.9)",
         ],
-        "fill-opacity": 0.78,
-        "fill-outline-color": "transparent",
-        "fill-antialias": false,
+        "heatmap-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          5, 14,
+          7, 20,
+          9, 26,
+          12, 34,
+          16, 48,
+        ],
+        "heatmap-opacity": 0.8,
       },
     });
+
+    // Osynligt träffyta-lager så att man fortfarande kan klicka på en ruta.
+    map.addLayer({
+      id: HIT_LAYER_ID,
+      type: "circle",
+      source: TILE_SOURCE_ID,
+      "source-layer": TILE_SOURCE_LAYER,
+      paint: {
+        "circle-radius": 10,
+        "circle-color": "rgba(0, 0, 0, 0)",
+        "circle-opacity": 0,
+        "circle-stroke-width": 0,
+      },
+    });
+
 
     const popup = new Popup({ closeButton: true, closeOnClick: true, maxWidth: "260px" });
 
