@@ -261,6 +261,7 @@ export const Map: React.FC<MapProps> = ({
     let debounceTimer: ReturnType<typeof setTimeout> | undefined;
     let requestSequence = 0;
     let disposed = false;
+    let lastQueryKey = "";
 
     const fetchDataAndRender = async () => {
       const requestId = ++requestSequence;
@@ -272,6 +273,10 @@ export const Map: React.FC<MapProps> = ({
         bounds.getNorth(),
       ];
       const lod = getPredictionLodOptions(map.getZoom());
+      const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
+      const queryKey = JSON.stringify({ bbox, lod, layer: activeLayerKey, obsDate: obsDate ?? null });
+      if (queryKey === lastQueryKey) return;
+      lastQueryKey = queryKey;
 
       try {
         let geojson: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>;
