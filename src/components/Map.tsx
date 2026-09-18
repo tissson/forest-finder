@@ -41,8 +41,7 @@ const GRID_FILL_LAYER_ID = "fungi-grid-fill";
 const MIN_VISIBLE_SCORE = 0.01;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
-const GRID_CELL_SIZE_METERS = 5_000;
-const METERS_PER_LATITUDE_DEGREE = 111_320;
+const FALLBACK_CELL_SPAN_DEGREES = 0.04;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -50,34 +49,71 @@ const SWEDEN_BOUNDS: LngLatBoundsLike = [
   [24.2, 69.1],
 ];
 
-function pointToFixedGridPolygon(
-  feature: Feature<Point, GeoJsonProperties>,
-): Feature<Polygon, GeoJsonProperties> | null {
-  const longitude = feature.geometry.coordinates[0];
-  const latitude = feature.geometry.coordinates[1];
-  if (longitude === undefined || latitude === undefined) return null;
+function getCellBounds(values: number[], value: number): [number, number] {
+  const index = values.indexOf(value);
+  if (index < 0 || values.length === 1) {
+    const halfSpan = FALLBACK_CELL_SPAN_DEGREES / 2;
+    return [value - halfSpan, value + halfSpan];
+  }
 
-  const halfCellMeters = GRID_CELL_SIZE_METERS / 2;
-  const halfLatitude = halfCellMeters / METERS_PER_LATITUDE_DEGREE;
-  const longitudeMetersPerDegree =
-    METERS_PER_LATITUDE_DEGREE * Math.cos((latitude * Math.PI) / 180);
-  if (longitudeMetersPerDegree <= 0) return null;
-  const halfLongitude = halfCellMeters / longitudeMetersPerDegree;
+  const previous = values[index - 1];
+  const next = values[index + 1];
+  const lower = previous === undefined
+    ? value - ((next ?? value + FALLBACK_CELL_SPAN_DEGREES) - value) / 2
+    : (previous + value) / 2;
+  const upper = next === undefined
+    ? value + (value - (previous ?? value - FALLBACK_CELL_SPAN_DEGREES)) / 2
+    : (value + next) / 2;
+  return [lower, upper];
+}
 
-  return {
-    type: "Feature",
-    properties: feature.properties,
-    geometry: {
-      type: "Polygon",
-      coordinates: [[
-        [longitude - halfLongitude, latitude - halfLatitude],
-        [longitude + halfLongitude, latitude - halfLatitude],
-        [longitude + halfLongitude, latitude + halfLatitude],
-        [longitude - halfLongitude, latitude + halfLatitude],
-        [longitude - halfLongitude, latitude - halfLatitude],
-      ]],
-    },
-  };
+function pointsToSeamlessGrid(
+  features: Array<Feature<Point, GeoJsonProperties>>,
+): Array<Feature<Polygon, GeoJsonProperties>> {
+  const latitudeValues = features.flatMap((feature) => {
+    const latitude = feature.geometry.coordinates[1];
+    return typeof latitude === "number" ? [latitude] : [];
+  });
+  const latitudes = [...new Set<number>(latitudeValues)].sort((a, b) => a - b);
+  const longitudesByLatitude = new globalThis.Map<number, number[]>();
+
+  for (const feature of features) {
+    const longitude = feature.geometry.coordinates[0];
+    const latitude = feature.geometry.coordinates[1];
+    if (longitude === undefined || latitude === undefined) continue;
+    const row = longitudesByLatitude.get(latitude) ?? [];
+    row.push(longitude);
+    longitudesByLatitude.set(latitude, row);
+  }
+
+  for (const [latitude, longitudes] of longitudesByLatitude) {
+    longitudesByLatitude.set(latitude, [...new Set(longitudes)].sort((a, b) => a - b));
+  }
+
+  return features.flatMap((feature) => {
+    const longitude = feature.geometry.coordinates[0];
+    const latitude = feature.geometry.coordinates[1];
+    if (longitude === undefined || latitude === undefined) return [];
+    const rowLongitudes = longitudesByLatitude.get(latitude);
+    if (!rowLongitudes) return [];
+    const [west, east] = getCellBounds(rowLongitudes, longitude);
+    const [south, north] = getCellBounds(latitudes, latitude);
+
+    return [{
+      type: "Feature",
+      properties: feature.properties,
+      geometry: {
+        type: "Polygon",
+        coordinates: [[
+          [west, south],
+          [east, south],
+          [east, north],
+          [west, north],
+          [west, south],
+        ]],
+      },
+    }];
+  });
 }
 
 export const Map: React.FC<MapProps> = ({
@@ -178,9 +214,9 @@ export const Map: React.FC<MapProps> = ({
             : [];
         });
         const highestScore = Math.max(MIN_VISIBLE_SCORE, ...scoredFeatures.map(({ rawScore }) => rawScore));
-        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = scoredFeatures.flatMap(({ geometry, properties, rawScore }) => {
+        const pointFeatures: Array<Feature<Point, GeoJsonProperties>> = scoredFeatures.map(({ geometry, properties, rawScore }) => {
           const score = Math.max(0, Math.min(1, rawScore / highestScore));
-          const pointFeature: Feature<Point, GeoJsonProperties> = {
+          return {
             type: "Feature",
             geometry: {
               type: "Point",
@@ -188,9 +224,8 @@ export const Map: React.FC<MapProps> = ({
             },
             properties: { ...properties, raw_score: rawScore, score },
           };
-          const polygon = pointToFixedGridPolygon(pointFeature);
-          return polygon ? [polygon] : [];
         });
+        const processedFeatures = pointsToSeamlessGrid(pointFeatures);
 
         const featureCollection: FeatureCollection<Polygon, GeoJsonProperties> = {
           type: "FeatureCollection",
@@ -220,13 +255,13 @@ export const Map: React.FC<MapProps> = ({
                 ["linear"],
                 ["get", "score"],
                 0.0, "transparent",
-                0.2, "rgba(59, 130, 246, 0.5)",
-                0.5, "rgba(16, 185, 129, 0.6)",
-                0.8, "rgba(245, 158, 11, 0.75)",
-                1.0, "rgba(239, 68, 68, 0.85)",
+                0.2, "rgba(59, 130, 246, 0.45)",
+                0.4, "rgba(16, 185, 129, 0.55)",
+                0.7, "rgba(245, 158, 11, 0.70)",
+                0.9, "rgba(239, 68, 68, 0.85)",
               ],
-              "fill-outline-color": "rgba(255, 255, 255, 0.1)",
               "fill-opacity": 0.75,
+              "fill-outline-color": "transparent",
             },
           });
 
