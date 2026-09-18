@@ -269,3 +269,8 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mjuk, kontrastrik färgyta för prognoslagret på kartan */
+.maplibregl-canvas-container canvas {
+  filter: contrast(105%) saturate(110%);
+}
