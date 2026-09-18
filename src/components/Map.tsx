@@ -37,9 +37,29 @@ const PREDICTIONS_SOURCE_ID = 'predictions-source';
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
 const MIN_VISIBLE_VALUE = 0.08;
+const GRID_CELL_KM = 5;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
+
+/** Bygger en cirka 5×5 km stor zon runt väderpunktens centrum. */
+function pointToZonePolygon(coordinates: [number, number]): Polygon {
+  const [longitude, latitude] = coordinates;
+  const halfLatitudeDegrees = (GRID_CELL_KM / 2) / 111.32;
+  const longitudeKmPerDegree = 111.32 * Math.cos((latitude * Math.PI) / 180);
+  const halfLongitudeDegrees = (GRID_CELL_KM / 2) / longitudeKmPerDegree;
+
+  return {
+    type: 'Polygon',
+    coordinates: [[
+      [longitude - halfLongitudeDegrees, latitude - halfLatitudeDegrees],
+      [longitude + halfLongitudeDegrees, latitude - halfLatitudeDegrees],
+      [longitude + halfLongitudeDegrees, latitude + halfLatitudeDegrees],
+      [longitude - halfLongitudeDegrees, latitude + halfLatitudeDegrees],
+      [longitude - halfLongitudeDegrees, latitude - halfLatitudeDegrees],
+    ]],
+  };
+}
 
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
@@ -65,7 +85,7 @@ function toRenderableFeatureCollection(
         && isOnSwedishLand(f.geometry.coordinates)
       )).map((f) => ({
         type: 'Feature' as const,
-        geometry: f.geometry,
+        geometry: pointToZonePolygon(f.geometry.coordinates),
         properties: { ...f.properties, score: f.properties.score_total },
       })),
     };
@@ -78,7 +98,7 @@ function toRenderableFeatureCollection(
       && isOnSwedishLand(f.geometry.coordinates)
     )).map((f) => ({
       type: 'Feature' as const,
-      geometry: f.geometry,
+      geometry: pointToZonePolygon(f.geometry.coordinates),
       properties: { ...f.properties, score: f.properties.moisture_score ?? 0 },
     })),
   };
@@ -195,24 +215,22 @@ export function Map({
       map.addSource(PREDICTIONS_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
 
       map.addLayer({
-        id: 'predictions-heatmap',
-        type: 'heatmap',
+        id: 'predictions-zone-fill',
+        type: 'fill',
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          'heatmap-weight': ['get', 'score'],
-          'heatmap-radius': 80,
-          'heatmap-intensity': 2,
-          'heatmap-color': [
+          'fill-color': [
             'interpolate',
             ['linear'],
-            ['heatmap-density'],
-            0, 'rgba(0, 0, 0, 0)',
+            ['get', 'score'],
+            0, 'transparent',
             0.2, 'rgba(59, 130, 246, 0.4)',
-            0.5, 'rgba(16, 185, 129, 0.6)',
-            0.8, 'rgba(245, 158, 11, 0.8)',
-            1, 'rgba(239, 68, 68, 0.9)',
+            0.5, 'rgba(16, 185, 129, 0.5)',
+            0.8, 'rgba(245, 158, 11, 0.65)',
+            1, 'rgba(239, 68, 68, 0.8)',
           ],
-          'heatmap-opacity': 0.6,
+          'fill-outline-color': 'transparent',
+          'fill-opacity': 0.75,
         },
       });
 
