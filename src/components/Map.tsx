@@ -50,6 +50,9 @@ const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
 const FALLBACK_CELL_SPAN_DEGREES = 0.04;
 const MAP_FETCH_DEBOUNCE_MS = 300;
+// Gittret ligger ca 0.3° i latitud och 0.5–0.7° i longitud mellan punkterna.
+const BBOX_PADDING_LAT = 0.45;
+const BBOX_PADDING_LON = 0.9;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
