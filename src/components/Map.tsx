@@ -12,9 +12,9 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import {
   getPredictions,
   getMoistureLayer,
-  LayerSelection,
-  PredictionsResponse,
-  MoistureLayerResponse,
+  type LayerSelection,
+  type PredictionsResponse,
+  type MoistureLayerResponse,
 } from "../lib/api";
 
 interface MapProps {
@@ -80,29 +80,30 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
         }
 
         // Säkerställ att alla features har en enhetlig score_total för heatmap-viktningen
-        const processedFeatures = geojson.features.map((f) => ({
+        const processedFeatures = (geojson.features || []).map((f: any) => ({
           ...f,
           properties: {
             ...f.properties,
             score_total:
-              "score_total" in f.properties
-                ? (f.properties as { score_total: number }).score_total
-                : ((f.properties as { moisture_score?: number | null }).moisture_score ?? 0),
+              typeof f.properties?.score_total === "number"
+                ? f.properties.score_total
+                : (f.properties?.moisture_score ?? 0),
           },
         }));
 
-        const featureCollection: GeoJSON.FeatureCollection = {
+        const featureCollection = {
           type: "FeatureCollection",
-          features: processedFeatures as unknown as GeoJSON.Feature[],
+          features: processedFeatures,
         };
 
         // Uppdatera eller skapa GeoJSON-källa
-        if (map.getSource(PREDICTIONS_SOURCE_ID)) {
-          (map.getSource(PREDICTIONS_SOURCE_ID) as maplibregl.GeoJSONSource).setData(featureCollection);
+        const existingSource = map.getSource(PREDICTIONS_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
+        if (existingSource) {
+          existingSource.setData(featureCollection as any);
         } else {
           map.addSource(PREDICTIONS_SOURCE_ID, {
             type: "geojson",
-            data: featureCollection,
+            data: featureCollection as any,
           });
         }
 
@@ -115,28 +116,10 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
             maxzoom: 15,
             paint: {
               // Viktas mot score_total (0.0 till 1.0)
-              "heatmap-weight": [
-                "interpolate",
-                ["linear"],
-                ["get", "score_total"],
-                0,
-                0,
-                1,
-                1,
-              ] as maplibregl.ExpressionSpecification,
+              "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1] as any,
 
               // Intensitet som skala över zoomnivåer
-              "heatmap-intensity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0,
-                1,
-                6,
-                2,
-                9,
-                3.5,
-              ] as maplibregl.ExpressionSpecification,
+              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5] as any,
 
               // Färgskala från transparent -> gul -> grön -> mörkgrön
               "heatmap-color": [
@@ -153,20 +136,10 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
                 "rgba(21, 128, 61, 0.85)",
                 1.0,
                 "rgba(15, 81, 50, 0.95)",
-              ] as maplibregl.ExpressionSpecification,
+              ] as any,
 
               // Dynamisk radie som gör att datapunkterna flyter ihop vid utzoomning
-              "heatmap-radius": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0,
-                20,
-                6,
-                45,
-                10,
-                80,
-              ] as maplibregl.ExpressionSpecification,
+              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80] as any,
 
               "heatmap-opacity": 0.8,
             },
