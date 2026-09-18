@@ -2,7 +2,9 @@
  * src/components/Map.tsx
  * =======================
  * Kartkomponent med MapLibre GL JS: fasta prognosrutor, klick-hantering,
- * GPS-positionering och gränser för Sverige.
+ * GPS-positionering och gränser för Sverige. Rutor filtreras mot en svensk
+ * landmask (havs- och sjörutor ritas aldrig) och värden under tröskeln är
+ * helt transparenta.
  */
 
 import React, { useEffect, useRef, useState } from "react";
@@ -19,13 +21,13 @@ import type {
   Feature,
   FeatureCollection,
   GeoJsonProperties,
-  Geometry,
   Point,
   Polygon,
 } from "geojson";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 
 import { getPredictions, getMoistureLayer, ApiError } from "../lib/api";
-import type { LayerSelection, PredictionsResponse, MoistureLayerResponse } from "../lib/api";
+import type { LayerSelection } from "../lib/api";
 
 interface MapProps {
   layer?: LayerSelection | null;
@@ -38,7 +40,7 @@ interface MapProps {
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
 const GRID_FILL_LAYER_ID = "fungi-grid-fill";
-const MIN_VISIBLE_SCORE = 0.01;
+const MIN_VISIBLE_VALUE = 0.01;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
 const FALLBACK_CELL_SPAN_DEGREES = 0.04;
@@ -49,6 +51,33 @@ const SWEDEN_BOUNDS: LngLatBoundsLike = [
   [24.2, 69.1],
 ];
 
+// ---------------------------------------------------------------------
+// Svensk landmask (havs- och sjöfiltrering)
+// ---------------------------------------------------------------------
+type LandMask = Feature<Polygon, GeoJsonProperties> | null;
+let landMaskPromise: Promise<LandMask> | null = null;
+
+function loadSwedenLandMask(): Promise<LandMask> {
+  if (!landMaskPromise) {
+    landMaskPromise = fetch("/sweden-landmask.json")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => (data ?? null) as LandMask)
+      .catch((err) => {
+        console.warn("Kunde inte ladda svensk landmask:", err);
+        return null;
+      });
+  }
+  return landMaskPromise;
+}
+
+function isOnSwedishLand([lng, lat]: [number, number], landMask: LandMask): boolean {
+  if (!landMask) return true; // landmask saknas → filtrera inte bort någonting
+  return booleanPointInPolygon([lng, lat], landMask);
+}
+
+// ---------------------------------------------------------------------
+// Sömlös gittergeometri: varje punkt täcker sin cell (kant-i-kant)
+// ---------------------------------------------------------------------
 function getCellBounds(values: number[], value: number): [number, number] {
   const index = values.indexOf(value);
   if (index < 0 || values.length === 1) {
@@ -67,9 +96,17 @@ function getCellBounds(values: number[], value: number): [number, number] {
   return [lower, upper];
 }
 
-function pointsToSeamlessGrid(
-  features: Array<Feature<Point, GeoJsonProperties>>,
-): Array<Feature<Polygon, GeoJsonProperties>> {
+type GridIndex = {
+  latitudes: number[];
+  longitudesByLatitude: globalThis.Map<number, number[]>;
+};
+
+const gridIndexCache = new WeakMap<object, GridIndex>();
+
+function getGridIndex(features: Array<Feature<Point, GeoJsonProperties>>): GridIndex {
+  const cached = gridIndexCache.get(features);
+  if (cached) return cached;
+
   const latitudeValues = features.flatMap((feature) => {
     const latitude = feature.geometry.coordinates[1];
     return typeof latitude === "number" ? [latitude] : [];
@@ -90,30 +127,74 @@ function pointsToSeamlessGrid(
     longitudesByLatitude.set(latitude, [...new Set(longitudes)].sort((a, b) => a - b));
   }
 
-  return features.flatMap((feature) => {
-    const longitude = feature.geometry.coordinates[0];
-    const latitude = feature.geometry.coordinates[1];
-    if (longitude === undefined || latitude === undefined) return [];
-    const rowLongitudes = longitudesByLatitude.get(latitude);
-    if (!rowLongitudes) return [];
-    const [west, east] = getCellBounds(rowLongitudes, longitude);
-    const [south, north] = getCellBounds(latitudes, latitude);
+  const index: GridIndex = { latitudes, longitudesByLatitude };
+  gridIndexCache.set(features, index);
+  return index;
+}
 
-    return [{
-      type: "Feature",
-      properties: feature.properties,
-      geometry: {
-        type: "Polygon",
-        coordinates: [[
-          [west, south],
-          [east, south],
-          [east, north],
-          [west, north],
-          [west, south],
-        ]],
-      },
-    }];
-  });
+/**
+ * Beräknar den sömlösa cell-polygonen för en punkt utifrån mittpunkterna
+ * mellan verkliga grannkoordinater i det fulla features-setet.
+ */
+function calculateBoundingPolygon(
+  coordinates: [number, number],
+  features: Array<Feature<Point, GeoJsonProperties>>,
+): Feature<Polygon, GeoJsonProperties> {
+  const { latitudes, longitudesByLatitude } = getGridIndex(features);
+  const [longitude, latitude] = coordinates;
+
+  const rowLongitudes = longitudesByLatitude.get(latitude) ?? [longitude];
+  const [west, east] = getCellBounds(rowLongitudes, longitude);
+  const [south, north] = getCellBounds(latitudes, latitude);
+
+  return {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: [[
+        [west, south],
+        [east, south],
+        [east, north],
+        [west, north],
+        [west, south],
+      ]],
+    },
+  };
+}
+
+// ---------------------------------------------------------------------
+// Renderbar FeatureCollection: landmask + tröskel + sömlösa celler
+// ---------------------------------------------------------------------
+function toRenderableFeatureCollection(
+  layer: LayerSelection,
+  response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
+  landMask: LandMask,
+): FeatureCollection<Polygon, GeoJsonProperties> {
+  if (layer.type === "species") {
+    const r = response as Awaited<ReturnType<typeof getPredictions>>;
+    return {
+      type: "FeatureCollection",
+      features: r.features
+        .filter((f) => f.properties.score_total > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates, landMask))
+        .map((f) => ({
+          type: "Feature" as const,
+          geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
+          properties: { ...f.properties, score: f.properties.score_total },
+        })),
+    };
+  }
+  const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
+  return {
+    type: "FeatureCollection",
+    features: r.features
+      .filter((f) => (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates, landMask))
+      .map((f) => ({
+        type: "Feature" as const,
+        geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
+        properties: { ...f.properties, score: f.properties.moisture_score ?? 0 },
+      })),
+  };
 }
 
 export const Map: React.FC<MapProps> = ({
@@ -185,7 +266,7 @@ export const Map: React.FC<MapProps> = ({
       ];
 
       try {
-        let geojson: PredictionsResponse | MoistureLayerResponse;
+        let geojson: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>;
 
         if (layer?.type === "moisture") {
           geojson = await getMoistureLayer(bbox, obsDate);
@@ -197,42 +278,11 @@ export const Map: React.FC<MapProps> = ({
           });
         }
 
-        const rawFeatures = geojson.features as unknown as Array<{
-          type: "Feature";
-          geometry: Geometry;
-          properties: Record<string, unknown> | null;
-        }>;
+        const landMask = await loadSwedenLandMask();
+        const activeLayer: LayerSelection = layer ?? { type: "species", speciesId: 1, speciesName: "", tier: "free" };
+        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask);
 
-        const scoredFeatures = rawFeatures.flatMap((feature) => {
-          if (feature.geometry.type !== "Point") return [];
-          const properties = feature.properties ?? {};
-          const total = properties["score_total"];
-          const moisture = properties["moisture_score"];
-          const rawScore = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
-          return rawScore >= MIN_VISIBLE_SCORE
-            ? [{ geometry: feature.geometry, properties, rawScore }]
-            : [];
-        });
-        const highestScore = Math.max(MIN_VISIBLE_SCORE, ...scoredFeatures.map(({ rawScore }) => rawScore));
-        const pointFeatures: Array<Feature<Point, GeoJsonProperties>> = scoredFeatures.map(({ geometry, properties, rawScore }) => {
-          const score = Math.max(0, Math.min(1, rawScore / highestScore));
-          return {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: geometry.coordinates,
-            },
-            properties: { ...properties, raw_score: rawScore, score },
-          };
-        });
-        const processedFeatures = pointsToSeamlessGrid(pointFeatures);
-
-        const featureCollection: FeatureCollection<Polygon, GeoJsonProperties> = {
-          type: "FeatureCollection",
-          features: processedFeatures,
-        };
-
-        onFeatureCountChange?.(processedFeatures.length);
+        onFeatureCountChange?.(featureCollection.features.length);
 
         const existingSource = map.getSource(PREDICTIONS_SOURCE_ID) as GeoJSONSource | undefined;
         if (existingSource) {
@@ -255,12 +305,13 @@ export const Map: React.FC<MapProps> = ({
                 ["linear"],
                 ["get", "score"],
                 0.0, "transparent",
-                0.2, "rgba(59, 130, 246, 0.45)",
-                0.4, "rgba(16, 185, 129, 0.55)",
-                0.7, "rgba(245, 158, 11, 0.70)",
-                0.9, "rgba(239, 68, 68, 0.85)",
+                0.08, "transparent",
+                0.2, "rgba(59, 130, 246, 0.4)",
+                0.5, "rgba(16, 185, 129, 0.6)",
+                0.8, "rgba(245, 158, 11, 0.75)",
+                1.0, "rgba(239, 68, 68, 0.85)",
               ],
-              "fill-opacity": 0.75,
+              "fill-opacity": 0.7,
               "fill-outline-color": "transparent",
             },
           });
