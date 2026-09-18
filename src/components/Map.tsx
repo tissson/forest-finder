@@ -1,10 +1,9 @@
 /**
  * src/components/Map.tsx
  * =======================
- * Kartkomponent med MapLibre GL JS: fasta prognosrutor, klick-hantering,
- * GPS-positionering och gränser för Sverige. Rutor filtreras mot en svensk
- * landmask (havs- och sjörutor ritas aldrig) och värden under tröskeln är
- * helt transparenta.
+ * Kartkomponent med MapLibre GL JS: finkorniga prognospunkter, klick-hantering,
+ * GPS-positionering och gränser för Sverige. Punkter filtreras mot en svensk
+ * landmask och låga värden tas bort.
  */
 
 import React, { useEffect, useRef, useState } from "react";
@@ -44,14 +43,12 @@ interface MapProps {
 }
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
-const GRID_FILL_LAYER_ID = "fungi-grid-fill";
+const MICROPIXEL_LAYER_ID = "fungi-micropixels";
 const MIN_VISIBLE_VALUE = 0.01;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
-const FALLBACK_CELL_SPAN_DEGREES = 0.02;
 const MAP_FETCH_DEBOUNCE_MS = 300;
-// Liten marginal runt vyn (andel av vyns storlek) så rutorna täcker kanterna
-// utan att onödigt mycket data hämtas från det täta 2 km-rutnätet.
+// Liten marginal runt vyn så punkterna redan finns när kartan flyttas.
 const BBOX_PADDING_RATIO = 0.12;
 
 
@@ -86,46 +83,7 @@ function isOnSwedishLand([lng, lat]: [number, number], landMask: LandMask): bool
 }
 
 // ---------------------------------------------------------------------
-// Sömlös gittergeometri: varje punkt täcker exakt sin rutnätscell.
-// Rutnätet i databasen är 2 km; vid glesare detaljnivå (step) täcker
-// varje hämtad punkt step × 2 km, så cellerna möts kant-i-kant.
-// ---------------------------------------------------------------------
-const BASE_GRID_CELL_METERS = 2_000;
-/** Fuktighetslagret kommer alltid från väderprovpunkter per 20 km-block. */
-const MOISTURE_CELL_METERS = 20_000;
-
-const METERS_PER_LATITUDE_DEGREE = 111_320;
-
-/** Sömlös cell-polygon runt en punkt, given cellens storlek i meter. */
-function calculateBoundingPolygon(
-  coordinates: [number, number],
-  cellSizeMeters: number,
-): Polygon {
-  const [longitude, latitude] = coordinates;
-  const halfLat = cellSizeMeters / 2 / METERS_PER_LATITUDE_DEGREE;
-  const cosLat = Math.max(0.2, Math.cos((latitude * Math.PI) / 180));
-  const halfLon = halfLat / cosLat;
-  const west = longitude - halfLon;
-  const east = longitude + halfLon;
-  const south = latitude - halfLat;
-  const north = latitude + halfLat;
-
-  return {
-    type: "Polygon",
-    coordinates: [[
-      [west, south],
-      [east, south],
-      [east, north],
-      [west, north],
-      [west, south],
-    ]],
-  };
-}
-
-
-
-// ---------------------------------------------------------------------
-// Renderbar FeatureCollection: landmask + tröskel + sömlösa celler
+// Renderbar FeatureCollection: landmask + tröskel + rena punkter
 // ---------------------------------------------------------------------
 function toRenderableFeatureCollection(
   layer: LayerSelection,
@@ -133,12 +91,9 @@ function toRenderableFeatureCollection(
   landMask: LandMask,
   /** Högsta kända råvärde för aktivt lager — används för normalisering. */
   referenceMax: number,
-  /** Rutnätssteg (1 = 2 km-celler, 10 = 20 km-celler). */
-  step: number,
-): FeatureCollection<Polygon, GeoJsonProperties> {
+): FeatureCollection<Point, GeoJsonProperties> {
   const scaleMax = Math.max(referenceMax, MIN_VISIBLE_VALUE);
   const normalize = (raw: number) => Math.max(0, Math.min(1, raw / scaleMax));
-  const cellSizeMeters = BASE_GRID_CELL_METERS * Math.max(1, step);
 
   if (layer.type === "species") {
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
@@ -148,7 +103,10 @@ function toRenderableFeatureCollection(
         .filter((f) => f.properties.score_total > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates, landMask))
         .map((f) => ({
           type: "Feature" as const,
-          geometry: calculateBoundingPolygon(f.geometry.coordinates, cellSizeMeters),
+          geometry: {
+            type: "Point" as const,
+            coordinates: f.geometry.coordinates,
+          },
           properties: {
             ...f.properties,
             raw_score: f.properties.score_total,
@@ -164,9 +122,10 @@ function toRenderableFeatureCollection(
       .filter((f) => (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates, landMask))
       .map((f) => ({
         type: "Feature" as const,
-        geometry: calculateBoundingPolygon(f.geometry.coordinates, MOISTURE_CELL_METERS),
-
-
+        geometry: {
+          type: "Point" as const,
+          coordinates: f.geometry.coordinates,
+        },
         properties: {
           ...f.properties,
           raw_score: f.properties.moisture_score ?? 0,
@@ -292,7 +251,7 @@ export const Map: React.FC<MapProps> = ({
         if (disposed || requestId !== requestSequence) return;
         const activeLayer: LayerSelection = layer ?? { type: "species", speciesId: 1, speciesName: "", tier: "free" };
         referenceMax = Math.max(referenceMax, getMaxRawScore(activeLayer, geojson));
-        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask, referenceMax, lod.step);
+        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask, referenceMax);
 
         onFeatureCountChange?.(featureCollection.features.length);
 
@@ -306,39 +265,46 @@ export const Map: React.FC<MapProps> = ({
           });
         }
 
-        if (!map.getLayer(GRID_FILL_LAYER_ID)) {
+        if (!map.getLayer(MICROPIXEL_LAYER_ID)) {
           map.addLayer({
-            id: GRID_FILL_LAYER_ID,
-            type: "fill",
+            id: MICROPIXEL_LAYER_ID,
+            type: "circle",
             source: PREDICTIONS_SOURCE_ID,
             paint: {
-              "fill-color": [
+              "circle-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                5, 1.2,
+                9, 2.5,
+                13, 5,
+                16, 10,
+              ],
+              "circle-color": [
                 "interpolate",
                 ["linear"],
                 ["get", "score"],
-                0.0, "transparent",
-                0.08, "transparent",
-                0.2, "rgba(59, 130, 246, 0.4)",
-                0.5, "rgba(16, 185, 129, 0.6)",
-                0.8, "rgba(245, 158, 11, 0.75)",
-                1.0, "rgba(239, 68, 68, 0.85)",
+                0, "rgba(0, 0, 0, 0)",
+                0.2, "rgb(74, 103, 65)",
+                0.55, "rgb(190, 145, 48)",
+                1, "rgb(176, 82, 65)",
               ],
-              "fill-opacity": 0.7,
-              "fill-outline-color": "transparent",
+              "circle-opacity": 0.65,
+              "circle-stroke-width": 0,
             },
           });
 
-          map.on("click", GRID_FILL_LAYER_ID, (e: MapLayerMouseEvent) => {
+          map.on("click", MICROPIXEL_LAYER_ID, (e: MapLayerMouseEvent) => {
             const feature = e.features?.[0];
             if (!feature || !onCellClick) return;
             onCellClick((feature.properties ?? {}) as Record<string, unknown>);
           });
 
-          map.on("mouseenter", GRID_FILL_LAYER_ID, () => {
+          map.on("mouseenter", MICROPIXEL_LAYER_ID, () => {
             map.getCanvas().style.cursor = "pointer";
           });
 
-          map.on("mouseleave", GRID_FILL_LAYER_ID, () => {
+          map.on("mouseleave", MICROPIXEL_LAYER_ID, () => {
             map.getCanvas().style.cursor = "";
           });
         }
