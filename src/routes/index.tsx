@@ -46,7 +46,7 @@ function Index() {
   const navigate = useNavigate();
   const [mounted, setMounted] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
-  const [layer, setLayer] = useState<LayerSelection | null>(null);
+  const [layer, setLayer] = useState<LayerSelection | null>({ type: "moisture" });
   const [count, setCount] = useState<number | null>(null);
   const [captureOpen, setCaptureOpen] = useState(false);
   const [pending, setPending] = useState<{
