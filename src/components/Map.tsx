@@ -139,7 +139,7 @@ function getGridIndex(features: Array<Feature<Point, GeoJsonProperties>>): GridI
 function calculateBoundingPolygon(
   coordinates: [number, number],
   features: Array<Feature<Point, GeoJsonProperties>>,
-): Feature<Polygon, GeoJsonProperties> {
+): Polygon {
   const { latitudes, longitudesByLatitude } = getGridIndex(features);
   const [longitude, latitude] = coordinates;
 
@@ -148,18 +148,14 @@ function calculateBoundingPolygon(
   const [south, north] = getCellBounds(latitudes, latitude);
 
   return {
-    type: "Feature",
-    properties: {},
-    geometry: {
-      type: "Polygon",
-      coordinates: [[
-        [west, south],
-        [east, south],
-        [east, north],
-        [west, north],
-        [west, south],
-      ]],
-    },
+    type: "Polygon",
+    coordinates: [[
+      [west, south],
+      [east, south],
+      [east, north],
+      [west, north],
+      [west, south],
+    ]],
   };
 }
 
