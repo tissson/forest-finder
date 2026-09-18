@@ -29,6 +29,7 @@ import type { FeatureCollection } from 'geojson';
 import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from '../lib/api';
 
 const LAYER_SOURCE_ID = 'layer-source';
+const LAYER_HEATMAP_ID = 'layer-grid-heatmap';
 const LAYER_FILL_ID = 'layer-grid-fill';
 const LAYER_OUTLINE_ID = 'layer-grid-outline';
 const MOVE_DEBOUNCE_MS = 400;
@@ -55,21 +56,25 @@ function toRenderableFeatureCollection(
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
       type: 'FeatureCollection',
-      features: r.features.map((f) => ({
-        type: 'Feature' as const,
-        geometry: pointToGridCell(f.geometry.coordinates),
-        properties: { value: f.properties.score_total, ...f.properties },
-      })),
+      features: r.features.flatMap((f) => {
+        const properties = { value: f.properties.score_total, ...f.properties };
+        return [
+          { type: 'Feature' as const, geometry: pointToGridCell(f.geometry.coordinates), properties },
+          { type: 'Feature' as const, geometry: f.geometry, properties },
+        ];
+      }),
     };
   }
   const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
   return {
     type: 'FeatureCollection',
-    features: r.features.map((f) => ({
-      type: 'Feature' as const,
-      geometry: pointToGridCell(f.geometry.coordinates),
-      properties: { value: f.properties.moisture_score ?? 0, ...f.properties },
-    })),
+    features: r.features.flatMap((f) => {
+      const properties = { value: f.properties.moisture_score ?? 0, ...f.properties };
+      return [
+        { type: 'Feature' as const, geometry: pointToGridCell(f.geometry.coordinates), properties },
+        { type: 'Feature' as const, geometry: f.geometry, properties },
+      ];
+    }),
   };
 }
 
@@ -197,6 +202,29 @@ export function Map({
 
     map.on('load', () => {
       map.addSource(LAYER_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
+
+      map.addLayer({
+        id: LAYER_HEATMAP_ID,
+        type: 'heatmap',
+        source: LAYER_SOURCE_ID,
+        paint: {
+          'heatmap-weight': ['coalesce', ['to-number', ['get', 'value']], 0],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 5, 0.9, 9, 1.35],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 5, 18, 9, 28],
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0, 'rgba(49, 86, 58, 0)',
+            0.2, '#31563a',
+            0.4, '#739a48',
+            0.6, '#d7b445',
+            0.8, '#ef812f',
+            1, '#c93624',
+          ],
+          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.76, 9, 0.18],
+        },
+      });
 
       map.addLayer({
         id: LAYER_FILL_ID,
