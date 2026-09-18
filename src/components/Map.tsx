@@ -178,18 +178,19 @@ export const Map: React.FC<MapProps> = ({
           const total = properties["score_total"];
           const moisture = properties["moisture_score"];
           const rawScore = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
-          return rawScore >= MIN_VISIBLE_SCORE ? [{ feature, rawScore }] : [];
+          return rawScore >= MIN_VISIBLE_SCORE
+            ? [{ geometry: feature.geometry, properties, rawScore }]
+            : [];
         });
         const highestScore = Math.max(MIN_VISIBLE_SCORE, ...scoredFeatures.map(({ rawScore }) => rawScore));
         const currentZoom = map.getZoom();
 
-        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = scoredFeatures.flatMap(({ feature, rawScore }) => {
-          const props = feature.properties ?? {};
+        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = scoredFeatures.flatMap(({ geometry, properties, rawScore }) => {
           const score = Math.max(0, Math.min(1, rawScore / highestScore));
           const pointFeature: Feature<Point, GeoJsonProperties> = {
             type: "Feature",
-            geometry: feature.geometry,
-            properties: { ...props, raw_score: rawScore, score },
+            geometry,
+            properties: { ...properties, raw_score: rawScore, score },
           };
 
           const polygon = pointToGridPolygon(pointFeature, currentZoom);
