@@ -7,6 +7,13 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    // MapLibre loads its worker as a separate ES module. Keeping the package
+    // out of Vite's dependency pre-bundle prevents stale worker URLs after HMR.
+    optimizeDeps: {
+      exclude: ["maplibre-gl"],
+    },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
