@@ -140,6 +140,21 @@ export type Database = {
         }
         Relationships: []
       }
+      sweden_land_parts: {
+        Row: {
+          geom: unknown
+          id: number
+        }
+        Insert: {
+          geom: unknown
+          id?: number
+        }
+        Update: {
+          geom?: unknown
+          id?: number
+        }
+        Relationships: []
+      }
       user_badges: {
         Row: {
           badge_key: string
@@ -301,6 +316,7 @@ export type Database = {
           id: number
           is_active: boolean
           is_land: boolean
+          is_weather_sample: boolean
           weather_sample_id: number | null
         }
         Insert: {
@@ -314,6 +330,7 @@ export type Database = {
           id?: never
           is_active?: boolean
           is_land?: boolean
+          is_weather_sample?: boolean
           weather_sample_id?: number | null
         }
         Update: {
@@ -327,6 +344,7 @@ export type Database = {
           id?: never
           is_active?: boolean
           is_land?: boolean
+          is_weather_sample?: boolean
           weather_sample_id?: number | null
         }
         Relationships: []
@@ -676,46 +694,27 @@ export type Database = {
         Returns: boolean
       }
       geomfromewkt: { Args: { "": string }; Returns: unknown }
-      get_moisture_layer:
-        | {
-            Args: {
-              p_limit?: number
-              p_max_lat: number
-              p_max_lon: number
-              p_min_lat: number
-              p_min_lon: number
-              p_obs_date?: string
-            }
-            Returns: {
-              lat: number
-              lon: number
-              moisture_score: number
-              obs_date: string
-              precip_10d_sum: number
-              precip_7d_sum: number
-              temp_mean: number
-            }[]
-          }
-        | {
-            Args: {
-              p_limit?: number
-              p_max_lat: number
-              p_max_lon: number
-              p_min_lat: number
-              p_min_lon: number
-              p_min_score?: number
-              p_obs_date?: string
-            }
-            Returns: {
-              lat: number
-              lon: number
-              moisture_score: number
-              obs_date: string
-              precip_10d_sum: number
-              precip_7d_sum: number
-              temp_mean: number
-            }[]
-          }
+      get_moisture_layer: {
+        Args: {
+          p_limit?: number
+          p_max_lat: number
+          p_max_lon: number
+          p_min_lat: number
+          p_min_lon: number
+          p_min_score?: number
+          p_obs_date?: string
+          p_step?: number
+        }
+        Returns: {
+          lat: number
+          lon: number
+          moisture_score: number
+          obs_date: string
+          precip_10d_sum: number
+          precip_7d_sum: number
+          temp_mean: number
+        }[]
+      }
       get_or_create_profile: {
         Args: never
         Returns: {
@@ -745,6 +744,7 @@ export type Database = {
           p_min_score?: number
           p_obs_date?: string
           p_species_id: number
+          p_step?: number
         }
         Returns: {
           lat: number

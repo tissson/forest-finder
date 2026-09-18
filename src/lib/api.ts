@@ -169,20 +169,25 @@ export interface GetPredictionsOptions {
   obsDate?: string;
   minScore?: number;
   limit?: number;
+  /** Detaljsteg i rutnätet: 1 = alla 2 km-rutor, 10 = var tionde (20 km). */
+  step?: number;
 }
 
 export interface PredictionLodOptions {
   minScore: number;
   limit: number;
+  step: number;
 }
 
-/** Datamängd anpassad för aktuell kartzoom. */
+/** Datamängd anpassad för aktuell kartzoom (2 km-rutnät). */
 export function getPredictionLodOptions(zoom: number): PredictionLodOptions {
   // Tröskeln hålls låg: råvärdena skiljer sig kraftigt mellan arter
   // (t.ex. blåbär toppar runt 0.14) och normaliseras istället i kartan.
-  if (zoom < 7) return { limit: 3000, minScore: 0.005 };
-  if (zoom <= 10) return { limit: 8000, minScore: 0.005 };
-  return { limit: 25000, minScore: 0.005 };
+  // step glesar ut rutnätet vid utzoomat läge så hela Sverige täcks
+  // utan att tiotusentals rutor behöver skickas.
+  if (zoom < 7) return { limit: 6000, minScore: 0.005, step: 10 };
+  if (zoom <= 10) return { limit: 12000, minScore: 0.005, step: 3 };
+  return { limit: 25000, minScore: 0.005, step: 1 };
 }
 
 /** bbox: [minLon, minLat, maxLon, maxLat] (WGS84). */
@@ -200,8 +205,10 @@ export async function getPredictions(
     ...(options.obsDate ? { p_obs_date: options.obsDate } : {}),
     p_min_score: options.minScore ?? 0.05,
     p_limit: options.limit ?? 10000,
+    p_step: options.step ?? 1,
   });
   if (error) throw toApiError(error.message);
+
 
   const rows = (data ?? []) as Array<{
     lon: number;
@@ -236,7 +243,7 @@ export async function getPredictions(
 export async function getMoistureLayer(
   bbox: [number, number, number, number],
   obsDate?: string,
-  options: Pick<GetPredictionsOptions, "minScore" | "limit"> = {},
+  options: Pick<GetPredictionsOptions, "minScore" | "limit" | "step"> = {},
 ): Promise<MoistureLayerResponse> {
   const { data, error } = await supabase.rpc("get_moisture_layer", {
     p_min_lon: bbox[0],
@@ -246,7 +253,9 @@ export async function getMoistureLayer(
     ...(obsDate ? { p_obs_date: obsDate } : {}),
     p_min_score: options.minScore ?? 0,
     p_limit: options.limit ?? 10000,
+    p_step: options.step ?? 1,
   });
+
   if (error) throw toApiError(error.message);
 
   const rows = (data ?? []) as Array<{

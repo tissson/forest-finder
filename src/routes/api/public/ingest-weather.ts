@@ -66,14 +66,17 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
 
         const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
 
-        // Databasens API returnerar max 1000 rader per anrop -- sidnumrera.
+        // Hämta bara väderprovpunkterna: en aktiv skogsruta per 20x20 km-block.
+        // Övriga rutor läser vädret från sin provpunkt vid kartanrop.
         const zones: Zone[] = [];
         for (let page = 0; page < 40; page++) {
           const { data, error: zoneError } = await supabaseAdmin
             .from('weather_zones')
             .select('id, center_lat, center_lon')
+            .eq('is_weather_sample', true)
             .order('id')
             .range(page * 1000, page * 1000 + 999);
+
           if (zoneError) {
             return Response.json({ error: zoneError.message }, { status: 500 });
           }
@@ -84,6 +87,7 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
         if (zones.length === 0) {
           return Response.json({ error: 'Inga väderzoner i databasen.' }, { status: 400 });
         }
+
 
         const obsDate = new Date().toISOString().slice(0, 10);
         const rows: Array<{
