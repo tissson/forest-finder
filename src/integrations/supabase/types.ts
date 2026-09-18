@@ -155,6 +155,24 @@ export type Database = {
         }
         Relationships: []
       }
+      sweden_water: {
+        Row: {
+          created_at: string
+          geom: unknown
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          geom: unknown
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          geom?: unknown
+          id?: number
+        }
+        Relationships: []
+      }
       user_badges: {
         Row: {
           badge_key: string
@@ -558,6 +576,7 @@ export type Database = {
         Returns: unknown
       }
       _st_within: { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
+      add_water_geometry: { Args: { p_geojson: Json }; Returns: number }
       addauth: { Args: { "": string }; Returns: boolean }
       addgeometrycolumn:
         | {

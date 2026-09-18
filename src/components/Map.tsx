@@ -32,7 +32,8 @@ interface MapProps {
 
 const TILE_SOURCE_ID = "predictions-tiles";
 const TILE_SOURCE_LAYER = "predictions";
-const GRID_FILL_LAYER_ID = "fungi-grid-fill";
+const HEATMAP_LAYER_ID = "fungi-heatmap";
+const HIT_LAYER_ID = "fungi-hit";
 const MIN_MAP_ZOOM = 5;
 const MAX_MAP_ZOOM = 16;
 const TILE_MIN_ZOOM = 5;
@@ -134,7 +135,8 @@ export const Map: React.FC<MapProps> = ({
 
     const url = tileUrl(layer, obsDate);
 
-    if (map.getLayer(GRID_FILL_LAYER_ID)) map.removeLayer(GRID_FILL_LAYER_ID);
+    if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
+    if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
     if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
 
     map.addSource(TILE_SOURCE_ID, {
@@ -144,27 +146,68 @@ export const Map: React.FC<MapProps> = ({
       maxzoom: TILE_MAX_ZOOM,
     });
 
+    // Mjuk, sömlös värmekarta utan synliga rutor.
     map.addLayer({
-      id: GRID_FILL_LAYER_ID,
-      type: "fill",
+      id: HEATMAP_LAYER_ID,
+      type: "heatmap",
       source: TILE_SOURCE_ID,
       "source-layer": TILE_SOURCE_LAYER,
       paint: {
-        "fill-color": [
+        "heatmap-weight": [
           "interpolate",
           ["linear"],
           ["get", "score"],
+          0, 0,
+          1, 1,
+        ],
+        "heatmap-intensity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          5, 0.3,
+          9, 0.45,
+          13, 0.65,
+          16, 0.9,
+        ],
+        "heatmap-color": [
+          "interpolate",
+          ["linear"],
+          ["heatmap-density"],
           0, "rgba(0, 0, 0, 0)",
           0.15, "rgba(59, 130, 246, 0.45)",
           0.4, "rgba(16, 185, 129, 0.6)",
-          0.7, "rgba(245, 158, 11, 0.75)",
+          0.7, "rgba(245, 158, 11, 0.8)",
+          0.9, "rgba(236, 72, 153, 0.85)",
           1, "rgba(147, 51, 234, 0.9)",
         ],
-        "fill-opacity": 0.78,
-        "fill-outline-color": "transparent",
-        "fill-antialias": false,
+        "heatmap-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          5, 20,
+          7, 26,
+          9, 36,
+          12, 70,
+          16, 160,
+        ],
+        "heatmap-opacity": 0.8,
       },
     });
+
+    // Osynligt träffyta-lager så att man fortfarande kan klicka på en ruta.
+    map.addLayer({
+      id: HIT_LAYER_ID,
+      type: "circle",
+      source: TILE_SOURCE_ID,
+      "source-layer": TILE_SOURCE_LAYER,
+      paint: {
+        "circle-radius": 10,
+        "circle-color": "rgba(0, 0, 0, 0)",
+        "circle-opacity": 0,
+        "circle-stroke-width": 0,
+      },
+    });
+
 
     const popup = new Popup({ closeButton: true, closeOnClick: true, maxWidth: "260px" });
 
@@ -196,8 +239,8 @@ export const Map: React.FC<MapProps> = ({
       map.getCanvas().style.cursor = "";
     };
     const handleIdle = () => {
-      if (!map.getLayer(GRID_FILL_LAYER_ID)) return;
-      onFeatureCountChange?.(map.queryRenderedFeatures({ layers: [GRID_FILL_LAYER_ID] }).length);
+      if (!map.getLayer(HIT_LAYER_ID)) return;
+      onFeatureCountChange?.(map.queryRenderedFeatures({ layers: [HIT_LAYER_ID] }).length);
     };
     const handleSourceError = (event: unknown) => {
       const status = (event as { error?: { status?: number } })?.error?.status;
@@ -206,20 +249,21 @@ export const Map: React.FC<MapProps> = ({
       }
     };
 
-    map.on("click", GRID_FILL_LAYER_ID, handleClick);
-    map.on("mouseenter", GRID_FILL_LAYER_ID, handleEnter);
-    map.on("mouseleave", GRID_FILL_LAYER_ID, handleLeave);
+    map.on("click", HIT_LAYER_ID, handleClick);
+    map.on("mouseenter", HIT_LAYER_ID, handleEnter);
+    map.on("mouseleave", HIT_LAYER_ID, handleLeave);
     map.on("idle", handleIdle);
     map.on("error", handleSourceError);
 
     return () => {
       popup.remove();
-      map.off("click", GRID_FILL_LAYER_ID, handleClick);
-      map.off("mouseenter", GRID_FILL_LAYER_ID, handleEnter);
-      map.off("mouseleave", GRID_FILL_LAYER_ID, handleLeave);
+      map.off("click", HIT_LAYER_ID, handleClick);
+      map.off("mouseenter", HIT_LAYER_ID, handleEnter);
+      map.off("mouseleave", HIT_LAYER_ID, handleLeave);
       map.off("idle", handleIdle);
       map.off("error", handleSourceError);
-      if (map.getLayer(GRID_FILL_LAYER_ID)) map.removeLayer(GRID_FILL_LAYER_ID);
+      if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
+      if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
       if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
     };
   }, [isLoaded, layer, obsDate, onCellClick, onError, onFeatureCountChange]);
