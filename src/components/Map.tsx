@@ -49,8 +49,10 @@ const SWEDEN_BOUNDS: LngLatBoundsLike = [
 
 function pointToGridPolygon(
   feature: Feature<Point, GeoJsonProperties>,
-): Feature<Polygon, GeoJsonProperties> {
-  const [longitude, latitude] = feature.geometry.coordinates;
+): Feature<Polygon, GeoJsonProperties> | null {
+  const longitude = feature.geometry.coordinates[0];
+  const latitude = feature.geometry.coordinates[1];
+  if (longitude === undefined || latitude === undefined) return null;
 
   return {
     type: "Feature",
@@ -169,7 +171,8 @@ export const Map: React.FC<MapProps> = ({
             properties: { ...props, score },
           };
 
-          return [pointToGridPolygon(pointFeature)];
+          const polygon = pointToGridPolygon(pointFeature);
+          return polygon ? [polygon] : [];
         });
 
         const featureCollection: FeatureCollection<Polygon, GeoJsonProperties> = {
