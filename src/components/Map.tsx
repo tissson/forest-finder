@@ -2,8 +2,7 @@
  * src/components/Map.tsx
  * =======================
  * Kartkomponent byggd med MapLibre GL JS.
- * Renderar artprognoser och fuktskikt som en sömlös heatmap
- * som flyter ihop mjukt över kartan.
+ * Renderar artprognoser och fuktskikt som en sömlös heatmap.
  */
 
 import React, { useEffect, useRef, useState } from "react";
@@ -37,7 +36,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
     const map = new maplibregl.Map({
       container: mapContainerRef.current,
       style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
-      center: [15.2, 62.0], // Centrerat över Sverige
+      center: [15.2, 62.0],
       zoom: 5,
     });
 
@@ -79,7 +78,6 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
           geojson = await getPredictions(bbox, speciesId, { obsDate, limit: 10000 });
         }
 
-        // Säkerställ att alla features har en enhetlig score_total för heatmap-viktningen
         const processedFeatures = (geojson.features || []).map((f: any) => ({
           ...f,
           properties: {
@@ -96,7 +94,6 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
           features: processedFeatures,
         };
 
-        // Uppdatera eller skapa GeoJSON-källa
         const existingSource = map.getSource(PREDICTIONS_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
         if (existingSource) {
           existingSource.setData(featureCollection as any);
@@ -107,7 +104,6 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
           });
         }
 
-        // Skapa heatmap-lager om det inte finns
         if (!map.getLayer(HEATMAP_LAYER_ID)) {
           map.addLayer({
             id: HEATMAP_LAYER_ID,
@@ -115,13 +111,8 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
             source: PREDICTIONS_SOURCE_ID,
             maxzoom: 15,
             paint: {
-              // Viktas mot score_total (0.0 till 1.0)
               "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1] as any,
-
-              // Intensitet som skala över zoomnivåer
               "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5] as any,
-
-              // Färgskala från transparent -> gul -> grön -> mörkgrön
               "heatmap-color": [
                 "interpolate",
                 ["linear"],
@@ -137,10 +128,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
                 1.0,
                 "rgba(15, 81, 50, 0.95)",
               ] as any,
-
-              // Dynamisk radie som gör att datapunkterna flyter ihop vid utzoomning
               "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80] as any,
-
               "heatmap-opacity": 0.8,
             },
           });
@@ -152,7 +140,6 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
 
     fetchDataAndRender();
 
-    // Ladda om data när användaren panorerar eller zoomar
     const handleMoveEnd = () => {
       fetchDataAndRender();
     };
