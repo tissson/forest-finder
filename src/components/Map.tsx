@@ -44,7 +44,7 @@ interface MapProps {
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
 const MICROPIXEL_LAYER_ID = "fungi-micropixels";
-const MIN_VISIBLE_VALUE = 0.01;
+const MIN_VISIBLE_VALUE = 0.001;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
 const MAP_FETCH_DEBOUNCE_MS = 300;
@@ -228,7 +228,13 @@ export const Map: React.FC<MapProps> = ({
         bounds.getNorth() + paddingLat,
       ];
 
-      const lod = getPredictionLodOptions(map.getZoom());
+      const zoom = map.getZoom();
+      const baseLod = getPredictionLodOptions(zoom);
+      // Sverigevyn behöver ett tätare urval än det vanliga översiktsläget
+      // för att skogsprognosen ska bilda ett rikt mikropixelmönster.
+      const lod = zoom <= 8
+        ? { ...baseLod, limit: 12_000, minScore: MIN_VISIBLE_VALUE, step: 3 }
+        : baseLod;
       const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
       const queryKey = JSON.stringify({ bbox, lod, layer: activeLayerKey, obsDate: obsDate ?? null });
       if (queryKey === lastQueryKey) return;
@@ -275,8 +281,9 @@ export const Map: React.FC<MapProps> = ({
                 "interpolate",
                 ["linear"],
                 ["zoom"],
-                5, 1.2,
-                9, 2.5,
+                4.5, 1.8,
+                7, 2.2,
+                9, 2.8,
                 13, 5,
                 16, 10,
               ],
@@ -285,9 +292,10 @@ export const Map: React.FC<MapProps> = ({
                 ["linear"],
                 ["get", "score"],
                 0, "rgba(0, 0, 0, 0)",
-                0.2, "rgb(74, 103, 65)",
-                0.55, "rgb(190, 145, 48)",
-                1, "rgb(176, 82, 65)",
+                0.1, "rgba(216, 180, 254, 0.55)",
+                0.4, "rgba(192, 132, 252, 0.75)",
+                0.7, "rgba(168, 85, 247, 0.9)",
+                1, "rgba(147, 51, 234, 1)",
               ],
               "circle-opacity": 0.65,
               "circle-stroke-width": 0,
