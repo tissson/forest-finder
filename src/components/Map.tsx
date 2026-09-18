@@ -327,7 +327,8 @@ export const Map: React.FC<MapProps> = ({
         const landMask = await loadSwedenLandMask();
         if (disposed || requestId !== requestSequence) return;
         const activeLayer: LayerSelection = layer ?? { type: "species", speciesId: 1, speciesName: "", tier: "free" };
-        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask);
+        referenceMax = Math.max(referenceMax, getMaxRawScore(activeLayer, geojson));
+        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask, referenceMax);
 
         onFeatureCountChange?.(featureCollection.features.length);
 
