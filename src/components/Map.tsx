@@ -1,7 +1,7 @@
 /**
  * src/components/Map.tsx
  * =======================
- * Kartkomponent med MapLibre GL JS: heatmap-lager, klick-hantering,
+ * Kartkomponent med MapLibre GL JS: skarpa prognospolygoner, klick-hantering,
  * GPS-positionering och gränser för Sverige.
  */
 
@@ -15,7 +15,14 @@ import {
   type MapLayerMouseEvent,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Feature, FeatureCollection, Geometry } from "geojson";
+import type {
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
+  Point,
+  Polygon,
+} from "geojson";
 
 import { getPredictions, getMoistureLayer, ApiError } from "../lib/api";
 import type { LayerSelection, PredictionsResponse, MoistureLayerResponse } from "../lib/api";
@@ -30,14 +37,36 @@ interface MapProps {
 }
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
-const HEATMAP_LAYER_ID = "predictions-heatmap";
-const CLICK_TARGET_LAYER_ID = "fungi-click-target";
+const PREDICTIONS_FILL_LAYER_ID = "predictions-zone-fill";
+const HALF_GRID_LATITUDE = 0.16;
+const HALF_GRID_LONGITUDE = 0.36;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
   [10.5, 55.2],
   [24.2, 69.1],
 ];
+
+function pointToGridPolygon(
+  feature: Feature<Point, GeoJsonProperties>,
+): Feature<Polygon, GeoJsonProperties> {
+  const [longitude, latitude] = feature.geometry.coordinates;
+
+  return {
+    type: "Feature",
+    properties: feature.properties,
+    geometry: {
+      type: "Polygon",
+      coordinates: [[
+        [longitude - HALF_GRID_LONGITUDE, latitude - HALF_GRID_LATITUDE],
+        [longitude + HALF_GRID_LONGITUDE, latitude - HALF_GRID_LATITUDE],
+        [longitude + HALF_GRID_LONGITUDE, latitude + HALF_GRID_LATITUDE],
+        [longitude - HALF_GRID_LONGITUDE, latitude + HALF_GRID_LATITUDE],
+        [longitude - HALF_GRID_LONGITUDE, latitude - HALF_GRID_LATITUDE],
+      ]],
+    },
+  };
+}
 
 export const Map: React.FC<MapProps> = ({
   layer,
@@ -124,19 +153,26 @@ export const Map: React.FC<MapProps> = ({
           properties: Record<string, unknown> | null;
         }>;
 
-        const processedFeatures: Feature[] = rawFeatures.map((f) => {
-          const props = (f.properties ?? {}) as Record<string, unknown>;
+        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = rawFeatures.flatMap((f) => {
+          if (f.geometry.type !== "Point") return [];
+
+          const props = f.properties ?? {};
           const total = props["score_total"];
           const moisture = props["moisture_score"];
-          const score = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
-          return {
+          const rawScore = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
+          const score = Math.max(0, Math.min(1, rawScore));
+          if (score <= 0) return [];
+
+          const pointFeature: Feature<Point, GeoJsonProperties> = {
             type: "Feature",
             geometry: f.geometry,
-            properties: { ...props, score_total: score },
+            properties: { ...props, score },
           };
+
+          return [pointToGridPolygon(pointFeature)];
         });
 
-        const featureCollection: FeatureCollection = {
+        const featureCollection: FeatureCollection<Polygon, GeoJsonProperties> = {
           type: "FeatureCollection",
           features: processedFeatures,
         };
@@ -153,61 +189,44 @@ export const Map: React.FC<MapProps> = ({
           });
         }
 
-        // Heatmap-lager
-        if (!map.getLayer(HEATMAP_LAYER_ID)) {
+        if (!map.getLayer(PREDICTIONS_FILL_LAYER_ID)) {
           map.addLayer({
-            id: HEATMAP_LAYER_ID,
-            type: "heatmap",
+            id: PREDICTIONS_FILL_LAYER_ID,
+            type: "fill",
             source: PREDICTIONS_SOURCE_ID,
-            maxzoom: 15,
             paint: {
-              "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1],
-              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5],
-              "heatmap-color": [
+              "fill-color": [
                 "interpolate",
                 ["linear"],
-                ["heatmap-density"],
+                ["get", "score"],
                 0,
-                "rgba(255, 255, 255, 0)",
-                0.2,
-                "rgba(250, 204, 21, 0.45)",
-                0.5,
-                "rgba(34, 197, 94, 0.70)",
-                0.8,
-                "rgba(21, 128, 61, 0.85)",
-                1.0,
-                "rgba(15, 81, 50, 0.95)",
+                "rgba(187, 247, 208, 0.35)",
+                0.35,
+                "rgba(250, 204, 21, 0.85)",
+                0.7,
+                "rgba(249, 115, 22, 0.95)",
+                0.85,
+                "rgba(244, 63, 94, 0.95)",
+                1,
+                "rgba(126, 34, 206, 1)",
               ],
-              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80],
-              "heatmap-opacity": 0.8,
-            },
-          });
-        }
-
-        // Osynligt klick-lager för interaktion
-        if (!map.getLayer(CLICK_TARGET_LAYER_ID)) {
-          map.addLayer({
-            id: CLICK_TARGET_LAYER_ID,
-            type: "circle",
-            source: PREDICTIONS_SOURCE_ID,
-            minzoom: 10,
-            paint: {
-              "circle-radius": 12,
-              "circle-color": "transparent",
+              "fill-opacity": 0.68,
+              "fill-outline-color": "rgba(255, 255, 255, 0.22)",
+              "fill-antialias": false,
             },
           });
 
-          map.on("click", CLICK_TARGET_LAYER_ID, (e: MapLayerMouseEvent) => {
+          map.on("click", PREDICTIONS_FILL_LAYER_ID, (e: MapLayerMouseEvent) => {
             const feature = e.features?.[0];
             if (!feature || !onCellClick) return;
             onCellClick((feature.properties ?? {}) as Record<string, unknown>);
           });
 
-          map.on("mouseenter", CLICK_TARGET_LAYER_ID, () => {
+          map.on("mouseenter", PREDICTIONS_FILL_LAYER_ID, () => {
             map.getCanvas().style.cursor = "pointer";
           });
 
-          map.on("mouseleave", CLICK_TARGET_LAYER_ID, () => {
+          map.on("mouseleave", PREDICTIONS_FILL_LAYER_ID, () => {
             map.getCanvas().style.cursor = "";
           });
         }
