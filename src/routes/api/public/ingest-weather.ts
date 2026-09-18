@@ -66,16 +66,22 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
 
         const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
 
-        const { data: zones, error: zoneError } = await supabaseAdmin
-          .from('weather_zones')
-          .select('id, center_lat, center_lon')
-          .order('id')
-          .range(0, 19999);
-
-        if (zoneError) {
-          return Response.json({ error: zoneError.message }, { status: 500 });
+        // Databasens API returnerar max 1000 rader per anrop -- sidnumrera.
+        const zones: Zone[] = [];
+        for (let page = 0; page < 40; page++) {
+          const { data, error: zoneError } = await supabaseAdmin
+            .from('weather_zones')
+            .select('id, center_lat, center_lon')
+            .order('id')
+            .range(page * 1000, page * 1000 + 999);
+          if (zoneError) {
+            return Response.json({ error: zoneError.message }, { status: 500 });
+          }
+          zones.push(...((data ?? []) as Zone[]));
+          if (!data || data.length < 1000) break;
         }
-        if (!zones || zones.length === 0) {
+
+        if (zones.length === 0) {
           return Response.json({ error: 'Inga väderzoner i databasen.' }, { status: 400 });
         }
 
