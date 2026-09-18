@@ -14,14 +14,15 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { point } from "@turf/helpers";
-import type { Feature, FeatureCollection, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
+import type { Feature, FeatureCollection, GeoJsonProperties, MultiPolygon, Point, Polygon } from "geojson";
 import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from "../lib/api";
 import swedenLandData from "../data/sweden-land.json";
 
 setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
 const PREDICTIONS_SOURCE_ID = "fungi-data";
-const FILL_LAYER_ID = "fungi-fill";
+const HEATMAP_LAYER_ID = "fungi-heatmap";
+const CLICK_LAYER_ID = "fungi-click-target";
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
   [10, 55],
@@ -30,35 +31,20 @@ const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
-// Zoncentrumen ligger glest i underlaget. Dessa halvsteg täcker ytan mellan
-// närliggande centrum utan att lämna vita springor i det svenska gittret.
-const HALF_GRID_SIZE_LAT = 0.16;
-const HALF_GRID_SIZE_LNG = 0.36;
-
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: "FeatureCollection", features: [] };
 
 /**
- * Konverterar en punkt till en kvadratisk Polygon-feature för ett täckande ytlager.
+ * Bygger en ren Point-feature med det normaliserade score-värdet i
+ * properties -- ersätter tidigare createGridPolygonFeature(). Se
+ * svarstexten om varför polygon-gittret byttes mot punkter: ett
+ * heatmap-lager i MapLibre kräver Point-geometrier (det är
+ * heatmap-radius/heatmap-intensity som skapar den sammansmälta ytan,
+ * inte geometrin själv).
  */
-function createGridPolygonFeature(
-  coordinates: [number, number],
-  properties: GeoJsonProperties,
-): Feature<Polygon> {
-  const [lng, lat] = coordinates;
+function createScoredPointFeature(coordinates: [number, number], properties: GeoJsonProperties): Feature<Point> {
   return {
     type: "Feature",
-    geometry: {
-      type: "Polygon",
-      coordinates: [
-        [
-          [lng - HALF_GRID_SIZE_LNG, lat - HALF_GRID_SIZE_LAT],
-          [lng + HALF_GRID_SIZE_LNG, lat - HALF_GRID_SIZE_LAT],
-          [lng + HALF_GRID_SIZE_LNG, lat + HALF_GRID_SIZE_LAT],
-          [lng - HALF_GRID_SIZE_LNG, lat + HALF_GRID_SIZE_LAT],
-          [lng - HALF_GRID_SIZE_LNG, lat - HALF_GRID_SIZE_LAT],
-        ],
-      ],
-    },
+    geometry: { type: "Point", coordinates },
     properties,
   };
 }
@@ -81,7 +67,7 @@ function toRenderableFeatureCollection(
         .map((f) => {
           const rawScore = f.properties?.score_total ?? 0;
           const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
-          return createGridPolygonFeature(f.geometry.coordinates, {
+          return createScoredPointFeature(f.geometry.coordinates, {
             ...f.properties,
             score: Math.max(0, Math.min(1, normalizedScore)),
           });
@@ -96,7 +82,7 @@ function toRenderableFeatureCollection(
       .map((f) => {
         const rawScore = f.properties?.moisture_score ?? 0;
         const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
-        return createGridPolygonFeature(f.geometry.coordinates, {
+        return createScoredPointFeature(f.geometry.coordinates, {
           ...f.properties,
           score: Math.max(0, Math.min(1, normalizedScore)),
         });
@@ -207,43 +193,62 @@ export function Map({
       map.addSource(PREDICTIONS_SOURCE_ID, { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
 
       map.addLayer({
-        id: FILL_LAYER_ID,
-        type: "fill",
+        id: HEATMAP_LAYER_ID,
+        type: "heatmap",
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          "fill-color": [
+          "heatmap-weight": ["interpolate", ["linear"], ["get", "score"], 0, 0, 1, 1],
+          "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 9, 3],
+          "heatmap-color": [
             "interpolate",
             ["linear"],
-            ["get", "score"],
-            0.0,
-            "transparent",
-            0.15,
+            ["heatmap-density"],
+            0,
+            "rgba(0, 0, 0, 0)",
+            0.2,
             "rgba(34, 197, 94, 0.4)",
             0.4,
-            "rgba(234, 179, 8, 0.6)",
+            "rgba(234, 179, 8, 0.65)",
             0.7,
-            "rgba(249, 115, 22, 0.75)",
+            "rgba(249, 115, 22, 0.8)",
             0.9,
-            "rgba(168, 85, 247, 0.85)",
+            "rgba(239, 68, 68, 0.9)",
           ],
-          "fill-outline-color": "transparent",
-          "fill-opacity": 0.75,
-          "fill-antialias": false,
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 15, 7, 35, 11, 80, 15, 180],
+          "heatmap-opacity": 0.75,
         },
       });
 
-      map.on("click", FILL_LAYER_ID, (e: MapLayerMouseEvent) => {
+      // Osynligt klick-mål ovanpå heatmap-lagret. Ett heatmap-lager är
+      // fortfarande punkt-backat under huven, men dess hit-test-yta
+      // följer bara de exakta punktkoordinaterna, inte den synliga,
+      // mjukt uttonande glöden heatmap-radius målar upp -- ett klick
+      // mitt i en varm zon MELLAN två faktiska datapunkter hade annars
+      // ofta missat. Detta circle-lager ger en generös, zoom-skalande
+      // klickyta utan att synas (circle-opacity: 0), och är det enda
+      // lagret click/mouseenter/mouseleave nu är kopplade till.
+      map.addLayer({
+        id: CLICK_LAYER_ID,
+        type: "circle",
+        source: PREDICTIONS_SOURCE_ID,
+        paint: {
+          "circle-opacity": 0,
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 3, 10, 8, 25, 12, 45],
+        },
+      });
+
+      map.on("click", CLICK_LAYER_ID, (e: MapLayerMouseEvent) => {
         const feature = e.features?.[0];
         if (!feature) return;
         const props = feature.properties as Record<string, number | null>;
         onFeatureClick?.(props);
       });
 
-      map.on("mouseenter", FILL_LAYER_ID, () => {
+      map.on("mouseenter", CLICK_LAYER_ID, () => {
         map.getCanvas().style.cursor = "pointer";
       });
 
-      map.on("mouseleave", FILL_LAYER_ID, () => {
+      map.on("mouseleave", CLICK_LAYER_ID, () => {
         map.getCanvas().style.cursor = "";
       });
 
