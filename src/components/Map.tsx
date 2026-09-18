@@ -34,7 +34,6 @@ import swedenLandData from '../data/sweden-land.json';
 setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
 
 const LAYER_SOURCE_ID = 'layer-source';
-const LAYER_HEATMAP_ID = 'layer-grid-heatmap';
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
 const MIN_VISIBLE_VALUE = 0.08;
