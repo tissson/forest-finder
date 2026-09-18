@@ -5,82 +5,75 @@
  * ELLER det generella fuktighetslagret (moisture_score), beroende på
  * `layer`-propen -- samma union-typ som LayerSelector.tsx producerar
  * (LayerSelection, definierad i lib/api.ts).
- *
- * VIKTIGT för Lovable/Vite: kräver paketet 'maplibre-gl' (npm install
- * maplibre-gl) -- se importförklaring i svarstexten, INKLUSIVE att
- * senaste versionen (6.x) INTE har ett default export längre.
- *
- * VANLIGASTE FELET vid MapLibre-i-React: kartan blir blank/0px hög
- * eftersom container-diven saknar en EXPLICIT höjd. className-propen
- * default:ar till 'h-full w-full' -- FÖRÄLDERN måste i sin tur ha en
- * definierad höjd, annars förblir "h-full" 0px.
  */
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from "react";
 import {
   Map as MapLibreMap,
   NavigationControl,
   GeolocateControl,
   setWorkerUrl,
   type GeoJSONSource,
-} from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { point } from '@turf/helpers';
-import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
-import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from '../lib/api';
-import swedenLandData from '../data/sweden-land.json';
+  type MapLayerMouseEvent,
+} from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { point } from "@turf/helpers";
+import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
+import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from "../lib/api";
+import swedenLandData from "../data/sweden-land.json";
 
-setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
+setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
-const PREDICTIONS_SOURCE_ID = 'fungi-data';
+const PREDICTIONS_SOURCE_ID = "fungi-data";
+const HEATMAP_LAYER_ID = "fungi-heatmap";
+const CLICK_POINTS_LAYER_ID = "fungi-click-points";
 const MOVE_DEBOUNCE_MS = 400;
-const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
+const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
+  [10, 55],
+  [24, 69],
+];
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
-const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
+const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: "FeatureCollection", features: [] };
 
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
- * gemensam form där heatmap-vikten alltid ligger under properties.score
- * -- det gör att MapLibres paint-uttryck kan vara statiskt och alltid
- * referera ['get', 'score'], oavsett om
- * det är score_total (art) eller moisture_score (fuktighet) som visas.
- * Originalfälten behålls också, så onFeatureClick fortfarande får
- * fullständig detalj (score_soil/score_forest/etc, eller
- * precip_7d_sum/temp_mean/etc).
+ * gemensam form där heatmap-vikten alltid ligger under properties.score.
  */
 function toRenderableFeatureCollection(
   layer: LayerSelection,
-  response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>
+  response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
 ): FeatureCollection {
-  if (layer.type === 'species') {
+  if (layer.type === "species") {
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
-      type: 'FeatureCollection',
-      features: r.features.filter((f) => (
-        f.properties.score_total > MIN_VISIBLE_VALUE
-        && (f.properties.score_forest ?? 0) > 0
-        && isOnSwedishLand(f.geometry.coordinates)
-      )).map((f) => ({
-        type: 'Feature' as const,
-        geometry: f.geometry,
-        properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.score_total)) },
-      })),
+      type: "FeatureCollection",
+      features: r.features
+        .filter(
+          (f) =>
+            f.properties.score_total > MIN_VISIBLE_VALUE &&
+            (f.properties.score_forest ?? 0) > 0 &&
+            isOnSwedishLand(f.geometry.coordinates),
+        )
+        .map((f) => ({
+          type: "Feature" as const,
+          geometry: f.geometry,
+          properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.score_total)) },
+        })),
     };
   }
   const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
   return {
-    type: 'FeatureCollection',
-    features: r.features.filter((f) => (
-      (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE
-      && isOnSwedishLand(f.geometry.coordinates)
-    )).map((f) => ({
-      type: 'Feature' as const,
-      geometry: f.geometry,
-      properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.moisture_score ?? 0)) },
-    })),
+    type: "FeatureCollection",
+    features: r.features
+      .filter((f) => (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates))
+      .map((f) => ({
+        type: "Feature" as const,
+        geometry: f.geometry,
+        properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.moisture_score ?? 0)) },
+      })),
   };
 }
 
@@ -90,14 +83,10 @@ function isOnSwedishLand(coordinates: [number, number]): boolean {
 }
 
 export interface MapProps {
-  /** Vilket lager som ska visas. null = inget lager ritas. */
   layer: LayerSelection | null;
-  /** Filtrerar bort celler under detta score_total (gäller bara artlagret). Default 0.05. */
   minScore?: number;
   onError?: (error: ApiError) => void;
-  /** Anropas efter varje lyckad hämtning, t.ex. för att visa "N träffar". */
   onFeatureCountChange?: (count: number) => void;
-  /** Löst typad -- fältnamnen skiljer sig mellan art-/fuktighetslagret, se toRenderableFeatureCollection. */
   onFeatureClick?: (properties: Record<string, number | null>) => void;
   className?: string;
   initialCenter?: [number, number];
@@ -111,7 +100,7 @@ export function Map({
   onError,
   onFeatureCountChange,
   onFeatureClick,
-  className = 'relative h-full w-full',
+  className = "relative h-full w-full",
   initialCenter = [15, 62],
   initialZoom = 5,
   focusTarget = null,
@@ -121,8 +110,6 @@ export function Map({
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [mapReady, setMapReady] = useState(false);
 
-  // Refs så att den EN-gång-registrerade moveend-lyssnaren alltid läser
-  // AKTUELLA prop-värden istället för de som gällde vid mount.
   const layerRef = useRef(layer);
   const minScoreRef = useRef(minScore);
   layerRef.current = layer;
@@ -150,7 +137,7 @@ export function Map({
     ];
     try {
       const response =
-        currentLayer.type === 'species'
+        currentLayer.type === "species"
           ? await getPredictions(bbox, currentLayer.speciesId, { minScore: minScoreRef.current })
           : await getMoistureLayer(bbox);
 
@@ -158,10 +145,9 @@ export function Map({
       source?.setData(rendered);
       onFeatureCountChange?.(rendered.features.length);
     } catch (err) {
-      onError?.(err instanceof ApiError ? err : new ApiError(0, err instanceof Error ? err.message : 'Okänt fel'));
+      onError?.(err instanceof ApiError ? err : new ApiError(0, err instanceof Error ? err.message : "Okänt fel"));
       source?.setData(EMPTY_FEATURE_COLLECTION);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- se refs ovan
   }, [onError, onFeatureCountChange]);
 
   const scheduleFetch = useCallback(() => {
@@ -174,65 +160,83 @@ export function Map({
 
     const map = new MapLibreMap({
       container: containerRef.current,
-      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+      style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
       center: initialCenter,
       zoom: initialZoom,
       maxBounds: SWEDEN_BOUNDS,
     });
 
-    if (!window.matchMedia('(max-width: 767px)').matches) {
-      map.addControl(new NavigationControl(), 'top-right');
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      map.addControl(new NavigationControl(), "top-right");
     }
     map.addControl(
       new GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
         trackUserLocation: true,
       }),
-      'bottom-right'
+      "bottom-right",
     );
 
-    map.on('load', () => {
-      map.addSource(PREDICTIONS_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
+    map.on("load", () => {
+      // 1. Lägg till GeoJSON-källan
+      map.addSource(PREDICTIONS_SOURCE_ID, { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
 
+      // 2. RIKTIGT HEATMAP-LAGER (WebGL-beräknad densitet)
       map.addLayer({
-        id: 'fungi-heatmap',
-        type: 'heatmap',
+        id: HEATMAP_LAYER_ID,
+        type: "heatmap",
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          'heatmap-weight': [
-            'interpolate',
-            ['linear'],
-            ['get', 'score'],
-            0, 0,
-            1, 1,
+          // Använd 'score' (0.0 - 1.0) från properties
+          "heatmap-weight": ["interpolate", ["linear"], ["get", "score"], 0, 0, 1, 1],
+          "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 9, 3],
+          // Mjuk färgskala: Genomskinlig -> Grön -> Gul -> Orange -> Lila
+          "heatmap-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            0,
+            "rgba(0,0,0,0)",
+            0.2,
+            "rgba(34,197,94,0.45)",
+            0.5,
+            "rgba(234,179,8,0.75)",
+            0.8,
+            "rgba(249,115,22,0.88)",
+            1.0,
+            "rgba(168,85,247,0.95)",
           ],
-          'heatmap-intensity': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            0, 1,
-            9, 3,
-          ],
-          'heatmap-color': [
-            'interpolate',
-            ['linear'],
-            ['heatmap-density'],
-            0, 'rgba(0,0,0,0)',
-            0.2, 'rgba(34,197,94,0.4)',
-            0.5, 'rgba(234,179,8,0.7)',
-            0.8, 'rgba(249,115,22,0.85)',
-            1.0, 'rgba(168,85,247,0.95)',
-          ],
-          'heatmap-radius': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            3, 15,
-            7, 45,
-            12, 20,
-          ],
-          'heatmap-opacity': 0.75,
+          // Stor radie vid zoom level 7 (50px) gör att 100m/grid-punkterna smälter ihop helt
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 15, 7, 50, 12, 20],
+          "heatmap-opacity": 0.8,
         },
+      });
+
+      // 3. OSYNLIGT CIRKELLAGER (Möjliggör klickhändelser på heatmapen)
+      map.addLayer({
+        id: CLICK_POINTS_LAYER_ID,
+        type: "circle",
+        source: PREDICTIONS_SOURCE_ID,
+        paint: {
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 5, 8, 12, 18],
+          "circle-color": "transparent",
+          "circle-stroke-width": 0,
+        },
+      });
+
+      // Klick-hantering via det osynliga klicklagret
+      map.on("click", CLICK_POINTS_LAYER_ID, (e: MapLayerMouseEvent) => {
+        if (!e.features || e.features.length === 0) return;
+        const props = e.features[0].properties as Record<string, number | null>;
+        onFeatureClick?.(props);
+      });
+
+      map.on("mouseenter", CLICK_POINTS_LAYER_ID, () => {
+        map.getCanvas().style.cursor = "pointer";
+      });
+
+      map.on("mouseleave", CLICK_POINTS_LAYER_ID, () => {
+        map.getCanvas().style.cursor = "";
       });
 
       mapRef.current = map;
@@ -244,15 +248,14 @@ export function Map({
       map.remove();
       mapRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- initieras avsiktligt bara en gång
   }, []);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady) return;
-    map.on('moveend', scheduleFetch);
+    map.on("moveend", scheduleFetch);
     return () => {
-      map.off('moveend', scheduleFetch);
+      map.off("moveend", scheduleFetch);
     };
   }, [mapReady, scheduleFetch]);
 
