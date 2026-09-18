@@ -69,7 +69,8 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
         const { data: zones, error: zoneError } = await supabaseAdmin
           .from('weather_zones')
           .select('id, center_lat, center_lon')
-          .order('id');
+          .order('id')
+          .range(0, 19999);
 
         if (zoneError) {
           return Response.json({ error: zoneError.message }, { status: 500 });
@@ -90,6 +91,7 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
 
         for (let i = 0; i < zones.length; i += CHUNK) {
           const chunk = zones.slice(i, i + CHUNK) as Zone[];
+          if (i > 0) await sleep(1500);
           try {
             const results = await fetchChunk(chunk);
             results.forEach((entry, idx) => {
