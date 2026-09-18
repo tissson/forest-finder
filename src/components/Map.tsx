@@ -33,9 +33,9 @@ interface MapProps {
 const TILE_SOURCE_ID = "predictions-tiles";
 const TILE_SOURCE_LAYER = "predictions";
 const GRID_FILL_LAYER_ID = "fungi-grid-fill";
-const MIN_MAP_ZOOM = 4.5;
+const MIN_MAP_ZOOM = 5;
 const MAX_MAP_ZOOM = 16;
-const TILE_MIN_ZOOM = 4;
+const TILE_MIN_ZOOM = 5;
 const TILE_MAX_ZOOM = 12;
 
 // Sveriges geografiska begränsning [SW, NE]
