@@ -21,8 +21,7 @@ import swedenLandData from "../data/sweden-land.json";
 setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
 const PREDICTIONS_SOURCE_ID = "fungi-data";
-const HEATMAP_LAYER_ID = "fungi-heatmap";
-const CLICK_POINTS_LAYER_ID = "fungi-click-points";
+const FILL_LAYER_ID = "fungi-fill";
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
   [10, 55],
@@ -31,7 +30,34 @@ const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
+// Storlek på kvadratiska polygoner kring varje gitterpunkt (i grader, ~0.025 ≈ 2.5km täckning)
+const HALF_GRID_SIZE_LAT = 0.015;
+const HALF_GRID_SIZE_LNG = 0.025;
+
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: "FeatureCollection", features: [] };
+
+/**
+ * Konverterar en punkt till en kvadratisk Polygon-feature för ett täckande ytlager.
+ */
+function createGridPolygonFeature(coordinates: [number, number], properties: Record<string, any>): Feature<Polygon> {
+  const [lng, lat] = coordinates;
+  return {
+    type: "Feature",
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [lng - HALF_GRID_SIZE_LNG, lat - HALF_GRID_SIZE_LAT],
+          [lng + HALF_GRID_SIZE_LNG, lat - HALF_GRID_SIZE_LAT],
+          [lng + HALF_GRID_SIZE_LNG, lat + HALF_GRID_SIZE_LAT],
+          [lng - HALF_GRID_SIZE_LNG, lat + HALF_GRID_SIZE_LAT],
+          [lng - HALF_GRID_SIZE_LNG, lat - HALF_GRID_SIZE_LAT],
+        ],
+      ],
+    },
+    properties,
+  };
+}
 
 function toRenderableFeatureCollection(
   layer: LayerSelection,
@@ -50,16 +76,11 @@ function toRenderableFeatureCollection(
         )
         .map((f) => {
           const rawScore = f.properties?.score_total ?? 0;
-          // Normalisera om backendet skulle skicka 0-100 istället för 0-1
           const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
-          return {
-            type: "Feature" as const,
-            geometry: f.geometry,
-            properties: {
-              ...f.properties,
-              score: Math.max(0, Math.min(1, normalizedScore)),
-            },
-          };
+          return createGridPolygonFeature(f.geometry.coordinates, {
+            ...f.properties,
+            score: Math.max(0, Math.min(1, normalizedScore)),
+          });
         }),
     };
   }
@@ -71,14 +92,10 @@ function toRenderableFeatureCollection(
       .map((f) => {
         const rawScore = f.properties?.moisture_score ?? 0;
         const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
-        return {
-          type: "Feature" as const,
-          geometry: f.geometry,
-          properties: {
-            ...f.properties,
-            score: Math.max(0, Math.min(1, normalizedScore)),
-          },
-        };
+        return createGridPolygonFeature(f.geometry.coordinates, {
+          ...f.properties,
+          score: Math.max(0, Math.min(1, normalizedScore)),
+        });
       }),
   };
 }
@@ -185,62 +202,46 @@ export function Map({
     map.on("load", () => {
       map.addSource(PREDICTIONS_SOURCE_ID, { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
 
-      // RIKTIG HEATMAP MED AVSTÄMDA TRÖSKELVÄRDEN
+      // RIKTIGT YTLAGER (Polygon Fill)
       map.addLayer({
-        id: HEATMAP_LAYER_ID,
-        type: "heatmap",
+        id: FILL_LAYER_ID,
+        type: "fill",
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          // Linjär viktning utifrån score (0.0 - 1.0)
-          "heatmap-weight": ["interpolate", ["linear"], ["get", "score"], 0, 0, 1, 1],
-          // Sänk intensiteten så att täta gitterpunkter inte övermättar färgerna direkt
-          "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 3, 0.5, 8, 1.2, 12, 2.0],
-          // Färgsteg baserade på uträknad samlad densitet
-          "heatmap-color": [
+          // Färg baserad på 'score' (0.0 - 1.0)
+          "fill-color": [
             "interpolate",
             ["linear"],
-            ["heatmap-density"],
-            0,
-            "rgba(0,0,0,0)",
+            ["get", "score"],
+            0.0,
+            "transparent",
             0.15,
-            "rgba(34,197,94,0.35)", // Låg fuktighet/score (Ljusgrön)
+            "rgba(34, 197, 94, 0.4)", // Låg (Grön)
             0.4,
-            "rgba(234,179,8,0.65)", // Medel (Gul)
+            "rgba(234, 179, 8, 0.6)", // Medel (Gul)
             0.7,
-            "rgba(249,115,22,0.85)", // Hög (Orange)
-            0.95,
-            "rgba(168,85,247,0.95)", // Mycket hög (Lila)
+            "rgba(249, 115, 22, 0.75)", // Hög (Orange)
+            0.9,
+            "rgba(168, 85, 247, 0.85)", // Extrem (Lila)
           ],
-          // Dynamisk radie anpassad för gitteravstånd vid olika zoomnivåer
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 4, 10, 7, 25, 10, 35, 14, 50],
-          "heatmap-opacity": 0.8,
+          "fill-opacity": 0.75,
+          "fill-antialias": true,
         },
       });
 
-      // OSYNLIGT KIKKLAGER
-      map.addLayer({
-        id: CLICK_POINTS_LAYER_ID,
-        type: "circle",
-        source: PREDICTIONS_SOURCE_ID,
-        paint: {
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 5, 8, 12, 18],
-          "circle-color": "transparent",
-          "circle-stroke-width": 0,
-        },
-      });
-
-      map.on("click", CLICK_POINTS_LAYER_ID, (e: MapLayerMouseEvent) => {
+      // Klick-hantering direkt på polygon-ytorna
+      map.on("click", FILL_LAYER_ID, (e: MapLayerMouseEvent) => {
         const feature = e.features?.[0];
         if (!feature) return;
         const props = feature.properties as Record<string, number | null>;
         onFeatureClick?.(props);
       });
 
-      map.on("mouseenter", CLICK_POINTS_LAYER_ID, () => {
+      map.on("mouseenter", FILL_LAYER_ID, () => {
         map.getCanvas().style.cursor = "pointer";
       });
 
-      map.on("mouseleave", CLICK_POINTS_LAYER_ID, () => {
+      map.on("mouseleave", FILL_LAYER_ID, () => {
         map.getCanvas().style.cursor = "";
       });
 
