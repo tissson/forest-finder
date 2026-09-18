@@ -8,13 +8,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import {
-  getPredictions,
-  getMoistureLayer,
-  type LayerSelection,
-  type PredictionsResponse,
-  type MoistureLayerResponse,
-} from "../lib/api";
+
+import { getPredictions, getMoistureLayer } from "../lib/api";
+import type { LayerSelection, PredictionsResponse, MoistureLayerResponse } from "../lib/api";
 
 interface MapProps {
   layerSelection?: LayerSelection;
@@ -78,10 +74,11 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
           geojson = await getPredictions(bbox, speciesId, { obsDate, limit: 10000 });
         }
 
-        const processedFeatures = (geojson.features || []).map((f: any) => ({
+        const rawFeatures = (geojson as any)?.features || [];
+        const processedFeatures = rawFeatures.map((f: any) => ({
           ...f,
           properties: {
-            ...f.properties,
+            ...(f.properties || {}),
             score_total:
               typeof f.properties?.score_total === "number"
                 ? f.properties.score_total
