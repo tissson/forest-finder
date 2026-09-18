@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import * as maplibregl from "maplibre-gl";
+import maplibregl, { LngLatBoundsLike } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import { getPredictions, getMoistureLayer } from "../lib/api";
@@ -16,7 +16,7 @@ import type { LayerSelection, PredictionsResponse, MoistureLayerResponse } from 
 interface MapProps {
   layerSelection?: LayerSelection;
   obsDate?: string;
-  onCellClick?: (cellData: any) => void;
+  onCellClick?: (cellData: Record<string, unknown>) => void;
 }
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
@@ -24,9 +24,9 @@ const HEATMAP_LAYER_ID = "predictions-heatmap";
 const CLICK_TARGET_LAYER_ID = "fungi-click-target";
 
 // Sveriges geografiska begränsning [SW, NE]
-const SWEDEN_BOUNDS: maplibregl.LngLatBoundsLike = [
-  [10.5, 55.2], // Sydväst
-  [24.2, 69.1], // Nordost
+const SWEDEN_BOUNDS: LngLatBoundsLike = [
+  [10.5, 55.2],
+  [24.2, 69.1],
 ];
 
 export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }) => {
@@ -46,7 +46,6 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
       maxBounds: SWEDEN_BOUNDS,
     });
 
-    // Kontroller: Navigering + Geolokalisering (GPS)
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     map.addControl(
       new maplibregl.GeolocateControl({
@@ -92,8 +91,8 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
           geojson = await getPredictions(bbox, speciesId, { obsDate, limit: 10000 });
         }
 
-        const rawFeatures = (geojson as any)?.features || [];
-        const processedFeatures = rawFeatures.map((f: any) => ({
+        const rawFeatures = (geojson as { features?: Array<{ properties?: Record<string, unknown> }> })?.features || [];
+        const processedFeatures = rawFeatures.map((f) => ({
           ...f,
           properties: {
             ...(f.properties || {}),
@@ -105,21 +104,21 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
         }));
 
         const featureCollection = {
-          type: "FeatureCollection",
+          type: "FeatureCollection" as const,
           features: processedFeatures,
         };
 
         const existingSource = map.getSource(PREDICTIONS_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
         if (existingSource) {
-          existingSource.setData(featureCollection as any);
+          existingSource.setData(featureCollection as unknown as GeoJSON.FeatureCollection);
         } else {
           map.addSource(PREDICTIONS_SOURCE_ID, {
             type: "geojson",
-            data: featureCollection as any,
+            data: featureCollection as unknown as GeoJSON.FeatureCollection,
           });
         }
 
-        // Heatmap-lager (översikt)
+        // Heatmap-lager
         if (!map.getLayer(HEATMAP_LAYER_ID)) {
           map.addLayer({
             id: HEATMAP_LAYER_ID,
@@ -127,8 +126,8 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
             source: PREDICTIONS_SOURCE_ID,
             maxzoom: 15,
             paint: {
-              "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1] as any,
-              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5] as any,
+              "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1],
+              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5],
               "heatmap-color": [
                 "interpolate",
                 ["linear"],
@@ -143,14 +142,14 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
                 "rgba(21, 128, 61, 0.85)",
                 1.0,
                 "rgba(15, 81, 50, 0.95)",
-              ] as any,
-              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80] as any,
+              ],
+              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80],
               "heatmap-opacity": 0.8,
             },
           });
         }
 
-        // Osynligt klick-lager för interaktion på hög inzoomning
+        // Osynligt klick-lager för interaktion
         if (!map.getLayer(CLICK_TARGET_LAYER_ID)) {
           map.addLayer({
             id: CLICK_TARGET_LAYER_ID,
@@ -163,10 +162,9 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
             },
           });
 
-          // Klick-event för att välja cell
           map.on("click", CLICK_TARGET_LAYER_ID, (e) => {
             if (e.features && e.features.length > 0 && onCellClick) {
-              onCellClick(e.features[0].properties);
+              onCellClick(e.features[0].properties as Record<string, unknown>);
             }
           });
 
