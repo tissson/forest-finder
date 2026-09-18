@@ -48,11 +48,12 @@ const GRID_FILL_LAYER_ID = "fungi-grid-fill";
 const MIN_VISIBLE_VALUE = 0.01;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
-const FALLBACK_CELL_SPAN_DEGREES = 0.04;
+const FALLBACK_CELL_SPAN_DEGREES = 0.02;
 const MAP_FETCH_DEBOUNCE_MS = 300;
-// Gittret ligger ca 0.3° i latitud och 0.5–0.7° i longitud mellan punkterna.
-const BBOX_PADDING_LAT = 0.45;
-const BBOX_PADDING_LON = 0.9;
+// Liten marginal runt vyn (andel av vyns storlek) så rutorna täcker kanterna
+// utan att onödigt mycket data hämtas från det täta 2 km-rutnätet.
+const BBOX_PADDING_RATIO = 0.12;
+
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -85,76 +86,29 @@ function isOnSwedishLand([lng, lat]: [number, number], landMask: LandMask): bool
 }
 
 // ---------------------------------------------------------------------
-// Sömlös gittergeometri: varje punkt täcker sin cell (kant-i-kant)
+// Sömlös gittergeometri: varje punkt täcker exakt sin rutnätscell.
+// Rutnätet i databasen är 2 km; vid glesare detaljnivå (step) täcker
+// varje hämtad punkt step × 2 km, så cellerna möts kant-i-kant.
 // ---------------------------------------------------------------------
-function getCellBounds(values: number[], value: number): [number, number] {
-  const index = values.indexOf(value);
-  if (index < 0 || values.length === 1) {
-    const halfSpan = FALLBACK_CELL_SPAN_DEGREES / 2;
-    return [value - halfSpan, value + halfSpan];
-  }
+const BASE_GRID_CELL_METERS = 2_000;
+/** Fuktighetslagret kommer alltid från väderprovpunkter per 20 km-block. */
+const MOISTURE_CELL_METERS = 20_000;
 
-  const previous = values[index - 1];
-  const next = values[index + 1];
-  const lower = previous === undefined
-    ? value - ((next ?? value + FALLBACK_CELL_SPAN_DEGREES) - value) / 2
-    : (previous + value) / 2;
-  const upper = next === undefined
-    ? value + (value - (previous ?? value - FALLBACK_CELL_SPAN_DEGREES)) / 2
-    : (value + next) / 2;
-  return [lower, upper];
-}
+const METERS_PER_LATITUDE_DEGREE = 111_320;
 
-type GridIndex = {
-  latitudes: number[];
-  longitudesByLatitude: globalThis.Map<number, number[]>;
-};
-
-const gridIndexCache = new WeakMap<object, GridIndex>();
-
-function getGridIndex(features: Array<Feature<Point, GeoJsonProperties>>): GridIndex {
-  const cached = gridIndexCache.get(features);
-  if (cached) return cached;
-
-  const latitudeValues = features.flatMap((feature) => {
-    const latitude = feature.geometry.coordinates[1];
-    return typeof latitude === "number" ? [latitude] : [];
-  });
-  const latitudes = [...new Set<number>(latitudeValues)].sort((a, b) => a - b);
-  const longitudesByLatitude = new globalThis.Map<number, number[]>();
-
-  for (const feature of features) {
-    const longitude = feature.geometry.coordinates[0];
-    const latitude = feature.geometry.coordinates[1];
-    if (longitude === undefined || latitude === undefined) continue;
-    const row = longitudesByLatitude.get(latitude) ?? [];
-    row.push(longitude);
-    longitudesByLatitude.set(latitude, row);
-  }
-
-  for (const [latitude, longitudes] of longitudesByLatitude) {
-    longitudesByLatitude.set(latitude, [...new Set(longitudes)].sort((a, b) => a - b));
-  }
-
-  const index: GridIndex = { latitudes, longitudesByLatitude };
-  gridIndexCache.set(features, index);
-  return index;
-}
-
-/**
- * Beräknar den sömlösa cell-polygonen för en punkt utifrån mittpunkterna
- * mellan verkliga grannkoordinater i det fulla features-setet.
- */
+/** Sömlös cell-polygon runt en punkt, given cellens storlek i meter. */
 function calculateBoundingPolygon(
   coordinates: [number, number],
-  features: Array<Feature<Point, GeoJsonProperties>>,
+  cellSizeMeters: number,
 ): Polygon {
-  const { latitudes, longitudesByLatitude } = getGridIndex(features);
   const [longitude, latitude] = coordinates;
-
-  const rowLongitudes = longitudesByLatitude.get(latitude) ?? [longitude];
-  const [west, east] = getCellBounds(rowLongitudes, longitude);
-  const [south, north] = getCellBounds(latitudes, latitude);
+  const halfLat = cellSizeMeters / 2 / METERS_PER_LATITUDE_DEGREE;
+  const cosLat = Math.max(0.2, Math.cos((latitude * Math.PI) / 180));
+  const halfLon = halfLat / cosLat;
+  const west = longitude - halfLon;
+  const east = longitude + halfLon;
+  const south = latitude - halfLat;
+  const north = latitude + halfLat;
 
   return {
     type: "Polygon",
@@ -168,6 +122,8 @@ function calculateBoundingPolygon(
   };
 }
 
+
+
 // ---------------------------------------------------------------------
 // Renderbar FeatureCollection: landmask + tröskel + sömlösa celler
 // ---------------------------------------------------------------------
@@ -177,9 +133,12 @@ function toRenderableFeatureCollection(
   landMask: LandMask,
   /** Högsta kända råvärde för aktivt lager — används för normalisering. */
   referenceMax: number,
+  /** Rutnätssteg (1 = 2 km-celler, 10 = 20 km-celler). */
+  step: number,
 ): FeatureCollection<Polygon, GeoJsonProperties> {
   const scaleMax = Math.max(referenceMax, MIN_VISIBLE_VALUE);
   const normalize = (raw: number) => Math.max(0, Math.min(1, raw / scaleMax));
+  const cellSizeMeters = BASE_GRID_CELL_METERS * Math.max(1, step);
 
   if (layer.type === "species") {
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
@@ -189,7 +148,7 @@ function toRenderableFeatureCollection(
         .filter((f) => f.properties.score_total > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates, landMask))
         .map((f) => ({
           type: "Feature" as const,
-          geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
+          geometry: calculateBoundingPolygon(f.geometry.coordinates, cellSizeMeters),
           properties: {
             ...f.properties,
             raw_score: f.properties.score_total,
@@ -205,7 +164,9 @@ function toRenderableFeatureCollection(
       .filter((f) => (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates, landMask))
       .map((f) => ({
         type: "Feature" as const,
-        geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
+        geometry: calculateBoundingPolygon(f.geometry.coordinates, MOISTURE_CELL_METERS),
+
+
         properties: {
           ...f.properties,
           raw_score: f.properties.moisture_score ?? 0,
@@ -299,12 +260,15 @@ export const Map: React.FC<MapProps> = ({
       const bounds = map.getBounds();
       // Marginal på en gitterruta så att rutorna täcker hela vyn även
       // när man zoomar in mellan två datapunkter.
+      const paddingLon = (bounds.getEast() - bounds.getWest()) * BBOX_PADDING_RATIO;
+      const paddingLat = (bounds.getNorth() - bounds.getSouth()) * BBOX_PADDING_RATIO;
       const bbox: [number, number, number, number] = [
-        bounds.getWest() - BBOX_PADDING_LON,
-        bounds.getSouth() - BBOX_PADDING_LAT,
-        bounds.getEast() + BBOX_PADDING_LON,
-        bounds.getNorth() + BBOX_PADDING_LAT,
+        bounds.getWest() - paddingLon,
+        bounds.getSouth() - paddingLat,
+        bounds.getEast() + paddingLon,
+        bounds.getNorth() + paddingLat,
       ];
+
       const lod = getPredictionLodOptions(map.getZoom());
       const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
       const queryKey = JSON.stringify({ bbox, lod, layer: activeLayerKey, obsDate: obsDate ?? null });
@@ -328,7 +292,7 @@ export const Map: React.FC<MapProps> = ({
         if (disposed || requestId !== requestSequence) return;
         const activeLayer: LayerSelection = layer ?? { type: "species", speciesId: 1, speciesName: "", tier: "free" };
         referenceMax = Math.max(referenceMax, getMaxRawScore(activeLayer, geojson));
-        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask, referenceMax);
+        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask, referenceMax, lod.step);
 
         onFeatureCountChange?.(featureCollection.features.length);
 
