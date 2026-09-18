@@ -19,6 +19,8 @@ type Zone = { id: number; center_lat: number; center_lon: number };
 const CHUNK = 50;
 const OPEN_METEO = 'https://api.open-meteo.com/v1/forecast';
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 function sum(values: Array<number | null>, lastN: number): number {
   const slice = values.slice(-lastN);
   return Math.round(slice.reduce<number>((a, v) => a + (v ?? 0), 0) * 10) / 10;
@@ -36,7 +38,12 @@ async function fetchChunk(zones: Zone[]) {
     `&longitude=${zones.map((z) => z.center_lon.toFixed(4)).join(',')}` +
     `&daily=precipitation_sum,temperature_2m_mean&past_days=10&forecast_days=1&timezone=UTC`;
 
-  const res = await fetch(url);
+  let res = await fetch(url);
+  // Open-Meteo har en minutbaserad gräns -- backa av och försök igen.
+  for (let attempt = 0; attempt < 3 && res.status === 429; attempt++) {
+    await sleep(20000);
+    res = await fetch(url);
+  }
   if (!res.ok) {
     throw new Error(`Open-Meteo ${res.status}: ${(await res.text()).slice(0, 200)}`);
   }
