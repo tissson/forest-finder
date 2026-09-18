@@ -33,37 +33,13 @@ import swedenLandData from '../data/sweden-land.json';
 
 setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
 
-const PREDICTIONS_SOURCE_ID = 'predictions-source';
+const PREDICTIONS_SOURCE_ID = 'fungi-data';
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
-
-/**
- * Bygger en zon-polygon som täcker hela sitt rutnätsfält med överlapp,
- * så att färgytan blir sammanhängande utan vita glipor. Rutnätet i
- * databasen ligger 0.27–0.31° (lat) och 0.49–0.71° (lon) mellan zoner,
- * så halvstorlekarna är satta strax över halva största avståndet.
- */
-function pointToZonePolygon(coordinates: [number, number]): Polygon {
-  const [longitude, latitude] = coordinates;
-
-  const halfLat = 0.16;  // ≥ 0.3144 / 2 — täcker bredaste lat-avståndet
-  const halfLon = 0.36;  // ≥ 0.7102 / 2 — täcker bredaste lon-avståndet
-
-  return {
-    type: 'Polygon',
-    coordinates: [[
-      [longitude - halfLon, latitude - halfLat],
-      [longitude + halfLon, latitude - halfLat],
-      [longitude + halfLon, latitude + halfLat],
-      [longitude - halfLon, latitude + halfLat],
-      [longitude - halfLon, latitude - halfLat],
-    ]],
-  };
-}
 
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
@@ -89,8 +65,8 @@ function toRenderableFeatureCollection(
         && isOnSwedishLand(f.geometry.coordinates)
       )).map((f) => ({
         type: 'Feature' as const,
-        geometry: pointToZonePolygon(f.geometry.coordinates),
-        properties: { ...f.properties, score: f.properties.score_total },
+        geometry: f.geometry,
+        properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.score_total)) },
       })),
     };
   }
@@ -102,8 +78,8 @@ function toRenderableFeatureCollection(
       && isOnSwedishLand(f.geometry.coordinates)
     )).map((f) => ({
       type: 'Feature' as const,
-      geometry: pointToZonePolygon(f.geometry.coordinates),
-      properties: { ...f.properties, score: f.properties.moisture_score ?? 0 },
+      geometry: f.geometry,
+      properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.moisture_score ?? 0)) },
     })),
   };
 }
@@ -219,22 +195,43 @@ export function Map({
       map.addSource(PREDICTIONS_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
 
       map.addLayer({
-        id: 'predictions-zone-fill',
-        type: 'fill',
+        id: 'fungi-heatmap',
+        type: 'heatmap',
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          'fill-color': [
+          'heatmap-weight': [
             'interpolate',
-            ['cubic-bezier', 0.42, 0, 0.58, 1],
+            ['linear'],
             ['get', 'score'],
-            0.00, 'transparent',
-            0.15, 'rgba(147, 197, 253, 0.35)',
-            0.40, 'rgba(52, 211, 153, 0.55)',
-            0.70, 'rgba(251, 146, 60, 0.75)',
-            0.90, 'rgba(225, 29, 72, 0.85)',
+            0, 0,
+            1, 1,
           ],
-          'fill-outline-color': 'transparent',
-          'fill-opacity': 0.78,
+          'heatmap-intensity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            0, 1,
+            9, 3,
+          ],
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0, 'rgba(0,0,0,0)',
+            0.2, 'rgba(34,197,94,0.4)',
+            0.5, 'rgba(234,179,8,0.7)',
+            0.8, 'rgba(249,115,22,0.85)',
+            1.0, 'rgba(168,85,247,0.95)',
+          ],
+          'heatmap-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            3, 15,
+            7, 45,
+            12, 20,
+          ],
+          'heatmap-opacity': 0.75,
         },
       });
 
