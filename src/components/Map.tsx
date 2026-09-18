@@ -106,20 +106,6 @@ export interface MapProps {
   focusTarget?: { center: [number, number]; key: number } | null;
 }
 
-function mapColor(token: string): string {
-  return getComputedStyle(document.documentElement).getPropertyValue(token).trim();
-}
-
-function getLayerPalette(layer: LayerSelection | null): [string, string, string] {
-  if (layer?.type === 'moisture') {
-    return ['--map-moisture-low', '--map-moisture-mid', '--map-moisture-high'];
-  }
-  const berryLayer = layer?.type === 'species' && /bär|lingon|hjortron/i.test(layer.speciesName);
-  return berryLayer
-    ? ['--map-berry-low', '--map-berry-mid', '--map-berry-high']
-    : ['--map-mushroom-low', '--map-mushroom-mid', '--map-mushroom-high'];
-}
-
 export function Map({
   layer,
   minScore = 0.05,
@@ -208,29 +194,32 @@ export function Map({
 
     map.on('load', () => {
       map.addSource(LAYER_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
-      const [lowToken, midToken, highToken] = getLayerPalette(layerRef.current);
-      const low = mapColor(lowToken);
-      const mid = mapColor(midToken);
-      const high = mapColor(highToken);
 
       map.addLayer({
-        id: LAYER_HEATMAP_ID,
+        id: 'weather-heatmap',
         type: 'heatmap',
         source: LAYER_SOURCE_ID,
         paint: {
-          'heatmap-weight': ['interpolate', ['linear'], ['coalesce', ['to-number', ['get', 'weight']], 0], 0, 0, 1, 1],
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 4, 0.5, 7, 0.7, 11, 0.95],
-          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 4, 110, 6, 90, 9, 60, 12, 36],
+          'heatmap-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            2, 20,
+            6, 50,
+            10, 100,
+          ],
+          'heatmap-intensity': 1.8,
           'heatmap-color': [
             'interpolate',
             ['linear'],
             ['heatmap-density'],
             0, 'rgba(0, 0, 0, 0)',
-            0.08, low,
-            0.42, mid,
-            1, high,
+            0.2, 'rgba(59, 130, 246, 0.4)',
+            0.5, 'rgba(16, 185, 129, 0.6)',
+            0.8, 'rgba(245, 158, 11, 0.8)',
+            1, 'rgba(239, 68, 68, 0.9)',
           ],
-          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 4, 0.58, 9, 0.62, 12, 0.56],
+          'heatmap-opacity': 0.6,
         },
       });
 
@@ -257,17 +246,6 @@ export function Map({
 
   useEffect(() => {
     if (!mapReady) return;
-    const map = mapRef.current;
-    if (map) {
-      const [lowToken, midToken, highToken] = getLayerPalette(layer);
-      const low = mapColor(lowToken);
-      const mid = mapColor(midToken);
-      const high = mapColor(highToken);
-      map.setPaintProperty(LAYER_HEATMAP_ID, 'heatmap-color', [
-        'interpolate', ['linear'], ['heatmap-density'],
-        0, 'rgba(0, 0, 0, 0)', 0.08, low, 0.42, mid, 1, high,
-      ]);
-    }
     fetchAndRenderLayer();
   }, [mapReady, layer, minScore, fetchAndRenderLayer]);
 
