@@ -1,21 +1,31 @@
 /**
  * src/components/Map.tsx
  * =======================
- * Komplett kartkomponent med MapLibre GL JS.
- * Inkluderar heatmap, klick-hantering, GPS-positionering,
- * och gränser för Sverige.
+ * Kartkomponent med MapLibre GL JS: heatmap-lager, klick-hantering,
+ * GPS-positionering och gränser för Sverige.
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import maplibregl, { LngLatBoundsLike } from "maplibre-gl";
+import {
+  Map as MapLibreMap,
+  NavigationControl,
+  GeolocateControl,
+  type GeoJSONSource,
+  type LngLatBoundsLike,
+  type MapLayerMouseEvent,
+} from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import type { Feature, FeatureCollection, Geometry } from "geojson";
 
-import { getPredictions, getMoistureLayer } from "../lib/api";
+import { getPredictions, getMoistureLayer, ApiError } from "../lib/api";
 import type { LayerSelection, PredictionsResponse, MoistureLayerResponse } from "../lib/api";
 
 interface MapProps {
-  layerSelection?: LayerSelection;
+  layer?: LayerSelection | null;
   obsDate?: string;
+  onError?: (error: ApiError) => void;
+  onFeatureCountChange?: (count: number | null) => void;
+  focusTarget?: { center: [number, number]; key: number } | null;
   onCellClick?: (cellData: Record<string, unknown>) => void;
 }
 
@@ -29,16 +39,23 @@ const SWEDEN_BOUNDS: LngLatBoundsLike = [
   [24.2, 69.1],
 ];
 
-export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }) => {
+export const Map: React.FC<MapProps> = ({
+  layer,
+  obsDate,
+  onError,
+  onFeatureCountChange,
+  focusTarget,
+  onCellClick,
+}) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<maplibregl.Map | null>(null);
+  const mapRef = useRef<MapLibreMap | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // 1. Initialisera MapLibre-kartan
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
-    const map = new maplibregl.Map({
+    const map = new MapLibreMap({
       container: mapContainerRef.current,
       style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
       center: [15.2, 62.0],
@@ -46,9 +63,9 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
       maxBounds: SWEDEN_BOUNDS,
     });
 
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.addControl(new NavigationControl({ showCompass: false }), "top-right");
     map.addControl(
-      new maplibregl.GeolocateControl({
+      new GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
         trackUserLocation: true,
       }),
@@ -67,7 +84,14 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
     };
   }, []);
 
-  // 2. Hämta data och uppdatera kartlager
+  // 2. Flyg till vald plats
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !focusTarget) return;
+    map.flyTo({ center: focusTarget.center, zoom: 9 });
+  }, [focusTarget]);
+
+  // 3. Hämta data och uppdatera kartlager
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !isLoaded) return;
@@ -84,37 +108,48 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
       try {
         let geojson: PredictionsResponse | MoistureLayerResponse;
 
-        if (layerSelection?.type === "moisture") {
+        if (layer?.type === "moisture") {
           geojson = await getMoistureLayer(bbox, obsDate);
         } else {
-          const speciesId = layerSelection?.type === "species" ? layerSelection.speciesId : 1;
-          geojson = await getPredictions(bbox, speciesId, { obsDate, limit: 10000 });
+          const speciesId = layer?.type === "species" ? layer.speciesId : 1;
+          geojson = await getPredictions(bbox, speciesId, {
+            ...(obsDate ? { obsDate } : {}),
+            limit: 10000,
+          });
         }
 
-        const rawFeatures = (geojson as { features?: Array<{ properties?: Record<string, unknown> }> })?.features || [];
-        const processedFeatures = rawFeatures.map((f) => ({
-          ...f,
-          properties: {
-            ...(f.properties || {}),
-            score_total:
-              typeof f.properties?.score_total === "number"
-                ? f.properties.score_total
-                : (f.properties?.moisture_score ?? 0),
-          },
-        }));
+        const rawFeatures = geojson.features as Array<{
+          type: "Feature";
+          geometry: Geometry;
+          properties: Record<string, unknown> | null;
+        }>;
 
-        const featureCollection = {
-          type: "FeatureCollection" as const,
+        const processedFeatures: Feature[] = rawFeatures.map((f) => {
+          const props = (f.properties ?? {}) as Record<string, unknown>;
+          const total = props["score_total"];
+          const moisture = props["moisture_score"];
+          const score = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
+          return {
+            type: "Feature",
+            geometry: f.geometry,
+            properties: { ...props, score_total: score },
+          };
+        });
+
+        const featureCollection: FeatureCollection = {
+          type: "FeatureCollection",
           features: processedFeatures,
         };
 
-        const existingSource = map.getSource(PREDICTIONS_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
+        onFeatureCountChange?.(processedFeatures.length);
+
+        const existingSource = map.getSource(PREDICTIONS_SOURCE_ID) as GeoJSONSource | undefined;
         if (existingSource) {
-          existingSource.setData(featureCollection as unknown as GeoJSON.FeatureCollection);
+          existingSource.setData(featureCollection);
         } else {
           map.addSource(PREDICTIONS_SOURCE_ID, {
             type: "geojson",
-            data: featureCollection as unknown as GeoJSON.FeatureCollection,
+            data: featureCollection,
           });
         }
 
@@ -162,10 +197,10 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
             },
           });
 
-          map.on("click", CLICK_TARGET_LAYER_ID, (e) => {
-            if (e.features && e.features.length > 0 && onCellClick) {
-              onCellClick(e.features[0].properties as Record<string, unknown>);
-            }
+          map.on("click", CLICK_TARGET_LAYER_ID, (e: MapLayerMouseEvent) => {
+            const feature = e.features?.[0];
+            if (!feature || !onCellClick) return;
+            onCellClick((feature.properties ?? {}) as Record<string, unknown>);
           });
 
           map.on("mouseenter", CLICK_TARGET_LAYER_ID, () => {
@@ -178,13 +213,14 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
         }
       } catch (err) {
         console.error("Kunde inte hämta kartdata:", err);
+        if (err instanceof ApiError) onError?.(err);
       }
     };
 
-    fetchDataAndRender();
+    void fetchDataAndRender();
 
     const handleMoveEnd = () => {
-      fetchDataAndRender();
+      void fetchDataAndRender();
     };
 
     map.on("moveend", handleMoveEnd);
@@ -192,7 +228,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }
     return () => {
       map.off("moveend", handleMoveEnd);
     };
-  }, [isLoaded, layerSelection, obsDate, onCellClick]);
+  }, [isLoaded, layer, obsDate, onCellClick, onError, onFeatureCountChange]);
 
   return (
     <div className="relative w-full h-full min-h-[400px]">
