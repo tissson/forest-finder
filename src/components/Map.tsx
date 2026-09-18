@@ -172,7 +172,12 @@ function toRenderableFeatureCollection(
   layer: LayerSelection,
   response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
   landMask: LandMask,
+  /** Högsta kända råvärde för aktivt lager — används för normalisering. */
+  referenceMax: number,
 ): FeatureCollection<Polygon, GeoJsonProperties> {
+  const scaleMax = Math.max(referenceMax, MIN_VISIBLE_VALUE);
+  const normalize = (raw: number) => Math.max(0, Math.min(1, raw / scaleMax));
+
   if (layer.type === "species") {
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
@@ -182,7 +187,11 @@ function toRenderableFeatureCollection(
         .map((f) => ({
           type: "Feature" as const,
           geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
-          properties: { ...f.properties, score: f.properties.score_total },
+          properties: {
+            ...f.properties,
+            raw_score: f.properties.score_total,
+            score: normalize(f.properties.score_total),
+          },
         })),
     };
   }
@@ -194,9 +203,26 @@ function toRenderableFeatureCollection(
       .map((f) => ({
         type: "Feature" as const,
         geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
-        properties: { ...f.properties, score: f.properties.moisture_score ?? 0 },
+        properties: {
+          ...f.properties,
+          raw_score: f.properties.moisture_score ?? 0,
+          score: normalize(f.properties.moisture_score ?? 0),
+        },
       })),
   };
+}
+
+/** Högsta råvärde i ett svar (0 om tomt). */
+function getMaxRawScore(
+  layer: LayerSelection,
+  response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
+): number {
+  if (layer.type === "species") {
+    const r = response as Awaited<ReturnType<typeof getPredictions>>;
+    return r.features.reduce((max, f) => Math.max(max, f.properties.score_total ?? 0), 0);
+  }
+  const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
+  return r.features.reduce((max, f) => Math.max(max, f.properties.moisture_score ?? 0), 0);
 }
 
 export const Map: React.FC<MapProps> = ({
