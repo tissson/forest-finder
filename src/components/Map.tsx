@@ -70,10 +70,12 @@ function getCellBounds(values: number[], value: number): [number, number] {
 function pointsToSeamlessGrid(
   features: Array<Feature<Point, GeoJsonProperties>>,
 ): Array<Feature<Polygon, GeoJsonProperties>> {
-  const latitudes = [...new Set(features.map((feature) => feature.geometry.coordinates[1]))]
-    .filter((value): value is number => value !== undefined)
-    .sort((a, b) => a - b);
-  const longitudesByLatitude = new Map<number, number[]>();
+  const latitudeValues = features.flatMap((feature) => {
+    const latitude = feature.geometry.coordinates[1];
+    return typeof latitude === "number" ? [latitude] : [];
+  });
+  const latitudes = [...new Set<number>(latitudeValues)].sort((a, b) => a - b);
+  const longitudesByLatitude = new globalThis.Map<number, number[]>();
 
   for (const feature of features) {
     const longitude = feature.geometry.coordinates[0];
