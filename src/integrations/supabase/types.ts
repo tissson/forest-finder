@@ -119,6 +119,27 @@ export type Database = {
         }
         Relationships: []
       }
+      sweden_land_mask: {
+        Row: {
+          created_at: string
+          geojson: Json
+          geom: unknown
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          geojson: Json
+          geom?: unknown
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          geojson?: Json
+          geom?: unknown
+          id?: number
+        }
+        Relationships: []
+      }
       user_badges: {
         Row: {
           badge_key: string
@@ -273,28 +294,40 @@ export type Database = {
           center_lat: number
           center_lon: number
           created_at: string
+          forest_cover: number
           geom: unknown
           grid_x: number
           grid_y: number
           id: number
+          is_active: boolean
+          is_land: boolean
+          weather_sample_id: number | null
         }
         Insert: {
           center_lat: number
           center_lon: number
           created_at?: string
+          forest_cover?: number
           geom?: unknown
           grid_x: number
           grid_y: number
           id?: never
+          is_active?: boolean
+          is_land?: boolean
+          weather_sample_id?: number | null
         }
         Update: {
           center_lat?: number
           center_lon?: number
           created_at?: string
+          forest_cover?: number
           geom?: unknown
           grid_x?: number
           grid_y?: number
           id?: never
+          is_active?: boolean
+          is_land?: boolean
+          weather_sample_id?: number | null
         }
         Relationships: []
       }
