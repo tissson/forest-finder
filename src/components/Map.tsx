@@ -26,7 +26,12 @@ import type {
 } from "geojson";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 
-import { getPredictions, getMoistureLayer, ApiError } from "../lib/api";
+import {
+  getPredictions,
+  getMoistureLayer,
+  getPredictionLodOptions,
+  ApiError,
+} from "../lib/api";
 import type { LayerSelection } from "../lib/api";
 
 interface MapProps {
@@ -44,6 +49,7 @@ const MIN_VISIBLE_VALUE = 0.01;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
 const FALLBACK_CELL_SPAN_DEGREES = 0.04;
+const MAP_FETCH_DEBOUNCE_MS = 300;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -252,7 +258,13 @@ export const Map: React.FC<MapProps> = ({
     const map = mapRef.current;
     if (!map || !isLoaded) return;
 
+    let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+    let requestSequence = 0;
+    let disposed = false;
+    let lastQueryKey = "";
+
     const fetchDataAndRender = async () => {
+      const requestId = ++requestSequence;
       const bounds = map.getBounds();
       const bbox: [number, number, number, number] = [
         bounds.getWest(),
@@ -260,21 +272,27 @@ export const Map: React.FC<MapProps> = ({
         bounds.getEast(),
         bounds.getNorth(),
       ];
+      const lod = getPredictionLodOptions(map.getZoom());
+      const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
+      const queryKey = JSON.stringify({ bbox, lod, layer: activeLayerKey, obsDate: obsDate ?? null });
+      if (queryKey === lastQueryKey) return;
+      lastQueryKey = queryKey;
 
       try {
         let geojson: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>;
 
         if (layer?.type === "moisture") {
-          geojson = await getMoistureLayer(bbox, obsDate);
+          geojson = await getMoistureLayer(bbox, obsDate, lod);
         } else {
           const speciesId = layer?.type === "species" ? layer.speciesId : 1;
           geojson = await getPredictions(bbox, speciesId, {
             ...(obsDate ? { obsDate } : {}),
-            limit: 10000,
+            ...lod,
           });
         }
 
         const landMask = await loadSwedenLandMask();
+        if (disposed || requestId !== requestSequence) return;
         const activeLayer: LayerSelection = layer ?? { type: "species", speciesId: 1, speciesName: "", tier: "free" };
         const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask);
 
@@ -327,6 +345,7 @@ export const Map: React.FC<MapProps> = ({
           });
         }
       } catch (err) {
+        if (disposed || requestId !== requestSequence) return;
         console.error("Kunde inte hämta kartdata:", err);
         if (err instanceof ApiError) onError?.(err);
       }
@@ -334,14 +353,23 @@ export const Map: React.FC<MapProps> = ({
 
     void fetchDataAndRender();
 
-    const handleMoveEnd = () => {
-      void fetchDataAndRender();
+    const scheduleFetch = () => {
+      if (debounceTimer !== undefined) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        debounceTimer = undefined;
+        void fetchDataAndRender();
+      }, MAP_FETCH_DEBOUNCE_MS);
     };
 
-    map.on("moveend", handleMoveEnd);
+    map.on("moveend", scheduleFetch);
+    map.on("zoomend", scheduleFetch);
 
     return () => {
-      map.off("moveend", handleMoveEnd);
+      disposed = true;
+      requestSequence += 1;
+      if (debounceTimer !== undefined) clearTimeout(debounceTimer);
+      map.off("moveend", scheduleFetch);
+      map.off("zoomend", scheduleFetch);
     };
   }, [isLoaded, layer, obsDate, onCellClick, onError, onFeatureCountChange]);
 
