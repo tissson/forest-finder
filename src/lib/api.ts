@@ -178,9 +178,11 @@ export interface PredictionLodOptions {
 
 /** Datamängd anpassad för aktuell kartzoom. */
 export function getPredictionLodOptions(zoom: number): PredictionLodOptions {
-  if (zoom < 7) return { limit: 1500, minScore: 0.15 };
-  if (zoom <= 10) return { limit: 8000, minScore: 0.08 };
-  return { limit: 25000, minScore: 0.02 };
+  // Tröskeln hålls låg: råvärdena skiljer sig kraftigt mellan arter
+  // (t.ex. blåbär toppar runt 0.14) och normaliseras istället i kartan.
+  if (zoom < 7) return { limit: 3000, minScore: 0.005 };
+  if (zoom <= 10) return { limit: 8000, minScore: 0.005 };
+  return { limit: 25000, minScore: 0.005 };
 }
 
 /** bbox: [minLon, minLat, maxLon, maxLat] (WGS84). */
