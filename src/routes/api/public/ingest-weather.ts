@@ -49,8 +49,13 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const unauthorized = await authenticateCronRequest(request);
-        if (unauthorized) return unauthorized;
+        // Godkänn antingen den schemalagda nyckeln (pg_cron) eller plattformens.
+        const token = /^Bearer ([^\s,]+)$/.exec(request.headers.get('authorization') ?? '')?.[1];
+        const weatherSecret = process.env['WEATHER_CRON_SECRET'];
+        if (!weatherSecret || token !== weatherSecret) {
+          const unauthorized = await authenticateCronRequest(request);
+          if (unauthorized) return unauthorized;
+        }
 
         const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
 
