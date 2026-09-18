@@ -39,6 +39,28 @@ const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]]
 const MIN_VISIBLE_VALUE = 0.08;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
+const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
+
+/** Bygger en cirka 5×5 km stor zon runt väderpunktens centrum. */
+function pointToZonePolygon(coordinates: [number, number]): Polygon {
+  const [longitude, latitude] = coordinates;
+
+  // Robusta gradsteg för Norden (~60°N) med täckning och överlapp
+  const halfLat = 0.035; // ~3.8 km
+  const halfLon = 0.065; // ~3.6 km
+
+  return {
+    type: 'Polygon',
+    coordinates: [[
+      [longitude - halfLon, latitude - halfLat],
+      [longitude + halfLon, latitude - halfLat],
+      [longitude + halfLon, latitude + halfLat],
+      [longitude - halfLon, latitude + halfLat],
+      [longitude - halfLon, latitude - halfLat],
+    ]],
+  };
+}
+
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
  * gemensam form där heatmap-vikten alltid ligger under properties.score
