@@ -51,6 +51,29 @@ const MAP_FETCH_DEBOUNCE_MS = 300;
 // Liten marginal runt vyn så punkterna redan finns när kartan flyttas.
 const BBOX_PADDING_RATIO = 0.12;
 
+function splitBoundingBox(
+  [minLon, minLat, maxLon, maxLat]: [number, number, number, number],
+  columns: number,
+  rows: number,
+): Array<[number, number, number, number]> {
+  const width = (maxLon - minLon) / columns;
+  const height = (maxLat - minLat) / rows;
+  const boxes: Array<[number, number, number, number]> = [];
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      boxes.push([
+        minLon + column * width,
+        minLat + row * height,
+        minLon + (column + 1) * width,
+        minLat + (row + 1) * height,
+      ]);
+    }
+  }
+
+  return boxes;
+}
+
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -242,15 +265,28 @@ export const Map: React.FC<MapProps> = ({
 
       try {
         let geojson: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>;
+        const requestBoxes = zoom <= 8 ? splitBoundingBox(bbox, 3, 2) : [bbox];
 
         if (layer?.type === "moisture") {
-          geojson = await getMoistureLayer(bbox, obsDate, lod);
+          const responses = await Promise.all(
+            requestBoxes.map((requestBox) => getMoistureLayer(requestBox, obsDate, lod)),
+          );
+          geojson = {
+            type: "FeatureCollection",
+            features: responses.flatMap((response) => response.features),
+          };
         } else {
           const speciesId = layer?.type === "species" ? layer.speciesId : 1;
-          geojson = await getPredictions(bbox, speciesId, {
-            ...(obsDate ? { obsDate } : {}),
-            ...lod,
-          });
+          const responses = await Promise.all(
+            requestBoxes.map((requestBox) => getPredictions(requestBox, speciesId, {
+              ...(obsDate ? { obsDate } : {}),
+              ...lod,
+            })),
+          );
+          geojson = {
+            type: "FeatureCollection",
+            features: responses.flatMap((response) => response.features),
+          };
         }
 
         const landMask = await loadSwedenLandMask();
