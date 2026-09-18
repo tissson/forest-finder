@@ -164,7 +164,7 @@ export const Map: React.FC<MapProps> = ({
           "interpolate",
           ["linear"],
           ["zoom"],
-          5, 0.28,
+          5, 0.05,
           9, 0.45,
           13, 0.7,
           16, 1,
