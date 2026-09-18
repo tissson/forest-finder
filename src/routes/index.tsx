@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Camera, LogIn, LogOut, X } from "lucide-react";
+import { Camera, Layers3, LogIn, LogOut, X } from "lucide-react";
 
 import { DiagnosticPanel } from "@/components/DiagnosticPanel";
 import { LayerSelector } from "@/components/LayerSelector";
@@ -10,6 +10,13 @@ import { LogDiscoveryModal } from "@/components/LogDiscoveryModal";
 import { DiscoverySuccessModal } from "@/components/DiscoverySuccessModal";
 import { MapSearch } from "@/components/MapSearch";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { supabase, onAuthStateChange } from "@/lib/supabase";
 import {
   ApiError,
@@ -51,6 +58,7 @@ function Index() {
   const [layer, setLayer] = useState<LayerSelection | null>({ type: "moisture" });
   const [count, setCount] = useState<number | null>(null);
   const [captureOpen, setCaptureOpen] = useState(false);
+  const [layerSheetOpen, setLayerSheetOpen] = useState(false);
   const [pending, setPending] = useState<{
     file: File;
     weatherZoneId: number | null;
@@ -126,8 +134,8 @@ function Index() {
         </div>
       </header>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 px-3 sm:bottom-5 sm:px-5">
-        <div className="pointer-events-auto mx-auto max-w-3xl pr-16 sm:pr-20">
+      <div className="pointer-events-none absolute inset-x-0 bottom-5 z-10 hidden px-5 md:block">
+        <div className="pointer-events-auto mx-auto max-w-3xl pr-20">
           <LayerSelector value={layer} onChange={setLayer} />
         </div>
       </div>
@@ -136,13 +144,57 @@ function Index() {
         <DiagnosticPanel />
       </div>
 
+      <nav aria-label="Huvudmeny" className="mobile-bottom-bar md:hidden">
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={() => setLayerSheetOpen(true)}
+          aria-label="Välj kartlager"
+          className="mobile-nav-action"
+        >
+          <Layers3 className="h-5 w-5" />
+          <span>Lager</span>
+        </Button>
+        <Button
+          type="button"
+          onClick={() => {
+            if (!signedIn) {
+              toast.info("Logga in först", { description: "Du behöver ett konto för att spara fynd." });
+              navigate({ to: "/auth" });
+              return;
+            }
+            setCaptureOpen(true);
+          }}
+          aria-label="Registrera fynd"
+          size="icon"
+          className="mobile-camera-action"
+        >
+          <Camera className="h-7 w-7" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={() => {
+            if (signedIn) {
+              void supabase.auth.signOut();
+              toast.success("Utloggad");
+            } else {
+              navigate({ to: "/auth" });
+            }
+          }}
+          aria-label={signedIn ? "Logga ut" : "Logga in"}
+          className="mobile-nav-action"
+        >
+          {signedIn ? <LogOut className="h-5 w-5" /> : <LogIn className="h-5 w-5" />}
+          <span>{signedIn ? "Logga ut" : "Logga in"}</span>
+        </Button>
+      </nav>
+
       <Button
         type="button"
         onClick={() => {
           if (!signedIn) {
-            toast.info("Logga in först", {
-              description: "Du behöver ett konto för att spara fynd.",
-            });
+            toast.info("Logga in först", { description: "Du behöver ett konto för att spara fynd." });
             navigate({ to: "/auth" });
             return;
           }
@@ -150,10 +202,28 @@ function Index() {
         }}
         aria-label="Logga ett fynd"
         size="icon"
-        className="absolute bottom-5 right-4 z-20 h-14 w-14 rounded-2xl bg-accent text-accent-foreground shadow-xl transition-transform active:scale-95 sm:right-6 sm:h-16 sm:w-16"
+        className="absolute bottom-5 right-6 z-20 hidden h-16 w-16 rounded-2xl bg-accent text-accent-foreground shadow-xl transition-transform active:scale-95 md:inline-flex"
       >
         <Camera className="h-7 w-7" />
       </Button>
+
+      <Sheet open={layerSheetOpen} onOpenChange={setLayerSheetOpen}>
+        <SheetContent side="bottom" className="max-h-[78dvh] overflow-y-auto rounded-t-2xl border-border/70 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-3">
+          <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-border" aria-hidden="true" />
+          <SheetHeader className="mb-4 text-left">
+            <SheetTitle>Välj kartlager</SheetTitle>
+            <SheetDescription>Visa fuktighet eller prognosen för en art.</SheetDescription>
+          </SheetHeader>
+          <LayerSelector
+            value={layer}
+            onChange={(selection) => {
+              setLayer(selection);
+              setLayerSheetOpen(false);
+            }}
+            className="border-0 bg-transparent p-0 shadow-none backdrop-blur-none"
+          />
+        </SheetContent>
+      </Sheet>
 
 
       {captureOpen && (
