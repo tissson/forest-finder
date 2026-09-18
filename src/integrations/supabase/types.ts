@@ -376,6 +376,15 @@ export type Database = {
           score_weather: number
         }[]
       }
+      get_weather_freshness: {
+        Args: never
+        Returns: {
+          latest_obs_date: string
+          observation_count: number
+          prediction_count: number
+          zone_count: number
+        }[]
+      }
       log_species_discovery: {
         Args: {
           p_ai_confidence: number
@@ -397,6 +406,7 @@ export type Database = {
         Args: { p_lat: number; p_lon: number }
         Returns: number
       }
+      recompute_predictions: { Args: { p_obs_date?: string }; Returns: number }
     }
     Enums: {
       [_ in never]: never
