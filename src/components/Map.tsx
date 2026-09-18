@@ -33,7 +33,7 @@ import swedenLandData from '../data/sweden-land.json';
 
 setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
 
-const LAYER_SOURCE_ID = 'layer-source';
+const PREDICTIONS_SOURCE_ID = 'predictions-source';
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
 const MIN_VISIBLE_VALUE = 0.08;
@@ -43,9 +43,9 @@ const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection',
 
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
- * gemensam form där coloring-värdet alltid ligger under properties.value
- * -- det gör att MapLibres paint-uttryck
- * kan vara STATISKA och alltid referera ['get', 'value'], oavsett om
+ * gemensam form där heatmap-vikten alltid ligger under properties.score
+ * -- det gör att MapLibres paint-uttryck kan vara statiskt och alltid
+ * referera ['get', 'score'], oavsett om
  * det är score_total (art) eller moisture_score (fuktighet) som visas.
  * Originalfälten behålls också, så onFeatureClick fortfarande får
  * fullständig detalj (score_soil/score_forest/etc, eller
@@ -66,7 +66,7 @@ function toRenderableFeatureCollection(
       )).map((f) => ({
         type: 'Feature' as const,
         geometry: f.geometry,
-        properties: { weight: f.properties.score_total, ...f.properties },
+        properties: { ...f.properties, score: f.properties.score_total },
       })),
     };
   }
@@ -79,7 +79,7 @@ function toRenderableFeatureCollection(
     )).map((f) => ({
       type: 'Feature' as const,
       geometry: f.geometry,
-      properties: { weight: f.properties.moisture_score ?? 0, ...f.properties },
+      properties: { ...f.properties, score: f.properties.moisture_score ?? 0 },
     })),
   };
 }
@@ -133,7 +133,7 @@ export function Map({
     if (!map) return;
 
     const currentLayer = layerRef.current;
-    const source = map.getSource(LAYER_SOURCE_ID) as GeoJSONSource | undefined;
+    const source = map.getSource(PREDICTIONS_SOURCE_ID) as GeoJSONSource | undefined;
 
     if (currentLayer === null) {
       source?.setData(EMPTY_FEATURE_COLLECTION);
@@ -192,22 +192,16 @@ export function Map({
     );
 
     map.on('load', () => {
-      map.addSource(LAYER_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
+      map.addSource(PREDICTIONS_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
 
       map.addLayer({
-        id: 'weather-heatmap',
+        id: 'predictions-heatmap',
         type: 'heatmap',
-        source: LAYER_SOURCE_ID,
+        source: PREDICTIONS_SOURCE_ID,
         paint: {
-          'heatmap-radius': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            2, 20,
-            6, 50,
-            10, 100,
-          ],
-          'heatmap-intensity': 1.8,
+          'heatmap-weight': ['get', 'score'],
+          'heatmap-radius': 80,
+          'heatmap-intensity': 2,
           'heatmap-color': [
             'interpolate',
             ['linear'],
