@@ -239,8 +239,8 @@ export function Map({
         source: LAYER_SOURCE_ID,
         paint: {
           'heatmap-weight': ['coalesce', ['to-number', ['get', 'value']], 0],
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 5, 0.72, 9, 1.05],
-          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 5, 34, 9, 52],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 5, 0.55, 9, 0.82],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 5, 62, 9, 82],
           'heatmap-color': [
             'interpolate',
             ['linear'],
@@ -250,7 +250,7 @@ export function Map({
             0.55, mid,
             1, high,
           ],
-          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.62, 8, 0.42, 9, 0],
+          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.56, 8, 0.4, 9, 0],
         },
       });
 
