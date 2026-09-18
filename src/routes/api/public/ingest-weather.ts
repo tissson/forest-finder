@@ -40,7 +40,7 @@ async function fetchChunk(zones: Zone[]) {
 
   let res = await fetch(url);
   // Open-Meteo har en minutbaserad gräns -- backa av och försök igen.
-  for (let attempt = 0; attempt < 3 && res.status === 429; attempt++) {
+  for (let attempt = 0; attempt < 3 && (res.status === 429 || res.status >= 500); attempt++) {
     await sleep(20000);
     res = await fetch(url);
   }
