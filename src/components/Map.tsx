@@ -50,6 +50,9 @@ const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
 const FALLBACK_CELL_SPAN_DEGREES = 0.04;
 const MAP_FETCH_DEBOUNCE_MS = 300;
+// Gittret ligger ca 0.3° i latitud och 0.5–0.7° i longitud mellan punkterna.
+const BBOX_PADDING_LAT = 0.45;
+const BBOX_PADDING_LON = 0.9;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -172,7 +175,12 @@ function toRenderableFeatureCollection(
   layer: LayerSelection,
   response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
   landMask: LandMask,
+  /** Högsta kända råvärde för aktivt lager — används för normalisering. */
+  referenceMax: number,
 ): FeatureCollection<Polygon, GeoJsonProperties> {
+  const scaleMax = Math.max(referenceMax, MIN_VISIBLE_VALUE);
+  const normalize = (raw: number) => Math.max(0, Math.min(1, raw / scaleMax));
+
   if (layer.type === "species") {
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
@@ -182,7 +190,11 @@ function toRenderableFeatureCollection(
         .map((f) => ({
           type: "Feature" as const,
           geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
-          properties: { ...f.properties, score: f.properties.score_total },
+          properties: {
+            ...f.properties,
+            raw_score: f.properties.score_total,
+            score: normalize(f.properties.score_total),
+          },
         })),
     };
   }
@@ -194,9 +206,26 @@ function toRenderableFeatureCollection(
       .map((f) => ({
         type: "Feature" as const,
         geometry: calculateBoundingPolygon(f.geometry.coordinates, r.features),
-        properties: { ...f.properties, score: f.properties.moisture_score ?? 0 },
+        properties: {
+          ...f.properties,
+          raw_score: f.properties.moisture_score ?? 0,
+          score: normalize(f.properties.moisture_score ?? 0),
+        },
       })),
   };
+}
+
+/** Högsta råvärde i ett svar (0 om tomt). */
+function getMaxRawScore(
+  layer: LayerSelection,
+  response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
+): number {
+  if (layer.type === "species") {
+    const r = response as Awaited<ReturnType<typeof getPredictions>>;
+    return r.features.reduce((max, f) => Math.max(max, f.properties.score_total ?? 0), 0);
+  }
+  const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
+  return r.features.reduce((max, f) => Math.max(max, f.properties.moisture_score ?? 0), 0);
 }
 
 export const Map: React.FC<MapProps> = ({
@@ -262,15 +291,19 @@ export const Map: React.FC<MapProps> = ({
     let requestSequence = 0;
     let disposed = false;
     let lastQueryKey = "";
+    // Högsta kända råvärde för aktivt lager (nollställs när lagret byts).
+    let referenceMax = 0;
 
     const fetchDataAndRender = async () => {
       const requestId = ++requestSequence;
       const bounds = map.getBounds();
+      // Marginal på en gitterruta så att rutorna täcker hela vyn även
+      // när man zoomar in mellan två datapunkter.
       const bbox: [number, number, number, number] = [
-        bounds.getWest(),
-        bounds.getSouth(),
-        bounds.getEast(),
-        bounds.getNorth(),
+        bounds.getWest() - BBOX_PADDING_LON,
+        bounds.getSouth() - BBOX_PADDING_LAT,
+        bounds.getEast() + BBOX_PADDING_LON,
+        bounds.getNorth() + BBOX_PADDING_LAT,
       ];
       const lod = getPredictionLodOptions(map.getZoom());
       const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
@@ -294,7 +327,8 @@ export const Map: React.FC<MapProps> = ({
         const landMask = await loadSwedenLandMask();
         if (disposed || requestId !== requestSequence) return;
         const activeLayer: LayerSelection = layer ?? { type: "species", speciesId: 1, speciesName: "", tier: "free" };
-        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask);
+        referenceMax = Math.max(referenceMax, getMaxRawScore(activeLayer, geojson));
+        const featureCollection = toRenderableFeatureCollection(activeLayer, geojson, landMask, referenceMax);
 
         onFeatureCountChange?.(featureCollection.features.length);
 
