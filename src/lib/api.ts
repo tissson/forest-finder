@@ -171,6 +171,18 @@ export interface GetPredictionsOptions {
   limit?: number;
 }
 
+export interface PredictionLodOptions {
+  minScore: number;
+  limit: number;
+}
+
+/** Datamängd anpassad för aktuell kartzoom. */
+export function getPredictionLodOptions(zoom: number): PredictionLodOptions {
+  if (zoom < 7) return { limit: 1500, minScore: 0.15 };
+  if (zoom <= 10) return { limit: 8000, minScore: 0.08 };
+  return { limit: 25000, minScore: 0.02 };
+}
+
 /** bbox: [minLon, minLat, maxLon, maxLat] (WGS84). */
 export async function getPredictions(
   bbox: [number, number, number, number],
@@ -222,7 +234,7 @@ export async function getPredictions(
 export async function getMoistureLayer(
   bbox: [number, number, number, number],
   obsDate?: string,
-  limit = 10000,
+  options: Pick<GetPredictionsOptions, "minScore" | "limit"> = {},
 ): Promise<MoistureLayerResponse> {
   const { data, error } = await supabase.rpc("get_moisture_layer", {
     p_min_lon: bbox[0],
@@ -230,11 +242,11 @@ export async function getMoistureLayer(
     p_max_lon: bbox[2],
     p_max_lat: bbox[3],
     ...(obsDate ? { p_obs_date: obsDate } : {}),
-    p_limit: limit,
+    p_limit: options.limit ?? 10000,
   });
   if (error) throw toApiError(error.message);
 
-  const rows = (data ?? []) as Array<{
+  const rows = ((data ?? []) as Array<{
     lon: number;
     lat: number;
     obs_date: string | null;
@@ -242,7 +254,7 @@ export async function getMoistureLayer(
     precip_7d_sum: number | null;
     precip_10d_sum: number | null;
     temp_mean: number | null;
-  }>;
+  }>).filter((row) => (row.moisture_score ?? 0) >= (options.minScore ?? 0));
 
   return {
     type: "FeatureCollection",
