@@ -715,6 +715,10 @@ export type Database = {
           temp_mean: number
         }[]
       }
+      get_moisture_tile: {
+        Args: { p_obs_date?: string; x: number; y: number; z: number }
+        Returns: string
+      }
       get_or_create_profile: {
         Args: never
         Returns: {
@@ -733,6 +737,16 @@ export type Database = {
           isOneToOne: true
           isSetofReturn: false
         }
+      }
+      get_prediction_tile: {
+        Args: {
+          p_obs_date?: string
+          p_species_id: number
+          x: number
+          y: number
+          z: number
+        }
+        Returns: string
       }
       get_predictions: {
         Args: {
