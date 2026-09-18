@@ -242,11 +242,12 @@ export async function getMoistureLayer(
     p_max_lon: bbox[2],
     p_max_lat: bbox[3],
     ...(obsDate ? { p_obs_date: obsDate } : {}),
+    p_min_score: options.minScore ?? 0,
     p_limit: options.limit ?? 10000,
   });
   if (error) throw toApiError(error.message);
 
-  const rows = ((data ?? []) as Array<{
+  const rows = (data ?? []) as Array<{
     lon: number;
     lat: number;
     obs_date: string | null;
@@ -254,7 +255,7 @@ export async function getMoistureLayer(
     precip_7d_sum: number | null;
     precip_10d_sum: number | null;
     temp_mean: number | null;
-  }>).filter((row) => (row.moisture_score ?? 0) >= (options.minScore ?? 0));
+  }>;
 
   return {
     type: "FeatureCollection",
