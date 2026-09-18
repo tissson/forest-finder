@@ -59,6 +59,12 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-map-water: var(--map-water);
+  --color-map-land: var(--map-land);
+  --color-map-panel: var(--map-panel);
+  --color-berry: var(--berry);
+  --color-mushroom: var(--mushroom);
+  --color-moisture: var(--moisture);
 }
 
 :root {
@@ -95,6 +101,22 @@
   --sidebar-accent-foreground: oklch(0.3 0.04 148);
   --sidebar-border: oklch(0.9 0.015 130);
   --sidebar-ring: oklch(0.68 0.17 52);
+  --map-water: oklch(0.91 0.035 225);
+  --map-land: oklch(0.975 0.008 135);
+  --map-panel: oklch(1 0 0 / 88%);
+  --berry: oklch(0.58 0.22 332);
+  --mushroom: oklch(0.69 0.17 67);
+  --moisture: oklch(0.59 0.14 213);
+  --map-mushroom-low: #39764e;
+  --map-mushroom-mid: #d7b443;
+  --map-mushroom-high: #e77527;
+  --map-berry-low: #7656bc;
+  --map-berry-mid: #c7469c;
+  --map-berry-high: #eb5b73;
+  --map-moisture-low: #3c9b91;
+  --map-moisture-mid: #318bc0;
+  --map-moisture-high: #3d56c5;
+  --map-data-outline: #314e3a;
 }
 
 .dark {
@@ -140,5 +162,30 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+.maplibregl-ctrl-group {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--map-panel);
+  box-shadow: 0 10px 30px color-mix(in oklab, var(--foreground) 12%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+.maplibregl-ctrl-group button {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.maplibregl-ctrl-top-right {
+  top: 5.5rem;
+  right: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .maplibregl-ctrl-top-right {
+    top: 6.25rem;
   }
 }

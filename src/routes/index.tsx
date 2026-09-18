@@ -1,13 +1,15 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Camera, X } from "lucide-react";
+import { Camera, LogIn, LogOut, X } from "lucide-react";
 
 import { DiagnosticPanel } from "@/components/DiagnosticPanel";
 import { LayerSelector } from "@/components/LayerSelector";
 import { CameraCapture } from "@/components/CameraCapture";
 import { LogDiscoveryModal } from "@/components/LogDiscoveryModal";
 import { DiscoverySuccessModal } from "@/components/DiscoverySuccessModal";
+import { MapSearch } from "@/components/MapSearch";
+import { Button } from "@/components/ui/button";
 import { supabase, onAuthStateChange } from "@/lib/supabase";
 import {
   ApiError,
@@ -54,6 +56,7 @@ function Index() {
     weatherZoneId: number | null;
   } | null>(null);
   const [success, setSuccess] = useState<DiscoveryUploadResult | null>(null);
+  const [focusTarget, setFocusTarget] = useState<{ center: [number, number]; key: number } | null>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -82,6 +85,7 @@ function Index() {
               layer={layer}
               onError={handleError}
               onFeatureCountChange={setCount}
+              focusTarget={focusTarget}
             />
           </Suspense>
         ) : (
@@ -89,20 +93,24 @@ function Index() {
         )}
       </div>
 
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-3 p-4">
-        <DiagnosticPanel />
-
-        <div className="pointer-events-auto flex items-center gap-2">
-          <span className="rounded-full bg-card/90 px-3 py-1.5 text-sm font-semibold tracking-tight text-card-foreground shadow-lg backdrop-blur">
-            🍄 Svamp- & Bärprognos
-          </span>
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-10 p-3 sm:p-5">
+        <div className="pointer-events-auto mx-auto flex max-w-3xl items-center gap-2">
+          <div className="hidden shrink-0 rounded-2xl border border-border/70 bg-card/90 px-4 py-3 text-sm font-semibold text-card-foreground shadow-xl backdrop-blur-xl sm:block">
+            Svamp & Bär
+          </div>
+          <MapSearch
+            onSelect={(place) => setFocusTarget({ center: place.center, key: Date.now() })}
+          />
           {count !== null && (
-            <span className="rounded-full bg-card/80 px-3 py-1.5 text-xs text-muted-foreground shadow backdrop-blur">
+            <span className="hidden shrink-0 rounded-2xl border border-border/70 bg-card/90 px-3 py-3 text-xs font-medium text-muted-foreground shadow-xl backdrop-blur-xl sm:block">
               {count} rutor
             </span>
           )}
-          <button
+          <Button
             type="button"
+            size="icon"
+            variant="outline"
+            aria-label={signedIn ? "Logga ut" : "Logga in"}
             onClick={() => {
               if (signedIn) {
                 void supabase.auth.signOut();
@@ -111,17 +119,24 @@ function Index() {
                 navigate({ to: "/auth" });
               }
             }}
-            className="ml-auto rounded-full bg-card/90 px-3 py-1.5 text-xs font-medium text-card-foreground shadow backdrop-blur"
+            className="h-12 w-12 shrink-0 rounded-2xl border-border/70 bg-card/90 shadow-xl backdrop-blur-xl"
           >
-            {signedIn ? "Logga ut" : "Logga in"}
-          </button>
-        </div>
-        <div className="pointer-events-auto max-w-xs">
-          <LayerSelector value={layer} onChange={setLayer} className="shadow-xl backdrop-blur" />
+            {signedIn ? <LogOut /> : <LogIn />}
+          </Button>
         </div>
       </header>
 
-      <button
+      <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 px-3 sm:bottom-5 sm:px-5">
+        <div className="pointer-events-auto mx-auto max-w-3xl pr-16 sm:pr-20">
+          <LayerSelector value={layer} onChange={setLayer} />
+        </div>
+      </div>
+
+      <div className="absolute left-3 top-20 z-10 hidden max-w-md lg:block">
+        <DiagnosticPanel />
+      </div>
+
+      <Button
         type="button"
         onClick={() => {
           if (!signedIn) {
@@ -134,25 +149,28 @@ function Index() {
           setCaptureOpen(true);
         }}
         aria-label="Logga ett fynd"
-        className="absolute bottom-7 right-5 z-20 flex h-16 w-16 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-2xl transition-transform active:scale-95"
+        size="icon"
+        className="absolute bottom-5 right-4 z-20 h-14 w-14 rounded-2xl bg-accent text-accent-foreground shadow-xl transition-transform active:scale-95 sm:right-6 sm:h-16 sm:w-16"
       >
         <Camera className="h-7 w-7" />
-      </button>
+      </Button>
 
 
       {captureOpen && (
-        <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/60 p-4 sm:items-center">
+        <div className="fixed inset-0 z-40 flex items-end justify-center bg-foreground/60 p-4 sm:items-center">
           <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-base font-semibold">Nytt fynd</h2>
-              <button
+              <Button
                 type="button"
+                size="icon"
+                variant="ghost"
                 onClick={() => setCaptureOpen(false)}
                 aria-label="Stäng"
-                className="rounded-md p-1 text-muted-foreground hover:bg-muted"
+                className="rounded-xl text-muted-foreground"
               >
                 <X className="h-5 w-5" />
-              </button>
+              </Button>
             </div>
             <CameraCapture
               onReady={(result) => {

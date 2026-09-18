@@ -21,12 +21,15 @@ import {
   Map as MapLibreMap,
   NavigationControl,
   GeolocateControl,
+  setWorkerUrl,
   type GeoJSONSource,
   type MapLayerMouseEvent,
 } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { FeatureCollection } from 'geojson';
 import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from '../lib/api';
+
+setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
 
 const LAYER_SOURCE_ID = 'layer-source';
 const LAYER_HEATMAP_ID = 'layer-grid-heatmap';
@@ -108,6 +111,21 @@ export interface MapProps {
   className?: string;
   initialCenter?: [number, number];
   initialZoom?: number;
+  focusTarget?: { center: [number, number]; key: number } | null;
+}
+
+function mapColor(token: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+}
+
+function getLayerPalette(layer: LayerSelection | null): [string, string, string] {
+  if (layer?.type === 'moisture') {
+    return ['--map-moisture-low', '--map-moisture-mid', '--map-moisture-high'];
+  }
+  const berryLayer = layer?.type === 'species' && /bär|lingon|hjortron/i.test(layer.speciesName);
+  return berryLayer
+    ? ['--map-berry-low', '--map-berry-mid', '--map-berry-high']
+    : ['--map-mushroom-low', '--map-mushroom-mid', '--map-mushroom-high'];
 }
 
 export function Map({
@@ -119,6 +137,7 @@ export function Map({
   className = 'relative h-full w-full',
   initialCenter = [15, 62],
   initialZoom = 5,
+  focusTarget = null,
 }: MapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -177,18 +196,7 @@ export function Map({
 
     const map = new MapLibreMap({
       container: containerRef.current,
-      style: {
-        version: 8,
-        sources: {
-          osm: {
-            type: 'raster',
-            tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-            tileSize: 256,
-            attribution: '&copy; OpenStreetMap contributors',
-          },
-        },
-        layers: [{ id: 'osm-base', type: 'raster', source: 'osm' }],
-      },
+      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
       center: initialCenter,
       zoom: initialZoom,
       maxBounds: SWEDEN_BOUNDS,
@@ -202,6 +210,10 @@ export function Map({
 
     map.on('load', () => {
       map.addSource(LAYER_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
+      const [lowToken, midToken, highToken] = getLayerPalette(layerRef.current);
+      const low = mapColor(lowToken);
+      const mid = mapColor(midToken);
+      const high = mapColor(highToken);
 
       map.addLayer({
         id: LAYER_HEATMAP_ID,
@@ -215,12 +227,10 @@ export function Map({
             'interpolate',
             ['linear'],
             ['heatmap-density'],
-            0, 'rgba(49, 86, 58, 0)',
-            0.2, '#31563a',
-            0.4, '#739a48',
-            0.6, '#d7b445',
-            0.8, '#ef812f',
-            1, '#c93624',
+            0, 'rgba(0, 0, 0, 0)',
+            0.25, low,
+            0.58, mid,
+            1, high,
           ],
           'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.76, 9, 0.18],
         },
@@ -235,11 +245,9 @@ export function Map({
             'interpolate',
             ['linear'],
             ['coalesce', ['to-number', ['get', 'value']], 0],
-            0, '#31563a',
-            0.25, '#739a48',
-            0.5, '#d7b445',
-            0.75, '#ef812f',
-            1, '#c93624',
+            0, low,
+            0.5, mid,
+            1, high,
           ],
           'fill-opacity': [
             'interpolate',
@@ -256,7 +264,7 @@ export function Map({
         type: 'line',
         source: LAYER_SOURCE_ID,
         paint: {
-          'line-color': '#263c2c',
+          'line-color': mapColor('--map-data-outline'),
           'line-opacity': 0.72,
           'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.35, 9, 1],
         },
@@ -298,8 +306,29 @@ export function Map({
 
   useEffect(() => {
     if (!mapReady) return;
+    const map = mapRef.current;
+    if (map) {
+      const [lowToken, midToken, highToken] = getLayerPalette(layer);
+      const low = mapColor(lowToken);
+      const mid = mapColor(midToken);
+      const high = mapColor(highToken);
+      map.setPaintProperty(LAYER_HEATMAP_ID, 'heatmap-color', [
+        'interpolate', ['linear'], ['heatmap-density'],
+        0, 'rgba(0, 0, 0, 0)', 0.25, low, 0.58, mid, 1, high,
+      ]);
+      map.setPaintProperty(LAYER_FILL_ID, 'fill-color', [
+        'interpolate', ['linear'], ['coalesce', ['to-number', ['get', 'value']], 0],
+        0, low, 0.5, mid, 1, high,
+      ]);
+    }
     fetchAndRenderLayer();
   }, [mapReady, layer, minScore, fetchAndRenderLayer]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady || !focusTarget) return;
+    map.flyTo({ center: focusTarget.center, zoom: 8, duration: 900, essential: true });
+  }, [focusTarget, mapReady]);
 
   return <div ref={containerRef} className={className} data-testid="map-container" />;
 }
