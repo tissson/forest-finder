@@ -32,7 +32,8 @@ interface MapProps {
 
 const TILE_SOURCE_ID = "predictions-tiles";
 const TILE_SOURCE_LAYER = "predictions";
-const GRID_FILL_LAYER_ID = "fungi-grid-fill";
+const HEATMAP_LAYER_ID = "fungi-heatmap";
+const HIT_LAYER_ID = "fungi-hit";
 const MIN_MAP_ZOOM = 5;
 const MAX_MAP_ZOOM = 16;
 const TILE_MIN_ZOOM = 5;
