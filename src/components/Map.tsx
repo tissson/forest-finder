@@ -1,12 +1,13 @@
 /**
  * src/components/Map.tsx
  * =======================
- * Kartkomponent byggd med MapLibre GL JS.
- * Renderar artprognoser och fuktskikt som en sömlös heatmap.
+ * Komplett kartkomponent med MapLibre GL JS.
+ * Inkluderar heatmap, klick-hantering, GPS-positionering,
+ * och gränser för Sverige.
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import maplibregl from "maplibre-gl";
+import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import { getPredictions, getMoistureLayer } from "../lib/api";
@@ -15,12 +16,20 @@ import type { LayerSelection, PredictionsResponse, MoistureLayerResponse } from 
 interface MapProps {
   layerSelection?: LayerSelection;
   obsDate?: string;
+  onCellClick?: (cellData: any) => void;
 }
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
 const HEATMAP_LAYER_ID = "predictions-heatmap";
+const CLICK_TARGET_LAYER_ID = "fungi-click-target";
 
-export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
+// Sveriges geografiska begränsning [SW, NE]
+const SWEDEN_BOUNDS: maplibregl.LngLatBoundsLike = [
+  [10.5, 55.2], // Sydväst
+  [24.2, 69.1], // Nordost
+];
+
+export const Map: React.FC<MapProps> = ({ layerSelection, obsDate, onCellClick }) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,9 +43,18 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
       style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
       center: [15.2, 62.0],
       zoom: 5,
+      maxBounds: SWEDEN_BOUNDS,
     });
 
+    // Kontroller: Navigering + Geolokalisering (GPS)
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.addControl(
+      new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+      }),
+      "top-right",
+    );
 
     map.on("load", () => {
       setIsLoaded(true);
@@ -50,7 +68,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
     };
   }, []);
 
-  // 2. Hämta data och uppdatera heatmap-lagret
+  // 2. Hämta data och uppdatera kartlager
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !isLoaded) return;
@@ -101,6 +119,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
           });
         }
 
+        // Heatmap-lager (översikt)
         if (!map.getLayer(HEATMAP_LAYER_ID)) {
           map.addLayer({
             id: HEATMAP_LAYER_ID,
@@ -130,6 +149,35 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
             },
           });
         }
+
+        // Osynligt klick-lager för interaktion på hög inzoomning
+        if (!map.getLayer(CLICK_TARGET_LAYER_ID)) {
+          map.addLayer({
+            id: CLICK_TARGET_LAYER_ID,
+            type: "circle",
+            source: PREDICTIONS_SOURCE_ID,
+            minzoom: 10,
+            paint: {
+              "circle-radius": 12,
+              "circle-color": "transparent",
+            },
+          });
+
+          // Klick-event för att välja cell
+          map.on("click", CLICK_TARGET_LAYER_ID, (e) => {
+            if (e.features && e.features.length > 0 && onCellClick) {
+              onCellClick(e.features[0].properties);
+            }
+          });
+
+          map.on("mouseenter", CLICK_TARGET_LAYER_ID, () => {
+            map.getCanvas().style.cursor = "pointer";
+          });
+
+          map.on("mouseleave", CLICK_TARGET_LAYER_ID, () => {
+            map.getCanvas().style.cursor = "";
+          });
+        }
       } catch (err) {
         console.error("Kunde inte hämta kartdata:", err);
       }
@@ -146,7 +194,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
     return () => {
       map.off("moveend", handleMoveEnd);
     };
-  }, [isLoaded, layerSelection, obsDate]);
+  }, [isLoaded, layerSelection, obsDate, onCellClick]);
 
   return (
     <div className="relative w-full h-full min-h-[400px]">
