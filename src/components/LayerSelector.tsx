@@ -7,6 +7,8 @@
  */
 
 import { useEffect, useState } from 'react';
+import { LockKeyhole } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { getSpecies, type Species, type LayerSelection } from '../lib/api';
 
 export type { LayerSelection };
@@ -53,10 +55,13 @@ export function LayerSelector({ value, onChange, className = '' }: LayerSelector
   const premiumSpecies = species.filter((s) => s.tier === 'premium');
 
   return (
-    <div className={`flex flex-col gap-3 rounded-lg border border-stone-700 bg-stone-900/95 p-4 text-stone-100 ${className}`}>
-      <h2 className="text-sm font-semibold text-stone-100">Lager</h2>
+    <section aria-label="Kartlager" className={`flex flex-col gap-3 rounded-2xl border border-border/70 bg-card/90 p-3 text-card-foreground shadow-xl backdrop-blur-xl ${className}`}>
+      <div className="flex items-center justify-between px-1">
+        <h2 className="text-sm font-semibold">Vad letar du efter?</h2>
+        <span className="text-[10px] font-semibold uppercase text-muted-foreground">Kartlager</span>
+      </div>
 
-      {loading && <p className="text-xs text-stone-400">Laddar arter…</p>}
+      {loading && <p className="text-xs text-muted-foreground">Laddar arter…</p>}
       {loadError && (
         <p className="rounded border border-red-800 bg-red-950/50 p-2 text-xs text-red-300">
           {loadError}
@@ -96,24 +101,25 @@ export function LayerSelector({ value, onChange, className = '' }: LayerSelector
           )}
 
           <LayerGroup label="Väder">
-            <button
+            <Button
               type="button"
+              variant={isSelected({ type: 'moisture' }) ? 'default' : 'ghost'}
               onClick={() => onChange({ type: 'moisture' })}
               className={buttonClasses(isSelected({ type: 'moisture' }))}
             >
               Fuktighet
-            </button>
+            </Button>
           </LayerGroup>
         </>
       )}
-    </div>
+    </section>
   );
 }
 
 function LayerGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-xs uppercase tracking-wide text-stone-500">{label}</span>
+      <span className="sr-only">{label}</span>
       <div className="flex flex-wrap gap-1.5">{children}</div>
     </div>
   );
@@ -129,18 +135,18 @@ function SpeciesButton({
   onClick: () => void;
 }) {
   return (
-    <button type="button" onClick={onClick} className={buttonClasses(selected)}>
+    <Button type="button" variant={selected ? 'default' : 'ghost'} onClick={onClick} className={buttonClasses(selected)}>
       {species.name_sv}
       {species.tier === 'premium' && (
-        <span className="ml-1.5 rounded bg-amber-600/30 px-1 text-[10px] text-amber-300">PRO</span>
+        <LockKeyhole className="h-3 w-3 text-muted-foreground" aria-label="Premium" />
       )}
-    </button>
+    </Button>
   );
 }
 
 function buttonClasses(selected: boolean): string {
-  const base = 'rounded-md px-3 py-1.5 text-sm transition-colors';
+  const base = 'h-9 rounded-xl px-3 text-sm shadow-none';
   return selected
-    ? `${base} bg-orange-600 text-white`
-    : `${base} bg-stone-800 text-stone-200 hover:bg-stone-700`;
+    ? `${base} bg-primary text-primary-foreground hover:bg-primary/90`
+    : `${base} bg-secondary/70 text-secondary-foreground hover:bg-secondary`;
 }
