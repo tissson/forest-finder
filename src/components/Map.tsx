@@ -39,8 +39,11 @@ interface MapProps {
 const PREDICTIONS_SOURCE_ID = "predictions-source";
 const PREDICTIONS_FILL_LAYER_ID = "predictions-zone-fill";
 const METERS_PER_LATITUDE_DEGREE = 111_320;
-const HALF_CELL_SIZE_METERS = 50;
-const MIN_VISIBLE_SCORE = 0.3;
+const MIN_VISIBLE_SCORE = 0.01;
+const OVERVIEW_CELL_SIZE_METERS = 40_000;
+const LOCAL_CELL_SIZE_METERS = 100;
+const MIN_MAP_ZOOM = 4.5;
+const MAX_MAP_ZOOM = 16;
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -50,16 +53,21 @@ const SWEDEN_BOUNDS: LngLatBoundsLike = [
 
 function pointToGridPolygon(
   feature: Feature<Point, GeoJsonProperties>,
+  zoom: number,
 ): Feature<Polygon, GeoJsonProperties> | null {
   const longitude = feature.geometry.coordinates[0];
   const latitude = feature.geometry.coordinates[1];
   if (longitude === undefined || latitude === undefined) return null;
 
-  const halfLatitude = HALF_CELL_SIZE_METERS / METERS_PER_LATITUDE_DEGREE;
+  const zoomProgress = Math.max(0, Math.min(1, (zoom - MIN_MAP_ZOOM) / (MAX_MAP_ZOOM - MIN_MAP_ZOOM)));
+  const cellSizeMeters = OVERVIEW_CELL_SIZE_METERS *
+    Math.pow(LOCAL_CELL_SIZE_METERS / OVERVIEW_CELL_SIZE_METERS, zoomProgress);
+  const halfCellSizeMeters = cellSizeMeters / 2;
+  const halfLatitude = halfCellSizeMeters / METERS_PER_LATITUDE_DEGREE;
   const longitudeMetersPerDegree =
     METERS_PER_LATITUDE_DEGREE * Math.cos((latitude * Math.PI) / 180);
   if (longitudeMetersPerDegree <= 0) return null;
-  const halfLongitude = HALF_CELL_SIZE_METERS / longitudeMetersPerDegree;
+  const halfLongitude = halfCellSizeMeters / longitudeMetersPerDegree;
 
   return {
     type: "Feature",
@@ -98,6 +106,8 @@ export const Map: React.FC<MapProps> = ({
       style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
       center: [15.2, 62.0],
       zoom: 5,
+      minZoom: MIN_MAP_ZOOM,
+      maxZoom: MAX_MAP_ZOOM,
       maxBounds: SWEDEN_BOUNDS,
     });
 
@@ -162,23 +172,27 @@ export const Map: React.FC<MapProps> = ({
           properties: Record<string, unknown> | null;
         }>;
 
-        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = rawFeatures.flatMap((f) => {
-          if (f.geometry.type !== "Point") return [];
-
-          const props = f.properties ?? {};
-          const total = props["score_total"];
-          const moisture = props["moisture_score"];
+        const scoredFeatures = rawFeatures.flatMap((feature) => {
+          if (feature.geometry.type !== "Point") return [];
+          const properties = feature.properties ?? {};
+          const total = properties["score_total"];
+          const moisture = properties["moisture_score"];
           const rawScore = typeof total === "number" ? total : typeof moisture === "number" ? moisture : 0;
-          const score = Math.max(0, Math.min(1, rawScore));
-          if (score < MIN_VISIBLE_SCORE) return [];
+          return rawScore >= MIN_VISIBLE_SCORE ? [{ feature, rawScore }] : [];
+        });
+        const highestScore = Math.max(MIN_VISIBLE_SCORE, ...scoredFeatures.map(({ rawScore }) => rawScore));
+        const currentZoom = map.getZoom();
 
+        const processedFeatures: Array<Feature<Polygon, GeoJsonProperties>> = scoredFeatures.flatMap(({ feature, rawScore }) => {
+          const props = feature.properties ?? {};
+          const score = Math.max(0, Math.min(1, rawScore / highestScore));
           const pointFeature: Feature<Point, GeoJsonProperties> = {
             type: "Feature",
-            geometry: f.geometry,
-            properties: { ...props, score },
+            geometry: feature.geometry,
+            properties: { ...props, raw_score: rawScore, score },
           };
 
-          const polygon = pointToGridPolygon(pointFeature);
+          const polygon = pointToGridPolygon(pointFeature, currentZoom);
           return polygon ? [polygon] : [];
         });
 
@@ -211,7 +225,7 @@ export const Map: React.FC<MapProps> = ({
                 ["get", "score"],
                 0,
                 "rgb(254, 240, 138)",
-                0.3,
+                0.35,
                 "rgb(254, 240, 138)",
                 0.55,
                 "rgb(251, 146, 60)",
@@ -220,13 +234,7 @@ export const Map: React.FC<MapProps> = ({
                 1,
                 "rgb(107, 33, 168)",
               ],
-              "fill-opacity": [
-                "step",
-                ["get", "score"],
-                0,
-                MIN_VISIBLE_SCORE,
-                0.7,
-              ],
+              "fill-opacity": 0.7,
               "fill-outline-color": "transparent",
               "fill-antialias": false,
             },
