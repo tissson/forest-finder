@@ -41,13 +41,17 @@ const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
-/** Bygger en cirka 5×5 km stor zon runt väderpunktens centrum. */
+/**
+ * Bygger en zon-polygon som täcker hela sitt rutnätsfält med överlapp,
+ * så att färgytan blir sammanhängande utan vita glipor. Rutnätet i
+ * databasen ligger 0.27–0.31° (lat) och 0.49–0.71° (lon) mellan zoner,
+ * så halvstorlekarna är satta strax över halva största avståndet.
+ */
 function pointToZonePolygon(coordinates: [number, number]): Polygon {
   const [longitude, latitude] = coordinates;
 
-  // Robusta gradsteg för Norden (~60°N) med täckning och överlapp
-  const halfLat = 0.035; // ~3.8 km
-  const halfLon = 0.065; // ~3.6 km
+  const halfLat = 0.165; // > 0.3144 / 2 — täcker bredsta lat-avståndet
+  const halfLon = 0.375; // > 0.7102 / 2 — täcker bredsta lon-avståndet
 
   return {
     type: 'Polygon',
