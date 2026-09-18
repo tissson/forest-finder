@@ -226,8 +226,9 @@ export function Map({
 
       // Klick-hantering via det osynliga klicklagret
       map.on("click", CLICK_POINTS_LAYER_ID, (e: MapLayerMouseEvent) => {
-        if (!e.features || e.features.length === 0) return;
-        const props = e.features[0].properties as Record<string, number | null>;
+        const feature = e.features?.[0];
+        if (!feature) return;
+        const props = feature.properties as Record<string, number | null>;
         onFeatureClick?.(props);
       });
 
