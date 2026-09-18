@@ -273,6 +273,11 @@ export const Map: React.FC<MapProps> = ({
           );
           geojson = {
             type: "FeatureCollection",
+            metadata: {
+              layer: "moisture",
+              obs_date: responses[0]?.metadata.obs_date ?? obsDate ?? null,
+              count: responses.reduce((count, response) => count + response.features.length, 0),
+            },
             features: responses.flatMap((response) => response.features),
           };
         } else {
@@ -285,6 +290,11 @@ export const Map: React.FC<MapProps> = ({
           );
           geojson = {
             type: "FeatureCollection",
+            metadata: {
+              species_id: speciesId,
+              obs_date: responses[0]?.metadata.obs_date ?? obsDate ?? null,
+              count: responses.reduce((count, response) => count + response.features.length, 0),
+            },
             features: responses.flatMap((response) => response.features),
           };
         }
