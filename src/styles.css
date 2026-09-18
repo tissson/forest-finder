@@ -107,16 +107,16 @@
   --berry: oklch(0.58 0.22 332);
   --mushroom: oklch(0.69 0.17 67);
   --moisture: oklch(0.59 0.14 213);
-  --map-mushroom-low: oklch(0.52 0.11 146);
-  --map-mushroom-mid: oklch(0.76 0.16 87);
-  --map-mushroom-high: oklch(0.7 0.19 53);
-  --map-berry-low: oklch(0.58 0.18 292);
-  --map-berry-mid: oklch(0.65 0.22 330);
-  --map-berry-high: oklch(0.69 0.21 12);
-  --map-moisture-low: oklch(0.63 0.1 190);
-  --map-moisture-mid: oklch(0.64 0.15 230);
-  --map-moisture-high: oklch(0.5 0.19 258);
-  --map-data-outline: oklch(0.29 0.05 150);
+  --map-mushroom-low: #39764e;
+  --map-mushroom-mid: #d7b443;
+  --map-mushroom-high: #e77527;
+  --map-berry-low: #7656bc;
+  --map-berry-mid: #c7469c;
+  --map-berry-high: #eb5b73;
+  --map-moisture-low: #3c9b91;
+  --map-moisture-mid: #318bc0;
+  --map-moisture-high: #3d56c5;
+  --map-data-outline: #314e3a;
 }
 
 .dark {
