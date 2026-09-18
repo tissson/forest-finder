@@ -1,287 +1,169 @@
 /**
  * src/components/Map.tsx
+ * =======================
+ * Kartkomponent byggd med MapLibre GL JS.
+ * Renderar artprognoser och fuktskikt som en sömlös heatmap
+ * som flyter ihop mjukt över kartan.
  */
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import {
-  Map as MapLibreMap,
-  NavigationControl,
-  GeolocateControl,
-  setWorkerUrl,
-  type GeoJSONSource,
-  type MapLayerMouseEvent,
-} from "maplibre-gl";
+import React, { useEffect, useRef, useState } from "react";
+import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { point } from "@turf/helpers";
-import type { Feature, FeatureCollection, GeoJsonProperties, MultiPolygon, Point, Polygon } from "geojson";
-import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from "../lib/api";
-import swedenLandData from "../data/sweden-land.json";
+import {
+  getPredictions,
+  getMoistureLayer,
+  LayerSelection,
+  PredictionsResponse,
+  MoistureLayerResponse,
+} from "../lib/api";
 
-setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
-
-const PREDICTIONS_SOURCE_ID = "fungi-data";
-const HEATMAP_LAYER_ID = "fungi-heatmap";
-const CLICK_LAYER_ID = "fungi-click-target";
-const MOVE_DEBOUNCE_MS = 400;
-const SWEDEN_BOUNDS: [[number, number], [number, number]] = [
-  [10, 55],
-  [24, 69],
-];
-const MIN_VISIBLE_VALUE = 0.08;
-const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
-
-const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: "FeatureCollection", features: [] };
-
-/**
- * Bygger en ren Point-feature med det normaliserade score-värdet i
- * properties -- ersätter tidigare createGridPolygonFeature(). Se
- * svarstexten om varför polygon-gittret byttes mot punkter: ett
- * heatmap-lager i MapLibre kräver Point-geometrier (det är
- * heatmap-radius/heatmap-intensity som skapar den sammansmälta ytan,
- * inte geometrin själv).
- */
-function createScoredPointFeature(coordinates: [number, number], properties: GeoJsonProperties): Feature<Point> {
-  return {
-    type: "Feature",
-    geometry: { type: "Point", coordinates },
-    properties,
-  };
+interface MapProps {
+  layerSelection?: LayerSelection;
+  obsDate?: string;
 }
 
-function toRenderableFeatureCollection(
-  layer: LayerSelection,
-  response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
-): FeatureCollection {
-  if (layer.type === "species") {
-    const r = response as Awaited<ReturnType<typeof getPredictions>>;
-    return {
-      type: "FeatureCollection",
-      features: (r.features || [])
-        .filter(
-          (f) =>
-            (f.properties?.score_total ?? 0) > MIN_VISIBLE_VALUE &&
-            (f.properties?.score_forest ?? 0) > 0 &&
-            isOnSwedishLand(f.geometry.coordinates),
-        )
-        .map((f) => {
-          const rawScore = f.properties?.score_total ?? 0;
-          const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
-          return createScoredPointFeature(f.geometry.coordinates, {
-            ...f.properties,
-            score: Math.max(0, Math.min(1, normalizedScore)),
-          });
-        }),
-    };
-  }
-  const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
-  return {
-    type: "FeatureCollection",
-    features: (r.features || [])
-      .filter((f) => (f.properties?.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates))
-      .map((f) => {
-        const rawScore = f.properties?.moisture_score ?? 0;
-        const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
-        return createScoredPointFeature(f.geometry.coordinates, {
-          ...f.properties,
-          score: Math.max(0, Math.min(1, normalizedScore)),
-        });
-      }),
-  };
-}
+const PREDICTIONS_SOURCE_ID = "predictions-source";
+const HEATMAP_LAYER_ID = "predictions-heatmap";
 
-function isOnSwedishLand(coordinates: [number, number]): boolean {
-  return booleanPointInPolygon(point(coordinates), SWEDEN_LAND);
-}
+export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<maplibregl.Map | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-export interface MapProps {
-  layer: LayerSelection | null;
-  minScore?: number;
-  onError?: (error: ApiError) => void;
-  onFeatureCountChange?: (count: number) => void;
-  onFeatureClick?: (properties: Record<string, number | null>) => void;
-  className?: string;
-  initialCenter?: [number, number];
-  initialZoom?: number;
-  focusTarget?: { center: [number, number]; key: number } | null;
-}
-
-export function Map({
-  layer,
-  minScore = 0.05,
-  onError,
-  onFeatureCountChange,
-  onFeatureClick,
-  className = "relative h-full w-full",
-  initialCenter = [15, 62],
-  initialZoom = 5,
-  focusTarget = null,
-}: MapProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<MapLibreMap | null>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [mapReady, setMapReady] = useState(false);
-
-  const layerRef = useRef(layer);
-  const minScoreRef = useRef(minScore);
-  layerRef.current = layer;
-  minScoreRef.current = minScore;
-
-  const fetchAndRenderLayer = useCallback(async () => {
-    const map = mapRef.current;
-    if (!map) return;
-
-    const currentLayer = layerRef.current;
-    const source = map.getSource(PREDICTIONS_SOURCE_ID) as GeoJSONSource | undefined;
-
-    if (currentLayer === null) {
-      source?.setData(EMPTY_FEATURE_COLLECTION);
-      onFeatureCountChange?.(0);
-      return;
-    }
-
-    const bounds = map.getBounds();
-    const bbox: [number, number, number, number] = [
-      bounds.getWest(),
-      bounds.getSouth(),
-      bounds.getEast(),
-      bounds.getNorth(),
-    ];
-    try {
-      const response =
-        currentLayer.type === "species"
-          ? await getPredictions(bbox, currentLayer.speciesId, { minScore: minScoreRef.current })
-          : await getMoistureLayer(bbox);
-
-      const rendered = toRenderableFeatureCollection(currentLayer, response);
-      source?.setData(rendered);
-      onFeatureCountChange?.(rendered.features.length);
-    } catch (err) {
-      onError?.(err instanceof ApiError ? err : new ApiError(0, err instanceof Error ? err.message : "Okänt fel"));
-      source?.setData(EMPTY_FEATURE_COLLECTION);
-    }
-  }, [onError, onFeatureCountChange]);
-
-  const scheduleFetch = useCallback(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(fetchAndRenderLayer, MOVE_DEBOUNCE_MS);
-  }, [fetchAndRenderLayer]);
-
+  // 1. Initialisera MapLibre-kartan
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
+    if (!mapContainerRef.current || mapRef.current) return;
 
-    const map = new MapLibreMap({
-      container: containerRef.current,
+    const map = new maplibregl.Map({
+      container: mapContainerRef.current,
       style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
-      center: initialCenter,
-      zoom: initialZoom,
-      maxBounds: SWEDEN_BOUNDS,
+      center: [15.2, 62.0], // Centrerat över Sverige
+      zoom: 5,
     });
 
-    if (!window.matchMedia("(max-width: 767px)").matches) {
-      map.addControl(new NavigationControl(), "top-right");
-    }
-    map.addControl(
-      new GeolocateControl({
-        positionOptions: { enableHighAccuracy: true },
-        trackUserLocation: true,
-      }),
-      "bottom-right",
-    );
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
     map.on("load", () => {
-      map.addSource(PREDICTIONS_SOURCE_ID, { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
-
-      map.addLayer({
-        id: HEATMAP_LAYER_ID,
-        type: "heatmap",
-        source: PREDICTIONS_SOURCE_ID,
-        paint: {
-          "heatmap-weight": ["interpolate", ["linear"], ["get", "score"], 0, 0, 1, 1],
-          "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 9, 3],
-          "heatmap-color": [
-            "interpolate",
-            ["linear"],
-            ["heatmap-density"],
-            0,
-            "rgba(0, 0, 0, 0)",
-            0.2,
-            "rgba(34, 197, 94, 0.4)",
-            0.4,
-            "rgba(234, 179, 8, 0.65)",
-            0.7,
-            "rgba(249, 115, 22, 0.8)",
-            0.9,
-            "rgba(239, 68, 68, 0.9)",
-          ],
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 15, 7, 35, 11, 80, 15, 180],
-          "heatmap-opacity": 0.75,
-        },
-      });
-
-      // Osynligt klick-mål ovanpå heatmap-lagret. Ett heatmap-lager är
-      // fortfarande punkt-backat under huven, men dess hit-test-yta
-      // följer bara de exakta punktkoordinaterna, inte den synliga,
-      // mjukt uttonande glöden heatmap-radius målar upp -- ett klick
-      // mitt i en varm zon MELLAN två faktiska datapunkter hade annars
-      // ofta missat. Detta circle-lager ger en generös, zoom-skalande
-      // klickyta utan att synas (circle-opacity: 0), och är det enda
-      // lagret click/mouseenter/mouseleave nu är kopplade till.
-      map.addLayer({
-        id: CLICK_LAYER_ID,
-        type: "circle",
-        source: PREDICTIONS_SOURCE_ID,
-        paint: {
-          "circle-opacity": 0,
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 3, 10, 8, 25, 12, 45],
-        },
-      });
-
-      map.on("click", CLICK_LAYER_ID, (e: MapLayerMouseEvent) => {
-        const feature = e.features?.[0];
-        if (!feature) return;
-        const props = feature.properties as Record<string, number | null>;
-        onFeatureClick?.(props);
-      });
-
-      map.on("mouseenter", CLICK_LAYER_ID, () => {
-        map.getCanvas().style.cursor = "pointer";
-      });
-
-      map.on("mouseleave", CLICK_LAYER_ID, () => {
-        map.getCanvas().style.cursor = "";
-      });
-
-      mapRef.current = map;
-      setMapReady(true);
+      setIsLoaded(true);
     });
 
+    mapRef.current = map;
+
     return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
       map.remove();
       mapRef.current = null;
     };
   }, []);
 
+  // 2. Hämta data och uppdatera heatmap-lagret
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !mapReady) return;
-    map.on("moveend", scheduleFetch);
-    return () => {
-      map.off("moveend", scheduleFetch);
+    if (!map || !isLoaded) return;
+
+    const fetchDataAndRender = async () => {
+      const bounds = map.getBounds();
+      const bbox: [number, number, number, number] = [
+        bounds.getWest(),
+        bounds.getSouth(),
+        bounds.getEast(),
+        bounds.getNorth(),
+      ];
+
+      try {
+        let geojson: PredictionsResponse | MoistureLayerResponse;
+
+        if (layerSelection?.type === "moisture") {
+          geojson = await getMoistureLayer(bbox, obsDate, 10000);
+        } else {
+          const speciesId = layerSelection?.type === "species" ? layerSelection.speciesId : 1;
+          geojson = await getPredictions(bbox, speciesId, { obsDate, limit: 10000 });
+        }
+
+        // Säkerställ att alla features har en enhetlig score_total för heatmap-viktningen
+        const processedFeatures = geojson.features.map((f) => ({
+          ...f,
+          properties: {
+            ...f.properties,
+            score_total:
+              "score_total" in f.properties
+                ? f.properties.score_total
+                : ((f.properties as { moisture_score?: number | null }).moisture_score ?? 0),
+          },
+        }));
+
+        const featureCollection = {
+          type: "FeatureCollection" as const,
+          features: processedFeatures,
+        };
+
+        // Uppdatera eller skapa GeoJSON-källa
+        if (map.getSource(PREDICTIONS_SOURCE_ID)) {
+          (map.getSource(PREDICTIONS_SOURCE_ID) as maplibregl.GeoJSONSource).setData(featureCollection);
+        } else {
+          map.addSource(PREDICTIONS_SOURCE_ID, {
+            type: "geojson",
+            data: featureCollection,
+          });
+        }
+
+        // Skapa heatmap-lager om det inte finns
+        if (!map.getLayer(HEATMAP_LAYER_ID)) {
+          map.addLayer({
+            id: HEATMAP_LAYER_ID,
+            type: "heatmap",
+            source: PREDICTIONS_SOURCE_ID,
+            maxzoom: 15,
+            paint: {
+              // Viktas mot score_total (0.0 till 1.0)
+              "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1],
+              // Intensitet som skala över zoomnivåer
+              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5],
+              // Färgskala från transparent -> gul -> grön -> mörkgrön
+              "heatmap-color": [
+                "interpolate",
+                ["linear"],
+                ["heatmap-density"],
+                0,
+                "rgba(255, 255, 255, 0)",
+                0.2,
+                "rgba(250, 204, 21, 0.45)",
+                0.5,
+                "rgba(34, 197, 94, 0.70)",
+                0.8,
+                "rgba(21, 128, 61, 0.85)",
+                1.0,
+                "rgba(15, 81, 50, 0.95)",
+              ],
+              // Dynamisk radie som gör att datapunkterna flyter ihop vid utzoomning
+              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80],
+              "heatmap-opacity": 0.8,
+            },
+          });
+        }
+      } catch (err) {
+        console.error("Kunde inte hämta kartdata:", err);
+      }
     };
-  }, [mapReady, scheduleFetch]);
 
-  useEffect(() => {
-    if (!mapReady) return;
-    fetchAndRenderLayer();
-  }, [mapReady, layer, minScore, fetchAndRenderLayer]);
+    fetchDataAndRender();
 
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !mapReady || !focusTarget) return;
-    map.flyTo({ center: focusTarget.center, zoom: 8, duration: 900, essential: true });
-  }, [focusTarget, mapReady]);
+    // Ladda om data när användaren panorerar eller zoomar
+    const handleMoveEnd = () => {
+      fetchDataAndRender();
+    };
 
-  return <div ref={containerRef} className={className} data-testid="map-container" />;
-}
+    map.on("moveend", handleMoveEnd);
+
+    return () => {
+      map.off("moveend", handleMoveEnd);
+    };
+  }, [isLoaded, layerSelection, obsDate]);
+
+  return (
+    <div className="relative w-full h-full min-h-[400px]">
+      <div ref={mapContainerRef} className="absolute inset-0 w-full h-full" />
+    </div>
+  );
+};
+
+export default Map;
