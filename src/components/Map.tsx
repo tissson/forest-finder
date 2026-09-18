@@ -73,7 +73,7 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
         let geojson: PredictionsResponse | MoistureLayerResponse;
 
         if (layerSelection?.type === "moisture") {
-          geojson = await getMoistureLayer(bbox, obsDate, 10000);
+          geojson = await getMoistureLayer(bbox, obsDate);
         } else {
           const speciesId = layerSelection?.type === "species" ? layerSelection.speciesId : 1;
           geojson = await getPredictions(bbox, speciesId, { obsDate, limit: 10000 });
@@ -86,14 +86,14 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
             ...f.properties,
             score_total:
               "score_total" in f.properties
-                ? f.properties.score_total
+                ? (f.properties as { score_total: number }).score_total
                 : ((f.properties as { moisture_score?: number | null }).moisture_score ?? 0),
           },
         }));
 
-        const featureCollection = {
-          type: "FeatureCollection" as const,
-          features: processedFeatures,
+        const featureCollection: GeoJSON.FeatureCollection = {
+          type: "FeatureCollection",
+          features: processedFeatures as unknown as GeoJSON.Feature[],
         };
 
         // Uppdatera eller skapa GeoJSON-källa
@@ -115,9 +115,29 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
             maxzoom: 15,
             paint: {
               // Viktas mot score_total (0.0 till 1.0)
-              "heatmap-weight": ["interpolate", ["linear"], ["get", "score_total"], 0, 0, 1, 1],
+              "heatmap-weight": [
+                "interpolate",
+                ["linear"],
+                ["get", "score_total"],
+                0,
+                0,
+                1,
+                1,
+              ] as maplibregl.ExpressionSpecification,
+
               // Intensitet som skala över zoomnivåer
-              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 9, 3.5],
+              "heatmap-intensity": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0,
+                1,
+                6,
+                2,
+                9,
+                3.5,
+              ] as maplibregl.ExpressionSpecification,
+
               // Färgskala från transparent -> gul -> grön -> mörkgrön
               "heatmap-color": [
                 "interpolate",
@@ -133,9 +153,21 @@ export const Map: React.FC<MapProps> = ({ layerSelection, obsDate }) => {
                 "rgba(21, 128, 61, 0.85)",
                 1.0,
                 "rgba(15, 81, 50, 0.95)",
-              ],
+              ] as maplibregl.ExpressionSpecification,
+
               // Dynamisk radie som gör att datapunkterna flyter ihop vid utzoomning
-              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 20, 6, 45, 10, 80],
+              "heatmap-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0,
+                20,
+                6,
+                45,
+                10,
+                80,
+              ] as maplibregl.ExpressionSpecification,
+
               "heatmap-opacity": 0.8,
             },
           });
