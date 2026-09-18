@@ -221,16 +221,16 @@ export function Map({
         paint: {
           'fill-color': [
             'interpolate',
-            ['linear'],
+            ['cubic-bezier', 0.42, 0, 0.58, 1],
             ['get', 'score'],
-            0, 'transparent',
-            0.2, 'rgba(59, 130, 246, 0.4)',
-            0.5, 'rgba(16, 185, 129, 0.5)',
-            0.8, 'rgba(245, 158, 11, 0.65)',
-            1, 'rgba(239, 68, 68, 0.8)',
+            0.00, 'transparent',
+            0.15, 'rgba(147, 197, 253, 0.35)',
+            0.40, 'rgba(52, 211, 153, 0.55)',
+            0.70, 'rgba(251, 146, 60, 0.75)',
+            0.90, 'rgba(225, 29, 72, 0.85)',
           ],
           'fill-outline-color': 'transparent',
-          'fill-opacity': 0.75,
+          'fill-opacity': 0.78,
         },
       });
 
