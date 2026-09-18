@@ -29,16 +29,19 @@ import type { FeatureCollection } from 'geojson';
 import { getPredictions, getMoistureLayer, ApiError, type LayerSelection } from '../lib/api';
 
 const LAYER_SOURCE_ID = 'layer-source';
-const LAYER_CIRCLE_ID = 'layer-circles';
+const LAYER_HEATMAP_ID = 'layer-grid-heatmap';
+const LAYER_FILL_ID = 'layer-grid-fill';
+const LAYER_OUTLINE_ID = 'layer-grid-outline';
 const MOVE_DEBOUNCE_MS = 400;
-const MAX_BBOX_AREA_DEG2 = 25; // matchar backendens gräns, se api_server.py:s parse_bbox()
+const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
+const GRID_CELL_KM = 5;
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
 /**
  * Normaliserar VILKEN som helst av våra två lagertyper till en
  * gemensam form där coloring-värdet alltid ligger under properties.value
- * -- det gör att MapLibres paint-uttryck (circle-color/circle-radius)
+ * -- det gör att MapLibres paint-uttryck
  * kan vara STATISKA och alltid referera ['get', 'value'], oavsett om
  * det är score_total (art) eller moisture_score (fuktighet) som visas.
  * Originalfälten behålls också, så onFeatureClick fortfarande får
@@ -53,21 +56,42 @@ function toRenderableFeatureCollection(
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
       type: 'FeatureCollection',
-      features: r.features.map((f) => ({
-        type: 'Feature' as const,
-        geometry: f.geometry,
-        properties: { value: f.properties.score_total, ...f.properties },
-      })),
+      features: r.features.flatMap((f) => {
+        const properties = { value: f.properties.score_total, ...f.properties };
+        return [
+          { type: 'Feature' as const, geometry: pointToGridCell(f.geometry.coordinates), properties },
+          { type: 'Feature' as const, geometry: f.geometry, properties },
+        ];
+      }),
     };
   }
   const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
   return {
     type: 'FeatureCollection',
-    features: r.features.map((f) => ({
-      type: 'Feature' as const,
-      geometry: f.geometry,
-      properties: { value: f.properties.moisture_score ?? 0, ...f.properties },
-    })),
+    features: r.features.flatMap((f) => {
+      const properties = { value: f.properties.moisture_score ?? 0, ...f.properties };
+      return [
+        { type: 'Feature' as const, geometry: pointToGridCell(f.geometry.coordinates), properties },
+        { type: 'Feature' as const, geometry: f.geometry, properties },
+      ];
+    }),
+  };
+}
+
+/** Bygger den anonymiserade 5×5 km-rutan runt databasens zoncentrum. */
+function pointToGridCell([lon, lat]: [number, number]) {
+  const halfLat = (GRID_CELL_KM / 2) / 111.32;
+  const halfLon = (GRID_CELL_KM / 2) / (111.32 * Math.cos((lat * Math.PI) / 180));
+
+  return {
+    type: 'Polygon' as const,
+    coordinates: [[
+      [lon - halfLon, lat - halfLat],
+      [lon + halfLon, lat - halfLat],
+      [lon + halfLon, lat + halfLat],
+      [lon - halfLon, lat + halfLat],
+      [lon - halfLon, lat - halfLat],
+    ]],
   };
 }
 
@@ -93,8 +117,8 @@ export function Map({
   onFeatureCountChange,
   onFeatureClick,
   className = 'relative h-full w-full',
-  initialCenter = [16.3, 58.6],
-  initialZoom = 9,
+  initialCenter = [15, 62],
+  initialZoom = 5,
 }: MapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -128,13 +152,6 @@ export function Map({
       bounds.getEast(),
       bounds.getNorth(),
     ];
-    const area = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1]);
-    if (area > MAX_BBOX_AREA_DEG2) {
-      // Zooma-in-krav istället för att låta backend avvisa med 400.
-      onFeatureCountChange?.(0);
-      return;
-    }
-
     try {
       const response =
         currentLayer.type === 'species'
@@ -174,6 +191,7 @@ export function Map({
       },
       center: initialCenter,
       zoom: initialZoom,
+      maxBounds: SWEDEN_BOUNDS,
     });
 
     map.addControl(new NavigationControl(), 'top-right');
@@ -186,37 +204,74 @@ export function Map({
       map.addSource(LAYER_SOURCE_ID, { type: 'geojson', data: EMPTY_FEATURE_COLLECTION });
 
       map.addLayer({
-        id: LAYER_CIRCLE_ID,
-        type: 'circle',
+        id: LAYER_HEATMAP_ID,
+        type: 'heatmap',
         source: LAYER_SOURCE_ID,
         paint: {
-          // Refererar ALLTID 'value' -- se toRenderableFeatureCollection
-          // för normaliseringen som gör detta möjligt oavsett lagertyp.
-          'circle-radius': ['interpolate', ['linear'], ['get', 'value'], 0, 3, 1, 9],
-          'circle-color': [
+          'heatmap-weight': ['coalesce', ['to-number', ['get', 'value']], 0],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 5, 0.9, 9, 1.35],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 5, 18, 9, 28],
+          'heatmap-color': [
             'interpolate',
             ['linear'],
-            ['get', 'value'],
-            0.0, '#8B7355',
-            0.5, '#D4A24C',
-            1.0, '#E85D2D',
+            ['heatmap-density'],
+            0, 'rgba(49, 86, 58, 0)',
+            0.2, '#31563a',
+            0.4, '#739a48',
+            0.6, '#d7b445',
+            0.8, '#ef812f',
+            1, '#c93624',
           ],
-          'circle-opacity': 0.85,
-          'circle-stroke-width': 1,
-          'circle-stroke-color': 'rgba(16, 22, 13, 0.6)',
+          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.76, 9, 0.18],
         },
       });
 
-      map.on('click', LAYER_CIRCLE_ID, (e: MapLayerMouseEvent) => {
+      map.addLayer({
+        id: LAYER_FILL_ID,
+        type: 'fill',
+        source: LAYER_SOURCE_ID,
+        paint: {
+          'fill-color': [
+            'interpolate',
+            ['linear'],
+            ['coalesce', ['to-number', ['get', 'value']], 0],
+            0, '#31563a',
+            0.25, '#739a48',
+            0.5, '#d7b445',
+            0.75, '#ef812f',
+            1, '#c93624',
+          ],
+          'fill-opacity': [
+            'interpolate',
+            ['linear'],
+            ['coalesce', ['to-number', ['get', 'value']], 0],
+            0, 0.42,
+            1, 0.88,
+          ],
+        },
+      });
+
+      map.addLayer({
+        id: LAYER_OUTLINE_ID,
+        type: 'line',
+        source: LAYER_SOURCE_ID,
+        paint: {
+          'line-color': '#263c2c',
+          'line-opacity': 0.72,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.35, 9, 1],
+        },
+      });
+
+      map.on('click', LAYER_FILL_ID, (e: MapLayerMouseEvent) => {
         const feature = e.features?.[0];
         if (feature && onFeatureClick) {
           onFeatureClick(feature.properties as Record<string, number | null>);
         }
       });
-      map.on('mouseenter', LAYER_CIRCLE_ID, () => {
+      map.on('mouseenter', LAYER_FILL_ID, () => {
         map.getCanvas().style.cursor = 'pointer';
       });
-      map.on('mouseleave', LAYER_CIRCLE_ID, () => {
+      map.on('mouseleave', LAYER_FILL_ID, () => {
         map.getCanvas().style.cursor = '';
       });
 
