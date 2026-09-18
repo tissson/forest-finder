@@ -37,26 +37,30 @@ const PREDICTIONS_SOURCE_ID = 'predictions-source';
 const MOVE_DEBOUNCE_MS = 400;
 const SWEDEN_BOUNDS: [[number, number], [number, number]] = [[10, 55], [24, 69]];
 const MIN_VISIBLE_VALUE = 0.08;
-const GRID_CELL_KM = 5;
 const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>;
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
-/** Bygger en cirka 5×5 km stor zon runt väderpunktens centrum. */
+/**
+ * Bygger en zon-polygon som täcker hela sitt rutnätsfält med överlapp,
+ * så att färgytan blir sammanhängande utan vita glipor. Rutnätet i
+ * databasen ligger 0.27–0.31° (lat) och 0.49–0.71° (lon) mellan zoner,
+ * så halvstorlekarna är satta strax över halva största avståndet.
+ */
 function pointToZonePolygon(coordinates: [number, number]): Polygon {
   const [longitude, latitude] = coordinates;
-  const halfLatitudeDegrees = (GRID_CELL_KM / 2) / 111.32;
-  const longitudeKmPerDegree = 111.32 * Math.cos((latitude * Math.PI) / 180);
-  const halfLongitudeDegrees = (GRID_CELL_KM / 2) / longitudeKmPerDegree;
+
+  const halfLat = 0.16;  // ≥ 0.3144 / 2 — täcker bredaste lat-avståndet
+  const halfLon = 0.36;  // ≥ 0.7102 / 2 — täcker bredaste lon-avståndet
 
   return {
     type: 'Polygon',
     coordinates: [[
-      [longitude - halfLongitudeDegrees, latitude - halfLatitudeDegrees],
-      [longitude + halfLongitudeDegrees, latitude - halfLatitudeDegrees],
-      [longitude + halfLongitudeDegrees, latitude + halfLatitudeDegrees],
-      [longitude - halfLongitudeDegrees, latitude + halfLatitudeDegrees],
-      [longitude - halfLongitudeDegrees, latitude - halfLatitudeDegrees],
+      [longitude - halfLon, latitude - halfLat],
+      [longitude + halfLon, latitude - halfLat],
+      [longitude + halfLon, latitude + halfLat],
+      [longitude - halfLon, latitude + halfLat],
+      [longitude - halfLon, latitude - halfLat],
     ]],
   };
 }
@@ -221,16 +225,16 @@ export function Map({
         paint: {
           'fill-color': [
             'interpolate',
-            ['linear'],
+            ['cubic-bezier', 0.42, 0, 0.58, 1],
             ['get', 'score'],
-            0, 'transparent',
-            0.2, 'rgba(59, 130, 246, 0.4)',
-            0.5, 'rgba(16, 185, 129, 0.5)',
-            0.8, 'rgba(245, 158, 11, 0.65)',
-            1, 'rgba(239, 68, 68, 0.8)',
+            0.00, 'transparent',
+            0.15, 'rgba(147, 197, 253, 0.35)',
+            0.40, 'rgba(52, 211, 153, 0.55)',
+            0.70, 'rgba(251, 146, 60, 0.75)',
+            0.90, 'rgba(225, 29, 72, 0.85)',
           ],
           'fill-outline-color': 'transparent',
-          'fill-opacity': 0.75,
+          'fill-opacity': 0.78,
         },
       });
 
