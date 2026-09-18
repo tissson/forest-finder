@@ -1,10 +1,5 @@
 /**
  * src/components/Map.tsx
- * ========================
- * Interaktiv karta som visar ANTINGEN en arts prognos (score_total)
- * ELLER det generella fuktighetslagret (moisture_score), beroende på
- * `layer`-propen -- samma union-typ som LayerSelector.tsx producerar
- * (LayerSelection, definierad i lib/api.ts).
  */
 
 import { useEffect, useRef, useState, useCallback } from "react";
@@ -38,10 +33,6 @@ const SWEDEN_LAND = swedenLandData as unknown as Feature<Polygon | MultiPolygon>
 
 const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: "FeatureCollection", features: [] };
 
-/**
- * Normaliserar VILKEN som helst av våra två lagertyper till en
- * gemensam form där heatmap-vikten alltid ligger under properties.score.
- */
 function toRenderableFeatureCollection(
   layer: LayerSelection,
   response: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>,
@@ -50,34 +41,48 @@ function toRenderableFeatureCollection(
     const r = response as Awaited<ReturnType<typeof getPredictions>>;
     return {
       type: "FeatureCollection",
-      features: r.features
+      features: (r.features || [])
         .filter(
           (f) =>
-            f.properties.score_total > MIN_VISIBLE_VALUE &&
-            (f.properties.score_forest ?? 0) > 0 &&
+            (f.properties?.score_total ?? 0) > MIN_VISIBLE_VALUE &&
+            (f.properties?.score_forest ?? 0) > 0 &&
             isOnSwedishLand(f.geometry.coordinates),
         )
-        .map((f) => ({
-          type: "Feature" as const,
-          geometry: f.geometry,
-          properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.score_total)) },
-        })),
+        .map((f) => {
+          const rawScore = f.properties?.score_total ?? 0;
+          // Normalisera om backendet skulle skicka 0-100 istället för 0-1
+          const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
+          return {
+            type: "Feature" as const,
+            geometry: f.geometry,
+            properties: {
+              ...f.properties,
+              score: Math.max(0, Math.min(1, normalizedScore)),
+            },
+          };
+        }),
     };
   }
   const r = response as Awaited<ReturnType<typeof getMoistureLayer>>;
   return {
     type: "FeatureCollection",
-    features: r.features
-      .filter((f) => (f.properties.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates))
-      .map((f) => ({
-        type: "Feature" as const,
-        geometry: f.geometry,
-        properties: { ...f.properties, score: Math.max(0, Math.min(1, f.properties.moisture_score ?? 0)) },
-      })),
+    features: (r.features || [])
+      .filter((f) => (f.properties?.moisture_score ?? 0) > MIN_VISIBLE_VALUE && isOnSwedishLand(f.geometry.coordinates))
+      .map((f) => {
+        const rawScore = f.properties?.moisture_score ?? 0;
+        const normalizedScore = rawScore > 1 ? rawScore / 100 : rawScore;
+        return {
+          type: "Feature" as const,
+          geometry: f.geometry,
+          properties: {
+            ...f.properties,
+            score: Math.max(0, Math.min(1, normalizedScore)),
+          },
+        };
+      }),
   };
 }
 
-/** Tar bort hav och större insjöar med en lokal landmask för Sverige. */
 function isOnSwedishLand(coordinates: [number, number]): boolean {
   return booleanPointInPolygon(point(coordinates), SWEDEN_LAND);
 }
@@ -178,41 +183,41 @@ export function Map({
     );
 
     map.on("load", () => {
-      // 1. Lägg till GeoJSON-källan
       map.addSource(PREDICTIONS_SOURCE_ID, { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
 
-      // 2. RIKTIGT HEATMAP-LAGER (WebGL-beräknad densitet)
+      // RIKTIG HEATMAP MED AVSTÄMDA TRÖSKELVÄRDEN
       map.addLayer({
         id: HEATMAP_LAYER_ID,
         type: "heatmap",
         source: PREDICTIONS_SOURCE_ID,
         paint: {
-          // Använd 'score' (0.0 - 1.0) från properties
+          // Linjär viktning utifrån score (0.0 - 1.0)
           "heatmap-weight": ["interpolate", ["linear"], ["get", "score"], 0, 0, 1, 1],
-          "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 9, 3],
-          // Mjuk färgskala: Genomskinlig -> Grön -> Gul -> Orange -> Lila
+          // Sänk intensiteten så att täta gitterpunkter inte övermättar färgerna direkt
+          "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 3, 0.5, 8, 1.2, 12, 2.0],
+          // Färgsteg baserade på uträknad samlad densitet
           "heatmap-color": [
             "interpolate",
             ["linear"],
             ["heatmap-density"],
             0,
             "rgba(0,0,0,0)",
-            0.2,
-            "rgba(34,197,94,0.45)",
-            0.5,
-            "rgba(234,179,8,0.75)",
-            0.8,
-            "rgba(249,115,22,0.88)",
-            1.0,
-            "rgba(168,85,247,0.95)",
+            0.15,
+            "rgba(34,197,94,0.35)", // Låg fuktighet/score (Ljusgrön)
+            0.4,
+            "rgba(234,179,8,0.65)", // Medel (Gul)
+            0.7,
+            "rgba(249,115,22,0.85)", // Hög (Orange)
+            0.95,
+            "rgba(168,85,247,0.95)", // Mycket hög (Lila)
           ],
-          // Stor radie vid zoom level 7 (50px) gör att 100m/grid-punkterna smälter ihop helt
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 15, 7, 50, 12, 20],
+          // Dynamisk radie anpassad för gitteravstånd vid olika zoomnivåer
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 4, 10, 7, 25, 10, 35, 14, 50],
           "heatmap-opacity": 0.8,
         },
       });
 
-      // 3. OSYNLIGT CIRKELLAGER (Möjliggör klickhändelser på heatmapen)
+      // OSYNLIGT KIKKLAGER
       map.addLayer({
         id: CLICK_POINTS_LAYER_ID,
         type: "circle",
@@ -224,7 +229,6 @@ export function Map({
         },
       });
 
-      // Klick-hantering via det osynliga klicklagret
       map.on("click", CLICK_POINTS_LAYER_ID, (e: MapLayerMouseEvent) => {
         const feature = e.features?.[0];
         if (!feature) return;
