@@ -263,6 +263,7 @@ export const Map: React.FC<MapProps> = ({
       map.off("idle", handleIdle);
       map.off("error", handleSourceError);
       if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
+      if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
       if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
     };
   }, [isLoaded, layer, obsDate, onCellClick, onError, onFeatureCountChange]);
