@@ -317,25 +317,46 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_moisture_layer: {
-        Args: {
-          p_limit?: number
-          p_max_lat: number
-          p_max_lon: number
-          p_min_lat: number
-          p_min_lon: number
-          p_obs_date?: string
-        }
-        Returns: {
-          lat: number
-          lon: number
-          moisture_score: number
-          obs_date: string
-          precip_10d_sum: number
-          precip_7d_sum: number
-          temp_mean: number
-        }[]
-      }
+      get_moisture_layer:
+        | {
+            Args: {
+              p_limit?: number
+              p_max_lat: number
+              p_max_lon: number
+              p_min_lat: number
+              p_min_lon: number
+              p_obs_date?: string
+            }
+            Returns: {
+              lat: number
+              lon: number
+              moisture_score: number
+              obs_date: string
+              precip_10d_sum: number
+              precip_7d_sum: number
+              temp_mean: number
+            }[]
+          }
+        | {
+            Args: {
+              p_limit?: number
+              p_max_lat: number
+              p_max_lon: number
+              p_min_lat: number
+              p_min_lon: number
+              p_min_score?: number
+              p_obs_date?: string
+            }
+            Returns: {
+              lat: number
+              lon: number
+              moisture_score: number
+              obs_date: string
+              precip_10d_sum: number
+              precip_7d_sum: number
+              temp_mean: number
+            }[]
+          }
       get_or_create_profile: {
         Args: never
         Returns: {
