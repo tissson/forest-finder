@@ -50,8 +50,8 @@ const EMPTY_FEATURE_COLLECTION: FeatureCollection = { type: 'FeatureCollection',
 function pointToZonePolygon(coordinates: [number, number]): Polygon {
   const [longitude, latitude] = coordinates;
 
-  const halfLat = 0.165; // > 0.3144 / 2 — täcker bredsta lat-avståndet
-  const halfLon = 0.375; // > 0.7102 / 2 — täcker bredsta lon-avståndet
+  const halfLat = 0.16;  // ≥ 0.3144 / 2 — täcker bredaste lat-avståndet
+  const halfLon = 0.36;  // ≥ 0.7102 / 2 — täcker bredaste lon-avståndet
 
   return {
     type: 'Polygon',
