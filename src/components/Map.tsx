@@ -44,12 +44,35 @@ interface MapProps {
 
 const PREDICTIONS_SOURCE_ID = "predictions-source";
 const MICROPIXEL_LAYER_ID = "fungi-micropixels";
-const MIN_VISIBLE_VALUE = 0.01;
+const MIN_VISIBLE_VALUE = 0.001;
 const MIN_MAP_ZOOM = 4.5;
 const MAX_MAP_ZOOM = 16;
 const MAP_FETCH_DEBOUNCE_MS = 300;
 // Liten marginal runt vyn så punkterna redan finns när kartan flyttas.
 const BBOX_PADDING_RATIO = 0.12;
+
+function splitBoundingBox(
+  [minLon, minLat, maxLon, maxLat]: [number, number, number, number],
+  columns: number,
+  rows: number,
+): Array<[number, number, number, number]> {
+  const width = (maxLon - minLon) / columns;
+  const height = (maxLat - minLat) / rows;
+  const boxes: Array<[number, number, number, number]> = [];
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      boxes.push([
+        minLon + column * width,
+        minLat + row * height,
+        minLon + (column + 1) * width,
+        minLat + (row + 1) * height,
+      ]);
+    }
+  }
+
+  return boxes;
+}
 
 
 // Sveriges geografiska begränsning [SW, NE]
@@ -228,7 +251,13 @@ export const Map: React.FC<MapProps> = ({
         bounds.getNorth() + paddingLat,
       ];
 
-      const lod = getPredictionLodOptions(map.getZoom());
+      const zoom = map.getZoom();
+      const baseLod = getPredictionLodOptions(zoom);
+      // Sverigevyn behöver ett tätare urval än det vanliga översiktsläget
+      // för att skogsprognosen ska bilda ett rikt mikropixelmönster.
+      const lod = zoom <= 8
+        ? { ...baseLod, limit: 12_000, minScore: MIN_VISIBLE_VALUE, step: 3 }
+        : baseLod;
       const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
       const queryKey = JSON.stringify({ bbox, lod, layer: activeLayerKey, obsDate: obsDate ?? null });
       if (queryKey === lastQueryKey) return;
@@ -236,15 +265,38 @@ export const Map: React.FC<MapProps> = ({
 
       try {
         let geojson: Awaited<ReturnType<typeof getPredictions>> | Awaited<ReturnType<typeof getMoistureLayer>>;
+        const requestBoxes = zoom <= 8 ? splitBoundingBox(bbox, 3, 2) : [bbox];
 
         if (layer?.type === "moisture") {
-          geojson = await getMoistureLayer(bbox, obsDate, lod);
+          const responses = await Promise.all(
+            requestBoxes.map((requestBox) => getMoistureLayer(requestBox, obsDate, lod)),
+          );
+          geojson = {
+            type: "FeatureCollection",
+            metadata: {
+              layer: "moisture",
+              obs_date: responses[0]?.metadata.obs_date ?? obsDate ?? null,
+              count: responses.reduce((count, response) => count + response.features.length, 0),
+            },
+            features: responses.flatMap((response) => response.features),
+          };
         } else {
           const speciesId = layer?.type === "species" ? layer.speciesId : 1;
-          geojson = await getPredictions(bbox, speciesId, {
-            ...(obsDate ? { obsDate } : {}),
-            ...lod,
-          });
+          const responses = await Promise.all(
+            requestBoxes.map((requestBox) => getPredictions(requestBox, speciesId, {
+              ...(obsDate ? { obsDate } : {}),
+              ...lod,
+            })),
+          );
+          geojson = {
+            type: "FeatureCollection",
+            metadata: {
+              species_id: speciesId,
+              obs_date: responses[0]?.metadata.obs_date ?? obsDate ?? null,
+              count: responses.reduce((count, response) => count + response.features.length, 0),
+            },
+            features: responses.flatMap((response) => response.features),
+          };
         }
 
         const landMask = await loadSwedenLandMask();
@@ -275,8 +327,9 @@ export const Map: React.FC<MapProps> = ({
                 "interpolate",
                 ["linear"],
                 ["zoom"],
-                5, 1.2,
-                9, 2.5,
+                4.5, 1.8,
+                7, 2.2,
+                9, 2.8,
                 13, 5,
                 16, 10,
               ],
@@ -285,9 +338,10 @@ export const Map: React.FC<MapProps> = ({
                 ["linear"],
                 ["get", "score"],
                 0, "rgba(0, 0, 0, 0)",
-                0.2, "rgb(74, 103, 65)",
-                0.55, "rgb(190, 145, 48)",
-                1, "rgb(176, 82, 65)",
+                0.1, "rgba(216, 180, 254, 0.55)",
+                0.4, "rgba(192, 132, 252, 0.75)",
+                0.7, "rgba(168, 85, 247, 0.9)",
+                1, "rgba(147, 51, 234, 1)",
               ],
               "circle-opacity": 0.65,
               "circle-stroke-width": 0,
