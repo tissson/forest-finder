@@ -288,15 +288,19 @@ export const Map: React.FC<MapProps> = ({
     let requestSequence = 0;
     let disposed = false;
     let lastQueryKey = "";
+    // Högsta kända råvärde för aktivt lager (nollställs när lagret byts).
+    let referenceMax = 0;
 
     const fetchDataAndRender = async () => {
       const requestId = ++requestSequence;
       const bounds = map.getBounds();
+      // Marginal på en gitterruta så att rutorna täcker hela vyn även
+      // när man zoomar in mellan två datapunkter.
       const bbox: [number, number, number, number] = [
-        bounds.getWest(),
-        bounds.getSouth(),
-        bounds.getEast(),
-        bounds.getNorth(),
+        bounds.getWest() - BBOX_PADDING_LON,
+        bounds.getSouth() - BBOX_PADDING_LAT,
+        bounds.getEast() + BBOX_PADDING_LON,
+        bounds.getNorth() + BBOX_PADDING_LAT,
       ];
       const lod = getPredictionLodOptions(map.getZoom());
       const activeLayerKey = layer?.type === "species" ? `species:${layer.speciesId}` : (layer?.type ?? "species:1");
