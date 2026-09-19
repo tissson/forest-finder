@@ -119,6 +119,41 @@ export type Database = {
         }
         Relationships: []
       }
+      species_habitat_profiles: {
+        Row: {
+          forest_optimum: number
+          forest_tolerance: number
+          moisture_optimum: number
+          moisture_tolerance: number
+          soil_seed: number
+          species_id: number
+        }
+        Insert: {
+          forest_optimum: number
+          forest_tolerance: number
+          moisture_optimum: number
+          moisture_tolerance: number
+          soil_seed: number
+          species_id: number
+        }
+        Update: {
+          forest_optimum?: number
+          forest_tolerance?: number
+          moisture_optimum?: number
+          moisture_tolerance?: number
+          soil_seed?: number
+          species_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "species_habitat_profiles_species_id_fkey"
+            columns: ["species_id"]
+            isOneToOne: true
+            referencedRelation: "species"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sweden_land_mask: {
         Row: {
           created_at: string
