@@ -38,6 +38,7 @@ const MIN_MAP_ZOOM = 5;
 const MAX_MAP_ZOOM = 16;
 const TILE_MIN_ZOOM = 5;
 const TILE_MAX_ZOOM = 12;
+const TILE_STYLE_VERSION = "species-v2";
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -48,7 +49,9 @@ const SWEDEN_BOUNDS: LngLatBoundsLike = [
 function tileUrl(layer: LayerSelection | null | undefined, obsDate?: string): string {
   const key = layer?.type === "moisture" ? "moisture" : String(layer?.type === "species" ? layer.speciesId : 1);
   const origin = typeof window === "undefined" ? "" : window.location.origin;
-  const dateQuery = obsDate ? `?date=${encodeURIComponent(obsDate)}` : "";
+  const params = new URLSearchParams({ v: TILE_STYLE_VERSION });
+  if (obsDate) params.set("date", obsDate);
+  const dateQuery = `?${params.toString()}`;
   return `${origin}/api/public/tiles/${key}/{z}/{x}/{y}${dateQuery}`;
 }
 
