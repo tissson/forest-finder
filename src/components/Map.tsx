@@ -179,9 +179,10 @@ export const Map: React.FC<MapProps> = ({
           ["linear"],
           ["zoom"],
           5, 0.15,
-          8, 0.45,
-          12, 0.7,
-          16, 0.85,
+          6, 0.22,
+          8, 0.9,
+          12, 1.3,
+          16, 1.5,
         ],
         // Grönt vid tröskeln → gult → orange, lila/djuprött ENDAST på
         // de mest intensiva topparna (density > 0.85).
