@@ -38,7 +38,7 @@ const MIN_MAP_ZOOM = 5;
 const MAX_MAP_ZOOM = 16;
 const TILE_MIN_ZOOM = 5;
 const TILE_MAX_ZOOM = 12;
-const TILE_STYLE_VERSION = "species-v2";
+const TILE_STYLE_VERSION = "species-v3-dense";
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -158,31 +158,29 @@ export const Map: React.FC<MapProps> = ({
       paint: {
         "heatmap-weight": [
           "case",
-          ["<", ["get", "score"], 0.35],
+          ["<", ["get", "score"], 0.2],
           0,
           [
             "interpolate",
             ["linear"],
             ["get", "score"],
-            0.35, 0.05,
-            0.5, 0.15,
-            0.7, 0.3,
-            0.85, 0.5,
-            1, 0.7,
+            0.2, 0.04,
+            0.35, 0.12,
+            0.5, 0.24,
+            0.7, 0.46,
+            0.85, 0.68,
+            1, 0.9,
           ],
         ],
-        // Låg intensitet: punkterna ligger så tätt att densiteten annars
-        // mättas på hela landet. Typisk skog ska landa i grönt/gult och
-        // bara de bästa fläckarna nå upp i orange/rött/lila.
+        // Den täta 2 km-källan ska flyta ihop utan att mätta hela landet.
         "heatmap-intensity": [
           "interpolate",
           ["linear"],
           ["zoom"],
-          5, 0.15,
-          6, 0.22,
-          8, 1.6,
-          12, 2.2,
-          16, 2.5,
+          5, 0.55,
+          8, 0.9,
+          12, 1.3,
+          16, 1.6,
         ],
         // Grönt vid tröskeln → gult → orange, lila/djuprött ENDAST på
         // de mest intensiva topparna (density > 0.85).
@@ -191,23 +189,23 @@ export const Map: React.FC<MapProps> = ({
           ["linear"],
           ["heatmap-density"],
           0, "rgba(0, 0, 0, 0)",
-          0.12, "rgba(34, 197, 94, 0.30)",
-          0.3, "rgba(16, 185, 129, 0.50)",
-          0.5, "rgba(234, 179, 8, 0.65)",
-          0.68, "rgba(249, 115, 22, 0.78)",
-          0.85, "rgba(219, 39, 119, 0.88)",
-          1, "rgba(107, 33, 168, 0.92)",
+          0.08, "rgba(34, 197, 94, 0.34)",
+          0.25, "rgba(16, 185, 129, 0.62)",
+          0.46, "rgba(234, 179, 8, 0.78)",
+          0.66, "rgba(249, 115, 22, 0.88)",
+          0.86, "rgba(219, 39, 119, 0.94)",
+          1, "rgba(107, 33, 168, 0.97)",
         ],
         "heatmap-radius": [
           "interpolate",
           ["linear"],
           ["zoom"],
-          5, 16,
-          8, 18,
-          12, 22,
-          16, 25,
+          5, 24,
+          8, 27,
+          12, 31,
+          16, 34,
         ],
-        "heatmap-opacity": 0.76,
+        "heatmap-opacity": 0.86,
       },
     });
 
