@@ -418,6 +418,7 @@ export type Database = {
           is_active: boolean
           is_land: boolean
           is_weather_sample: boolean
+          soil_wetness: number | null
           weather_sample_id: number | null
         }
         Insert: {
@@ -432,6 +433,7 @@ export type Database = {
           is_active?: boolean
           is_land?: boolean
           is_weather_sample?: boolean
+          soil_wetness?: number | null
           weather_sample_id?: number | null
         }
         Update: {
@@ -446,6 +448,7 @@ export type Database = {
           is_active?: boolean
           is_land?: boolean
           is_weather_sample?: boolean
+          soil_wetness?: number | null
           weather_sample_id?: number | null
         }
         Relationships: []
