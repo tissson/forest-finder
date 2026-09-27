@@ -1730,6 +1730,7 @@ export type Database = {
         }[]
       }
       gettransactionid: { Args: never; Returns: unknown }
+      load_soil_wetness: { Args: { p_rows: Json }; Returns: number }
       log_species_discovery: {
         Args: {
           p_ai_confidence: number
