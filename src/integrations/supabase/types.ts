@@ -419,6 +419,9 @@ export type Database = {
           is_land: boolean
           is_weather_sample: boolean
           soil_wetness: number | null
+          vol_birch: number | null
+          vol_pine: number | null
+          vol_spruce: number | null
           weather_sample_id: number | null
         }
         Insert: {
@@ -434,6 +437,9 @@ export type Database = {
           is_land?: boolean
           is_weather_sample?: boolean
           soil_wetness?: number | null
+          vol_birch?: number | null
+          vol_pine?: number | null
+          vol_spruce?: number | null
           weather_sample_id?: number | null
         }
         Update: {
@@ -449,6 +455,9 @@ export type Database = {
           is_land?: boolean
           is_weather_sample?: boolean
           soil_wetness?: number | null
+          vol_birch?: number | null
+          vol_pine?: number | null
+          vol_spruce?: number | null
           weather_sample_id?: number | null
         }
         Relationships: []
@@ -1731,6 +1740,10 @@ export type Database = {
       }
       gettransactionid: { Args: never; Returns: unknown }
       load_soil_wetness: { Args: { p_rows: Json }; Returns: number }
+      load_tree_volume: {
+        Args: { p_kind: string; p_rows: Json }
+        Returns: number
+      }
       log_species_discovery: {
         Args: {
           p_ai_confidence: number
