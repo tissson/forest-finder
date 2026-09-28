@@ -136,6 +136,9 @@ export type Database = {
       }
       species_habitat_profiles: {
         Row: {
+          aff_birch: number
+          aff_pine: number
+          aff_spruce: number
           forest_optimum: number
           forest_tolerance: number
           moisture_optimum: number
@@ -144,6 +147,9 @@ export type Database = {
           species_id: number
         }
         Insert: {
+          aff_birch?: number
+          aff_pine?: number
+          aff_spruce?: number
           forest_optimum: number
           forest_tolerance: number
           moisture_optimum: number
@@ -152,6 +158,9 @@ export type Database = {
           species_id: number
         }
         Update: {
+          aff_birch?: number
+          aff_pine?: number
+          aff_spruce?: number
           forest_optimum?: number
           forest_tolerance?: number
           moisture_optimum?: number
