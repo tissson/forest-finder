@@ -38,7 +38,7 @@ const MIN_MAP_ZOOM = 5;
 const MAX_MAP_ZOOM = 16;
 const TILE_MIN_ZOOM = 5;
 const TILE_MAX_ZOOM = 12;
-const TILE_STYLE_VERSION = "species-v3-dense";
+const TILE_STYLE_VERSION = "species-v4-trees";
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
