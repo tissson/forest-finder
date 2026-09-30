@@ -1564,6 +1564,10 @@ export type Database = {
           }
       enablelongtransactions: { Args: never; Returns: string }
       equals: { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
+      finalize_forest_cover: {
+        Args: { p_floor?: number; p_loaded_threshold?: number }
+        Returns: number
+      }
       geometry: { Args: { "": string }; Returns: unknown }
       geometry_above: {
         Args: { geom1: unknown; geom2: unknown }
@@ -1748,6 +1752,10 @@ export type Database = {
         }[]
       }
       gettransactionid: { Args: never; Returns: unknown }
+      load_forest_cover: {
+        Args: { p_rows: Json; p_saturation_volume?: number }
+        Returns: number
+      }
       load_soil_wetness: { Args: { p_rows: Json }; Returns: number }
       load_tree_volume: {
         Args: { p_kind: string; p_rows: Json }
