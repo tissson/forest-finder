@@ -42,7 +42,7 @@ case "$DATASET" in
   soil)   FEED=SLUMarkfuktighetKlassad;   RPC=load_soil_wetness ;;
   spruce) FEED=SLUSkogskartaGranVolym;    RPC=load_tree_volume ;;
   pine)   FEED=SLUSkogskartaTallVolym;    RPC=load_tree_volume ;;
-  birch)  FEED=SLUSkogskartaBjorkVolym;   RPC=load_tree_volume ;;
+  birch)  FEED=SLUSkogskartaBj%C3%B6rkVolym;  RPC=load_tree_volume ;;
   *) echo "Okänt dataset: $DATASET" >&2; exit 1 ;;
 esac
 
