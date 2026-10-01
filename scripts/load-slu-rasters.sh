@@ -42,7 +42,7 @@ case "$DATASET" in
   soil)   FEED=SLUMarkfuktighetKlassad;   RPC=load_soil_wetness ;;
   spruce) FEED=SLUSkogskartaGranVolym;    RPC=load_tree_volume ;;
   pine)   FEED=SLUSkogskartaTallVolym;    RPC=load_tree_volume ;;
-  birch)  FEED=SLUSkogskartaBjorkVolym;   RPC=load_tree_volume ;;
+  birch)  FEED=SLUSkogskartaBj%C3%B6rkVolym;  RPC=load_tree_volume ;;
   *) echo "Okänt dataset: $DATASET" >&2; exit 1 ;;
 esac
 
@@ -121,8 +121,8 @@ open(dst, "w").write(x)
 PY
     in_vrt="$d/lut.vrt"; warp_nodata=(-srcnodata 255 -dstnodata -1)
   else
-    # Volym: källans nodata räknas som 0 m3sk/ha (öppen mark drar ned medelvärdet).
-    in_vrt="$d/src.vrt"; warp_nodata=(-srcnodata None -dstnodata -1)
+    # Volym: källans nodata (-1) ignoreras i medelvärdet; helt tomma celler får golvvärdet via finalize_forest_cover().
+    in_vrt="$d/src.vrt"; warp_nodata=(-dstnodata -1)
   fi
 
   gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r average \
