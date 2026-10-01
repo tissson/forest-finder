@@ -121,8 +121,8 @@ open(dst, "w").write(x)
 PY
     in_vrt="$d/lut.vrt"; warp_nodata=(-srcnodata 255 -dstnodata -1)
   else
-    # Volym: källans nodata räknas som 0 m3sk/ha (öppen mark drar ned medelvärdet).
-    in_vrt="$d/src.vrt"; warp_nodata=(-srcnodata None -dstnodata -1)
+    # Volym: källans nodata (-1) ignoreras i medelvärdet; helt tomma celler får golvvärdet via finalize_forest_cover().
+    in_vrt="$d/src.vrt"; warp_nodata=(-dstnodata -1)
   fi
 
   gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r average \
