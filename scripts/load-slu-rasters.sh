@@ -125,30 +125,63 @@ PY
     in_vrt="$d/src.vrt"; warp_nodata=(-dstnodata -1)
   fi
 
-  gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r average \
-    -ot Float32 "${warp_nodata[@]}" "$in_vrt" "$d/grid.tif"
-  gdal_translate -q -of XYZ "$d/grid.tif" "$d/grid.xyz"
+  # VIKTIGT (länsgränser): länsrastren överlappar i gränsrutorna. Ett medelvärde
+  # per län som skrivs direkt gör att SENAST laddade län vinner med bara sin
+  # egen del av rutan (verifierat i Blekinge 2026-10-01: alla 52 avvikande
+  # rutor = grannlänets delvärde). Därför sparas per län SUMMA och ANTAL giltiga
+  # pixlar per 2x2 km-ruta, och medelvärdet räknas först när alla län är klara:
+  #   värde = sum(summor) / sum(antal)  == ett rikstäckande medelvärde.
+  if [[ "$DATASET" == soil ]]; then mask_expr="A!=255"; else mask_expr="A>=0"; fi
+  gdal_calc --quiet -A "$in_vrt" --calc="$mask_expr" --hideNoData --type=Byte \
+    --NoDataValue=0 --outfile="$d/mask.tif" --overwrite
+  gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r sum \
+    -ot Float64 "${warp_nodata[@]}" "$in_vrt" "$d/sum.tif"
+  gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r sum \
+    -ot Float64 -srcnodata 0 -dstnodata 0 "$d/mask.tif" "$d/cnt.tif"
+  gdal_translate -q -of XYZ "$d/sum.tif" "$d/sum.xyz"
+  gdal_translate -q -of XYZ "$d/cnt.tif" "$d/cnt.xyz"
 
-  # XYZ ger cellcentrum. Filtrera bort nodata (-1) och dela upp i bitar.
-  python3 - "$d/grid.xyz" "$d" <<'PY'
-import sys, json
-xyz, out = sys.argv[1:]
-rows = []
-for line in open(xyz):
-    x, y, v = line.split()
-    v = float(v)
-    if v < 0: continue
-    rows.append([round(float(x)), round(float(y)), round(v, 2)])
+  # Per län: x y summa antal (endast celler med minst en giltig pixel).
+  python3 - "$d/sum.xyz" "$d/cnt.xyz" "$WORK/acc_${DATASET}_$lan.txt" <<'PY'
+import sys
+s, c, out = sys.argv[1:]
+sums = {}
+for line in open(s):
+    x, y, v = line.split(); v = float(v)
+    if v >= 0: sums[(round(float(x)), round(float(y)))] = v
+n = 0
+with open(out, "w") as f:
+    for line in open(c):
+        x, y, k = line.split(); k = float(k)
+        key = (round(float(x)), round(float(y)))
+        if k > 0:
+            f.write(f"{key[0]} {key[1]} {sums.get(key, 0.0)} {k}\n"); n += 1
+print(f"{n} celler")
+PY
+  rm -rf "$d"
+  touch "$done_flag"
+  echo "== län $lan bearbetat"
+done
+
+# Slå ihop alla län: rikstäckande medelvärde per ruta, dela upp i bitar.
+out="$WORK/merged_${DATASET}"; rm -rf "$out"; mkdir -p "$out"
+python3 - "$WORK" "$DATASET" "$out" <<'PY'
+import sys, glob, json
+work, ds, out = sys.argv[1:]
+acc = {}
+for f in glob.glob(f"{work}/acc_{ds}_*.txt"):
+    for line in open(f):
+        x, y, s, k = line.split()
+        a = acc.setdefault((int(x), int(y)), [0.0, 0.0])
+        a[0] += float(s); a[1] += float(k)
+rows = [[x, y, round(s / k, 2)] for (x, y), (s, k) in sorted(acc.items()) if k > 0]
 for i in range(0, len(rows), 5000):
     json.dump(rows[i:i+5000], open(f"{out}/chunk_{i//5000:04d}.json", "w"))
-print(f"{len(rows)} celler")
+print(f"Sammanslaget: {len(rows)} celler")
 PY
-  n=0
-  for c in "$d"/chunk_*.json; do send_chunk "$c" "$lan" "$n"; n=$((n+1)); done
-  rm -rf "$d/raw"
-  touch "$done_flag"
-  echo "== län $lan klart ($n bitar)"
-done
+n=0
+for c in "$out"/chunk_*.json; do send_chunk "$c" all "$n"; n=$((n+1)); done
+echo "Skickade $n bitar"
 
 if [[ "$DATASET" == volume ]]; then
   if [[ -n "${SQL_OUT:-}" ]]; then
