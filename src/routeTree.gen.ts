@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as ZzFelsidetestRouteImport } from './routes/zz-felsidetest'
 import { Route as ApiPublicIngestWeatherRouteImport } from './routes/api/public/ingest-weather'
 import { Route as ApiPublicTilesLayerZXYRouteImport } from './routes/api/public/tiles/$layer/$z/$x/$y'
 
@@ -23,11 +22,6 @@ const IndexRoute = IndexRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ZzFelsidetestRoute = ZzFelsidetestRouteImport.update({
-  id: '/zz-felsidetest',
-  path: '/zz-felsidetest',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicIngestWeatherRoute = ApiPublicIngestWeatherRouteImport.update({
@@ -44,14 +38,12 @@ const ApiPublicTilesLayerZXYRoute = ApiPublicTilesLayerZXYRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/zz-felsidetest': typeof ZzFelsidetestRoute
   '/api/public/ingest-weather': typeof ApiPublicIngestWeatherRoute
   '/api/public/tiles/$layer/$z/$x/$y': typeof ApiPublicTilesLayerZXYRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/zz-felsidetest': typeof ZzFelsidetestRoute
   '/api/public/ingest-weather': typeof ApiPublicIngestWeatherRoute
   '/api/public/tiles/$layer/$z/$x/$y': typeof ApiPublicTilesLayerZXYRoute
 }
@@ -59,7 +51,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/zz-felsidetest': typeof ZzFelsidetestRoute
   '/api/public/ingest-weather': typeof ApiPublicIngestWeatherRoute
   '/api/public/tiles/$layer/$z/$x/$y': typeof ApiPublicTilesLayerZXYRoute
 }
@@ -68,21 +59,18 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
-    | '/zz-felsidetest'
     | '/api/public/ingest-weather'
     | '/api/public/tiles/$layer/$z/$x/$y'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
-    | '/zz-felsidetest'
     | '/api/public/ingest-weather'
     | '/api/public/tiles/$layer/$z/$x/$y'
   id:
     | '__root__'
     | '/'
     | '/auth'
-    | '/zz-felsidetest'
     | '/api/public/ingest-weather'
     | '/api/public/tiles/$layer/$z/$x/$y'
   fileRoutesById: FileRoutesById
@@ -90,7 +78,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
-  ZzFelsidetestRoute: typeof ZzFelsidetestRoute
   ApiPublicIngestWeatherRoute: typeof ApiPublicIngestWeatherRoute
   ApiPublicTilesLayerZXYRoute: typeof ApiPublicTilesLayerZXYRoute
 }
@@ -109,13 +96,6 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/zz-felsidetest': {
-      id: '/zz-felsidetest'
-      path: '/zz-felsidetest'
-      fullPath: '/zz-felsidetest'
-      preLoaderRoute: typeof ZzFelsidetestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/ingest-weather': {
@@ -138,7 +118,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
-  ZzFelsidetestRoute: ZzFelsidetestRoute,
   ApiPublicIngestWeatherRoute: ApiPublicIngestWeatherRoute,
   ApiPublicTilesLayerZXYRoute: ApiPublicTilesLayerZXYRoute,
 }

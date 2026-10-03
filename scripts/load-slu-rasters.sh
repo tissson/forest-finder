@@ -11,7 +11,7 @@
 # Källa: Skogsstyrelsens öppna Atom-flöden. INGEN inloggning krävs.
 #   https://geodpags.skogsstyrelsen.se/geodataport/feeds/<FEED>.xml
 #
-# Metod per län: ladda ner zip -> VRT av alla GeoTIFF -> (markfukt: LUT) ->
+# Metod: ladda ner ALLA läns zip -> EN rikstäckande VRT -> (markfukt: LUT) ->
 #   gdalwarp -tr 2000 2000 -tap -r average (EPSG:3006, samma 2x2 km-rutnät
 #   som weather_zones) -> XYZ -> skicka [[x,y,v],...] i bitar à 5000 celler.
 #
@@ -94,90 +94,61 @@ PY
   fi
 }
 
+# METOD (rättad 2026-10-02, verifierad mot oberoende referens i Blekinge + grannlän):
+# Alla läns GeoTIFF:er laddas ner först och läggs i EN rikstäckande VRT-mosaik.
+# Medelvärdet per 2x2 km-ruta räknas sedan i ett enda gdalwarp-steg.
+# Varför inte per län:
+#  1) Länsrastren överlappar. Skrivs ett läns medel direkt vinner senast laddade
+#     län med bara sin del av gränsrutan (påvisat för volym, markfukt och gran).
+#  2) Grannlänen innehåller SAMMA giltiga pixlar i en smal gränsremsa (identiska
+#     värden). Summa+antal per län dubbelräknar dem (gav upp till 0,012 fel).
+#     Mosaiken tar varje pixel exakt en gång.
+#  3) Summa+antal behöll rutor med bara en bråkdel av en pixel (de 33 extra
+#     rutorna); gdalwarp -r average på mosaiken släpper dem.
+RAW="$WORK/raw_${DATASET}"; mkdir -p "$RAW"
 for url in "${ZIPS[@]}"; do
   lan=$(basename "$url" .zip | grep -o '[0-9][0-9]$')
   [[ -n "${COUNTIES:-}" && " $COUNTIES " != *" $lan "* ]] && continue
-  done_flag="$WORK/done_${DATASET}_$lan"
-  [[ -f "$done_flag" ]] && { echo "Län $lan redan klart (ta bort $done_flag för att köra om)"; continue; }
-
-  d="$WORK/${DATASET}_$lan"; rm -rf "$d"; mkdir -p "$d"
+  [[ -f "$RAW/$lan/.ok" ]] && { echo "Län $lan redan nedladdat"; continue; }
+  rm -rf "$RAW/$lan"; mkdir -p "$RAW/$lan"
   echo "== $DATASET län $lan: laddar ner $url"
-  curl -fsSL --retry 3 -o "$d/in.zip" "$url"
-  unzip -q -o "$d/in.zip" -d "$d/raw"; rm -f "$d/in.zip"
-  mapfile -t tifs < <(find "$d/raw" -iname '*.tif')
-  gdalbuildvrt -q "$d/src.vrt" "${tifs[@]}"
+  curl -fsSL --retry 3 -o "$RAW/$lan/in.zip" "$url"
+  unzip -q -o "$RAW/$lan/in.zip" -d "$RAW/$lan"; rm -f "$RAW/$lan/in.zip"
+  touch "$RAW/$lan/.ok"
+done
 
-  if [[ "$DATASET" == soil ]]; then
-    # Klass -> fuktvärde via LUT; nodata 255 ignoreras vid medelvärdet.
-    python3 - "$d/src.vrt" "$d/lut.vrt" "$SOIL_LUT" <<'PY'
+find "$RAW" -iname '*.tif' > "$WORK/${DATASET}.lst"
+gdalbuildvrt -q -input_file_list "$WORK/${DATASET}.lst" "$WORK/${DATASET}_src.vrt"
+in_vrt="$WORK/${DATASET}_src.vrt"; warp_nodata=(-dstnodata -1)
+if [[ "$DATASET" == soil ]]; then
+  # Klass -> fuktvärde via LUT; 255 = nodata och ignoreras i medelvärdet.
+  python3 - "$in_vrt" "$WORK/soil_lut.vrt" "$SOIL_LUT" <<'PY'
 import sys, re
 src, dst, lut = sys.argv[1:]
 x = open(src).read()
-x = x.replace("<ComplexSource>", "<ComplexSource><LUT>%s</LUT>" % lut, ) if "<ComplexSource>" in x else \
-    re.sub(r"<SimpleSource>(.*?)</SimpleSource>", lambda m: "<ComplexSource><LUT>%s</LUT>%s</ComplexSource>" % (lut, m.group(1)), x, flags=re.S)
+x = re.sub(r"<(Simple|Complex)Source>(.*?)</\1Source>",
+           lambda m: "<ComplexSource><LUT>%s</LUT>%s</ComplexSource>" % (lut, re.sub(r"<LUT>.*?</LUT>", "", m.group(2))), x, flags=re.S)
 x = re.sub(r"<NoDataValue>.*?</NoDataValue>", "", x)
-x = x.replace("<VRTRasterBand ", "<VRTRasterBand ", 1).replace("</ColorInterp>", "</ColorInterp><NoDataValue>255</NoDataValue>", 1)
+x = x.replace("</ColorInterp>", "</ColorInterp><NoDataValue>255</NoDataValue>", 1)
 open(dst, "w").write(x)
 PY
-    in_vrt="$d/lut.vrt"; warp_nodata=(-srcnodata 255 -dstnodata -1)
-  else
-    # Volym: källans nodata (-1) ignoreras i medelvärdet; helt tomma celler får golvvärdet via finalize_forest_cover().
-    in_vrt="$d/src.vrt"; warp_nodata=(-dstnodata -1)
-  fi
+  in_vrt="$WORK/soil_lut.vrt"; warp_nodata=(-srcnodata 255 -dstnodata -1)
+fi
+gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r average -ot Float32 \
+  "${warp_nodata[@]}" "$in_vrt" "$WORK/${DATASET}_2km.tif"
+gdal_translate -q -of XYZ "$WORK/${DATASET}_2km.tif" "$WORK/${DATASET}_2km.xyz"
 
-  # VIKTIGT (länsgränser): länsrastren överlappar i gränsrutorna. Ett medelvärde
-  # per län som skrivs direkt gör att SENAST laddade län vinner med bara sin
-  # egen del av rutan (verifierat i Blekinge 2026-10-01: alla 52 avvikande
-  # rutor = grannlänets delvärde). Därför sparas per län SUMMA och ANTAL giltiga
-  # pixlar per 2x2 km-ruta, och medelvärdet räknas först när alla län är klara:
-  #   värde = sum(summor) / sum(antal)  == ett rikstäckande medelvärde.
-  if [[ "$DATASET" == soil ]]; then mask_expr="A!=255"; else mask_expr="A>=0"; fi
-  gdal_calc --quiet -A "$in_vrt" --calc="$mask_expr" --hideNoData --type=Byte \
-    --NoDataValue=0 --outfile="$d/mask.tif" --overwrite
-  gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r sum \
-    -ot Float64 "${warp_nodata[@]}" "$in_vrt" "$d/sum.tif"
-  gdalwarp -q -overwrite -t_srs EPSG:3006 -tr 2000 2000 -tap -r sum \
-    -ot Float64 -srcnodata 0 -dstnodata 0 "$d/mask.tif" "$d/cnt.tif"
-  gdal_translate -q -of XYZ "$d/sum.tif" "$d/sum.xyz"
-  gdal_translate -q -of XYZ "$d/cnt.tif" "$d/cnt.xyz"
-
-  # Per län: x y summa antal (endast celler med minst en giltig pixel).
-  python3 - "$d/sum.xyz" "$d/cnt.xyz" "$WORK/acc_${DATASET}_$lan.txt" <<'PY'
-import sys
-s, c, out = sys.argv[1:]
-sums = {}
-for line in open(s):
-    x, y, v = line.split(); v = float(v)
-    if v >= 0: sums[(round(float(x)), round(float(y)))] = v
-n = 0
-with open(out, "w") as f:
-    for line in open(c):
-        x, y, k = line.split(); k = float(k)
-        key = (round(float(x)), round(float(y)))
-        if k > 0:
-            f.write(f"{key[0]} {key[1]} {sums.get(key, 0.0)} {k}\n"); n += 1
-print(f"{n} celler")
-PY
-  rm -rf "$d"
-  touch "$done_flag"
-  echo "== län $lan bearbetat"
-done
-
-# Slå ihop alla län: rikstäckande medelvärde per ruta, dela upp i bitar.
 out="$WORK/merged_${DATASET}"; rm -rf "$out"; mkdir -p "$out"
-python3 - "$WORK" "$DATASET" "$out" <<'PY'
-import sys, glob, json
-work, ds, out = sys.argv[1:]
-acc = {}
-for f in glob.glob(f"{work}/acc_{ds}_*.txt"):
-    for line in open(f):
-        x, y, s, k = line.split()
-        a = acc.setdefault((int(x), int(y)), [0.0, 0.0])
-        a[0] += float(s); a[1] += float(k)
-rows = [[x, y, round(s / k, 2)] for (x, y), (s, k) in sorted(acc.items()) if k > 0]
+python3 - "$WORK/${DATASET}_2km.xyz" "$out" <<'PY'
+import sys, json
+src, out = sys.argv[1:]
+rows = []
+for line in open(src):
+    x, y, v = line.split(); v = float(v)
+    if v >= 0: rows.append([round(float(x)), round(float(y)), round(v, 2)])
 for i in range(0, len(rows), 5000):
     json.dump(rows[i:i+5000], open(f"{out}/chunk_{i//5000:04d}.json", "w"))
-print(f"Sammanslaget: {len(rows)} celler")
+print(f"Rikstäckande: {len(rows)} celler")
 PY
 n=0
 for c in "$out"/chunk_*.json; do send_chunk "$c" all "$n"; n=$((n+1)); done
