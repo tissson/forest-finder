@@ -80,6 +80,27 @@ export type Database = {
           },
         ]
       }
+      slu_load_staging: {
+        Row: {
+          kind: string
+          v: number
+          x: number
+          y: number
+        }
+        Insert: {
+          kind: string
+          v: number
+          x: number
+          y: number
+        }
+        Update: {
+          kind?: string
+          v?: number
+          x?: number
+          y?: number
+        }
+        Relationships: []
+      }
       spatial_ref_sys: {
         Row: {
           auth_name: string | null
