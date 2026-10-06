@@ -122,12 +122,16 @@ gdalbuildvrt -q -input_file_list "$WORK/${DATASET}.lst" "$WORK/${DATASET}_src.vr
 in_vrt="$WORK/${DATASET}_src.vrt"; warp_nodata=(-dstnodata -1)
 if [[ "$DATASET" == soil ]]; then
   # Klass -> fuktvärde via LUT; 255 = nodata och ignoreras i medelvärdet.
+  # VIKTIGT (rättat 2026-10-06): SLU:s markfuktfiler har NoData=7 i filhuvudet
+  # men använder 255 utanför länet. Utan <NODATA>255</NODATA> per källa
+  # skriver ett läns 255-kant över grannlänets giltiga pixlar i mosaiken
+  # (gav ~33 000 tomma rutor). Därför sätts 255 som nodata i varje källa.
   python3 - "$in_vrt" "$WORK/soil_lut.vrt" "$SOIL_LUT" <<'PY'
 import sys, re
 src, dst, lut = sys.argv[1:]
 x = open(src).read()
 x = re.sub(r"<(Simple|Complex)Source>(.*?)</\1Source>",
-           lambda m: "<ComplexSource><LUT>%s</LUT>%s</ComplexSource>" % (lut, re.sub(r"<LUT>.*?</LUT>", "", m.group(2))), x, flags=re.S)
+           lambda m: "<ComplexSource><NODATA>255</NODATA><LUT>%s</LUT>%s</ComplexSource>" % (lut, re.sub(r"<(LUT|NODATA)>.*?</\1>", "", m.group(2))), x, flags=re.S)
 x = re.sub(r"<NoDataValue>.*?</NoDataValue>", "", x)
 x = x.replace("</ColorInterp>", "</ColorInterp><NoDataValue>255</NoDataValue>", 1)
 open(dst, "w").write(x)
