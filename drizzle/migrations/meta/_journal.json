@@ -8,6 +8,13 @@
       "when": 1791115586549,
       "tag": "0000_slu_load_staging",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791365683435,
+      "tag": "0001_precompute_moisture_tiles_low_zoom",
+      "breakpoints": true
     }
   ]
 }
