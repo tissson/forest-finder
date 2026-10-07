@@ -15,6 +15,13 @@
       "when": 1791365683435,
       "tag": "0001_precompute_moisture_tiles_low_zoom",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791365705206,
+      "tag": "0002_fix_refresh_moisture_tile_ambiguity",
+      "breakpoints": true
     }
   ]
 }
