@@ -68,6 +68,17 @@ export const Map: React.FC<MapProps> = ({
   const accessTokenRef = useRef<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Callbacks i refs: nya funktionsinstanser från föräldern får INTE
+  // återskapa kartkällan (det laddade om alla kartrutor flera gånger).
+  const onErrorRef = useRef(onError);
+  const onFeatureCountChangeRef = useRef(onFeatureCountChange);
+  const onCellClickRef = useRef(onCellClick);
+  useEffect(() => {
+    onErrorRef.current = onError;
+    onFeatureCountChangeRef.current = onFeatureCountChange;
+    onCellClickRef.current = onCellClick;
+  }, [onError, onFeatureCountChange, onCellClick]);
+
   // Håll inloggningstoken aktuell så premiumlager fungerar i tile-anropen.
   useEffect(() => {
     let active = true;
