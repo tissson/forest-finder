@@ -145,12 +145,38 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
           return Response.json({ error: rpcError.message, stage: 'recompute' }, { status: 500 });
         }
 
+        // Förberäkna fuktlagrets rutor för låg zoom (5–7) för det nya datumet.
+        // En ruta per anrop så varje anrop håller sig under databasens tidsgräns.
+        const { data: cacheTiles, error: tilesError } = await supabaseAdmin.rpc('moisture_cache_tiles');
+        const tileFailures: string[] = [];
+        let tilesRefreshed = 0;
+        if (tilesError) {
+          tileFailures.push(tilesError.message);
+        } else {
+          const queue = [...((cacheTiles ?? []) as Array<{ z: number; x: number; y: number }>)];
+          const worker = async () => {
+            for (let t = queue.shift(); t; t = queue.shift()) {
+              const { error } = await supabaseAdmin.rpc('refresh_moisture_tile', {
+                z: t.z,
+                x: t.x,
+                y: t.y,
+                p_obs_date: obsDate,
+              });
+              if (error) tileFailures.push(`${t.z}/${t.x}/${t.y}: ${error.message}`);
+              else tilesRefreshed += 1;
+            }
+          };
+          await Promise.all([worker(), worker(), worker(), worker()]);
+        }
+
         return Response.json({
           ok: true,
           obs_date: obsDate,
           zones: zones.length,
           observations_written: rows.length,
           predictions_written: predictionRows ?? 0,
+          moisture_tiles_refreshed: tilesRefreshed,
+          moisture_tile_failures: tileFailures,
           failures,
         });
       },

@@ -29,6 +29,33 @@ export type Database = {
         }
         Relationships: []
       }
+      moisture_tile_cache: {
+        Row: {
+          computed_at: string
+          obs_date: string
+          tile: string
+          x: number
+          y: number
+          z: number
+        }
+        Insert: {
+          computed_at?: string
+          obs_date: string
+          tile: string
+          x: number
+          y: number
+          z: number
+        }
+        Update: {
+          computed_at?: string
+          obs_date?: string
+          tile?: string
+          x?: number
+          y?: number
+          z?: number
+        }
+        Relationships: []
+      }
       predictions: {
         Row: {
           created_at: string
@@ -1489,6 +1516,10 @@ export type Database = {
             }
             Returns: boolean
           }
+      compute_moisture_tile: {
+        Args: { p_date: string; x: number; y: number; z: number }
+        Returns: string
+      }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
         | {
@@ -1804,6 +1835,14 @@ export type Database = {
         Args: { p_lat: number; p_lon: number }
         Returns: number
       }
+      moisture_cache_tiles: {
+        Args: never
+        Returns: {
+          x: number
+          y: number
+          z: number
+        }[]
+      }
       populate_forest_cover: {
         Args: { p_region?: unknown; p_saturation_volume?: number }
         Returns: {
@@ -1856,6 +1895,14 @@ export type Database = {
       postgis_wagyu_version: { Args: never; Returns: string }
       rebuild_weather_zone_blocks: { Args: never; Returns: number }
       recompute_predictions: { Args: { p_obs_date?: string }; Returns: number }
+      refresh_moisture_tile: {
+        Args: { p_obs_date?: string; x: number; y: number; z: number }
+        Returns: number
+      }
+      refresh_moisture_tile_cache: {
+        Args: { p_obs_date?: string; p_z?: number }
+        Returns: number
+      }
       st_3dclosestpoint: {
         Args: { geom1: unknown; geom2: unknown }
         Returns: unknown

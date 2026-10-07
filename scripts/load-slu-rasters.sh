@@ -168,4 +168,9 @@ if [[ "$DATASET" == volume ]]; then
     echo
   fi
 fi
+if [[ "$DATASET" == soil ]]; then
+  # Fuktlagrets förberäknade rutor (zoom 5-7) bygger på soil_wetness.
+  echo "OBS: kör SELECT public.refresh_moisture_tile_cache(5); (6); (7); med privilegierad anslutning."
+  [[ -n "${SQL_OUT:-}" ]] && printf 'SELECT public.refresh_moisture_tile_cache(%s);\n' 5 6 7 > "$SQL_OUT/soil_zz_tile_cache.sql"
+fi
 echo "Klart: $DATASET"

@@ -68,6 +68,17 @@ export const Map: React.FC<MapProps> = ({
   const accessTokenRef = useRef<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Callbacks i refs: nya funktionsinstanser från föräldern får INTE
+  // återskapa kartkällan (det laddade om alla kartrutor flera gånger).
+  const onErrorRef = useRef(onError);
+  const onFeatureCountChangeRef = useRef(onFeatureCountChange);
+  const onCellClickRef = useRef(onCellClick);
+  useEffect(() => {
+    onErrorRef.current = onError;
+    onFeatureCountChangeRef.current = onFeatureCountChange;
+    onCellClickRef.current = onCellClick;
+  }, [onError, onFeatureCountChange, onCellClick]);
+
   // Håll inloggningstoken aktuell så premiumlager fungerar i tile-anropen.
   useEffect(() => {
     let active = true;
@@ -244,7 +255,7 @@ export const Map: React.FC<MapProps> = ({
            </div>`,
         )
         .addTo(map);
-      onCellClick?.(props);
+      onCellClickRef.current?.(props);
     };
 
     const handleEnter = () => {
@@ -255,12 +266,12 @@ export const Map: React.FC<MapProps> = ({
     };
     const handleIdle = () => {
       if (!map.getLayer(HIT_LAYER_ID)) return;
-      onFeatureCountChange?.(map.queryRenderedFeatures({ layers: [HIT_LAYER_ID] }).length);
+      onFeatureCountChangeRef.current?.(map.queryRenderedFeatures({ layers: [HIT_LAYER_ID] }).length);
     };
     const handleSourceError = (event: unknown) => {
       const status = (event as { error?: { status?: number } })?.error?.status;
       if (status === 403) {
-        onError?.(new PremiumRequiredError("Det här lagret ingår i premium."));
+        onErrorRef.current?.(new PremiumRequiredError("Det här lagret ingår i premium."));
       }
     };
 
@@ -281,7 +292,7 @@ export const Map: React.FC<MapProps> = ({
       if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
       if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
     };
-  }, [isLoaded, layer, obsDate, onCellClick, onError, onFeatureCountChange]);
+  }, [isLoaded, layer, obsDate]);
 
   return (
     <div className="relative w-full h-full min-h-[400px]">
