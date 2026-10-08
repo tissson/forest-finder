@@ -74,7 +74,7 @@ export const Route = createFileRoute("/api/public/tiles/$layer/$z/$x/$y")({
           if (message.includes("PREMIUM_REQUIRED")) {
             return new Response("PREMIUM_REQUIRED", { status: 403 });
           }
-          console.error("Tile-fel:", message);
+          console.error("Tile-fel:", params.layer, `${z}/${x}/${y}`, message);
           return new Response("Kunde inte generera kartruta", { status: 500 });
         }
 

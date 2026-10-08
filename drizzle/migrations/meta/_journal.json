@@ -22,6 +22,20 @@
       "when": 1791365705206,
       "tag": "0002_fix_refresh_moisture_tile_ambiguity",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791465650981,
+      "tag": "0003_weather_finalize_daily",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791467299582,
+      "tag": "0004_precompute_prediction_tiles_low_zoom",
+      "breakpoints": true
     }
   ]
 }
