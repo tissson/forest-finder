@@ -9,7 +9,7 @@ where exists (select 1 from cron.job where jobname = 'nightly-weather-ingest');
 
 select cron.schedule(
   'nightly-weather-ingest',
-  '0 2 * * *',                     -- 02:00 UTC varje natt
+  '*/3 2 * * *',                   -- var 3:e minut 02:00–02:57 UTC; varje anrop hämtar ett steg
   $$
   select net.http_post(
     url := 'https://project--af8c4c78-4a38-4438-88cc-3e4c04f86b10-dev.lovable.app/api/public/ingest-weather',
@@ -22,6 +22,9 @@ select cron.schedule(
   );
   $$
 );
+
+-- Avslut i databasen (fuktpoäng + förberäknade kartrutor), körs separat:
+-- select cron.schedule('nightly-weather-finalize', '*/5 3 * * *', $$select public.weather_finalize_daily(90);$$);
 
 -- Kontrollera jobbet och dess körningar:
 -- select * from cron.job where jobname = 'nightly-weather-ingest';

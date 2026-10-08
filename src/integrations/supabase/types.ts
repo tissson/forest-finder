@@ -56,6 +56,36 @@ export type Database = {
         }
         Relationships: []
       }
+      prediction_tile_cache: {
+        Row: {
+          computed_at: string
+          obs_date: string
+          species_id: number
+          tile: string
+          x: number
+          y: number
+          z: number
+        }
+        Insert: {
+          computed_at?: string
+          obs_date: string
+          species_id: number
+          tile: string
+          x: number
+          y: number
+          z: number
+        }
+        Update: {
+          computed_at?: string
+          obs_date?: string
+          species_id?: number
+          tile?: string
+          x?: number
+          y?: number
+          z?: number
+        }
+        Relationships: []
+      }
       predictions: {
         Row: {
           created_at: string
@@ -1520,6 +1550,16 @@ export type Database = {
         Args: { p_date: string; x: number; y: number; z: number }
         Returns: string
       }
+      compute_prediction_tile: {
+        Args: {
+          p_date: string
+          p_species_id: number
+          x: number
+          y: number
+          z: number
+        }
+        Returns: string
+      }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
         | {
@@ -1901,6 +1941,16 @@ export type Database = {
       }
       refresh_moisture_tile_cache: {
         Args: { p_obs_date?: string; p_z?: number }
+        Returns: number
+      }
+      refresh_prediction_tile: {
+        Args: {
+          p_date: string
+          p_species_id: number
+          x: number
+          y: number
+          z: number
+        }
         Returns: number
       }
       st_3dclosestpoint: {
@@ -4968,6 +5018,10 @@ export type Database = {
             }
             Returns: boolean
           }
+      weather_finalize_daily: {
+        Args: { p_budget_seconds?: number }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
