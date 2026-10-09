@@ -42,17 +42,26 @@ function mean(values: Array<number | null>): number | null {
   return Math.round((nums.reduce((a, v) => a + v, 0) / nums.length) * 10) / 10;
 }
 
-async function fetchChunk(zones: Zone[]) {
+async function fetchChunk(zones: Zone[], deadline: number) {
   const url =
     `${OPEN_METEO}?latitude=${zones.map((z) => z.center_lat.toFixed(4)).join(',')}` +
     `&longitude=${zones.map((z) => z.center_lon.toFixed(4)).join(',')}` +
     `&daily=precipitation_sum,temperature_2m_mean&past_days=10&forecast_days=1&timezone=UTC`;
 
-  let res = await withTimeout(fetch(url), 30000, 'open-meteo');
-  // Open-Meteo har en minutbaserad gräns -- backa av och försök igen.
-  for (let attempt = 0; attempt < 3 && (res.status === 429 || res.status >= 500); attempt++) {
-    await sleep(20000);
-    res = await withTimeout(fetch(url), 30000, 'open-meteo');
+  // Varje försök avbryts på riktigt (AbortSignal) och hela anropet har en
+  // total tidsbudget, så routen alltid svarar innan pg_net:s 120 s-gräns.
+  const attempt = async () => {
+    const left = deadline - Date.now();
+    if (left < 3000) throw new Error('Tidsbudget slut före Open-Meteo-anrop');
+    const t0 = Date.now();
+    const res = await fetch(url, { signal: AbortSignal.timeout(Math.min(20000, left)) });
+    console.log('[ingest] open-meteo', res.status, `${Date.now() - t0}ms`, zones.length);
+    return res;
+  };
+  let res = await attempt();
+  if (res.status === 429 || res.status >= 500) {
+    await sleep(5000);
+    res = await attempt();
   }
   if (!res.ok) {
     throw new Error(`Open-Meteo ${res.status}: ${(await res.text()).slice(0, 200)}`);
