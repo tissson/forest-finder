@@ -17,8 +17,9 @@ import { authenticateCronRequest } from '@/integrations/supabase/cron-auth';
 
 type Zone = { id: number; center_lat: number; center_lon: number };
 
-const CHUNK = 50;
-const BATCH = 250;
+const CHUNK = 25;
+const BATCH = 100;
+const BUDGET_MS = 80000;
 const OPEN_METEO = 'https://api.open-meteo.com/v1/forecast';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -74,7 +75,7 @@ async function fetchChunk(zones: Zone[], deadline: number) {
 export const Route = createFileRoute('/api/public/ingest-weather')({
   server: {
     handlers: {
-      GET: async () => Response.json({ route: 'ingest-weather', version: 'stepwise-1' }),
+      GET: async () => Response.json({ route: 'ingest-weather', version: 'stepwise-2' }),
       POST: async ({ request }) => {
         // Godkänn antingen den schemalagda nyckeln (pg_cron) eller plattformens.
         const token = /^Bearer ([^\s,]+)$/.exec(request.headers.get('authorization') ?? '')?.[1];
@@ -84,6 +85,7 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
           if (unauthorized) return unauthorized;
         }
 
+        const deadline = Date.now() + BUDGET_MS;
         console.log('[ingest] auth ok');
         let supabaseAdmin: Awaited<typeof import('@/integrations/supabase/client.server')>['supabaseAdmin'];
         try {
@@ -144,9 +146,10 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
 
         for (let i = 0; i < batch.length; i += CHUNK) {
           const chunk = batch.slice(i, i + CHUNK);
-          if (i > 0) await sleep(1500);
+          if (i > 0) await sleep(1000);
+          if (Date.now() > deadline - 25000) { failures.push("tidsbudget"); break; }
           try {
-            const results = await fetchChunk(chunk);
+            const results = await fetchChunk(chunk, deadline);
             results.forEach((entry, idx) => {
               const zone = chunk[idx];
               const daily = (entry as { daily?: { precipitation_sum?: Array<number | null>; temperature_2m_mean?: Array<number | null> } }).daily;
@@ -164,6 +167,7 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
           }
         }
 
+        console.log("[ingest] klar", rows.length, failures.join(" | ").slice(0, 300));
         if (rows.length > 0) {
           const { error } = await withTimeout(
             supabaseAdmin.from('weather_observations').upsert(rows, { onConflict: 'weather_zone_id,obs_date' }),
