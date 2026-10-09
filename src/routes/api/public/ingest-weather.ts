@@ -17,8 +17,9 @@ import { authenticateCronRequest } from '@/integrations/supabase/cron-auth';
 
 type Zone = { id: number; center_lat: number; center_lon: number };
 
-const CHUNK = 50;
-const BATCH = 250;
+const CHUNK = 25;
+const BATCH = 100;
+const BUDGET_MS = 80000;
 const OPEN_METEO = 'https://api.open-meteo.com/v1/forecast';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -42,17 +43,26 @@ function mean(values: Array<number | null>): number | null {
   return Math.round((nums.reduce((a, v) => a + v, 0) / nums.length) * 10) / 10;
 }
 
-async function fetchChunk(zones: Zone[]) {
+async function fetchChunk(zones: Zone[], deadline: number) {
   const url =
     `${OPEN_METEO}?latitude=${zones.map((z) => z.center_lat.toFixed(4)).join(',')}` +
     `&longitude=${zones.map((z) => z.center_lon.toFixed(4)).join(',')}` +
     `&daily=precipitation_sum,temperature_2m_mean&past_days=10&forecast_days=1&timezone=UTC`;
 
-  let res = await withTimeout(fetch(url), 30000, 'open-meteo');
-  // Open-Meteo har en minutbaserad gräns -- backa av och försök igen.
-  for (let attempt = 0; attempt < 3 && (res.status === 429 || res.status >= 500); attempt++) {
-    await sleep(20000);
-    res = await withTimeout(fetch(url), 30000, 'open-meteo');
+  // Varje försök avbryts på riktigt (AbortSignal) och hela anropet har en
+  // total tidsbudget, så routen alltid svarar innan pg_net:s 120 s-gräns.
+  const attempt = async () => {
+    const left = deadline - Date.now();
+    if (left < 3000) throw new Error('Tidsbudget slut före Open-Meteo-anrop');
+    const t0 = Date.now();
+    const res = await fetch(url, { signal: AbortSignal.timeout(Math.min(20000, left)) });
+    console.log('[ingest] open-meteo', res.status, `${Date.now() - t0}ms`, zones.length);
+    return res;
+  };
+  let res = await attempt();
+  if (res.status === 429 || res.status >= 500) {
+    await sleep(5000);
+    res = await attempt();
   }
   if (!res.ok) {
     throw new Error(`Open-Meteo ${res.status}: ${(await res.text()).slice(0, 200)}`);
@@ -65,7 +75,7 @@ async function fetchChunk(zones: Zone[]) {
 export const Route = createFileRoute('/api/public/ingest-weather')({
   server: {
     handlers: {
-      GET: async () => Response.json({ route: 'ingest-weather', version: 'stepwise-1' }),
+      GET: async () => Response.json({ route: 'ingest-weather', version: 'stepwise-2' }),
       POST: async ({ request }) => {
         // Godkänn antingen den schemalagda nyckeln (pg_cron) eller plattformens.
         const token = /^Bearer ([^\s,]+)$/.exec(request.headers.get('authorization') ?? '')?.[1];
@@ -75,6 +85,7 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
           if (unauthorized) return unauthorized;
         }
 
+        const deadline = Date.now() + BUDGET_MS;
         console.log('[ingest] auth ok');
         let supabaseAdmin: Awaited<typeof import('@/integrations/supabase/client.server')>['supabaseAdmin'];
         try {
@@ -135,9 +146,10 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
 
         for (let i = 0; i < batch.length; i += CHUNK) {
           const chunk = batch.slice(i, i + CHUNK);
-          if (i > 0) await sleep(1500);
+          if (i > 0) await sleep(1000);
+          if (Date.now() > deadline - 25000) { failures.push("tidsbudget"); break; }
           try {
-            const results = await fetchChunk(chunk);
+            const results = await fetchChunk(chunk, deadline);
             results.forEach((entry, idx) => {
               const zone = chunk[idx];
               const daily = (entry as { daily?: { precipitation_sum?: Array<number | null>; temperature_2m_mean?: Array<number | null> } }).daily;
@@ -155,6 +167,7 @@ export const Route = createFileRoute('/api/public/ingest-weather')({
           }
         }
 
+        console.log("[ingest] klar", rows.length, failures.join(" | ").slice(0, 300));
         if (rows.length > 0) {
           const { error } = await withTimeout(
             supabaseAdmin.from('weather_observations').upsert(rows, { onConflict: 'weather_zone_id,obs_date' }),
