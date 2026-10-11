@@ -10,6 +10,7 @@ import { LogDiscoveryModal } from "@/components/LogDiscoveryModal";
 import { DiscoverySuccessModal } from "@/components/DiscoverySuccessModal";
 import { MapSearch } from "@/components/MapSearch";
 import { Button } from "@/components/ui/button";
+import { StaleWeatherBanner } from "@/components/StaleWeatherBanner";
 import {
   Sheet,
   SheetContent,
@@ -133,6 +134,11 @@ function Index() {
           </Button>
         </div>
       </header>
+
+      <div className="pointer-events-none absolute inset-x-0 top-20 z-20 px-4">
+        <StaleWeatherBanner />
+      </div>
+
 
       <div className="pointer-events-none absolute inset-x-0 bottom-5 z-10 hidden px-5 md:block">
         <div className="pointer-events-auto mx-auto max-w-3xl pr-20">
