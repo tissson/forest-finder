@@ -424,6 +424,60 @@ export type Database = {
         }
         Relationships: []
       }
+      weather_ingest_log: {
+        Row: {
+          created_at: string
+          error: string | null
+          id: number
+          obs_date: string
+          ok: boolean
+          request_id: number | null
+          status_code: number | null
+          zones: number
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          id?: number
+          obs_date: string
+          ok: boolean
+          request_id?: number | null
+          status_code?: number | null
+          zones: number
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          id?: number
+          obs_date?: string
+          ok?: boolean
+          request_id?: number | null
+          status_code?: number | null
+          zones?: number
+        }
+        Relationships: []
+      }
+      weather_ingest_pending: {
+        Row: {
+          created_at: string
+          obs_date: string
+          request_id: number
+          zone_ids: number[]
+        }
+        Insert: {
+          created_at?: string
+          obs_date: string
+          request_id: number
+          zone_ids: number[]
+        }
+        Update: {
+          created_at?: string
+          obs_date?: string
+          request_id?: number
+          zone_ids?: number[]
+        }
+        Relationships: []
+      }
       weather_observations: {
         Row: {
           moisture_score: number | null
@@ -5020,6 +5074,11 @@ export type Database = {
           }
       weather_finalize_daily: {
         Args: { p_budget_seconds?: number }
+        Returns: Json
+      }
+      weather_ingest_health: { Args: never; Returns: Json }
+      weather_ingest_step: {
+        Args: { p_chunk?: number; p_max_requests?: number }
         Returns: Json
       }
     }

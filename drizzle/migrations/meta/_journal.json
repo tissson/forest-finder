@@ -36,6 +36,13 @@
       "when": 1791467299582,
       "tag": "0004_precompute_prediction_tiles_low_zoom",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791729338583,
+      "tag": "0005_weather_ingest_in_database",
+      "breakpoints": true
     }
   ]
 }
