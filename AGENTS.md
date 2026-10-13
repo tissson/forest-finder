@@ -11,3 +11,4 @@
 - Low-zoom (5–7) moisture and species tiles are served from `moisture_tile_cache` / `prediction_tile_cache`, filled in-database by `weather_finalize_daily()` (pg_cron, time-budgeted, resumable); live computation at low zoom exceeds the anon statement timeout. Deleting cache rows forces a recompute after data/profile changes.
 - Nightly weather ingest runs inside the database (`weather_ingest_step()` via pg_net, every 2 min 02:00–02:58 UTC) because Open-Meteo rate-limits the shared app-server addresses; `weather_ingest_health()` raises at 03:45 so a missed night shows as a failed job. The old ingest route is unscheduled.
 - Map callbacks are held in refs so parent re-renders never recreate the vector source (that refetched every tile).
+- Maps show only the published weather date (`weather_published`, set by `weather_finalize_daily()` in the same transaction as the last cached tile) so a half-ingested night is never visible.

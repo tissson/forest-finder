@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "14.17"
   }
   public: {
     Tables: {
@@ -512,6 +512,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      weather_published: {
+        Row: {
+          id: number
+          obs_date: string
+          published_at: string
+        }
+        Insert: {
+          id?: number
+          obs_date: string
+          published_at?: string
+        }
+        Update: {
+          id?: number
+          obs_date?: string
+          published_at?: string
+        }
+        Relationships: []
       }
       weather_zone_blocks: {
         Row: {
@@ -1987,6 +2005,7 @@ export type Database = {
       }
       postgis_version: { Args: never; Returns: string }
       postgis_wagyu_version: { Args: never; Returns: string }
+      published_obs_date: { Args: never; Returns: string }
       rebuild_weather_zone_blocks: { Args: never; Returns: number }
       recompute_predictions: { Args: { p_obs_date?: string }; Returns: number }
       refresh_moisture_tile: {

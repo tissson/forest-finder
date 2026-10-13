@@ -43,6 +43,13 @@
       "when": 1791729338583,
       "tag": "0005_weather_ingest_in_database",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791874051359,
+      "tag": "0006_publish_weather_date_after_finalize",
+      "breakpoints": true
     }
   ]
 }
