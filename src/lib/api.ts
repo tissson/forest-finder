@@ -1,3 +1,4 @@
+import { uploadDiscoveryImage } from "./discoveries.functions";
 /**
  * src/lib/api.ts
  * ================
@@ -388,16 +389,18 @@ export async function uploadDiscovery(params: {
   notes?: string | undefined;
   quantity?: string | undefined;
 }): Promise<DiscoveryUploadResult> {
-  const userId = await requireUserId();
+  await requireUserId();
 
-  const extension = params.file.name.split(".").pop()?.toLowerCase() ?? "jpg";
-  const path = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
-
-  const { error: uploadError } = await supabase.storage.from("discoveries").upload(path, params.file, {
-    contentType: params.file.type || "image/jpeg",
-    upsert: false,
-  });
-  if (uploadError) throw toApiError(uploadError.message);
+  // Uppladdningen går via servern, som rensar all metadata (EXIF/GPS) ur
+  // bilden. Direktuppladdning till lagringen är spärrad för inloggade.
+  const form = new FormData();
+  form.set("file", params.file);
+  let path: string;
+  try {
+    ({ path } = await uploadDiscoveryImage({ data: form }));
+  } catch (err) {
+    throw toApiError(err instanceof Error ? err.message : "Kunde inte ladda upp bilden.");
+  }
 
   const { data, error } = await supabase.rpc("log_species_discovery", {
     p_species_id: params.speciesId,

@@ -1,7 +1,7 @@
 /**
  * src/components/DiscoverySuccessModal.tsx
  * ===========================================
- * Visar resultatet från en lyckad POST /discoveries (poäng, ny
+ * Visar resultatet från en lyckad fyndregistrering (uploadDiscovery i lib/api.ts) (poäng, ny
  * totalsumma, ev. upplåst badge).
  *
  * KÄND BEGRÄNSNING: log_species_discovery() (se
