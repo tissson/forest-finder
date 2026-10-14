@@ -1,24 +1,17 @@
 /**
  * src/components/LogDiscoveryModal.tsx
  * =======================================
- * Modal där användaren väljer art (och valfritt mängd/anteckning)
- * för ett foto som redan capturats av CameraCapture.tsx, och skickar
- * det till POST /discoveries.
+ * Modal där användaren väljer art (och valfritt mängd/anteckning) för ett
+ * foto från CameraCapture.tsx. Skickar via uploadDiscovery() i lib/api.ts:
+ * bilden laddas upp via servern (som rensar metadata), därefter sparas fyndet
+ * med databasfunktionen log_species_discovery.
  *
- * TVÅ SAKER ATT KÄNNA TILL:
+ * ai_confidence=1.0 FÖR MANUELLA FYND: log_species_discovery kräver
+ * ai_confidence >= 0.70. Det finns ingen AI-artidentifiering byggd, så
+ * manuellt valda arter skickas med 1.0.
  *
- * 1. RÄTT ENDPOINT-SÖKVÄG: den faktiska, byggda endpointen heter
- *    "/discoveries" (ingen /api-prefix) -- se uploadDiscovery() i lib/api.ts.
- *
- * 2. ai_confidence=1.0 FÖR MANUELLA FYND: /discoveries kräver
- *    ai_confidence >= 0.700 (se log_species_discovery). Eftersom
- *    ingen AI-klassificeringsmodell finns byggd än skickar denna modal
- *    ai_confidence=1.0 för manuellt valda arter -- ett medvetet
- *    produktbeslut (bekräftat), inte en neutral implementationsdetalj.
- *
- * notes/quantity SPARAS nu på riktigt (se migration_add_discovery_notes.sql
- * + den uppdaterade /discoveries-endpointen i api_server.py) -- max
- * 500 respektive 100 tecken, samma gräns som databasens CHECK-constraints.
+ * notes/quantity sparas, max 500 respektive 100 tecken (samma gräns som i
+ * databasen).
  */
 
 import { useEffect, useState } from 'react';

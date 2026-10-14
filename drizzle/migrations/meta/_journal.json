@@ -50,6 +50,13 @@
       "when": 1791874051359,
       "tag": "0006_publish_weather_date_after_finalize",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791958645593,
+      "tag": "0007_discoveries_upload_server_only",
+      "breakpoints": true
     }
   ]
 }

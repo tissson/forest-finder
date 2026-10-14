@@ -1,35 +1,23 @@
 /**
  * src/components/CameraCapture.tsx
  * ===================================
- * Tar/väljer ett foto, komprimerar det klient-side, och slår upp
- * vilken weather_zone_id positionen tillhör -- UTAN att någonsin
- * skicka råa koordinater till backend. Se svarstexten där denna
- * arkitektur motiverades: user_discoveries-designen bygger uttryckligen
- * på att exakta koordinater ALDRIG ska nå databasen (bara
- * weather_zone_id, 5x5km) -- att skicka latitude/longitude hade
- * undergrävt det löftet även om själva /discoveries-endpointen inte
- * har fält för det.
+ * Tar/väljer ett foto, komprimerar det i webbläsaren och slår upp vilken
+ * weather_zone_id (5x5 km-ruta) positionen tillhör. Råa koordinater skickas
+ * aldrig till databasen – bara zon-id:t sparas med fyndet.
  *
- * GPS-KÄLLA: webbläsarens Geolocation-API i första hand (mer
- * tillförlitligt än en bilds EXIF, som kan vara gammal/från en annan
- * plats om användaren väljer ett befintligt foto). Faller tillbaka på
- * bildens EXIF-GPS (via paketet 'exifr' -- npm install exifr) om
- * webbläsarpositionering nekas/saknas.
+ * GPS-KÄLLA: webbläsarens Geolocation-API i första hand, bildens EXIF-GPS
+ * (paketet 'exifr') som reserv. Koordinaterna används bara lokalt för att
+ * hitta zonen via lookup_weather_zone.
  *
- * KOMPRIMERING SOM BIEFFEKT STRIPPAR EXIF: canvas.toBlob() lägger
- * ALDRIG till EXIF-metadata i sin utdata -- komprimeringssteget nedan
- * är därför redan i sig en de-facto EXIF-strippning. Detta är EN
- * extra skyddsnivå, inte den enda -- servern kör fortfarande sin egen
- * strip_exif_and_normalize() (api_server.py) som den auktoritativa
- * skyddsmekanismen, i händelse av att komprimeringen någonsin
- * kringgås eller ändras.
+ * METADATA: canvas.toBlob() skriver aldrig EXIF, så komprimeringen tar redan
+ * bort GPS ur bilden. Det är bara ett första skydd. Den auktoritativa spärren
+ * ligger på servern: uploadDiscoveryImage (src/lib/discoveries.functions.ts)
+ * rensar all metadata ur varje bild innan den sparas, och webbläsaren får inte
+ * ladda upp direkt till lagringen.
  *
- * VIKTIG DETALJ SOM ANNARS ÄR LÄTT ATT MISSA: createImageBitmap()
- * respekterar INTE EXIF-orienteringen konsekvent mellan webbläsare om
- * man inte uttryckligen ber om det -- exakt samma buggklass som
- * fångades server-side med ImageOps.exif_transpose() i api_server.py.
- * { imageOrientation: 'from-image' } nedan säkerställer att stående
- * mobilfoton inte blir sidledes efter komprimering.
+ * { imageOrientation: 'from-image' } behövs så att stående mobilfoton inte
+ * blir liggande efter komprimeringen (createImageBitmap följer annars inte
+ * EXIF-orienteringen konsekvent mellan webbläsare).
  */
 
 import { useCallback, useRef, useState } from 'react';
