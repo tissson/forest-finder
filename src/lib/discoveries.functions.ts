@@ -14,8 +14,8 @@ export const uploadDiscoveryImage = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => {
     if (!(data instanceof FormData)) throw new Error("Ogiltig uppladdning.");
-    const file = data.get("file");
-    if (!(file instanceof File) && !(file instanceof Blob)) throw new Error("Bild saknas.");
+    const file = data.get("file") as unknown;
+    if (!(file instanceof Blob)) throw new Error("Bild saknas.");
     if (file.size === 0 || file.size > MAX_BYTES) throw new Error("Bilden måste vara högst 10 MB.");
     return { file };
   })
