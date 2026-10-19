@@ -385,48 +385,20 @@ export async function uploadDiscovery(params: {
   file: File;
   speciesId: number;
   weatherZoneId: number;
-  aiConfidence: number;
   notes?: string | undefined;
   quantity?: string | undefined;
-}): Promise<DiscoveryUploadResult> {
+}) {
   await requireUserId();
 
   // Uppladdningen går via servern, som rensar all metadata (EXIF/GPS) ur
   // bilden. Direktuppladdning till lagringen är spärrad för inloggade.
   const form = new FormData();
   form.set("file", params.file);
-  let path: string;
-  try {
-    ({ path } = await uploadDiscoveryImage({ data: form }));
-  } catch (err) {
-    throw toApiError(err instanceof Error ? err.message : "Kunde inte ladda upp bilden.");
-  }
-
-  const { data, error } = await supabase.rpc("log_species_discovery", {
-    p_species_id: params.speciesId,
-    p_weather_zone_id: params.weatherZoneId,
-    p_image_url: path,
-    p_ai_confidence: params.aiConfidence,
-    ...(params.notes ? { p_notes: params.notes } : {}),
-    ...(params.quantity ? { p_quantity: params.quantity } : {}),
-  });
-  if (error) {
-    await supabase.storage.from("discoveries").remove([path]);
-    throw toApiError(error.message);
-  }
-
-  const row = (Array.isArray(data) ? data[0] : data) as {
-    points_awarded: number;
-    new_total_points: number;
-    badge_unlocked: string | null;
-  };
-
-  return {
-    points_awarded: row?.points_awarded ?? 0,
-    new_total_points: row?.new_total_points ?? 0,
-    badge_unlocked: row?.badge_unlocked ?? null,
-    image_url: await getDiscoveryImageUrl(path),
-  };
+  form.set('speciesId', String(params.speciesId));
+  form.set('weatherZoneId', String(params.weatherZoneId));
+  if (params.notes) form.set('notes', params.notes);
+  if (params.quantity) form.set('quantity', params.quantity);
+  return uploadDiscoveryImage({ data: form });
 }
 
 export async function getDiscoveryImageUrl(path: string): Promise<string> {
