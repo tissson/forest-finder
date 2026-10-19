@@ -78,7 +78,7 @@ export const uploadDiscoveryImage = createServerFn({ method: "POST" })
       return { status: 'error' as const, message: safeAiError(err) };
     }
     }
-    const { data: committed, error: commitError } = await supabaseAdmin.rpc('commit_verified_discovery', { p_identification_id: identificationId, p_user_id: context.userId, p_species_id: data.speciesId, p_weather_zone_id: data.weatherZoneId, p_notes: data.notes || undefined, p_quantity: data.quantity || undefined });
+    const { data: committed, error: commitError } = await supabaseAdmin.rpc('commit_verified_discovery', { p_identification_id: identificationId, p_user_id: context.userId, p_species_id: data.speciesId, p_weather_zone_id: data.weatherZoneId, ...(data.notes ? { p_notes: data.notes } : {}), ...(data.quantity ? { p_quantity: data.quantity } : {}) });
     if (commitError) throw new Error(commitError.message.includes('IDENTIFICATION_EXPIRED') ? 'Artbedömningen har gått ut eller fyndet är redan sparat. Ta ett nytt foto.' : commitError.message.includes('SPECIES_MISMATCH') ? 'Bekräfta den identifierade arten innan fyndet sparas.' : 'Kunde inte registrera fyndet.');
     const row = committed?.[0];
     if (!row) throw new Error('Fyndet kunde inte bekräftas som sparat.');
