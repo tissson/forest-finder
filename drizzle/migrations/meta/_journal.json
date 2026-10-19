@@ -57,6 +57,13 @@
       "when": 1791958645593,
       "tag": "0007_discoveries_upload_server_only",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1792392177878,
+      "tag": "0008_server_verified_discoveries",
+      "breakpoints": true
     }
   ]
 }

@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      discovery_identifications: {
+        Row: {
+          confidence: number
+          consumed_at: string | null
+          expires_at: string
+          id: string
+          image_path: string
+          species_id: number
+          user_id: string
+        }
+        Insert: {
+          confidence: number
+          consumed_at?: string | null
+          expires_at?: string
+          id?: string
+          image_path: string
+          species_id: number
+          user_id: string
+        }
+        Update: {
+          confidence?: number
+          consumed_at?: string | null
+          expires_at?: string
+          id?: string
+          image_path?: string
+          species_id?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "discovery_identifications_species_id_fkey"
+            columns: ["species_id"]
+            isOneToOne: false
+            referencedRelation: "species"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       forest_cover_staging: {
         Row: {
           rast: unknown
@@ -1618,6 +1656,23 @@ export type Database = {
             }
             Returns: boolean
           }
+      commit_verified_discovery: {
+        Args: {
+          p_identification_id: string
+          p_notes?: string
+          p_quantity?: string
+          p_species_id: number
+          p_user_id: string
+          p_weather_zone_id: number
+        }
+        Returns: {
+          badge_title: string
+          badge_unlocked: string
+          discovery_id: number
+          new_total_points: number
+          points_awarded: number
+        }[]
+      }
       compute_moisture_tile: {
         Args: { p_date: string; x: number; y: number; z: number }
         Returns: string
