@@ -37,6 +37,9 @@ export const uploadDiscoveryImage = createServerFn({ method: "POST" })
     let identificationId = data.identificationId;
     if (!identificationId) {
     if (!data.file) throw new Error('Bild saknas.');
+    const { data: blocked, error: blockedError } = await supabaseAdmin.from('discovery_ai_access_state').select('message').eq('id', true).maybeSingle();
+    if (blockedError) throw new Error('Kunde inte kontrollera AI-tjänstens åtkomst.');
+    if (blocked) return { status: 'error' as const, message: blocked.message };
     let clean: Uint8Array;
     try {
       clean = stripJpegMetadata(new Uint8Array(await data.file.arrayBuffer()));
@@ -74,7 +77,12 @@ export const uploadDiscoveryImage = createServerFn({ method: "POST" })
       if (assessed.species.id !== data.speciesId) return { status: 'mismatch' as const, identificationId, speciesId: assessed.species.id, speciesName: assessed.species.name_sv, confidence: result.identification.confidence };
     } catch (err) {
       await supabaseAdmin.storage.from('discoveries').remove([path]);
-      const { safeAiError } = await import('./discovery-ai-errors.server');
+      const { safeAiError, aiAccessStatus } = await import('./discovery-ai-errors.server');
+      const accessStatus = aiAccessStatus(err);
+      if (accessStatus) {
+        const { error: pauseError } = await supabaseAdmin.from('discovery_ai_access_state').upsert({ id: true, message: safeAiError(err), http_status: accessStatus });
+        if (pauseError) console.error('Kunde inte spara AI-åtkomstspärr:', pauseError.message);
+      }
       return { status: 'error' as const, message: safeAiError(err) };
     }
     }
