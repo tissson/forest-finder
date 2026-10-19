@@ -6,18 +6,19 @@
  * bilden laddas upp via servern (som rensar metadata), därefter sparas fyndet
  * med databasfunktionen log_species_discovery.
  *
- * ai_confidence=1.0 FÖR MANUELLA FYND: log_species_discovery kräver
- * ai_confidence >= 0.70. Det finns ingen AI-artidentifiering byggd, så
- * manuellt valda arter skickas med 1.0.
+ * Servern identifierar arten och säkerhetsgraden; klienten kan bara bekräfta
+ * en avvikande art med ett serverlagrat bedömnings-ID, aldrig egen säkerhet.
  *
  * notes/quantity sparas, max 500 respektive 100 tecken (samma gräns som i
  * databasen).
  */
 
 import { useEffect, useState } from 'react';
-import { getSpecies, uploadDiscovery, type Species, type DiscoveryUploadResult } from '../lib/api';
+import { useServerFn } from '@tanstack/react-start';
+import { getSpecies, type Species, type DiscoveryUploadResult } from '../lib/api';
+import { uploadDiscoveryImage } from '../lib/discoveries.functions';
+import { Button } from './ui/button';
 
-const MANUAL_ENTRY_CONFIDENCE = 1.0; // se punkt 2 i filhuvudet
 const MAX_NOTES_LENGTH = 500;
 const MAX_QUANTITY_LENGTH = 100;
 
@@ -37,9 +38,12 @@ export function LogDiscoveryModal({ isOpen, file, weatherZoneId, onClose, onSucc
   const [note, setNote] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mismatch, setMismatch] = useState<{ identificationId: string; speciesId: number; speciesName: string; confidence: number } | null>(null);
+  const upload = useServerFn(uploadDiscoveryImage);
 
   useEffect(() => {
     if (!isOpen) return;
+    setSelectedSpeciesId(null); setManualZoneId(''); setQuantity(''); setNote(''); setError(null); setMismatch(null);
     getSpecies()
       .then(setSpecies)
       .catch(() => setError('Kunde inte hämta artlistan.'));
@@ -50,21 +54,22 @@ export function LogDiscoveryModal({ isOpen, file, weatherZoneId, onClose, onSucc
   const effectiveZoneId = weatherZoneId ?? (manualZoneId ? Number(manualZoneId) : null);
   const canSubmit = file !== null && selectedSpeciesId !== null && effectiveZoneId !== null && !submitting;
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (confirm = false) => {
     if (!file || selectedSpeciesId === null || effectiveZoneId === null) return;
 
     setSubmitting(true);
     setError(null);
     try {
-      const result = await uploadDiscovery({
-        file,
-        speciesId: selectedSpeciesId,
-        weatherZoneId: effectiveZoneId,
-        aiConfidence: MANUAL_ENTRY_CONFIDENCE,
-        notes: note.trim() || undefined,
-        quantity: quantity.trim() || undefined,
-      });
-      onSuccess(result);
+      const form = new FormData();
+      if (confirm && mismatch) form.set('identificationId', mismatch.identificationId);
+      else form.set('file', file);
+      form.set('speciesId', String(confirm && mismatch ? mismatch.speciesId : selectedSpeciesId));
+      form.set('weatherZoneId', String(effectiveZoneId));
+      form.set('notes', note.trim()); form.set('quantity', quantity.trim());
+      const response = await upload({ data: form });
+      if (response.status === 'saved') onSuccess(response.result);
+      else if (response.status === 'mismatch') setMismatch(response);
+      else setError(response.message);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Kunde inte registrera fyndet.');
     } finally {
@@ -73,16 +78,18 @@ export function LogDiscoveryModal({ isOpen, file, weatherZoneId, onClose, onSucc
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-      <div className="w-full max-w-md rounded-xl border border-stone-700 bg-stone-900 p-5 text-stone-100">
-        <h2 className="mb-4 text-lg font-semibold">Registrera fynd</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/60 p-4" role="dialog" aria-modal="true" aria-labelledby="discovery-title">
+      <div className="max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-lg border border-border bg-card p-5 text-card-foreground">
+        <h2 id="discovery-title" className="mb-4 text-lg font-semibold">Registrera fynd</h2>
 
         <div className="mb-4">
-          <label className="mb-1 block text-xs text-stone-400">Art</label>
+          <label htmlFor="discovery-species" className="mb-1 block text-xs text-muted-foreground">Art</label>
           <select
+            id="discovery-species"
+            disabled={submitting || mismatch !== null}
             value={selectedSpeciesId ?? ''}
             onChange={(e) => setSelectedSpeciesId(e.target.value ? Number(e.target.value) : null)}
-            className="w-full rounded-md border border-stone-700 bg-stone-800 px-3 py-2 text-sm"
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
           >
             <option value="">Välj art…</option>
             {species.map((s) => (
@@ -95,7 +102,7 @@ export function LogDiscoveryModal({ isOpen, file, weatherZoneId, onClose, onSucc
 
         {weatherZoneId === null && (
           <div className="mb-4">
-            <label className="mb-1 block text-xs text-stone-400">
+            <label className="mb-1 block text-xs text-muted-foreground">
               Väderzon-ID (kunde inte fastställas automatiskt)
             </label>
             <input
@@ -103,25 +110,25 @@ export function LogDiscoveryModal({ isOpen, file, weatherZoneId, onClose, onSucc
               value={manualZoneId}
               onChange={(e) => setManualZoneId(e.target.value)}
               placeholder="Ange manuellt"
-              className="w-full rounded-md border border-stone-700 bg-stone-800 px-3 py-2 text-sm"
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
             />
           </div>
         )}
 
         <div className="mb-4">
-          <label className="mb-1 block text-xs text-stone-400">Mängd</label>
+          <label className="mb-1 block text-xs text-muted-foreground">Mängd</label>
           <input
             type="text"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value.slice(0, MAX_QUANTITY_LENGTH))}
             placeholder="t.ex. 'en handfull'"
             maxLength={MAX_QUANTITY_LENGTH}
-            className="w-full rounded-md border border-stone-700 bg-stone-800 px-3 py-2 text-sm"
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
           />
         </div>
 
         <div className="mb-4">
-          <label className="mb-1 block text-xs text-stone-400">
+          <label className="mb-1 block text-xs text-muted-foreground">
             Anteckning ({note.length}/{MAX_NOTES_LENGTH})
           </label>
           <textarea
@@ -129,30 +136,32 @@ export function LogDiscoveryModal({ isOpen, file, weatherZoneId, onClose, onSucc
             onChange={(e) => setNote(e.target.value.slice(0, MAX_NOTES_LENGTH))}
             rows={2}
             maxLength={MAX_NOTES_LENGTH}
-            className="w-full rounded-md border border-stone-700 bg-stone-800 px-3 py-2 text-sm"
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
           />
         </div>
 
         {error && (
-          <p className="mb-3 rounded border border-red-800 bg-red-950/50 p-2 text-xs text-red-300">{error}</p>
+          <p role="alert" className="mb-3 rounded border border-destructive bg-destructive/10 p-2 text-sm text-destructive">{error}</p>
         )}
 
+        {mismatch && <p className="mb-4 text-sm" role="status">Vi tror det här är {mismatch.speciesName}, inte {species.find(s => s.id === selectedSpeciesId)?.name_sv} ({Math.round(mismatch.confidence * 100)} % säkerhetsgrad). Vill du ändra? Fyndet är inte sparat.</p>}
+
         <div className="flex justify-end gap-2">
-          <button
+          <Button
             type="button"
             onClick={onClose}
-            className="rounded-md px-4 py-2 text-sm text-stone-400 hover:text-stone-200"
+            disabled={submitting}
+            variant="ghost"
           >
             Avbryt
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit(Boolean(mismatch))}
             disabled={!canSubmit}
-            className="rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {submitting ? 'Skickar…' : 'Registrera fynd'}
-          </button>
+            {submitting ? 'Kontrollerar…' : mismatch ? 'Ändra och spara' : 'Registrera fynd'}
+          </Button>
         </div>
       </div>
     </div>
