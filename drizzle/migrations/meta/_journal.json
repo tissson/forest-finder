@@ -64,6 +64,13 @@
       "when": 1792392177878,
       "tag": "0008_server_verified_discoveries",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1792392309602,
+      "tag": "0009_discovery_ai_access_state",
+      "breakpoints": true
     }
   ]
 }

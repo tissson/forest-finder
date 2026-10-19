@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      discovery_ai_access_state: {
+        Row: {
+          blocked_at: string
+          http_status: number
+          id: boolean
+          message: string
+        }
+        Insert: {
+          blocked_at?: string
+          http_status: number
+          id?: boolean
+          message: string
+        }
+        Update: {
+          blocked_at?: string
+          http_status?: number
+          id?: boolean
+          message?: string
+        }
+        Relationships: []
+      }
       discovery_identifications: {
         Row: {
           confidence: number
