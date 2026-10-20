@@ -1,0 +1,5164 @@
+{
+  "offset": 0,
+  "limit": 300,
+  "endOfRecords": true,
+  "count": 22,
+  "results": [
+    {
+      "key": 5012641573,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:22:52.115+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.662289,
+      "decimalLongitude": 13.522929,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.12_1",
+          "name": "Götene"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 9,
+      "eventDate": "2024-09-09T00:00",
+      "startDayOfYear": 253,
+      "endDayOfYear": 253,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:22:52.115+00:00",
+      "references": "https://enjoynature.net/?gebiet=-613397550&datum=09.09.24&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-2029302353"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-2029302353",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Varans naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5012641573"
+    },
+    {
+      "key": 5019246806,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:09.118+00:00",
+      "crawlId": 440,
+      "extensions": {
+        "http://rs.gbif.org/terms/1.0/Multimedia": [
+          {
+            "http://purl.org/dc/terms/license": "Copyright by the creator. For license and creator details, see https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=894517366.",
+            "http://purl.org/dc/terms/format": "image/jpeg",
+            "http://purl.org/dc/terms/identifier": "https://live.staticflickr.com/65535/55497708541_7317c03f5c_b.jpg",
+            "http://purl.org/dc/terms/references": "https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=894517366"
+          }
+        ]
+      },
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.324997,
+      "decimalLongitude": 12.472057,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.49_1",
+          "name": "Vänersborg"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 17,
+      "eventDate": "2024-09-17T00:00",
+      "startDayOfYear": 261,
+      "endDayOfYear": 261,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:09.118+00:00",
+      "references": "https://enjoynature.net/?gebiet=2106189566&datum=17.09.24&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1708003430"
+        }
+      ],
+      "media": [
+        {
+          "type": "StillImage",
+          "format": "image/jpeg",
+          "references": "https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=894517366",
+          "license": "Copyright by the creator. For license and creator details, see https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=894517366.",
+          "identifier": "https://live.staticflickr.com/65535/55497708541_7317c03f5c_b.jpg"
+        }
+      ],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1708003430",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hunneberg",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5019246806"
+    },
+    {
+      "key": 5021398764,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:25.863+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.747074,
+      "decimalLongitude": 13.845605,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.7_1",
+          "name": "Jönköping"
+        },
+        "level2": {
+          "gid": "SWE.7.5_1",
+          "name": "Jönköping"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 8,
+      "eventDate": "2024-09-08T00:00",
+      "startDayOfYear": 252,
+      "endDayOfYear": 252,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:25.863+00:00",
+      "references": "https://enjoynature.net/?gebiet=1185379864&datum=08.09.24&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-991258353"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-991258353",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet an F666 südl. Bottnaryd",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5021398764"
+    },
+    {
+      "key": 5021949585,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:38.254+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 61.05032,
+      "decimalLongitude": 14.492644,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.2_1",
+          "name": "Dalarna"
+        },
+        "level2": {
+          "gid": "SWE.2.10_1",
+          "name": "Mora"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 11,
+      "eventDate": "2024-09-11T00:00",
+      "startDayOfYear": 255,
+      "endDayOfYear": 255,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:38.254+00:00",
+      "references": "https://enjoynature.net/?gebiet=-371879868&datum=11.09.24&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1779744065"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1779744065",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet südl. Frostkitt",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5021949585"
+    },
+    {
+      "key": 5022647583,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:35.045+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.632969,
+      "decimalLongitude": 13.484132,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.12_1",
+          "name": "Götene"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 9,
+      "eventDate": "2024-09-09T00:00",
+      "startDayOfYear": 253,
+      "endDayOfYear": 253,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:35.045+00:00",
+      "references": "https://enjoynature.net/?gebiet=1914663259&datum=09.09.24&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1817281501"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1817281501",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wald zw. Götene und Forshem",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5022647583"
+    },
+    {
+      "key": 5023868518,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:26:12.603+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.580814,
+      "decimalLongitude": 14.259477,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.17_1",
+          "name": "Värmland"
+        },
+        "level2": {
+          "gid": "SWE.17.14_1",
+          "name": "Storfors"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 10,
+      "eventDate": "2024-09-10T00:00",
+      "startDayOfYear": 254,
+      "endDayOfYear": 254,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:26:12.603+00:00",
+      "references": "https://enjoynature.net/?gebiet=1750105265&datum=10.09.24&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1939148327"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1939148327",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wald nördl. Jordkullen",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5023868518"
+    },
+    {
+      "key": 5021689458,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:41.140+00:00",
+      "crawlId": 440,
+      "extensions": {
+        "http://rs.gbif.org/terms/1.0/Multimedia": [
+          {
+            "http://purl.org/dc/terms/license": "Copyright by the creator. For license and creator details, see https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1337403935.",
+            "http://purl.org/dc/terms/format": "image/jpeg",
+            "http://purl.org/dc/terms/identifier": "https://live.staticflickr.com/65535/52305373352_7ae7db4f29_b.jpg",
+            "http://purl.org/dc/terms/references": "https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1337403935"
+          }
+        ]
+      },
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.170494,
+      "decimalLongitude": 12.156949,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.4_1",
+          "name": "Bengtsfors"
+        }
+      },
+      "year": 2022,
+      "month": 7,
+      "day": 27,
+      "eventDate": "2022-07-27T00:00",
+      "startDayOfYear": 208,
+      "endDayOfYear": 208,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:41.140+00:00",
+      "references": "https://enjoynature.net/?gebiet=-627469664&datum=27.07.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1017192657"
+        }
+      ],
+      "media": [
+        {
+          "type": "StillImage",
+          "format": "image/jpeg",
+          "references": "https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1337403935",
+          "license": "Copyright by the creator. For license and creator details, see https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1337403935.",
+          "identifier": "https://live.staticflickr.com/65535/52305373352_7ae7db4f29_b.jpg"
+        }
+      ],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "-1053590555",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1017192657",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "UTM25_33V_0325_6550",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5021689458"
+    },
+    {
+      "key": 5027226826,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:57.238+00:00",
+      "crawlId": 440,
+      "extensions": {
+        "http://rs.gbif.org/terms/1.0/Multimedia": [
+          {
+            "http://purl.org/dc/terms/license": "Copyright by the creator. For license and creator details, see https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1630989154.",
+            "http://purl.org/dc/terms/format": "image/jpeg",
+            "http://purl.org/dc/terms/identifier": "https://live.staticflickr.com/65535/52672863211_df282921af_b.jpg",
+            "http://purl.org/dc/terms/references": "https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1630989154"
+          }
+        ]
+      },
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.804138,
+      "decimalLongitude": 12.202023,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.4_1",
+          "name": "Bengtsfors"
+        }
+      },
+      "year": 2022,
+      "month": 7,
+      "day": 9,
+      "eventDate": "2022-07-09T00:00",
+      "startDayOfYear": 190,
+      "endDayOfYear": 190,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:57.238+00:00",
+      "references": "https://enjoynature.net/?gebiet=673698682&datum=09.07.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-586975463"
+        }
+      ],
+      "media": [
+        {
+          "type": "StillImage",
+          "format": "image/jpeg",
+          "references": "https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1630989154",
+          "license": "Copyright by the creator. For license and creator details, see https://nabu-naturgucker-beobachtungen.de/?sprache=en&bild=1630989154.",
+          "identifier": "https://live.staticflickr.com/65535/52672863211_df282921af_b.jpg"
+        }
+      ],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "1195197577",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-586975463",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Lillesjö Stuguthyring",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5027226826"
+    },
+    {
+      "key": 5013081788,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:22:41.095+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.081253,
+      "decimalLongitude": 16.559843,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.14_1",
+          "name": "Södermanland"
+        },
+        "level2": {
+          "gid": "SWE.14.2_1",
+          "name": "Flen"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 15,
+      "eventDate": "2022-08-15T00:00",
+      "startDayOfYear": 227,
+      "endDayOfYear": 227,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:22:41.095+00:00",
+      "references": "https://enjoynature.net/?gebiet=1319414525&datum=15.08.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1089647289"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "663406444",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1089647289",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Orrhammar und Umgebung",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5013081788"
+    },
+    {
+      "key": 5015314666,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:40.151+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.154594,
+      "decimalLongitude": 16.488165,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.14_1",
+          "name": "Södermanland"
+        },
+        "level2": {
+          "gid": "SWE.14.2_1",
+          "name": "Flen"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 21,
+      "eventDate": "2022-08-21T00:00",
+      "startDayOfYear": 233,
+      "endDayOfYear": 233,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:40.151+00:00",
+      "references": "https://enjoynature.net/?gebiet=262730697&datum=21.08.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1012653293"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "663406444",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1012653293",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hälleforsnäs und Umgebung",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5015314666"
+    },
+    {
+      "key": 5025072215,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:37.913+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.192574,
+      "decimalLongitude": 16.531651,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.14_1",
+          "name": "Södermanland"
+        },
+        "level2": {
+          "gid": "SWE.14.2_1",
+          "name": "Flen"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 25,
+      "eventDate": "2022-08-25T00:00",
+      "startDayOfYear": 237,
+      "endDayOfYear": 237,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:37.913+00:00",
+      "references": "https://enjoynature.net/?gebiet=-481261631&datum=25.08.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-75309963"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "663406444",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-75309963",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "UTM25_33V_0575_6550",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5025072215"
+    },
+    {
+      "key": 5025175689,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:52.720+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.086494,
+      "decimalLongitude": 16.591356,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.14_1",
+          "name": "Södermanland"
+        },
+        "level2": {
+          "gid": "SWE.14.2_1",
+          "name": "Flen"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 16,
+      "eventDate": "2022-08-16T00:00",
+      "startDayOfYear": 228,
+      "endDayOfYear": 228,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:52.720+00:00",
+      "references": "https://enjoynature.net/?gebiet=-2029393290&datum=16.08.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:235638285"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "663406444",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "235638285",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet östlich Orrhammar",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5025175689"
+    },
+    {
+      "key": 5026588196,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:39.536+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.192574,
+      "decimalLongitude": 16.531651,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.14_1",
+          "name": "Södermanland"
+        },
+        "level2": {
+          "gid": "SWE.14.2_1",
+          "name": "Flen"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 17,
+      "eventDate": "2022-08-17T00:00",
+      "startDayOfYear": 229,
+      "endDayOfYear": 229,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:39.536+00:00",
+      "references": "https://enjoynature.net/?gebiet=-481261631&datum=17.08.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:949825793"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "663406444",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "949825793",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "UTM25_33V_0575_6550",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5026588196"
+    },
+    {
+      "key": 5027112591,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:22:01.511+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.081253,
+      "decimalLongitude": 16.559843,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.14_1",
+          "name": "Södermanland"
+        },
+        "level2": {
+          "gid": "SWE.14.2_1",
+          "name": "Flen"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 23,
+      "eventDate": "2022-08-23T00:00",
+      "startDayOfYear": 235,
+      "endDayOfYear": 235,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:22:01.511+00:00",
+      "references": "https://enjoynature.net/?gebiet=1319414525&datum=23.08.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-384833991"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "663406444",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-384833991",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Orrhammar und Umgebung",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5027112591"
+    },
+    {
+      "key": 5022561759,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:21.225+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.677166,
+      "decimalLongitude": 15.351301,
+      "coordinateUncertaintyInMeters": 25.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.3_1",
+          "name": "Lessebo"
+        }
+      },
+      "year": 2022,
+      "month": 10,
+      "day": 7,
+      "eventDate": "2022-10-07T00:00",
+      "startDayOfYear": 280,
+      "endDayOfYear": 280,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:21.225+00:00",
+      "references": "https://enjoynature.net/?gebiet=962535691&datum=07.10.22&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1693043156"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1693043156",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Elljusspår Skruv",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5022561759"
+    },
+    {
+      "key": 5014653750,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:10.818+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.023335,
+      "decimalLongitude": 11.754144,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.7_1",
+          "name": "Dals-Ed"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 15,
+      "eventDate": "2021-09-15T00:00",
+      "startDayOfYear": 258,
+      "endDayOfYear": 258,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:10.818+00:00",
+      "references": "https://enjoynature.net/?gebiet=-355125553&datum=15.09.21&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1163805066"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1163805066",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Tresticklan Nationalpark",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5014653750"
+    },
+    {
+      "key": 5017635253,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:24:55.540+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.324997,
+      "decimalLongitude": 12.472057,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.49_1",
+          "name": "Vänersborg"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 17,
+      "eventDate": "2021-09-17T00:00",
+      "startDayOfYear": 260,
+      "endDayOfYear": 260,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:24:55.540+00:00",
+      "references": "https://enjoynature.net/?gebiet=2106189566&datum=17.09.21&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1046333417"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1046333417",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hunneberg",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5017635253"
+    },
+    {
+      "key": 5018025730,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:56.843+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.798981,
+      "decimalLongitude": 12.892101,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.5_1",
+          "name": "Halland"
+        },
+        "level2": {
+          "gid": "SWE.5.2_1",
+          "name": "Halmstad"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 18,
+      "eventDate": "2021-09-18T00:00",
+      "startDayOfYear": 261,
+      "endDayOfYear": 261,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:56.843+00:00",
+      "references": "https://enjoynature.net/?gebiet=1959064112&datum=18.09.21&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1304854398"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1304854398",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Biskopstorps Naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5018025730"
+    },
+    {
+      "key": 5020246268,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:43.814+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.766644,
+      "decimalLongitude": 15.5896,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.8_1",
+          "name": "Kalmar"
+        },
+        "level2": {
+          "gid": "SWE.8.12_1",
+          "name": "Vimmerby"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 10,
+      "eventDate": "2021-09-10T00:00",
+      "startDayOfYear": 253,
+      "endDayOfYear": 253,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:43.814+00:00",
+      "references": "https://enjoynature.net/?gebiet=-1987029583&datum=10.09.21&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:225653932"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "225653932",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Norra Kvill Nationalpark",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5020246268"
+    },
+    {
+      "key": 5022493227,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:30.301+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.451298,
+      "decimalLongitude": 14.514562,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.11_1",
+          "name": "Orebro"
+        },
+        "level2": {
+          "gid": "SWE.11.5_1",
+          "name": "Karlskoga"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 14,
+      "eventDate": "2021-09-14T00:00",
+      "startDayOfYear": 257,
+      "endDayOfYear": 257,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:30.301+00:00",
+      "references": "https://enjoynature.net/?gebiet=-1134141512&datum=14.09.21&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1106494783"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1106494783",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Kärne Naturreservat und Umgebung",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5022493227"
+    },
+    {
+      "key": 5024938678,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:38.981+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.742058,
+      "decimalLongitude": 14.340173,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.44_1",
+          "name": "Töreboda"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 12,
+      "eventDate": "2021-09-12T00:00",
+      "startDayOfYear": 255,
+      "endDayOfYear": 255,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:38.981+00:00",
+      "references": "https://enjoynature.net/?gebiet=-1710720924&datum=12.09.21&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1913749384"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1913749384",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wälder südl. Gersebacken",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5024938678"
+    },
+    {
+      "key": 5013527022,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:26.934+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "QMKY",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "VD",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "9XBLB",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "7NRT6",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QMKY",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "acceptedUsage": {
+            "key": "5249504",
+            "name": "Cantharellus cibarius Fr.",
+            "rank": "SPECIES",
+            "authorship": "Fr.",
+            "genericName": "Cantharellus",
+            "specificEpithet": "cibarius",
+            "formattedName": "<i>Cantharellus</i> <i>cibarius</i> Fr."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1300",
+              "name": "Cantharellales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8460",
+              "name": "Hydnaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "9623860",
+              "name": "Cantharellus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5249504",
+              "name": "Cantharellus cibarius",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5249504,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1300,
+      "familyKey": 8460,
+      "genusKey": 9623860,
+      "speciesKey": 5249504,
+      "acceptedTaxonKey": 5249504,
+      "scientificName": "Cantharellus cibarius Fr.",
+      "scientificNameAuthorship": "Fr.",
+      "acceptedScientificName": "Cantharellus cibarius Fr.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Cantharellales",
+      "family": "Hydnaceae",
+      "genus": "Cantharellus",
+      "species": "Cantharellus cibarius",
+      "genericName": "Cantharellus",
+      "specificEpithet": "cibarius",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.5373,
+      "decimalLongitude": 14.754716,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.6_1",
+          "name": "Tingsryd"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 20,
+      "eventDate": "2020-09-20T00:00",
+      "startDayOfYear": 264,
+      "endDayOfYear": 264,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:26.934+00:00",
+      "references": "https://enjoynature.net/?gebiet=-297555314&datum=20.09.20&art=-2123789077",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-130264128"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-130264128",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hackekvarns Naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5013527022"
+    }
+  ],
+  "facets": []
+}
