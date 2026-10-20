@@ -1,0 +1,283 @@
+{
+  "retrieved_at_utc": "2026-10-20T08:08:04.093843+00:00",
+  "method": "First 3 API pages, 100 each; reject TAXON_MATCH_HIGHERRANK and TAXON_ID_NOT_FOUND; require at least month eventDate precision for both interval endpoints; per-species floor 2km bins in EPSG:3006; lowest GBIF key per bin; target 10 per latitude band, deterministic farthest-point sampling seeded by lowest key; redistribute shortages by farthest distance; not a representative nationwide sample.",
+  "phenology": "Presence is not ripe-fruit evidence; no default ripe-fruit inference. Keyword mentions below are unverified, not phenophase validation.",
+  "weather": "Not fetched: habitat-ranking pilot, not weather/prognosis validation.",
+  "selected_total": 120,
+  "species": [
+    {
+      "species_id": 5249504,
+      "name": "Cantharellus cibarius",
+      "api_total": 4872,
+      "fetched": 300,
+      "rejected_taxonomic_flags": 300,
+      "eligible_unique_2km_bins": 0,
+      "available_bands": {},
+      "selected": 0,
+      "selected_bands": {},
+      "phenology_keyword_mentions": []
+    },
+    {
+      "species_id": 2554536,
+      "name": "Craterellus tubaeformis",
+      "api_total": 3362,
+      "fetched": 300,
+      "duplicate_2km_bin": 58,
+      "rejected_taxonomic_flags": 1,
+      "eligible_unique_2km_bins": 241,
+      "available_bands": {
+        "55–59": 80,
+        "59–63": 136,
+        "63–70": 25
+      },
+      "selected": 30,
+      "selected_bands": {
+        "55–59": 10,
+        "59–63": 10,
+        "63–70": 10
+      },
+      "phenology_keyword_mentions": []
+    },
+    {
+      "species_id": 2882833,
+      "name": "Vaccinium myrtillus",
+      "api_total": 16368,
+      "fetched": 300,
+      "duplicate_2km_bin": 99,
+      "rejected_taxonomic_flags": 5,
+      "eligible_unique_2km_bins": 196,
+      "available_bands": {
+        "55–59": 102,
+        "59–63": 88,
+        "63–70": 6
+      },
+      "selected": 30,
+      "selected_bands": {
+        "55–59": 14,
+        "59–63": 10,
+        "63–70": 6
+      },
+      "phenology_keyword_mentions": [
+        {
+          "key": 5084545143,
+          "field": "occurrenceRemarks",
+          "value": "Flera olika bärris, olika mossor och olika lavar. Olikåldrade tallar och granar med hänglavar (mest skägglav, tagellav och manlav men även fynd av garnlav)."
+        },
+        {
+          "key": 5087771668,
+          "field": "reproductiveCondition",
+          "value": "no flowers or fruits"
+        }
+      ]
+    },
+    {
+      "species_id": 2882835,
+      "name": "Vaccinium vitis-idaea",
+      "api_total": 14255,
+      "fetched": 300,
+      "rejected_taxonomic_flags": 10,
+      "duplicate_2km_bin": 87,
+      "eligible_unique_2km_bins": 203,
+      "available_bands": {
+        "55–59": 104,
+        "59–63": 87,
+        "63–70": 12
+      },
+      "selected": 30,
+      "selected_bands": {
+        "55–59": 10,
+        "59–63": 10,
+        "63–70": 10
+      },
+      "phenology_keyword_mentions": [
+        {
+          "key": 5008109428,
+          "field": "reproductiveCondition",
+          "value": "no flowers or fruits"
+        },
+        {
+          "key": 5028971864,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5052033577,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5063049219,
+          "field": "reproductiveCondition",
+          "value": "no flowers or fruits"
+        },
+        {
+          "key": 5061827420,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5133767718,
+          "field": "reproductiveCondition",
+          "value": "no flowers or fruits"
+        },
+        {
+          "key": 5084283823,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5087588716,
+          "field": "reproductiveCondition",
+          "value": "no flowers or fruits"
+        },
+        {
+          "key": 5108519702,
+          "field": "reproductiveCondition",
+          "value": "no flowers or fruits"
+        }
+      ]
+    },
+    {
+      "species_id": 5954958,
+      "name": "Boletus edulis",
+      "api_total": 3996,
+      "fetched": 300,
+      "rejected_taxonomic_flags": 300,
+      "eligible_unique_2km_bins": 0,
+      "available_bands": {},
+      "selected": 0,
+      "selected_bands": {},
+      "phenology_keyword_mentions": []
+    },
+    {
+      "species_id": 2998290,
+      "name": "Rubus chamaemorus",
+      "api_total": 4502,
+      "fetched": 300,
+      "duplicate_2km_bin": 44,
+      "rejected_taxonomic_flags": 3,
+      "eligible_unique_2km_bins": 253,
+      "available_bands": {
+        "59–63": 107,
+        "55–59": 60,
+        "63–70": 86
+      },
+      "selected": 30,
+      "selected_bands": {
+        "55–59": 10,
+        "59–63": 10,
+        "63–70": 10
+      },
+      "phenology_keyword_mentions": [
+        {
+          "key": 5202291548,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229131645,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229175171,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229175926,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229214564,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229248384,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229402703,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5229416708,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281336839,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281349316,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281423345,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281428685,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281449027,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281463448,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5281546660,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        },
+        {
+          "key": 5294610883,
+          "field": "occurrenceRemarks",
+          "value": "Några bär som börjat bli orangea."
+        },
+        {
+          "key": 5294626782,
+          "field": "lifeStage",
+          "value": "Fruiting"
+        }
+      ]
+    }
+  ],
+  "sha256": {
+    "2554536-1.json": "077f31fb948a75a8f0108f0e140d94d246c3e6e3e9a4dc1704666a015eb6c469",
+    "2554536-2.json": "f53c9ea872cfaa3f27cb32a59cf0cca94c10e32147ef4486e75ddb639f79d38a",
+    "2554536-3.json": "32e8f86c1526f25cead18627deab707e68ddbfc43f1df8fcf5fa9c7135e47e87",
+    "2882833-1.json": "1f227dcc5475ac01028c35ecea35a6e65c6603778fd8c977ab6afe615f40952b",
+    "2882833-2.json": "9b3969e9a0a3600d7a12911d43ecea67f18e7bda6ceef66f0e49d8316cf2ff73",
+    "2882833-3.json": "3f8a69a7bc8e2a585a15356125e481e1b28e8163ac74525f0cbfc76db2c41ea7",
+    "2882835-1.json": "db4887e1f233531f3815f97264190104dbf89984b5fedcb9a63b4e812121082c",
+    "2882835-2.json": "052cdd2b39dd80885a1c21f3353a9cdf15cb5a285d7d542d9c8966f16bc5fdc8",
+    "2882835-3.json": "1179d8299447a1d64c3a5b40466e6d3fe3f0b4ad9de13d04e6bf88f7ec7d6525",
+    "2998290-1.json": "89c3f59aef674a50150d18eaf7a5eeaedf28d8aa20dc157c65f9c0eba7712d85",
+    "2998290-2.json": "c7d397a015001c1eb453560e57b71b84173d639383b315b38a3d688f672b3513",
+    "2998290-3.json": "08809d2bea0c636e031a8a43e5638938b9168988910d47fc35476adc1bfee173",
+    "5249504-1.json": "b6ccd961910cd694df0c70bf8bbf8d5a8947b38ec38e8f221648523147f34eb2",
+    "5249504-2.json": "7968d1936bd56bc2f9e51e126ef469c0723457ee6e38a2686a41fa1c76e5866f",
+    "5249504-3.json": "0f488acc1ba5e655ff1038829c84d9e9d66056cb153db44566b989aa0e6ac047",
+    "5954958-1.json": "baea85f2550b1774632b08ee4424083d384ea87b89c7dc548211d2d3f5645b00",
+    "5954958-2.json": "950e8cd902d5da4edc81b6e5d2e2195f90071ace9528d763a5d45af5406b2c75",
+    "5954958-3.json": "7391c7ab74819ec6c53a4ebb7bb7137dea16be022856cf0964c8610c635c7153",
+    "occurrences.sql": "ce2162f97f99f0e37ee1ca9e3999e8a5637c01ca7ad56585a3ef305b93c648a9",
+    "requests.json": "710fd3438808792c43e6cf50fcdf292534e3ca3095fef8088962b3b9f4b6b435",
+    "selected.csv": "9412507461eab27ad51c11601c2f9f2a74812d180608b3c845ec971de19090e1"
+  }
+}
