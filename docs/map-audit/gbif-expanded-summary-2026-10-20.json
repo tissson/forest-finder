@@ -1,0 +1,149 @@
+[
+  {
+    "taxon_key": 5249504,
+    "fetched": 922,
+    "unique_ids": 922,
+    "quality_pass": 22,
+    "selected": 18,
+    "counts": {
+      "rejected": 900,
+      "major_issue:TAXON_ID_NOT_FOUND,TAXON_MATCH_HIGHERRANK": 887,
+      "not_day_resolved": 3,
+      "multi_day_interval": 3,
+      "major_issue:TAXON_ID_NOT_FOUND": 13,
+      "duplicate_2km_bin": 3,
+      "within_2km_other_bin": 1
+    },
+    "regions": {
+      "55–59": 10,
+      "59–63": 8
+    },
+    "years": {
+      "2020": 1,
+      "2021": 6,
+      "2022": 6,
+      "2024": 5
+    }
+  },
+  {
+    "taxon_key": 2554536,
+    "fetched": 1000,
+    "unique_ids": 1000,
+    "quality_pass": 984,
+    "selected": 653,
+    "counts": {
+      "rejected": 16,
+      "major_issue:TAXON_ID_NOT_FOUND": 9,
+      "not_day_resolved": 7,
+      "multi_day_interval": 7,
+      "duplicate_2km_bin": 261,
+      "within_2km_other_bin": 70
+    },
+    "regions": {
+      "55–59": 277,
+      "59–63": 293,
+      "63–70": 83
+    },
+    "years": {
+      "2023": 103,
+      "2024": 282,
+      "2025": 268
+    }
+  },
+  {
+    "taxon_key": 2882833,
+    "fetched": 1000,
+    "unique_ids": 1000,
+    "quality_pass": 985,
+    "selected": 533,
+    "counts": {
+      "rejected": 15,
+      "major_issue:TAXON_ID_NOT_FOUND": 13,
+      "not_day_resolved": 2,
+      "multi_day_interval": 2,
+      "within_2km_other_bin": 101,
+      "duplicate_2km_bin": 351
+    },
+    "regions": {
+      "55–59": 229,
+      "59–63": 245,
+      "63–70": 59
+    },
+    "years": {
+      "2025": 533
+    }
+  },
+  {
+    "taxon_key": 2882835,
+    "fetched": 1000,
+    "unique_ids": 1000,
+    "quality_pass": 974,
+    "selected": 585,
+    "counts": {
+      "rejected": 26,
+      "major_issue:TAXON_ID_NOT_FOUND": 22,
+      "not_day_resolved": 4,
+      "multi_day_interval": 4,
+      "within_2km_other_bin": 104,
+      "duplicate_2km_bin": 285
+    },
+    "regions": {
+      "55–59": 227,
+      "59–63": 269,
+      "63–70": 89
+    },
+    "years": {
+      "2025": 585
+    }
+  },
+  {
+    "taxon_key": 5954958,
+    "fetched": 926,
+    "unique_ids": 918,
+    "quality_pass": 26,
+    "selected": 23,
+    "counts": {
+      "rejected": 892,
+      "major_issue:TAXON_ID_NOT_FOUND,TAXON_MATCH_HIGHERRANK": 891,
+      "not_day_resolved": 6,
+      "multi_day_interval": 6,
+      "major_issue:TAXON_ID_NOT_FOUND": 1,
+      "duplicate_id": 8,
+      "duplicate_2km_bin": 3
+    },
+    "regions": {
+      "59–63": 7,
+      "55–59": 16
+    },
+    "years": {
+      "2020": 6,
+      "2021": 7,
+      "2022": 3,
+      "2024": 7
+    }
+  },
+  {
+    "taxon_key": 2998290,
+    "fetched": 1000,
+    "unique_ids": 1000,
+    "quality_pass": 976,
+    "selected": 739,
+    "counts": {
+      "rejected": 24,
+      "not_day_resolved": 6,
+      "multi_day_interval": 6,
+      "major_issue:TAXON_ID_NOT_FOUND": 18,
+      "within_2km_other_bin": 59,
+      "duplicate_2km_bin": 178
+    },
+    "regions": {
+      "63–70": 335,
+      "59–63": 261,
+      "55–59": 143
+    },
+    "years": {
+      "2024": 428,
+      "2025": 311
+    }
+  }
+]

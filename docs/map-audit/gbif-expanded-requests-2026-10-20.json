@@ -1,0 +1,186 @@
+{
+  "retrieved_utc": "2026-10-20T10:21:37.876389+00:00",
+  "elapsed_seconds": 4.907644351999977,
+  "requests": {
+    "5249504": [
+      {
+        "file": "5249504-general-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5249504&offset=0&limit=300",
+        "count": 4872,
+        "returned": 300,
+        "sha256": "8aac4f1966d38efc968ae5315aeac847fc8bb3166fac093de6f2b39bd4dcdac2"
+      },
+      {
+        "file": "5249504-general-300.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5249504&offset=300&limit=300",
+        "count": 4872,
+        "returned": 300,
+        "sha256": "295d0fabe31bf8d6e90b4a9a50ecb84b65020cd492304cf8254f2f1a33d12e45"
+      },
+      {
+        "file": "5249504-general-600.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5249504&offset=600&limit=300",
+        "count": 4872,
+        "returned": 300,
+        "sha256": "d741923663fd5bee1a4141fb9446936ef7cdbed474100876535736a5e945a63d"
+      },
+      {
+        "file": "5249504-naturgucker-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5249504&offset=0&limit=100&datasetKey=6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "count": 22,
+        "returned": 22,
+        "sha256": "15efa6473bdc878ff7a2413f2a34d0a4bb54cdb6a733ef535dd82192b9ba109f"
+      }
+    ],
+    "2554536": [
+      {
+        "file": "2554536-general-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2554536&offset=0&limit=300",
+        "count": 3362,
+        "returned": 300,
+        "sha256": "31b2e5e650da6a87a3141244d4636fd5e759ea2fd785196c12cd1fa9995e6619"
+      },
+      {
+        "file": "2554536-general-300.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2554536&offset=300&limit=300",
+        "count": 3362,
+        "returned": 300,
+        "sha256": "4403fd2dbcd93347c0b1883eb0187fbd0daa8f2640b3648b9c010783e22262b7"
+      },
+      {
+        "file": "2554536-general-600.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2554536&offset=600&limit=300",
+        "count": 3362,
+        "returned": 300,
+        "sha256": "e3e2cc6b5a6112eac7e3c17fbd110756c5697d769f33e3c56e6dff3c798be288"
+      },
+      {
+        "file": "2554536-general-900.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2554536&offset=900&limit=100",
+        "count": 3362,
+        "returned": 100,
+        "sha256": "aecd3a67dc1f4cfcca646db77f975daae8aa7509b06ac91e45e90e024192c5e7"
+      }
+    ],
+    "2882833": [
+      {
+        "file": "2882833-general-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882833&offset=0&limit=300",
+        "count": 16368,
+        "returned": 300,
+        "sha256": "f66683be7a314da5449cc81faab53a658314457b8804ea9a8e065e561ebe3753"
+      },
+      {
+        "file": "2882833-general-300.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882833&offset=300&limit=300",
+        "count": 16368,
+        "returned": 300,
+        "sha256": "ba4a88d0d7ae059b5179fad9bdda89900a89377945813378a965778dff324764"
+      },
+      {
+        "file": "2882833-general-600.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882833&offset=600&limit=300",
+        "count": 16368,
+        "returned": 300,
+        "sha256": "d116e59f03e2d7d477887ebc86e1a5cc92ac9f5b89f3e2f02d41c5afb967ac65"
+      },
+      {
+        "file": "2882833-general-900.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882833&offset=900&limit=100",
+        "count": 16368,
+        "returned": 100,
+        "sha256": "b3dfcee61be711966d2f618f7bbc07e2c9d15ddf9934ae5336b1456493f371d0"
+      }
+    ],
+    "2882835": [
+      {
+        "file": "2882835-general-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882835&offset=0&limit=300",
+        "count": 14255,
+        "returned": 300,
+        "sha256": "7ec5b51d446b3d06c0f9aa667b5859a8f36ba8ba8aa0bb7ab1f3cde6695844ff"
+      },
+      {
+        "file": "2882835-general-300.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882835&offset=300&limit=300",
+        "count": 14255,
+        "returned": 300,
+        "sha256": "489d1f22d0f952db96ae1aa6bb324fcf1eea05eebc1156f116debc3b0eb42d6f"
+      },
+      {
+        "file": "2882835-general-600.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882835&offset=600&limit=300",
+        "count": 14255,
+        "returned": 300,
+        "sha256": "0833c7eee0d19006ad6eed6a64d7cfc69053968d8ba8a3407458c6d1b83291b6"
+      },
+      {
+        "file": "2882835-general-900.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2882835&offset=900&limit=100",
+        "count": 14255,
+        "returned": 100,
+        "sha256": "d3eea50a3aafdc70c7cd274b1efa7c245e2f7fb430001b34e2ca44460ac38880"
+      }
+    ],
+    "5954958": [
+      {
+        "file": "5954958-general-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5954958&offset=0&limit=300",
+        "count": 3996,
+        "returned": 300,
+        "sha256": "4e638275cce15792885e102b929d0850855597cb315bca69c8ff9b214a36cfa0"
+      },
+      {
+        "file": "5954958-general-300.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5954958&offset=300&limit=300",
+        "count": 3996,
+        "returned": 300,
+        "sha256": "e9343bb636e92db4bc8d34b8763c538651cc7370809ee5fc302d37c5b49a85bf"
+      },
+      {
+        "file": "5954958-general-600.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5954958&offset=600&limit=300",
+        "count": 3996,
+        "returned": 300,
+        "sha256": "5f2e90268b5a83616ebb0f8a6c94be97c6a3fbed31d625acd6f115df73598c5d"
+      },
+      {
+        "file": "5954958-naturgucker-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=5954958&offset=0&limit=100&datasetKey=6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+        "count": 26,
+        "returned": 26,
+        "sha256": "ace2c578f0d91362eda04bf5f218b0e4078bec9b9226f8409fb37c86d6190603"
+      }
+    ],
+    "2998290": [
+      {
+        "file": "2998290-general-0.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2998290&offset=0&limit=300",
+        "count": 4502,
+        "returned": 300,
+        "sha256": "0cee70d0c3275523554761e95909100232df3a004a16b8059651f613c4bba6eb"
+      },
+      {
+        "file": "2998290-general-300.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2998290&offset=300&limit=300",
+        "count": 4502,
+        "returned": 300,
+        "sha256": "c4e74bf822a4033824e374fd2f7549cd0ac563f7ed0d320586307d314fb9d763"
+      },
+      {
+        "file": "2998290-general-600.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2998290&offset=600&limit=300",
+        "count": 4502,
+        "returned": 300,
+        "sha256": "0fbd6c3bfb96d2958da77ee7432caf70326f6b5b082025eefa20a5d2c8e41cf9"
+      },
+      {
+        "file": "2998290-general-900.json",
+        "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&hasCoordinate=true&hasGeospatialIssue=false&occurrenceStatus=PRESENT&coordinateUncertaintyInMeters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxonKey=2998290&offset=900&limit=100",
+        "count": 4502,
+        "returned": 100,
+        "sha256": "c03dc4235f631dcf7aef65a77520605c5d22bc26f17a7902454b94e8e099eabd"
+      }
+    ]
+  }
+}

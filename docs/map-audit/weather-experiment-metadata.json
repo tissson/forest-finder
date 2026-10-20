@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-20",
+  "weather_points": 1250,
+  "cells": 1033,
+  "interpolation_local_cpu_seconds": 0.018032289000075252,
+  "note": "Local Python CPU, not server tile performance. Curves are unfitted species-independent sensitivity experiments. No best ecological variant chosen."
+}
