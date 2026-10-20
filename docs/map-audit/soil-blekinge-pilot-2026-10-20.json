@@ -1,0 +1,37 @@
+{
+  "histogram": {
+    "0": 25000000,
+    "1": 631559850,
+    "2": 60059782,
+    "3": 12960083,
+    "4": 112320247,
+    "255": 1558100038
+  },
+  "total_pixels": 2400000000,
+  "valid_cells": 933,
+  "land_cells": 872,
+  "class4_cells": 890,
+  "mixed_water_land_cells": 829,
+  "water_only_cells": 61,
+  "pixel_weighted_old": 0.29077877732842883,
+  "pixel_weighted_corrected": 0.18568933325024833,
+  "same_land_cells_old_mean": 0.27959968126501505,
+  "same_land_cells_new_mean": 0.18557286767324302,
+  "mixed_delta_mean": 0.09890395832572403,
+  "mixed_delta_median": 0.024997997498243607,
+  "mixed_delta_max": 0.7997525141538476,
+  "delta_gt_005": 287,
+  "delta_gt_010": 175,
+  "max_cell": {
+    "center_e": 541000,
+    "center_n": 6223000,
+    "old": 0.9497525141538476,
+    "new": 0.15,
+    "counts": [
+      309,
+      0,
+      0,
+      998536
+    ]
+  }
+}

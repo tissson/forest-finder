@@ -1,0 +1,26 @@
+{
+  "clip": [
+    460000,
+    6190000,
+    480000,
+    6270000
+  ],
+  "shared_valid_pixels": 733284,
+  "conflicting_shared_pixels": 0,
+  "skane_added_valid_pixels": 120965392,
+  "blekinge_valid_pixels_under_skane255": 135873370,
+  "old": {
+    "both_counties_cells": 43,
+    "blekinge_vs_merged_changed_cells": 41,
+    "max_abs_blekinge_vs_merged": 0.4277206549370026,
+    "max_abs_county_vs_county": 0.445411246956374,
+    "mean_abs_county_vs_county": 0.08214947229816033
+  },
+  "corrected": {
+    "both_counties_cells": 41,
+    "blekinge_vs_merged_changed_cells": 41,
+    "max_abs_blekinge_vs_merged": 0.046542814020584355,
+    "max_abs_county_vs_county": 0.17615155153136294,
+    "mean_abs_county_vs_county": 0.028676348775092845
+  }
+}
