@@ -54,7 +54,13 @@ Naturvårdsverket: https://www.naturvardsverket.se/amnesomraden/vatmark/vad-ar-v
 
 NMD documentation to match against the actual dataset/version before implementing: https://www.naturvardsverket.se/contentassets/37e8b38528774982b5840554f02a1f81/produktbeskrivning-nmd-2018-basskikt-v2-2.pdf (class definitions in Appendix 2), and https://geodata.naturvardsverket.se/nedladdning/marktacke/NMD2023/Basskikt_v0_x/NMD2023_Produktbeskrivning_Basskikt_NMD2023_v01.pdf . Do not silently substitute class codes across versions. Combine NMD context with independently documented peat/mire or soil data, wetness, openness and local validation; neither all wetland nor all peat is necessarily productive hjortron habitat. Include wooded mire as a possible context rather than an absolute open-only exclusion.
 
-## Verified ingestion problem and product-semantic warning
+## Confirmed product-semantic error — official legend checked 2026-10-20
+
+The official [SLU product description, page 2](https://www.skogsstyrelsen.se/globalassets/sjalvservice/karttjanster/geodatatjanster/produktbeskrivningar/markfuktighetskarta-slu---produktbeskrivning.pdf) has now been downloaded and read directly. It defines **1=dry–mesic, 2=mesic–moist, 3=moist–wet, 4=open water**. It does not define class 5 as wet ground. The text is retained in `soil-class-source-2026-10-20.txt`.
+
+Therefore the conditional concern below about discarding wet class 5 is **not a confirmed defect** and must not guide a replacement mapping. The confirmed error is **4→95 representing open water as high soil wetness**; 15/45/70/95 are custom scores, not official continuous estimates. No production mapping or data has been changed. Class 3 already includes wet ground. Before reload, exclude open water from soil averaging, retain valid-ground and water fractions, and verify padding/NoData for every source product. Prefer the separately documented continuous 0–100 product if its actual coverage and encoding pass inspection.
+
+### Earlier conditional warning — superseded by the official legend above
 
 `scripts/load-slu-rasters.sh:61–63` says class 5 = blöt but sets:
 
@@ -83,4 +89,4 @@ Lines 123–140 document/map 255 to nodata and average with `-srcnodata 255`; li
 - Fit species-specific, potentially nonlinear responses to representative field presence/absence or abundance data; if using opportunistic records, account for observation effort/detection and sampling bias, and do not mistake non-records for absences.
 - Validate by spatially separated regions and held-out years; stratify hjortron evaluation by mire type and wetness/coverage, and distinguish plant cover from berry counts. Report uncertainty and compare against a transparent heuristic baseline before claiming improvement.
 
-No project files were written or modified; only this requested `/tmp` report was created.
+This source review is retained as an audit document outside the application execution path. Production profiles and loaders have not been modified.
