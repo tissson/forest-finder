@@ -1,0 +1,128 @@
+[
+  {
+    "species_id": 5249504,
+    "page": 1,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5249504&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=0",
+    "total_matches": 4872,
+    "fetched": 100
+  },
+  {
+    "species_id": 5249504,
+    "page": 2,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5249504&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=100",
+    "total_matches": 4872,
+    "fetched": 100
+  },
+  {
+    "species_id": 5249504,
+    "page": 3,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5249504&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=200",
+    "total_matches": 4872,
+    "fetched": 100
+  },
+  {
+    "species_id": 2554536,
+    "page": 1,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2554536&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=0",
+    "total_matches": 3362,
+    "fetched": 100
+  },
+  {
+    "species_id": 2554536,
+    "page": 2,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2554536&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=100",
+    "total_matches": 3362,
+    "fetched": 100
+  },
+  {
+    "species_id": 2554536,
+    "page": 3,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2554536&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=200",
+    "total_matches": 3362,
+    "fetched": 100
+  },
+  {
+    "species_id": 2882833,
+    "page": 1,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2882833&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=0",
+    "total_matches": 16368,
+    "fetched": 100
+  },
+  {
+    "species_id": 2882833,
+    "page": 2,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2882833&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=100",
+    "total_matches": 16368,
+    "fetched": 100
+  },
+  {
+    "species_id": 2882833,
+    "page": 3,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2882833&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=200",
+    "total_matches": 16368,
+    "fetched": 100
+  },
+  {
+    "species_id": 2882835,
+    "page": 1,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2882835&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=0",
+    "total_matches": 14255,
+    "fetched": 100
+  },
+  {
+    "species_id": 2882835,
+    "page": 2,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2882835&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=100",
+    "total_matches": 14255,
+    "fetched": 100
+  },
+  {
+    "species_id": 2882835,
+    "page": 3,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2882835&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=200",
+    "total_matches": 14255,
+    "fetched": 100
+  },
+  {
+    "species_id": 5954958,
+    "page": 1,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5954958&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=0",
+    "total_matches": 3996,
+    "fetched": 100
+  },
+  {
+    "species_id": 5954958,
+    "page": 2,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5954958&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=100",
+    "total_matches": 3996,
+    "fetched": 100
+  },
+  {
+    "species_id": 5954958,
+    "page": 3,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=5954958&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=200",
+    "total_matches": 3996,
+    "fetched": 100
+  },
+  {
+    "species_id": 2998290,
+    "page": 1,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2998290&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=0",
+    "total_matches": 4502,
+    "fetched": 100
+  },
+  {
+    "species_id": 2998290,
+    "page": 2,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2998290&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=100",
+    "total_matches": 4502,
+    "fetched": 100
+  },
+  {
+    "species_id": 2998290,
+    "page": 3,
+    "url": "https://api.gbif.org/v1/occurrence/search?taxonKey=2998290&country=SE&license=CC0_1_0&license=CC_BY_4_0&occurrenceStatus=PRESENT&hasCoordinate=true&hasGeospatialIssue=false&coordinateUncertaintyInMeters=0%2C1000&year=2018%2C2025&limit=100&offset=200",
+    "total_matches": 4502,
+    "fetched": 100
+  }
+]
