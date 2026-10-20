@@ -1,0 +1,6041 @@
+{
+  "offset": 0,
+  "limit": 300,
+  "endOfRecords": true,
+  "count": 26,
+  "results": [
+    {
+      "key": 5016966286,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:36.508+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 61.05032,
+      "decimalLongitude": 14.492644,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.2_1",
+          "name": "Dalarna"
+        },
+        "level2": {
+          "gid": "SWE.2.10_1",
+          "name": "Mora"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 11,
+      "eventDate": "2024-09-11T00:00",
+      "startDayOfYear": 255,
+      "endDayOfYear": 255,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:36.508+00:00",
+      "references": "https://enjoynature.net/?gebiet=-371879868&datum=11.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1667127183"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1667127183",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet südl. Frostkitt",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5016966286"
+    },
+    {
+      "key": 5020284805,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:15.939+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.820354,
+      "decimalLongitude": 13.948854,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.25_1",
+          "name": "Mariestad"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 10,
+      "eventDate": "2024-09-10T00:00",
+      "startDayOfYear": 254,
+      "endDayOfYear": 254,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:15.939+00:00",
+      "references": "https://enjoynature.net/?gebiet=1061380215&datum=10.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-310294271"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-310294271",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Surö Bokskog Naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5020284805"
+    },
+    {
+      "key": 5023694865,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:59.530+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 61.080456,
+      "decimalLongitude": 14.481947,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.2_1",
+          "name": "Dalarna"
+        },
+        "level2": {
+          "gid": "SWE.2.10_1",
+          "name": "Mora"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 11,
+      "eventDate": "2024-09-11T00:00",
+      "startDayOfYear": 255,
+      "endDayOfYear": 255,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:59.530+00:00",
+      "references": "https://enjoynature.net/?gebiet=124789517&datum=11.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1525857829"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1525857829",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet westl. Bonäs",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5023694865"
+    },
+    {
+      "key": 5024319686,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:37.076+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.747074,
+      "decimalLongitude": 13.845605,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.7_1",
+          "name": "Jönköping"
+        },
+        "level2": {
+          "gid": "SWE.7.5_1",
+          "name": "Jönköping"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 8,
+      "eventDate": "2024-09-08T00:00",
+      "startDayOfYear": 252,
+      "endDayOfYear": 252,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:37.076+00:00",
+      "references": "https://enjoynature.net/?gebiet=1185379864&datum=08.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-2006679168"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-2006679168",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet an F666 südl. Bottnaryd",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5024319686"
+    },
+    {
+      "key": 5024565564,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:59.392+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 61.197063,
+      "decimalLongitude": 14.648163,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.2_1",
+          "name": "Dalarna"
+        },
+        "level2": {
+          "gid": "SWE.2.11_1",
+          "name": "Orsa"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 15,
+      "eventDate": "2024-09-15T00:00",
+      "startDayOfYear": 259,
+      "endDayOfYear": 259,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:59.392+00:00",
+      "references": "https://enjoynature.net/?gebiet=1364388820&datum=15.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1837524468"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1837524468",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wald östl. Hornberga",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5024565564"
+    },
+    {
+      "key": 5025385354,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:31.353+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.580814,
+      "decimalLongitude": 14.259477,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.17_1",
+          "name": "Värmland"
+        },
+        "level2": {
+          "gid": "SWE.17.14_1",
+          "name": "Storfors"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 10,
+      "eventDate": "2024-09-10T00:00",
+      "startDayOfYear": 254,
+      "endDayOfYear": 254,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:31.353+00:00",
+      "references": "https://enjoynature.net/?gebiet=1750105265&datum=10.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:22010751"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "22010751",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wald nördl. Jordkullen",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5025385354"
+    },
+    {
+      "key": 5025533084,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:48.999+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 59.95966,
+      "decimalLongitude": 14.198314,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.17_1",
+          "name": "Värmland"
+        },
+        "level2": {
+          "gid": "SWE.17.4_1",
+          "name": "Filipstad"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 10,
+      "eventDate": "2024-09-10T00:00",
+      "startDayOfYear": 254,
+      "endDayOfYear": 254,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:48.999+00:00",
+      "references": "https://enjoynature.net/?gebiet=1430296877&datum=10.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-39538615"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-39538615",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wald an der Straße südl. Lesjöfors",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5025533084"
+    },
+    {
+      "key": 5026323379,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:26:14.168+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.324997,
+      "decimalLongitude": 12.472057,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.49_1",
+          "name": "Vänersborg"
+        }
+      },
+      "year": 2024,
+      "month": 9,
+      "day": 17,
+      "eventDate": "2024-09-17T00:00",
+      "startDayOfYear": 261,
+      "endDayOfYear": 261,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:26:14.168+00:00",
+      "references": "https://enjoynature.net/?gebiet=2106189566&datum=17.09.24&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:561040585"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "561040585",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hunneberg",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5026323379"
+    },
+    {
+      "key": 5014906485,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:45.595+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.253464,
+      "decimalLongitude": 13.884323,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.7_1",
+          "name": "Jönköping"
+        },
+        "level2": {
+          "gid": "SWE.7.10_1",
+          "name": "Värnamo"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 10,
+      "eventDate": "2022-08-10T00:00",
+      "startDayOfYear": 222,
+      "endDayOfYear": 222,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:45.595+00:00",
+      "references": "https://enjoynature.net/?gebiet=-1883293542&datum=10.08.22&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:485361591"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "232530211",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "485361591",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Store Mosse / Bladöpet",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5014906485"
+    },
+    {
+      "key": 5017320896,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:52.895+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.324997,
+      "decimalLongitude": 12.472057,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.49_1",
+          "name": "Vänersborg"
+        }
+      },
+      "year": 2022,
+      "month": 8,
+      "day": 17,
+      "eventDate": "2022-08-17T00:00",
+      "startDayOfYear": 229,
+      "endDayOfYear": 229,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:52.895+00:00",
+      "references": "https://enjoynature.net/?gebiet=2106189566&datum=17.08.22&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1507433324"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "232530211",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1507433324",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hunneberg",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5017320896"
+    },
+    {
+      "key": 5019213555,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:33.689+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.678726,
+      "decimalLongitude": 15.3509,
+      "coordinateUncertaintyInMeters": 25.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.3_1",
+          "name": "Lessebo"
+        }
+      },
+      "year": 2022,
+      "month": 10,
+      "day": 7,
+      "eventDate": "2022-10-07T00:00",
+      "startDayOfYear": 280,
+      "endDayOfYear": 280,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:33.689+00:00",
+      "references": "https://enjoynature.net/?gebiet=962535691&datum=07.10.22&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1650214081"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1650214081",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Elljusspår Skruv",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5019213555"
+    },
+    {
+      "key": 5017145647,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:01.833+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.82132,
+      "decimalLongitude": 12.574564,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.3_1",
+          "name": "Åmål"
+        }
+      },
+      "year": 2021,
+      "month": 8,
+      "day": 21,
+      "eventDate": "2021-08-21T00:00",
+      "startDayOfYear": 233,
+      "endDayOfYear": 233,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:01.833+00:00",
+      "references": "https://enjoynature.net/?gebiet=-1808481040&datum=21.08.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1970303815"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "232530211",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1970303815",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Yttre Bodane naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5017145647"
+    },
+    {
+      "key": 5021048757,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:22.904+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 60.154514,
+      "decimalLongitude": 13.084183,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.17_1",
+          "name": "Värmland"
+        },
+        "level2": {
+          "gid": "SWE.17.16_1",
+          "name": "Torsby"
+        }
+      },
+      "year": 2021,
+      "month": 8,
+      "day": 20,
+      "eventDate": "2021-08-20T00:00",
+      "startDayOfYear": 232,
+      "endDayOfYear": 232,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:22.904+00:00",
+      "references": "https://enjoynature.net/?gebiet=529870822&datum=20.08.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1759205831"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "232530211",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1759205831",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Röbjörkeby",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5021048757"
+    },
+    {
+      "key": 5023032527,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:22.540+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.324997,
+      "decimalLongitude": 12.472057,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.49_1",
+          "name": "Vänersborg"
+        }
+      },
+      "year": 2021,
+      "month": 8,
+      "day": 23,
+      "eventDate": "2021-08-23T00:00",
+      "startDayOfYear": 235,
+      "endDayOfYear": 235,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:22.540+00:00",
+      "references": "https://enjoynature.net/?gebiet=2106189566&datum=23.08.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1275009718"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "232530211",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1275009718",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hunneberg",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5023032527"
+    },
+    {
+      "key": 5013359262,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:24:31.220+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.798981,
+      "decimalLongitude": 12.892101,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.5_1",
+          "name": "Halland"
+        },
+        "level2": {
+          "gid": "SWE.5.2_1",
+          "name": "Halmstad"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 18,
+      "eventDate": "2021-09-18T00:00",
+      "startDayOfYear": 261,
+      "endDayOfYear": 261,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:24:31.220+00:00",
+      "references": "https://enjoynature.net/?gebiet=1959064112&datum=18.09.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:14739481"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "14739481",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Biskopstorps Naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5013359262"
+    },
+    {
+      "key": 5013628190,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:22:58.015+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.522091,
+      "decimalLongitude": 14.298992,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.7_1",
+          "name": "Jönköping"
+        },
+        "level2": {
+          "gid": "SWE.7.9_1",
+          "name": "Vaggeryd"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 10,
+      "eventDate": "2021-09-10T00:00",
+      "startDayOfYear": 253,
+      "endDayOfYear": 253,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:22:58.015+00:00",
+      "references": "https://enjoynature.net/?gebiet=1025736097&datum=10.09.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:1534886300"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "1534886300",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wald nordöstl. von Hok",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5013628190"
+    },
+    {
+      "key": 5014482543,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:35.884+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.289433,
+      "decimalLongitude": 13.969116,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.7_1",
+          "name": "Jönköping"
+        },
+        "level2": {
+          "gid": "SWE.7.4_1",
+          "name": "Gnosjö"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 9,
+      "eventDate": "2021-09-09T00:00",
+      "startDayOfYear": 252,
+      "endDayOfYear": 252,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:35.884+00:00",
+      "references": "https://enjoynature.net/?gebiet=491843897&datum=09.09.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-585903816"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-585903816",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Store Mosse Nationalpark",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5014482543"
+    },
+    {
+      "key": 5016315433,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:21.893+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 57.108997,
+      "decimalLongitude": 13.755436,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.7_1",
+          "name": "Jönköping"
+        },
+        "level2": {
+          "gid": "SWE.7.10_1",
+          "name": "Värnamo"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 9,
+      "eventDate": "2021-09-09T00:00",
+      "startDayOfYear": 252,
+      "endDayOfYear": 252,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:21.893+00:00",
+      "references": "https://enjoynature.net/?gebiet=768273115&datum=09.09.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1184699599"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1184699599",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Slättö Sand Naturreservat",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5016315433"
+    },
+    {
+      "key": 5020207248,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:20.306+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.324997,
+      "decimalLongitude": 12.472057,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.49_1",
+          "name": "Vänersborg"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 17,
+      "eventDate": "2021-09-17T00:00",
+      "startDayOfYear": 260,
+      "endDayOfYear": 260,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:20.306+00:00",
+      "references": "https://enjoynature.net/?gebiet=2106189566&datum=17.09.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-99193490"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-99193490",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Hunneberg",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5020207248"
+    },
+    {
+      "key": 5024544551,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:35.621+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 58.742058,
+      "decimalLongitude": 14.340173,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.21_1",
+          "name": "Västra Götaland"
+        },
+        "level2": {
+          "gid": "SWE.21.44_1",
+          "name": "Töreboda"
+        }
+      },
+      "year": 2021,
+      "month": 9,
+      "day": 12,
+      "eventDate": "2021-09-12T00:00",
+      "startDayOfYear": 255,
+      "endDayOfYear": 255,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:35.621+00:00",
+      "references": "https://enjoynature.net/?gebiet=-1710720924&datum=12.09.21&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-1995943196"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "705921443",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-1995943196",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Wälder südl. Gersebacken",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5024544551"
+    },
+    {
+      "key": 5012599176,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:24:29.238+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 60.098869,
+      "decimalLongitude": 18.822632,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.15_1",
+          "name": "Stockholm"
+        },
+        "level2": {
+          "gid": "SWE.15.9_1",
+          "name": "Norrtälje"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 30,
+      "eventDate": "2020-09-30T00:00",
+      "startDayOfYear": 274,
+      "endDayOfYear": 274,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:24:29.238+00:00",
+      "references": "https://enjoynature.net/?gebiet=-2041298552&datum=30.09.20&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-117203098"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-117203098",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Grisslehamn / Väddö, Badviken, Wald und Küste",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5012599176"
+    },
+    {
+      "key": 5013365245,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:20:28.357+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.575829,
+      "decimalLongitude": 14.936869,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.6_1",
+          "name": "Tingsryd"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 25,
+      "eventDate": "2020-09-25T00:00",
+      "startDayOfYear": 269,
+      "endDayOfYear": 269,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:20:28.357+00:00",
+      "references": "https://enjoynature.net/?gebiet=-242588792&datum=25.09.20&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-655344765"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-655344765",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Waldgebiet Hyllen-Nordostufer bis Riksväg bei Kvarnamåla, Kronobergs län",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5013365245"
+    },
+    {
+      "key": 5024746764,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:32.030+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.57262,
+      "decimalLongitude": 14.684499,
+      "coordinateUncertaintyInMeters": 25.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.6_1",
+          "name": "Tingsryd"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 22,
+      "eventDate": "2020-09-22T00:00",
+      "startDayOfYear": 266,
+      "endDayOfYear": 266,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:32.030+00:00",
+      "references": "https://enjoynature.net/?gebiet=-322365506&datum=22.09.20&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:275065823"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "275065823",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Toftåsa myr",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5024746764"
+    },
+    {
+      "key": 5025523670,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:21:45.586+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.50272,
+      "decimalLongitude": 14.72439,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.6_1",
+          "name": "Tingsryd"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 21,
+      "eventDate": "2020-09-21T00:00",
+      "startDayOfYear": 265,
+      "endDayOfYear": 265,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:21:45.586+00:00",
+      "references": "https://enjoynature.net/?gebiet=1153074416&datum=21.09.20&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:326316303"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "326316303",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Nadelwaldgebiet südlich der 120 bei Brändeborg Ryd (Tyngsryds Kommun)",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5025523670"
+    },
+    {
+      "key": 5025800139,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:23:44.944+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.617783,
+      "decimalLongitude": 14.614764,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.2_1",
+          "name": "Alvesta"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 23,
+      "eventDate": "2020-09-23T00:00",
+      "startDayOfYear": 267,
+      "endDayOfYear": 267,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:23:44.944+00:00",
+      "references": "https://enjoynature.net/?gebiet=2145174264&datum=23.09.20&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:583897363"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "583897363",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Trollberget",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5025800139"
+    },
+    {
+      "key": 5026240054,
+      "datasetKey": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+      "publishingOrgKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "datasetCategory": [
+        "CitizenScience"
+      ],
+      "installationKey": "36cae45c-1983-48be-9cf9-0672c4a60612",
+      "hostingOrganizationKey": "bb646dff-a905-4403-a49b-6d378c2cf0d9",
+      "publishingCountry": "DE",
+      "protocol": "BIOCASE",
+      "lastCrawled": "2026-10-13T13:27:44.906+00:00",
+      "lastParsed": "2026-10-15T12:25:38.695+00:00",
+      "crawlId": 440,
+      "extensions": {},
+      "basisOfRecord": "HUMAN_OBSERVATION",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "MCH9",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "code": "BOTANICAL",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "F",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "BM",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "7C",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "TS",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "79Z",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "62HH2",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "MCH9",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "acceptedUsage": {
+            "key": "5954958",
+            "name": "Boletus edulis Bull.",
+            "rank": "SPECIES",
+            "authorship": "Bull.",
+            "genericName": "Boletus",
+            "specificEpithet": "edulis",
+            "formattedName": "<i>Boletus</i> <i>edulis</i> Bull."
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "5",
+              "name": "Fungi",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "34",
+              "name": "Basidiomycota",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "186",
+              "name": "Agaricomycetes",
+              "rank": "CLASS"
+            },
+            {
+              "key": "1063",
+              "name": "Boletales",
+              "rank": "ORDER"
+            },
+            {
+              "key": "8789",
+              "name": "Boletaceae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "8287374",
+              "name": "Boletus",
+              "rank": "GENUS"
+            },
+            {
+              "key": "5954958",
+              "name": "Boletus edulis",
+              "rank": "SPECIES"
+            }
+          ],
+          "iucnRedListCategoryCode": "LC",
+          "issues": []
+        }
+      },
+      "taxonKey": 5954958,
+      "kingdomKey": 5,
+      "phylumKey": 34,
+      "classKey": 186,
+      "orderKey": 1063,
+      "familyKey": 8789,
+      "genusKey": 8287374,
+      "speciesKey": 5954958,
+      "acceptedTaxonKey": 5954958,
+      "scientificName": "Boletus edulis Bull.",
+      "scientificNameAuthorship": "Bull.",
+      "acceptedScientificName": "Boletus edulis Bull.",
+      "kingdom": "Fungi",
+      "phylum": "Basidiomycota",
+      "order": "Boletales",
+      "family": "Boletaceae",
+      "genus": "Boletus",
+      "species": "Boletus edulis",
+      "genericName": "Boletus",
+      "specificEpithet": "edulis",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "iucnRedListCategory": "LC",
+      "decimalLatitude": 56.481739,
+      "decimalLongitude": 14.707346,
+      "coordinateUncertaintyInMeters": 250.0,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "SWE",
+          "name": "Sweden"
+        },
+        "level1": {
+          "gid": "SWE.9_1",
+          "name": "Kronoberg"
+        },
+        "level2": {
+          "gid": "SWE.9.6_1",
+          "name": "Tingsryd"
+        }
+      },
+      "year": 2020,
+      "month": 9,
+      "day": 24,
+      "eventDate": "2020-09-24T00:00",
+      "startDayOfYear": 268,
+      "endDayOfYear": 268,
+      "issues": [
+        "COORDINATE_ROUNDED",
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-10-15T12:25:38.695+00:00",
+      "references": "https://enjoynature.net/?gebiet=-582980133&datum=24.09.20&art=-1053289506",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "urn:catalog:NABU|naturgucker:NABU|naturgucker:-134605055"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "881932368",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Agaricomycetes",
+      "countryCode": "SE",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "Sweden",
+      "publishedByGbifRegion": "EUROPE",
+      "catalogNumber": "-134605055",
+      "http://unknown.org/crawl_attempt": "441",
+      "institutionCode": "NABU|naturgucker",
+      "http://unknown.org/declaredCount": "22938907",
+      "locality": "Nördlicher Hönshyltefjorden",
+      "http://unknown.org/status": "not_reviewed",
+      "http://unknown.org/allowCoordinatesFlipping": "true",
+      "collectionCode": "NABU|naturgucker",
+      "gbifID": "5026240054"
+    }
+  ],
+  "facets": []
+}

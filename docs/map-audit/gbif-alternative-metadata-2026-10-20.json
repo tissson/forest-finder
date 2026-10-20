@@ -1,0 +1,14 @@
+{
+  "5249504": {
+    "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&has_coordinate=true&occurrence_status=PRESENT&coordinate_uncertainty_in_meters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxon_key=5249504&dataset_key=6ac3f774-d9fb-4796-b3e9-92bf6c81c084&offset=0&limit=300",
+    "returned": 22,
+    "taxonomy_passed": 22,
+    "note": "Other coordinate warnings retained; records are not identification-verified."
+  },
+  "5954958": {
+    "url": "https://api.gbif.org/v1/occurrence/search?country=SE&year=2018%2C2025&has_coordinate=true&occurrence_status=PRESENT&coordinate_uncertainty_in_meters=0%2C1000&license=CC0_1_0&license=CC_BY_4_0&taxon_key=5954958&dataset_key=6ac3f774-d9fb-4796-b3e9-92bf6c81c084&offset=0&limit=300",
+    "returned": 26,
+    "taxonomy_passed": 26,
+    "note": "Other coordinate warnings retained; records are not identification-verified."
+  }
+}

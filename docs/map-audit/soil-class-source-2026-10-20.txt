@@ -1,0 +1,143 @@
+                                                            1(4)
+
+
+
+
+                                        Datum: 2020-10-16
+                               Dokumentversion: 1
+
+
+
+
+Produktbeskrivning: SLU Markfuktighetskarta
+version 1.0
+– markfuktighetsskattningar från laserdata
+    SLU                                       2020-10-16                                                2 (4)
+
+
+
+
+Innehållsförteckning
+
+
+1          Allmän beskrivning................................................ 2
+1.1        Geografiskt utsnitt ...................................................................... 3
+1.2        Koordinatsystem......................................................................... 3
+1.3        Övrigt ......................................................................................... 3
+
+2          Kvalitetsbeskrivning.............................................. 3
+2.1        Syfte och användbarhet .............................................................. 4
+2.2        Datafångst .................................................................................. 4
+2.2.1      Tillkomsthistorik .......................................................................... 4
+2.3        Underhåll .................................................................................... 4
+
+
+1 Allmän beskrivning
+I produkten ingår två kartskikt som beskriver markfuktighet. Dessa rasterkartor är producerade
+genom sambearbetning av data från Lantmäteriets nationella laserskanning och provytor från
+Riksskogstaxeringen (SLU). Rastercellerna har en storlek på 2 x 2 meter. Värdena för en rastercell
+beskriver medel-markfuktigheten under året. Markfuktighetskartan bygger på hydrologiska
+modelleringar baserat på GSD-Höjddata grid 2+ © Lantmäteriet.
+Nedan följer en kort beskrivning av de variabler som ingår i produkten.
+SLU Markfuktighetskarta
+SLU markfuktighetskarta skapades genom att kombinera information i 24 olika kartor och använda
+fältdata från 20 000 av riksskogstaxeringens provytor som är fördelade över hela Sverige för att träna
+modellen (genom så kallad maskininlärning) var det är torrt och var det är blött. Det gör att kartan är
+anpassad för olika regioner med olika topografi, klimat, och jordarter. SLU markfuktighetskarta visar
+hur sannolikt det är att en pixel i kartan ska klassificeras som blöt, det kan ses som ett index där 0 är
+torr och 100 blöt. På SLU Markfuktighetskarta indikerar färgerna olika markfuktighet; torr mark är
+röd, fuktig mark är gul, frisk-fuktig mark är grön, fuktig mark är turkos och blöt mark är blå. Men
+färgerna på kartan ”smälter ihop” för att få mjukare övergångar.
+SLU Markfuktighetskarta klassad
+Den klassade markfuktighetskartan visar markfuktigheten indelad i tre klasser: 1. torr-frisk, 2. frisk-
+fuktig och 3. fuktig-blöt. Öppet vatten (sjöar och vattendrag) har klassats som 4.
+Läs mer om de enskilda rasterkartorna på http://www.slu.se/mfk.
+Flödesackumulering
+Från den nationella höjdmodellen kan vattnets väg modelleras genom att anta att vattnet kommer
+att följa topografin och rinna neråt. Genom att räkna hur många rutor i höjdmodellen som ligger
+uppströms varje punkt i landskapet så får man en uppfattning om hur mycket vatten som potentiellt
+skulle kunna ackumuleras i varje ruta. En sådan beräkning kallas flödesackumulering och kan
+användas för att extrahera potentiella vattendrag. I flödesackumuleringskartan är värdet på den
+  SLU                                      2020-10-16                                            3 (4)
+
+
+
+
+ackumulerade arean räknat i hektar (ha). Varje cell/pixel i kartan visar hur många ha mark som skulle
+rinna till den punkten.
+Vattendrag
+Tre olika vattendragsnätverk i vektorformat har tagits fram utifrån tre olika antagen om storleken på
+deras avrinningsområden. Det fungerar som ett gränsvärde som anger hur stor landareal som behövs
+innan tillräckligt mycket vatten ansamlats så att det övergår från grundvatten till ytvatten, dvs. en
+bäck bildas. Flödesackumuleringen användes som utgångspunkt och tröskelvärdena 2 ha, 10 ha och
+30 ha användes för att ta fram tre nätverksbaserade vattendragslinjer. Detta kan ge en grov ide om
+hur vattendragssystem förändrar sig över tid.
+•            Kartan med bäcknätverket med 2 ha flödesinitieringsgränsvärde representerar den
+maximala utbredningen av där man kan förvänta sig rinnande vatten under extremt höga flöden.
+•              Kartan med bäcknätverket med 10 ha flödesinitieringsgränsvärde representerar
+ungefärligt en normalflödessituation.
+•            Kartan med bäcknätverket med 30 ha flödesinitieringsgränsvärde representerar
+utbredningen av vattendragen vid torka.
+Detta kan ge en grov ide om hur vattendragssystem förändrar sig över tid, men gränsvärdena är
+ungefärliga och varierar beroende på hur genomsläpplig marken är och var i landet man är.
+
+
+1.1 Geografiskt utsnitt
+Kartorna levereras för hela landet, utom för några områden i fjällen och utmed kusten
+där det ej gick att beräkna kartorna på grund av att indata saknades (anges som Nodata i
+rastren).
+
+
+1.2 Koordinatsystem
+Plan: SWEREF 99 TM
+
+
+1.3 Övrigt
+
+
+2 Kvalitetsbeskrivning
+Genom att jämföra olika typer av kartor med fältdata kan man beräkna hur bra enskilda
+kartor presterar. Kvaliteten på kartorna har utvärderats utifrån 20% av
+Riksskogstaxeringens data (som ej användes för att träna maskininlärningsmodellerna).
+Cohens kappa-index, är ett mått på hur bra olika kartor är: ett kappavärde på 1 indikerar
+perfekt överensstämmelse mellan karta och verkligheten.
+SLU Markfuktighetskarta har kappa-värdet 0,69.
+SLU Markfuktighetskarta klassad har kappa-värdet 0,58.
+Detta är bättre än andra markfuktighetskartor.
+En mer utförlig beskrivning av datakvaliteten för de beräknade värdena hittas på
+http://www.slu.se/mfk.
+  SLU                                       2020-10-16                                             4 (4)
+
+
+
+
+2.1 Syfte och användbarhet
+Syftet med Skogliga grunddata är att öppet och fritt tillhandahålla uppgifter om landets skogar med
+så god kvalité att de är till nytta för i första hand skogssektorn.
+Kartskikten med uppgifter markfuktighet utgör ett viktigt underlag för skoglig
+planering, både ur ett miljö- och produktionsperspektiv. Kartorna kan även användas
+för forskning och planering för många andra ändamål.
+
+
+2.2 Datafångst
+2.2.1 Tillkomsthistorik
+Regeringen har gett Skogsstyrelsen och Sveriges lantbruksuniversitet i uppdrag att ta fram och
+distribuera en uppdaterad version av Skogliga grunddata från den nya laserskanning som
+Lantmäteriet nu genomför av Sveriges skogsmark. SLU Markfuktighetskarta är en utökning av detta
+uppdrag och har i huvudsak varit externfinansierad. Utvecklingen av markfuktighetskartorna startade
+som ett forskningsprojekt kring metodutveckling och övergick sedan till att generera kartorna för
+hela landet för användning i praktiken. Bland finansiärerna finns VINNOVA, EU Interreg. program
+WAMBAF, Kempestiftelsen, SLU, Lilla Fonden för skogsvetenskaplig forskning, Formas, Mistra,
+Skogsstyrelsen, EU Interreg. program WAMBAF Tools.
+
+
+2.3 Underhåll
+I den mån fortsatt externfinansiering är lyckosam kommer arbetet att fortgå med utökning till ej
+karterade områden. Viss vidareutveckling kan också komma att ske metodmässigt.
+Förändringsförteckning
+
+
+ Version     Datum           Orsak samt ändring mot tidigare version
+
+    1.0       2020-10-07     Fastställd version.
+
