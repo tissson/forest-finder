@@ -14,3 +14,4 @@
 - Maps show only the published weather date (`weather_published`, set by `weather_finalize_daily()` in the same transaction as the last cached tile) so a half-ingested night is never visible.
 - Discovery photos and registration go only through `uploadDiscoveryImage`, which strips metadata before storage and AI classification; server-owned identification rows supply confidence, one-time commit handles awards, and authenticated users cannot execute either registration RPC or insert discoveries directly, preventing bypass and replay.
 - AI providers and shared gateway helpers live in server-only modules and are instantiated per request; this keeps credentials and correlation state out of browser bundles and other requests.
+- Keep map-audit experiments in standalone read-only scripts, outside the app execution path; experimental parameters and presence-background metrics must not silently alter production predictions.
