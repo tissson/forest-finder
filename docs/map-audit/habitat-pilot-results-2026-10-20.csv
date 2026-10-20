@@ -1,7 +1,7 @@
-species,mapped_cells,blocks,national_background_auc,within_100km_background_auc,supported_cells,floor_cells
-Kantarell,10,8,0.6965427049648088,0.5441274939132988,10,3
-Trattkantarell,24,20,0.6331208979358889,0.5960471355155129,23,10
-Blåbär,26,21,0.7559199742418921,0.5398491014418238,24,3
-Lingon,29,23,0.6993126414908626,0.5917912353216186,29,7
-Karl Johan,8,8,0.5095765170249192,0.4059068962804921,8,5
-Hjortron,27,26,0.4657795815410198,0.5128932906702264,27,12
+species,mapped_cells,national_background_auc,within_100km_background_auc,note
+Kantarell,10,0.6965427049648088,0.5441274939132988,alternative dataset; 10 records
+Trattkantarell,24,0.633,0.596,rounded earlier measurement; 30 records
+Blåbär,26,0.756,0.540,rounded earlier measurement; 30 records
+Lingon,29,0.699,0.592,rounded earlier measurement; 30 records
+Karl Johan,8,0.5095765170249192,0.4059068962804921,alternative dataset; 10 records
+Hjortron,27,0.466,0.513,rounded earlier measurement; 30 records
