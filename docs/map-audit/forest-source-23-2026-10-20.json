@@ -1,0 +1,56 @@
+{
+  "source": "https://geodpags.skogsstyrelsen.se/geodataport/data/sksSLUskogskartaVolym23.zip",
+  "sha256_tif": "a732224de022ab35f4360bf54aed35f3d7b52262631ab1210cc2101bcb4caafa",
+  "shape": [
+    36000,
+    28000
+  ],
+  "nodata": -1.0,
+  "dtype": [
+    "int16"
+  ],
+  "crs": "EPSG:3006",
+  "resolution": [
+    12.5,
+    12.5
+  ],
+  "scales": [
+    1.0
+  ],
+  "total_pixels": 1008000000,
+  "valid_pixels": 11144,
+  "zero_pixels": 1080,
+  "valid_percent": 0.0011055555555555556,
+  "point_samples": [
+    [
+      14.65,
+      63.18,
+      -1
+    ],
+    [
+      15,
+      64,
+      -1
+    ],
+    [
+      16,
+      64,
+      -1
+    ],
+    [
+      14,
+      64,
+      -1
+    ],
+    [
+      13,
+      63,
+      -1
+    ],
+    [
+      18,
+      65,
+      -1
+    ]
+  ]
+}
