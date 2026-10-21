@@ -5138,6 +5138,7 @@ export type Database = {
         Args: { geom: unknown; move: number; wrap: number }
         Returns: unknown
       }
+      temp_penalty: { Args: { p_temp: number }; Returns: number }
       unlockrows: { Args: { "": string }; Returns: number }
       updategeometrysrid: {
         Args: {
