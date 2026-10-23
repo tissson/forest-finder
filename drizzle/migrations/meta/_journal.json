@@ -78,6 +78,13 @@
       "when": 1792573211903,
       "tag": "0010_smooth_temperature_penalty",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1792772651190,
+      "tag": "0011_add_nmd_forest_shares",
+      "breakpoints": true
     }
   ]
 }
