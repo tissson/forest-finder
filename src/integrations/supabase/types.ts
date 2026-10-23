@@ -627,8 +627,10 @@ export type Database = {
         Row: {
           center_lat: number
           center_lon: number
+          clearcut_share: number | null
           created_at: string
           forest_cover: number
+          forest_share: number | null
           geom: unknown
           grid_x: number
           grid_y: number
@@ -636,6 +638,12 @@ export type Database = {
           is_active: boolean
           is_land: boolean
           is_weather_sample: boolean
+          nmd_land_fraction: number | null
+          share_deciduous: number | null
+          share_mixed_conifer: number | null
+          share_mixed_deciduous_conifer: number | null
+          share_pine: number | null
+          share_spruce: number | null
           soil_wetness: number | null
           vol_birch: number | null
           vol_pine: number | null
@@ -645,8 +653,10 @@ export type Database = {
         Insert: {
           center_lat: number
           center_lon: number
+          clearcut_share?: number | null
           created_at?: string
           forest_cover?: number
+          forest_share?: number | null
           geom?: unknown
           grid_x: number
           grid_y: number
@@ -654,6 +664,12 @@ export type Database = {
           is_active?: boolean
           is_land?: boolean
           is_weather_sample?: boolean
+          nmd_land_fraction?: number | null
+          share_deciduous?: number | null
+          share_mixed_conifer?: number | null
+          share_mixed_deciduous_conifer?: number | null
+          share_pine?: number | null
+          share_spruce?: number | null
           soil_wetness?: number | null
           vol_birch?: number | null
           vol_pine?: number | null
@@ -663,8 +679,10 @@ export type Database = {
         Update: {
           center_lat?: number
           center_lon?: number
+          clearcut_share?: number | null
           created_at?: string
           forest_cover?: number
+          forest_share?: number | null
           geom?: unknown
           grid_x?: number
           grid_y?: number
@@ -672,6 +690,12 @@ export type Database = {
           is_active?: boolean
           is_land?: boolean
           is_weather_sample?: boolean
+          nmd_land_fraction?: number | null
+          share_deciduous?: number | null
+          share_mixed_conifer?: number | null
+          share_mixed_deciduous_conifer?: number | null
+          share_pine?: number | null
+          share_spruce?: number | null
           soil_wetness?: number | null
           vol_birch?: number | null
           vol_pine?: number | null
