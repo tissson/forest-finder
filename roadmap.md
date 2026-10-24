@@ -1,4 +1,6 @@
 # Discovery AI
+- [x] Apply approved forest_share tile-scoring migration unchanged, refresh stale cache without deletion, verify score distributions and z7 tiles.
+- [ ] Verify Oct24 03:45 health-job result — blocked: database tool rejects access to cron.job_run_details; no success claim.
 - [x] Read-only map audit: published weather, sharing, moisture/temperature, forest distributions, all species scores and pairwise correlations; report saved.
 - [x] Execute approved exploratory map audit: Jämtland raster counted, official soil classes checked, species sources reviewed, 11-day interpolation benchmark and six-species habitat pilot measured; report and proposal prepared.
 - [ ] Execute approved pilots: measure north/south NMD and soil/water coverage, prepare IDW4 score comparison and experimental curves, and expand quality-screened GBIF records; keep production unchanged.

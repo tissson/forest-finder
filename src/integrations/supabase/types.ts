@@ -2126,6 +2126,10 @@ export type Database = {
         }
         Returns: number
       }
+      refresh_stale_prediction_tiles: {
+        Args: { p_before: string; p_budget_seconds?: number }
+        Returns: Json
+      }
       st_3dclosestpoint: {
         Args: { geom1: unknown; geom2: unknown }
         Returns: unknown
