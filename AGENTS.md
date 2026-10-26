@@ -16,3 +16,4 @@
 - AI providers and shared gateway helpers live in server-only modules and are instantiated per request; this keeps credentials and correlation state out of browser bundles and other requests.
 - Keep map-audit experiments in standalone read-only scripts, outside the app execution path; experimental parameters and presence-background metrics must not silently alter production predictions.
 - Prediction tiles use coalesce(forest_share, forest_cover) for the forest term; other NMD shares remain evaluation-only, preserving separately approved scoring scope and the SLU fallback.
+- Corrected SLU land moisture and water/valid fractions are audit-only columns loaded through a service-role-only RPC; standalone raster scripts and SELECT comparisons must not change production moisture or scoring.
