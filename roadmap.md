@@ -1,4 +1,5 @@
 # Discovery AI
+- [ ] Execute October26 soil land audit steps 1–5: verify SLU/NMD water, export existing soil, add isolated columns/loading RPC, national mosaic import, two boundary checks and Oct24 score report; stop without changing production.
 - [x] Apply approved forest_share tile-scoring migration unchanged, refresh stale cache without deletion, verify score distributions and z7 tiles.
 - [ ] Verify Oct24 03:45 health-job result — blocked: database tool rejects access to cron.job_run_details; no success claim.
 - [x] Read-only map audit: published weather, sharing, moisture/temperature, forest distributions, all species scores and pairwise correlations; report saved.

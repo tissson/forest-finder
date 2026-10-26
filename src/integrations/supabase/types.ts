@@ -644,7 +644,10 @@ export type Database = {
           share_mixed_deciduous_conifer: number | null
           share_pine: number | null
           share_spruce: number | null
+          soil_valid_fraction: number | null
+          soil_water_fraction: number | null
           soil_wetness: number | null
+          soil_wetness_land: number | null
           vol_birch: number | null
           vol_pine: number | null
           vol_spruce: number | null
@@ -670,7 +673,10 @@ export type Database = {
           share_mixed_deciduous_conifer?: number | null
           share_pine?: number | null
           share_spruce?: number | null
+          soil_valid_fraction?: number | null
+          soil_water_fraction?: number | null
           soil_wetness?: number | null
+          soil_wetness_land?: number | null
           vol_birch?: number | null
           vol_pine?: number | null
           vol_spruce?: number | null
@@ -696,7 +702,10 @@ export type Database = {
           share_mixed_deciduous_conifer?: number | null
           share_pine?: number | null
           share_spruce?: number | null
+          soil_valid_fraction?: number | null
+          soil_water_fraction?: number | null
           soil_wetness?: number | null
+          soil_wetness_land?: number | null
           vol_birch?: number | null
           vol_pine?: number | null
           vol_spruce?: number | null
@@ -2020,6 +2029,7 @@ export type Database = {
         Args: { p_rows: Json; p_saturation_volume?: number }
         Returns: number
       }
+      load_soil_land_audit: { Args: { p_rows: Json }; Returns: number }
       load_soil_wetness: { Args: { p_rows: Json }; Returns: number }
       load_tree_volume: {
         Args: { p_kind: string; p_rows: Json }

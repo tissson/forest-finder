@@ -92,6 +92,13 @@
       "when": 1792860466816,
       "tag": "0012_use_forest_share_in_scoring",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1792997910233,
+      "tag": "0013_add_soil_land_audit_columns",
+      "breakpoints": true
     }
   ]
 }
