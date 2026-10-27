@@ -17,3 +17,4 @@
 - Keep map-audit experiments in standalone read-only scripts, outside the app execution path; experimental parameters and presence-background metrics must not silently alter production predictions.
 - Prediction tiles use coalesce(forest_share, forest_cover) for the forest term; other NMD shares remain evaluation-only, preserving separately approved scoring scope and the SLU fallback.
 - Corrected SLU land moisture and water/valid fractions are audit-only columns loaded through a service-role-only RPC; standalone raster scripts and SELECT comparisons must not change production moisture or scoring.
+- Soil audit raster reduction checkpoints all three metrics per aligned national-mosaic row before final assembly; durable small checkpoints permit restart without repeating completed aggregation and imports require all three readback-verified outputs.

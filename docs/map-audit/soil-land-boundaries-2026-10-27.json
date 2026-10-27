@@ -1,0 +1,36 @@
+[
+  {
+    "counties": "10-12",
+    "bounds": [
+      460000,
+      6190000,
+      480000,
+      6270000
+    ],
+    "shared_valid_pixels": 733284,
+    "shared_conflicts": 0,
+    "cells": 400,
+    "comparable_land_cells": 325,
+    "null_mismatch": 0,
+    "max_abs_difference": 1.1102230246251565e-16,
+    "mean_abs_difference": 2.211905872137812e-17,
+    "cells_over_1e-12": 0
+  },
+  {
+    "counties": "01-03",
+    "bounds": [
+      660000,
+      6620000,
+      680000,
+      6650000
+    ],
+    "shared_valid_pixels": 365275,
+    "shared_conflicts": 0,
+    "cells": 150,
+    "comparable_land_cells": 150,
+    "null_mismatch": 0,
+    "max_abs_difference": 5.551115123125783e-17,
+    "mean_abs_difference": 2.3314683517128286e-17,
+    "cells_over_1e-12": 0
+  }
+]

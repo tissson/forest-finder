@@ -1,0 +1,272 @@
+[
+  {
+    "batch": "000.json",
+    "rows": 2000,
+    "seconds": 2.745
+  },
+  {
+    "batch": "001.json",
+    "rows": 2000,
+    "seconds": 1.921
+  },
+  {
+    "batch": "002.json",
+    "rows": 2000,
+    "seconds": 2.141
+  },
+  {
+    "batch": "003.json",
+    "rows": 2000,
+    "seconds": 2.485
+  },
+  {
+    "batch": "004.json",
+    "rows": 2000,
+    "seconds": 2.928
+  },
+  {
+    "batch": "005.json",
+    "rows": 2000,
+    "seconds": 2.742
+  },
+  {
+    "batch": "006.json",
+    "rows": 2000,
+    "seconds": 2.284
+  },
+  {
+    "batch": "007.json",
+    "rows": 2000,
+    "seconds": 2.084
+  },
+  {
+    "batch": "008.json",
+    "rows": 2000,
+    "seconds": 1.757
+  },
+  {
+    "batch": "009.json",
+    "rows": 2000,
+    "seconds": 1.313
+  },
+  {
+    "batch": "010.json",
+    "rows": 2000,
+    "seconds": 1.435
+  },
+  {
+    "batch": "011.json",
+    "rows": 2000,
+    "seconds": 1.12
+  },
+  {
+    "batch": "012.json",
+    "rows": 2000,
+    "seconds": 1.022
+  },
+  {
+    "batch": "013.json",
+    "rows": 2000,
+    "seconds": 0.982
+  },
+  {
+    "batch": "014.json",
+    "rows": 2000,
+    "seconds": 0.917
+  },
+  {
+    "batch": "015.json",
+    "rows": 2000,
+    "seconds": 1.044
+  },
+  {
+    "batch": "016.json",
+    "rows": 2000,
+    "seconds": 1.001
+  },
+  {
+    "batch": "017.json",
+    "rows": 2000,
+    "seconds": 0.905
+  },
+  {
+    "batch": "018.json",
+    "rows": 2000,
+    "seconds": 0.908
+  },
+  {
+    "batch": "019.json",
+    "rows": 2000,
+    "seconds": 0.665
+  },
+  {
+    "batch": "020.json",
+    "rows": 2000,
+    "seconds": 0.681
+  },
+  {
+    "batch": "021.json",
+    "rows": 2000,
+    "seconds": 0.827
+  },
+  {
+    "batch": "022.json",
+    "rows": 2000,
+    "seconds": 1.018
+  },
+  {
+    "batch": "023.json",
+    "rows": 2000,
+    "seconds": 0.892
+  },
+  {
+    "batch": "024.json",
+    "rows": 2000,
+    "seconds": 0.906
+  },
+  {
+    "batch": "025.json",
+    "rows": 2000,
+    "seconds": 1.229
+  },
+  {
+    "batch": "026.json",
+    "rows": 2000,
+    "seconds": 0.826
+  },
+  {
+    "batch": "027.json",
+    "rows": 2000,
+    "seconds": 0.749
+  },
+  {
+    "batch": "028.json",
+    "rows": 2000,
+    "seconds": 0.9
+  },
+  {
+    "batch": "029.json",
+    "rows": 2000,
+    "seconds": 0.908
+  },
+  {
+    "batch": "030.json",
+    "rows": 2000,
+    "seconds": 0.793
+  },
+  {
+    "batch": "031.json",
+    "rows": 2000,
+    "seconds": 0.893
+  },
+  {
+    "batch": "032.json",
+    "rows": 2000,
+    "seconds": 0.926
+  },
+  {
+    "batch": "033.json",
+    "rows": 2000,
+    "seconds": 0.922
+  },
+  {
+    "batch": "034.json",
+    "rows": 2000,
+    "seconds": 1.051
+  },
+  {
+    "batch": "035.json",
+    "rows": 2000,
+    "seconds": 0.823
+  },
+  {
+    "batch": "036.json",
+    "rows": 2000,
+    "seconds": 0.737
+  },
+  {
+    "batch": "037.json",
+    "rows": 2000,
+    "seconds": 0.874
+  },
+  {
+    "batch": "038.json",
+    "rows": 2000,
+    "seconds": 0.852
+  },
+  {
+    "batch": "039.json",
+    "rows": 2000,
+    "seconds": 0.884
+  },
+  {
+    "batch": "040.json",
+    "rows": 2000,
+    "seconds": 0.98
+  },
+  {
+    "batch": "041.json",
+    "rows": 2000,
+    "seconds": 0.897
+  },
+  {
+    "batch": "042.json",
+    "rows": 2000,
+    "seconds": 0.86
+  },
+  {
+    "batch": "043.json",
+    "rows": 2000,
+    "seconds": 0.925
+  },
+  {
+    "batch": "044.json",
+    "rows": 2000,
+    "seconds": 0.974
+  },
+  {
+    "batch": "045.json",
+    "rows": 2000,
+    "seconds": 0.881
+  },
+  {
+    "batch": "046.json",
+    "rows": 2000,
+    "seconds": 0.891
+  },
+  {
+    "batch": "047.json",
+    "rows": 2000,
+    "seconds": 0.977
+  },
+  {
+    "batch": "048.json",
+    "rows": 2000,
+    "seconds": 0.763
+  },
+  {
+    "batch": "049.json",
+    "rows": 2000,
+    "seconds": 0.862
+  },
+  {
+    "batch": "050.json",
+    "rows": 2000,
+    "seconds": 0.799
+  },
+  {
+    "batch": "051.json",
+    "rows": 2000,
+    "seconds": 0.772
+  },
+  {
+    "batch": "052.json",
+    "rows": 2000,
+    "seconds": 1.019
+  },
+  {
+    "batch": "053.json",
+    "rows": 272,
+    "seconds": 0.249
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "source": "/tmp/soil-land/source.vrt",
+  "grid": [
+    335,
+    775
+  ],
+  "bounds": [
+    260000.0,
+    6130000.0,
+    930000.0,
+    7680000.0
+  ],
+  "rules": "1:15,2:45,3:70;4 water;0/5/255 excluded",
+  "denominator": 1000000,
+  "source_order": [
+    "/tmp/soil-land/raw/01/sksSLUmfMarkfuktighet_klassad01.tif",
+    "/tmp/soil-land/raw/03/sksSLUmfMarkfuktighet_klassad03.tif",
+    "/tmp/soil-land/raw/04/sksSLUmfMarkfuktighet_klassad04.tif",
+    "/tmp/soil-land/raw/05/sksSLUmfMarkfuktighet_klassad05.tif",
+    "/tmp/soil-land/raw/06/sksSLUmfMarkfuktighet_klassad06.tif",
+    "/tmp/soil-land/raw/07/sksSLUmfMarkfuktighet_klassad07.tif",
+    "/tmp/soil-land/raw/08/sksSLUmfMarkfuktighet_klassad08.tif",
+    "/tmp/soil-land/raw/09/sksSLUmfMarkfuktighet_klassad09.tif",
+    "/tmp/soil-land/raw/10/sksSLUmfMarkfuktighet_klassad10.tif",
+    "/tmp/soil-land/raw/12/sksSLUmfMarkfuktighet_klassad12.tif",
+    "/tmp/soil-land/raw/13/sksSLUmfMarkfuktighet_klassad13.tif",
+    "/tmp/soil-land/raw/14/sksSLUmfMarkfuktighet_klassad14.tif",
+    "/tmp/soil-land/raw/17/sksSLUmfMarkfuktighet_klassad17.tif",
+    "/tmp/soil-land/raw/18/sksSLUmfMarkfuktighet_klassad18.tif",
+    "/tmp/soil-land/raw/19/sksSLUmfMarkfuktighet_klassad19.tif",
+    "/tmp/soil-land/raw/20/sksSLUMarkfuktighet_klassad20.tif",
+    "/tmp/soil-land/raw/21/sksSLUmfMarkfuktighet_klassad21.tif",
+    "/tmp/soil-land/raw/22/sksSLUmfMarkfuktighet_klassad22.tif",
+    "/tmp/soil-land/raw/23/sksSLUmfMarkfuktighet_klassad23.tif",
+    "/tmp/soil-land/raw/24/sksSLUmfMarkfuktighet_klassad24.tif",
+    "/tmp/soil-land/raw/25/sksSLUmfMarkfuktighet_klassad25.tif"
+  ]
+}
