@@ -1,6 +1,6 @@
 # Discovery AI
 - [x] October26 soil audit steps 1–2: official classes/feed sizes, three SLU/NMD water pilots, complete soil CSV backup and isolated columns/service-role RPC verified; report in docs/map-audit/soil-land-audit-2026-10-26.md.
-- [ ] October27 resume soil audit steps 3–5: check disk and retained inputs; checkpoint national mosaic calculation by stage; import only all-three-verified audit rasters through loading RPC batches; complete two boundary checks, NULL/lake/difference/species/latitude evidence; preserve production and report exact recoverable files if interrupted.
+- [x] October27 soil audit steps 3–5: 775 durable row checkpoints and three verified final rasters; 106272 active rows imported through 54 audit-only RPC batches; exact readback, two boundary checks, NULL/lake/difference/species/latitude evidence completed; production values/caches/published day unchanged. Report docs/map-audit/soil-land-audit-2026-10-27.md; stop after step 5.
 - [x] Apply approved forest_share tile-scoring migration unchanged, refresh stale cache without deletion, verify score distributions and z7 tiles.
 - [ ] Verify Oct24 03:45 health-job result — blocked: database tool rejects access to cron.job_run_details; no success claim.
 - [x] Read-only map audit: published weather, sharing, moisture/temperature, forest distributions, all species scores and pairwise correlations; report saved.
