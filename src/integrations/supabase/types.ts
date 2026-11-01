@@ -2136,6 +2136,10 @@ export type Database = {
         }
         Returns: number
       }
+      refresh_stale_moisture_tiles: {
+        Args: { p_before: string; p_budget_seconds?: number }
+        Returns: Json
+      }
       refresh_stale_prediction_tiles: {
         Args: { p_before: string; p_budget_seconds?: number }
         Returns: Json

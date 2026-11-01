@@ -1,4 +1,5 @@
 # Discovery AI
+- [x] Apply approved soil_wetness_land migration unchanged; moisture 112/left0 then prediction 672/left0; six z7 tiles exactly match decoded live data (30 HTTP 200); 400 low-land active cells counted per species. Report docs/map-audit/soil-land-scoring-adoption-2026-11-01.md.
 - [x] October26 soil audit steps 1–2: official classes/feed sizes, three SLU/NMD water pilots, complete soil CSV backup and isolated columns/service-role RPC verified; report in docs/map-audit/soil-land-audit-2026-10-26.md.
 - [x] October27 soil audit steps 3–5: 775 durable row checkpoints and three verified final rasters; 106272 active rows imported through 54 audit-only RPC batches; exact readback, two boundary checks, NULL/lake/difference/species/latitude evidence completed; production values/caches/published day unchanged. Report docs/map-audit/soil-land-audit-2026-10-27.md; stop after step 5.
 - [x] Apply approved forest_share tile-scoring migration unchanged, refresh stale cache without deletion, verify score distributions and z7 tiles.

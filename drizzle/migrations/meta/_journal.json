@@ -99,6 +99,13 @@
       "when": 1792997910233,
       "tag": "0013_add_soil_land_audit_columns",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1793549341061,
+      "tag": "0014_use_soil_wetness_land_in_scoring",
+      "breakpoints": true
     }
   ]
 }
