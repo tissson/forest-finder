@@ -59,7 +59,8 @@ mapfile -t ZIPS < <(curl -fsSL "$BASE/feeds/$FEED.xml" \
 [[ ${#ZIPS[@]} -gt 0 ]] || { echo "Hittade inga län-filer i $FEED" >&2; exit 1; }
 
 # Markfuktklasser -> 0-100 (värdet /100 i load_soil_wetness). 255 = nodata.
-# 0 okänd/ej skog, 1 torr, 2 frisk, 3 frisk-fuktig, 4 fuktig, 5 blöt (enligt SLU).
+# Enligt SLU:s produktbeskrivning: 1 = torr–frisk, 2 = frisk–fuktig, 3 = fuktig–blöt,
+# 4 = öppet vatten. Klass 5 definieras inte som blöt; 0 = okänd/ej klassad.
 SOIL_LUT="0:255,1:15,2:45,3:70,4:95,5:255,255:255"
 
 send_chunk() { # $1 = json-fil, $2 = län, $3 = bit-nr
