@@ -2,7 +2,7 @@
   "source": "docs/map-audit/gbif-expanded-selected-2026-10-20.csv",
   "source_sha256": "b6180287be5b7baacff5e12d9581ce9c60520e36f43c4f7a3e8e9911ec49f978",
   "output": "docs/map-audit/gbif-date-test-2026-11-07.csv",
-  "output_sha256": "a21389cad4fffaddb027fa5eafa94092e6e6eca172d896a9364ce8526273e3f0",
+  "output_sha256": "e2daf8d3a834135debef07f5ad0b0436f7ecc44009ffc276e7c7647464527525",
   "seed": 20261107,
   "start_date": "2020-07-01",
   "end_date": "2025-12-15",
@@ -12,8 +12,16 @@
   "precipitation": "Trailing 7/10 daily totals including the target day; all days required, no zero filling",
   "temperature": "Daily temperature_2m_mean on the target day",
   "controls": "20 unique uniform dates among complete archive days, cyclic month/day \u00b130, years 2020\u20132025; excludes own date; deterministic per GBIF key",
-  "stop_reason": "requested_batch_completed",
+  "stop_reason": "conservative_hourly_budget",
   "counts": {
+    "Craterellus tubaeformis": {
+      "input": 653,
+      "complete": 33,
+      "outside_years": 0,
+      "missing_presence_data": 4,
+      "insufficient_controls": 0,
+      "pending_archive": 616
+    },
     "Rubus chamaemorus": {
       "input": 739,
       "complete": 9,
@@ -21,14 +29,6 @@
       "missing_presence_data": 0,
       "insufficient_controls": 0,
       "pending_archive": 730
-    },
-    "Craterellus tubaeformis": {
-      "input": 653,
-      "complete": 32,
-      "outside_years": 0,
-      "missing_presence_data": 4,
-      "insufficient_controls": 0,
-      "pending_archive": 617
     }
   },
   "exclusions": [
@@ -3690,12 +3690,6 @@
       "gbif_key": "5936530085",
       "species": "Craterellus tubaeformis",
       "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5936545801",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-15",
       "reason": "pending_archive"
     },
     {

@@ -283,5 +283,16 @@
     "status": 200,
     "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.2&longitude=13.6&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
     "sha256": "e2bb39337712060bbb1dc83b1e1a4ba4aa485edc3abbbcd62ec118a0b916aa86"
+  },
+  {
+    "timestamp": 1794044637.486091,
+    "cost": 143,
+    "location": [
+      "56.2",
+      "14.4"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.2&longitude=14.4&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "2c5b9a469108916b9e9215ef728ba9b5bd744fa5e558f00caf7ace79151159f1"
   }
 ]
