@@ -1,3757 +1,42 @@
 {
   "source": "docs/map-audit/gbif-expanded-selected-2026-10-20.csv",
   "source_sha256": "b6180287be5b7baacff5e12d9581ce9c60520e36f43c4f7a3e8e9911ec49f978",
-  "output": "docs/map-audit/gbif-date-test-2026-11-07.csv",
-  "output_sha256": "e2daf8d3a834135debef07f5ad0b0436f7ecc44009ffc276e7c7647464527525",
+  "outputs": [
+    {
+      "path": "docs/map-audit/gbif-date-test-2026-11-07.csv",
+      "sha256": "9a353aa5d33868f3b253eb4075c570914681aa9ba137bc2474de88459b0eefde"
+    },
+    {
+      "path": "docs/map-audit/gbif-date-test-2026-11-07-hjortron.csv",
+      "sha256": "c0fb5f506ea459aee5974fa83809d19b4a119b3cd0c405f75a907bae2100422a"
+    }
+  ],
   "seed": 20261107,
-  "start_date": "2020-07-01",
-  "end_date": "2025-12-15",
   "model": "era5",
   "timezone": "Europe/Stockholm",
-  "rounding": "0.1 degrees, decimal ROUND_HALF_UP; original coordinates retained in export",
-  "precipitation": "Trailing 7/10 daily totals including the target day; all days required, no zero filling",
-  "temperature": "Daily temperature_2m_mean on the target day",
-  "controls": "20 unique uniform dates among complete archive days, cyclic month/day \u00b130, years 2020\u20132025; excludes own date; deterministic per GBIF key",
-  "stop_reason": "conservative_hourly_budget",
+  "intervals": "union per rounded location/year of event -40 through +30 days inclusive",
+  "controls": "20 fixed-seed same-year days at same place, abs(date-event) 4..30, complete ten-day history",
+  "rounding": "0.1 decimal ROUND_HALF_UP; original coordinates in CSV",
+  "stop_reason": "budget_or_runtime_pause",
   "counts": {
     "Craterellus tubaeformis": {
       "input": 653,
-      "complete": 33,
-      "outside_years": 0,
-      "missing_presence_data": 4,
-      "insufficient_controls": 0,
-      "pending_archive": 616
-    },
-    "Rubus chamaemorus": {
-      "input": 739,
-      "complete": 9,
+      "complete": 653,
       "outside_years": 0,
       "missing_presence_data": 0,
       "insufficient_controls": 0,
-      "pending_archive": 730
+      "pending_archive": 0
+    },
+    "Rubus chamaemorus": {
+      "input": 739,
+      "complete": 99,
+      "outside_years": 0,
+      "missing_presence_data": 0,
+      "insufficient_controls": 0,
+      "pending_archive": 640
     }
   },
   "exclusions": [
-    {
-      "gbif_key": "4021223486",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-01-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4024102586",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-01-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4094077993",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-04-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4117350927",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-05-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4172970524",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4173084539",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4177779663",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4177810594",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4177821761",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4177848089",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4177958661",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4177987093",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4178005879",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401284844",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401324541",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401348528",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401474546",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401493552",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401519658",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401552565",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4401571559",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403586421",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403591766",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403600866",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403643646",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403682360",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403733556",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403736603",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403767625",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403775646",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403777320",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403778830",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403805820",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403809784",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403819461",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403822483",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403841376",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403872796",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403880743",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403882510",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403886663",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403895668",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4403899814",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414861480",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414864123",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414866815",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414878497",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414881821",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414881830",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414889586",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414889891",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414892529",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414894531",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414895465",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414900413",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414903529",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414909178",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414909999",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414918645",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414928548",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414929465",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414930710",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414932866",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414933709",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414933926",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414936470",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414937012",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414937418",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414938471",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414942478",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414953133",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414953711",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414954972",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414955530",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414973846",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414984199",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414992452",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414998373",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4414998638",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415000816",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415001073",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415025272",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415028655",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415118467",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415127387",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415139728",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415141100",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415153484",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4415160359",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4428843302",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4428994003",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4434998306",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4455200358",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4455244457",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4465025304",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4509206322",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-07-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4509325077",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4519799311",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-01-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4536238737",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-03-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4536283642",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-03-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4539123471",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-03-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4597798742",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-01-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4849843866",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-04-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900059530",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900191039",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-02-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4907146252",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-07-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4911719433",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-07-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4911736576",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-07-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4920622194",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-07-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4920624044",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4920653304",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4923124547",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4923134067",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4923171040",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4923197355",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924526928",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924544899",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924553994",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924554496",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924562510",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924569322",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924598590",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4924627348",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4927307759",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4927338936",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929475632",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929481462",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929492540",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929517481",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929520180",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929522413",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929527366",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929572602",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929584637",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939299713",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939299830",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939314316",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939319495",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939333706",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939336585",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939344870",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939377447",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939382616",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939389996",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4939390930",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946740841",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946754121",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946756166",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946765201",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946770220",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946770581",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946771872",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946777701",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946778404",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946817937",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946824578",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946830556",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946846638",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946862387",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946874947",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946876901",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946886222",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946896684",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946899120",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946899496",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946899548",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946904328",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946913124",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946929369",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947833846",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947834871",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947837404",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947851080",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947861168",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947864693",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947866887",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947872342",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947877801",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947883025",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947892516",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947893636",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947894682",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947901735",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947914146",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947922578",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947930010",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947946863",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947971673",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947981970",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947983824",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950643701",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950645834",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950659125",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950678269",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950679573",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950680186",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950681895",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950682453",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950693005",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950697073",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950698304",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950699846",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950701310",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950709286",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950711713",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950716219",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950717849",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950718693",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950720621",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950735101",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950746464",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950746882",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950754873",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953250349",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953250830",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953254019",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953254365",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953264648",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953282164",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4953282259",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954842805",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954843177",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954846705",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954848628",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954849170",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954849687",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954851004",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954854724",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954857871",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954866160",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954887416",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954910384",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954916026",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954919150",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954926372",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954936465",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954944466",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954948978",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954952961",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954955363",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954962695",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954973179",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954979233",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954986635",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954999128",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955008726",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955012623",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955014362",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955017912",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955024368",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955024515",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955026376",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955027198",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955033625",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955037703",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955040738",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955047431",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955053183",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973598678",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973599799",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973604241",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973607190",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973623365",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973623924",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973633835",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973634445",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973637123",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973645297",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973646048",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973653965",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973655317",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973656843",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973661939",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973677333",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973677869",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973684262",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973686566",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973687908",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973689836",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4973692581",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976742394",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976744569",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976747808",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976750563",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976751837",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976776157",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976779745",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976781239",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976790616",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976804985",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976808524",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976810682",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976811406",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976815950",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976818780",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976819160",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976830128",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976831016",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976849112",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976857957",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976858938",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976868544",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976870491",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976874584",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976878449",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976886026",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4976920642",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4977970374",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978001701",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978004689",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978011175",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978028820",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978029905",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978034682",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978067236",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978078172",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978086656",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979740686",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979749469",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979750575",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979759079",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979799499",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979803951",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979805353",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979809786",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979813908",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979823239",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979832717",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979861817",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979898495",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979922369",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979924026",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979924081",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4986995783",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4986997949",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987007560",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987021970",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987024553",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987024959",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987058606",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987064621",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987098679",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987121375",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4987160666",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989061711",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989066834",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989079511",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989090274",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989112355",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989133693",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989137856",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4993600007",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4997762371",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5000712652",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5004757646",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-01-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5013073349",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5014868823",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5052000418",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5061737113",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-01-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5062218740",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5062226254",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5062260236",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5084130344",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5084141357",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5084158352",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5084203689",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-02-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5098906307",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5098912304",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5105162748",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5130587412",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5130732437",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5179729770",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5229364087",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5281356284",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-07-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5281475217",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5281521253",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-07-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5287295180",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5294725123",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5758974432",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5758989137",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5759033234",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5759069853",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5759166817",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5759182876",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5763216618",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5763249740",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5763269837",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5763270151",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5763275423",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5763276629",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821873237",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821883489",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821890433",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821894049",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821908041",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821924336",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821935066",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821939994",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821947584",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821947608",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821960183",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821965162",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821992047",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821996138",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5822013245",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5822032340",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5822047210",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829588773",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829592209",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829598264",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829598348",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829608299",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829631655",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829635868",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829639053",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829640107",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829643731",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829646964",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829648183",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829648385",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829651123",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829656489",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829669222",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829676398",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829696866",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829710523",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829711901",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829726769",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829739619",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836011915",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836013756",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836019241",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836020250",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836023377",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836047188",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836063104",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836073185",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836077175",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836079835",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836088800",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836090832",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836099652",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836111459",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836116841",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836127106",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836136163",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836144152",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836144410",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836145166",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836148056",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836164956",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836165070",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836174116",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836182669",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836204456",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5836233739",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839241984",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839247096",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839247512",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839249666",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839255239",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839272977",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839289282",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839305412",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839306032",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839321873",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839334034",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839345445",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839345448",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839352165",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5839377103",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843599806",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843599826",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843603671",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843604092",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843607955",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843611498",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843612686",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843612967",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843615606",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843624652",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843633709",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843634518",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843635232",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843638908",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843648001",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843654993",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843682652",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843689233",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843693743",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843695207",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843696663",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843699737",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843704475",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843704735",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843706659",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843709920",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843710339",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843712733",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843729314",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843735646",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858871786",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858872092",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858877413",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858910149",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858918874",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858919228",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858921706",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858922164",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858925122",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858926372",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858927886",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858934391",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858944327",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5858966749",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886278897",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886281420",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886285826",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886291441",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886295312",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886297353",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886300907",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886308147",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886310342",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886318960",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886321647",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886336210",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886336434",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886345612",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886345930",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886369585",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886378729",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886380941",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886407455",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886408017",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896074539",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896075354",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896079862",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896080476",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896086108",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896091998",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896096878",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896108404",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896112594",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896114487",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896116246",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896116474",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896123230",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896131097",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896133376",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896140571",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896142089",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896143507",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896160305",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896164585",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896176327",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896179641",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-31",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896500893",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896501040",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896504674",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896504740",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896510004",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896522694",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896524036",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896528444",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896528564",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896531267",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896532631",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896533326",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896539908",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896546112",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896563030",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896576432",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896577654",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896581247",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896586082",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896595308",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896599358",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896605796",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896617946",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896622208",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896623915",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896625091",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896627189",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896646461",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896649170",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896652596",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896654885",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896667397",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896680257",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896700607",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5900337651",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5900359502",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-19",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5900359855",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5900362476",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5904969602",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5905017979",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5905019503",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5905036392",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5905042644",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5917307841",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5917311384",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5917315755",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5917377730",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5922806411",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5922819679",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5922855805",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-16",
-      "reason": "missing_presence_data"
-    },
-    {
-      "gbif_key": "5922869020",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5932996355",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-18",
-      "reason": "missing_presence_data"
-    },
-    {
-      "gbif_key": "5936530085",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5936547444",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5936551153",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-23",
-      "reason": "missing_presence_data"
-    },
-    {
-      "gbif_key": "5936577561",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-12-19",
-      "reason": "missing_presence_data"
-    },
-    {
-      "gbif_key": "5936588984",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5994701216",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5994762360",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6043369617",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-09-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6147116924",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6186327347",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6237588318",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-26",
-      "reason": "pending_archive"
-    },
     {
       "gbif_key": "4523020340",
       "species": "Rubus chamaemorus",
@@ -3768,18 +53,6 @@
       "gbif_key": "4600445838",
       "species": "Rubus chamaemorus",
       "event_date": "2024-03-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4863002710",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4863125788",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-12",
       "reason": "pending_archive"
     },
     {
@@ -3825,45 +98,15 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4870302674",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4870310546",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-25",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4870336753",
       "species": "Rubus chamaemorus",
       "event_date": "2024-05-22",
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4870371171",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4870413654",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-23",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4874640463",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4874642704",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-01",
       "reason": "pending_archive"
     },
     {
@@ -3882,12 +125,6 @@
       "gbif_key": "4874675631",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4874687363",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-01",
       "reason": "pending_archive"
     },
     {
@@ -3975,12 +212,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4874793352",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-04",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4874799574",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-01",
@@ -4005,24 +236,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4874819278",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4874843147",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4874853976",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-29",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4874863353",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-04",
@@ -4042,12 +255,6 @@
     },
     {
       "gbif_key": "4878550008",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4878557001",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-06",
       "reason": "pending_archive"
@@ -4155,45 +362,15 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4898309448",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-17",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4898314073",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-15",
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4898318016",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-16",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4898320431",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4898320655",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4898338301",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4898338700",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-15",
       "reason": "pending_archive"
     },
     {
@@ -4209,27 +386,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4900065326",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-21",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4900072020",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900076079",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900097407",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-19",
       "reason": "pending_archive"
     },
     {
@@ -4257,12 +416,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4900108442",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-21",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4900109482",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-11",
@@ -4278,12 +431,6 @@
       "gbif_key": "4900128093",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900136075",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-14",
       "reason": "pending_archive"
     },
     {
@@ -4317,18 +464,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4903318486",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4903324832",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-01",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4903325882",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-27",
@@ -4350,12 +485,6 @@
       "gbif_key": "4903346187",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4903359463",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-23",
       "reason": "pending_archive"
     },
     {
@@ -4488,12 +617,6 @@
       "gbif_key": "4905347532",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4905352032",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-07",
       "reason": "pending_archive"
     },
     {
@@ -4647,12 +770,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4905483788",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-03",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4907108427",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-29",
@@ -4737,12 +854,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4907182588",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-14",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4907183122",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-07",
@@ -4755,21 +866,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4907198769",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-07",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4907209966",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4907212061",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-09",
       "reason": "pending_archive"
     },
     {
@@ -4833,12 +932,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4909808772",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-18",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4909809168",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-10",
@@ -4857,21 +950,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4909821503",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-10",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4909836822",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4909840027",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-18",
       "reason": "pending_archive"
     },
     {
@@ -4941,12 +1022,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4909900922",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-15",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4909902686",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-20",
@@ -4956,12 +1031,6 @@
       "gbif_key": "4909910213",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4909920728",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-22",
       "reason": "pending_archive"
     },
     {
@@ -5271,12 +1340,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4920620744",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-30",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4920621214",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-27",
@@ -5286,12 +1349,6 @@
       "gbif_key": "4920626157",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4920628901",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-07",
       "reason": "pending_archive"
     },
     {
@@ -5313,12 +1370,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4920640028",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-02",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4920642313",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-09",
@@ -5334,12 +1385,6 @@
       "gbif_key": "4920652814",
       "species": "Rubus chamaemorus",
       "event_date": "2024-08-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4920661947",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-31",
       "reason": "pending_archive"
     },
     {
@@ -5565,18 +1610,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4929510126",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4929514390",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4929529013",
       "species": "Rubus chamaemorus",
       "event_date": "2024-08-29",
@@ -5619,12 +1652,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4939371085",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-09-05",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4939422681",
       "species": "Rubus chamaemorus",
       "event_date": "2024-09-09",
@@ -5658,12 +1685,6 @@
       "gbif_key": "4946884717",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946895156",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-09-15",
       "reason": "pending_archive"
     },
     {
@@ -5730,12 +1751,6 @@
       "gbif_key": "4979775254",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979862027",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-07",
       "reason": "pending_archive"
     },
     {
@@ -5859,12 +1874,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5029041366",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-08-20",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5051981451",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-29",
@@ -5925,18 +1934,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5084114251",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-02-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5098974255",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-03-19",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5099116596",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-15",
@@ -5979,12 +1976,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5110323703",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-18",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5110359770",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-08",
@@ -5997,12 +1988,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5130561195",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-04-05",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5130583206",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-09",
@@ -6012,12 +1997,6 @@
       "gbif_key": "5130591178",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5130592160",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-22",
       "reason": "pending_archive"
     },
     {
@@ -6261,12 +2240,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5139606143",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-14",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5139618158",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-10",
@@ -6291,12 +2264,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5155886537",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-13",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5161213453",
       "species": "Rubus chamaemorus",
       "event_date": "2025-05-20",
@@ -6309,18 +2276,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5161348844",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5161365160",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-20",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5161461678",
       "species": "Rubus chamaemorus",
       "event_date": "2025-05-19",
@@ -6330,18 +2285,6 @@
       "gbif_key": "5168974523",
       "species": "Rubus chamaemorus",
       "event_date": "2025-05-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5169273430",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5169334416",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-27",
       "reason": "pending_archive"
     },
     {
@@ -6411,12 +2354,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5180030162",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-03",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5180040275",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-03",
@@ -6435,12 +2372,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5184662744",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5184663637",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-06",
@@ -6453,21 +2384,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5184730392",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5184743581",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5184766740",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
       "reason": "pending_archive"
     },
     {
@@ -6480,12 +2399,6 @@
       "gbif_key": "5184782618",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5184830295",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-09",
       "reason": "pending_archive"
     },
     {
@@ -6543,12 +2456,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5195175473",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-13",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5195253724",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-14",
@@ -6558,12 +2465,6 @@
       "gbif_key": "5195283421",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5195295523",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-16",
       "reason": "pending_archive"
     },
     {
@@ -6618,12 +2519,6 @@
       "gbif_key": "5201925533",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5201947633",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-21",
       "reason": "pending_archive"
     },
     {
@@ -6684,12 +2579,6 @@
       "gbif_key": "5202116762",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5202122974",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-24",
       "reason": "pending_archive"
     },
     {
@@ -6765,12 +2654,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5212854516",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5212895742",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-30",
@@ -6786,12 +2669,6 @@
       "gbif_key": "5212960717",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5213001529",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-28",
       "reason": "pending_archive"
     },
     {
@@ -6840,12 +2717,6 @@
       "gbif_key": "5213208336",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5213209443",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
       "reason": "pending_archive"
     },
     {
@@ -6987,12 +2858,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5229110077",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-13",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5229112467",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-09",
@@ -7008,12 +2873,6 @@
       "gbif_key": "5229126689",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5229129125",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-16",
       "reason": "pending_archive"
     },
     {
@@ -7215,21 +3074,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5236804677",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-26",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5236857311",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-23",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5236869309",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-22",
       "reason": "pending_archive"
     },
     {
@@ -7407,12 +3254,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5287312036",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-10",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5287315323",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-08",
@@ -7422,12 +3263,6 @@
       "gbif_key": "5287316399",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5287332959",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-11",
       "reason": "pending_archive"
     },
     {
@@ -7464,12 +3299,6 @@
       "gbif_key": "5294646993",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5294669063",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-24",
       "reason": "pending_archive"
     },
     {
@@ -7527,12 +3356,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5294774990",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-24",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5294775153",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-15",
@@ -7548,12 +3371,6 @@
       "gbif_key": "5294784142",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5294793322",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-19",
       "reason": "pending_archive"
     },
     {
@@ -7611,12 +3428,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5759071931",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-02",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5759085568",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-04",
@@ -7626,12 +3437,6 @@
       "gbif_key": "5759107693",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5759112812",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-03",
       "reason": "pending_archive"
     },
     {
@@ -7665,12 +3470,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5763253055",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-04",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5763258467",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-20",
@@ -7698,12 +3497,6 @@
       "gbif_key": "5821855012",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5821904835",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-12",
       "reason": "pending_archive"
     },
     {
@@ -7779,12 +3572,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5829716309",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-24",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5836104190",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-23",
@@ -7803,12 +3590,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5839359984",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-10-06",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5843655057",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-07",
@@ -7818,12 +3599,6 @@
       "gbif_key": "5843663438",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843707921",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-20",
       "reason": "pending_archive"
     },
     {
@@ -7908,12 +3683,6 @@
       "gbif_key": "5896518089",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-04",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896596746",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-25",
       "reason": "pending_archive"
     },
     {
@@ -8067,21 +3836,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "6115889506",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-18",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "6132929825",
       "species": "Rubus chamaemorus",
       "event_date": "2025-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6132990635",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-05",
       "reason": "pending_archive"
     },
     {
@@ -8094,12 +3851,6 @@
       "gbif_key": "6275223387",
       "species": "Rubus chamaemorus",
       "event_date": "2025-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6323152370",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-10",
       "reason": "pending_archive"
     },
     {
@@ -8125,15 +3876,18 @@
       "species": "Rubus chamaemorus",
       "event_date": "2024-08-07",
       "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6455072371",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-05",
-      "reason": "pending_archive"
     }
   ],
+  "requests": {
+    "total": 633,
+    "total_weight": 7856,
+    "short": 606,
+    "short_weight": 3995,
+    "errors": 0,
+    "pending": 587,
+    "pending_weight": 3572
+  },
   "complete": false,
-  "attribution": "Weather: Open-Meteo Historical Weather API / ERA5 (CC BY 4.0), https://open-meteo.com/; GBIF sources/licenses retained in input CSV",
-  "limits": "Conservative weighted budgets 450/minute, 4000/hour, 8000/rolling day; requests logged before sending"
+  "attribution": "Open-Meteo / ERA5 CC BY 4.0; GBIF sources in input CSV",
+  "limits": "Conservative ceiling days/14; 450/minute,4000/hour,8000/rolling day; durable Retry-After"
 }
