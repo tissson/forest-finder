@@ -1,0 +1,287 @@
+[
+  {
+    "timestamp": 1794044134.3883376,
+    "cost": 143,
+    "status": 200,
+    "location": [
+      "59.3",
+      "18.0"
+    ],
+    "note": "initial full-range smoke"
+  },
+  {
+    "timestamp": 1794044134.4157426,
+    "cost": 143,
+    "location": [
+      "55.6",
+      "13.2"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.6&longitude=13.2&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "2a06f2c96a28a40f28d57ab444556c762b3272134551e43568d141d432aec49f"
+  },
+  {
+    "timestamp": 1794044134.5506883,
+    "cost": 143,
+    "location": [
+      "55.6",
+      "13.4"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.6&longitude=13.4&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "3998c9163bdc192495bbd67f5611f40cde0586718362e482205b18e7cfd69f71"
+  },
+  {
+    "timestamp": 1794044195.3887167,
+    "cost": 143,
+    "location": [
+      "55.6",
+      "13.7"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.6&longitude=13.7&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "740f3dfb0e6af7b251102e6930845c9259d5f389a37bb8914baa0c365fdc9299"
+  },
+  {
+    "timestamp": 1794044195.4886477,
+    "cost": 143,
+    "location": [
+      "55.6",
+      "14.2"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.6&longitude=14.2&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "c9b9a122780ec84032613f7c1649c79d073977bfcb814b2e93b1ce1d82c1df60"
+  },
+  {
+    "timestamp": 1794044195.5927696,
+    "cost": 143,
+    "location": [
+      "55.7",
+      "13.4"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.7&longitude=13.4&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "c4ed017074c5f2f11bc185f9995074b9820199569fc2d51346555c31f71b633a"
+  },
+  {
+    "timestamp": 1794044256.3897262,
+    "cost": 143,
+    "location": [
+      "55.7",
+      "14.0"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.7&longitude=14.0&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "feb01a7e5e1b81ecb7e55568d301ff60c718fcbeae467e7f9e361e940f9e6aee"
+  },
+  {
+    "timestamp": 1794044256.4981914,
+    "cost": 143,
+    "location": [
+      "55.8",
+      "13.9"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.8&longitude=13.9&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "2574eb20c01e2f4cb205cf799fef5dc758b370046d4cccd06b508f9c209c98e7"
+  },
+  {
+    "timestamp": 1794044256.6220818,
+    "cost": 143,
+    "location": [
+      "55.8",
+      "14.1"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.8&longitude=14.1&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "795fe894a33480f294155950f1b580426eb1f692a0515b5298a5a2388213e0b0"
+  },
+  {
+    "timestamp": 1794044317.390166,
+    "cost": 143,
+    "location": [
+      "55.9",
+      "14.0"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=55.9&longitude=14.0&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "585bdba346cc077653690084f20f4f661e2e3ba53799b08ea44e1dd753985f56"
+  },
+  {
+    "timestamp": 1794044317.497445,
+    "cost": 143,
+    "location": [
+      "56.0",
+      "13.2"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.0&longitude=13.2&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "22ca726f7d0edad29cce909a5cca76b95bbbecf4562fbc1444ca0c52803bc3bf"
+  },
+  {
+    "timestamp": 1794044317.587913,
+    "cost": 143,
+    "location": [
+      "56.0",
+      "13.3"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.0&longitude=13.3&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "f6833240c364fd8fdccd2b00201435190edd9f11cf9127f73e94d05478d31ce1"
+  },
+  {
+    "timestamp": 1794044378.3909972,
+    "cost": 143,
+    "location": [
+      "56.0",
+      "13.6"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.0&longitude=13.6&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "dbbd78d6a70245946dfc24fbdd44a1b3ead85cac597c02d6254dbdd933b8f6db"
+  },
+  {
+    "timestamp": 1794044378.4778361,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "12.7"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=12.7&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "52d4bf69c97bcd75d7a55802d12f517b6dd9e95d600aa305e15f66cef99f1eab"
+  },
+  {
+    "timestamp": 1794044378.5738313,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "13.1"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=13.1&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "297fe48cc9fad4ba959e2db87aa3c75940a8a1171236252ed563ba0328b25471"
+  },
+  {
+    "timestamp": 1794044439.3915575,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "13.2"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=13.2&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "475829ae3901442e8119b0953f6cd844848392447db605df015f783467b2ac1d"
+  },
+  {
+    "timestamp": 1794044439.521017,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "13.4"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=13.4&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "e519521decd69fd55fbd27884e268f89d88a5cb95b8c2d70e9553893025447ee"
+  },
+  {
+    "timestamp": 1794044439.6273873,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "13.5"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=13.5&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "50dcda783c601565b948e5f38a67e3f2d5d92710223231666c254f3f436b42c6"
+  },
+  {
+    "timestamp": 1794044500.393376,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "13.6"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=13.6&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "176b5a3fa429653f619268d85df1d4beb87cf29f0b1d45d4054f1582a86cfba8"
+  },
+  {
+    "timestamp": 1794044500.4946098,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "14.1"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=14.1&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "84903d26b261b5fd0535441222c7f48bc9e0101ce925e812d14571f19fc737d3"
+  },
+  {
+    "timestamp": 1794044500.592713,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "14.2"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=14.2&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "798ab5375a000ac4cbb3d589e18ac2ae30d0eeb66f3c17c3bfe6af6e543e11c0"
+  },
+  {
+    "timestamp": 1794044561.3935163,
+    "cost": 143,
+    "location": [
+      "56.1",
+      "14.3"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.1&longitude=14.3&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "f330dc60af2b02c4f7b9cfe5466e324620d629fde67819bed63187129c6f7c74"
+  },
+  {
+    "timestamp": 1794044561.5051155,
+    "cost": 143,
+    "location": [
+      "56.2",
+      "13.1"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.2&longitude=13.1&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "5f39fb624e5c0cc0434470c2d3a298806b2e69da7a5a7a1f31227734dd241624"
+  },
+  {
+    "timestamp": 1794044561.624889,
+    "cost": 143,
+    "location": [
+      "56.2",
+      "13.2"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.2&longitude=13.2&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "3c90b7ea00505c0465eebe7f5cba4b9521d6b82aa3dec8e38541ae43cb1cb803"
+  },
+  {
+    "timestamp": 1794044622.3936517,
+    "cost": 143,
+    "location": [
+      "56.2",
+      "13.3"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.2&longitude=13.3&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "79b9454a8b5f2f2b796ac904e5452a34bfc22636caf806ab8fed46cf70137fb2"
+  },
+  {
+    "timestamp": 1794044622.5099132,
+    "cost": 143,
+    "location": [
+      "56.2",
+      "13.6"
+    ],
+    "status": 200,
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.2&longitude=13.6&start_date=2020-07-01&end_date=2025-12-15&daily=precipitation_sum%2Ctemperature_2m_mean&timezone=Europe%2FStockholm&models=era5",
+    "sha256": "e2bb39337712060bbb1dc83b1e1a4ba4aa485edc3abbbcd62ec118a0b916aa86"
+  }
+]
