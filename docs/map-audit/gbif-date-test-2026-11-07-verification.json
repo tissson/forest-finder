@@ -1,0 +1,23 @@
+{
+  "verified": {
+    "Craterellus tubaeformis": {
+      "findings": 653,
+      "rows": 13713
+    },
+    "Rubus chamaemorus": {
+      "findings": 99,
+      "rows": 2079
+    }
+  },
+  "legacy_findings_preserved": 42,
+  "legacy_checkpoints_verified": 27,
+  "new_requests": 606,
+  "new_weight": 3995,
+  "new_errors": 0,
+  "total_weight": 7856,
+  "remaining_requests": 587,
+  "remaining_weight": 3572,
+  "next_request_not_before_utc": "2026-11-07T18:09:49.254723+00:00",
+  "earliest_completion_daily_quota_utc": "2026-11-08T09:35:35.388338+00:00",
+  "note": "Earliest completion needs old requests to leave rolling-day budget; estimate then ~10-20 minutes at observed sequential speed, subject to shared-IP limits. Nothing runs after this turn."
+}
