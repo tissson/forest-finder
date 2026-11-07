@@ -1,9 +1,9 @@
 {
-  "not_before_utc": "2026-11-07T17:17:56.355641+00:00",
+  "not_before_utc": "2026-11-07T18:09:49.254723+00:00",
   "reason": "budget_or_runtime_pause",
   "next_location": [
-    "64.3",
-    "20.2"
+    "57.3",
+    "13.9"
   ],
   "cost": 6
 }

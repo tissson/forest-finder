@@ -4,11 +4,11 @@
   "outputs": [
     {
       "path": "docs/map-audit/gbif-date-test-2026-11-07.csv",
-      "sha256": "4ba50f5dfff0ab4b553af095b89b72ba0e17fe61039894315fead631c49082ee"
+      "sha256": "9a353aa5d33868f3b253eb4075c570914681aa9ba137bc2474de88459b0eefde"
     },
     {
       "path": "docs/map-audit/gbif-date-test-2026-11-07-hjortron.csv",
-      "sha256": "29119c47a9abb0a6387ed6a429f2c87ae3ad1816090e2fafc9127e55e61dcc96"
+      "sha256": "c0fb5f506ea459aee5974fa83809d19b4a119b3cd0c405f75a907bae2100422a"
     }
   ],
   "seed": 20261107,
@@ -21,160 +21,22 @@
   "counts": {
     "Craterellus tubaeformis": {
       "input": 653,
-      "complete": 630,
+      "complete": 653,
       "outside_years": 0,
       "missing_presence_data": 0,
       "insufficient_controls": 0,
-      "pending_archive": 23
+      "pending_archive": 0
     },
     "Rubus chamaemorus": {
       "input": 739,
-      "complete": 49,
+      "complete": 99,
       "outside_years": 0,
       "missing_presence_data": 0,
       "insufficient_controls": 0,
-      "pending_archive": 690
+      "pending_archive": 640
     }
   },
   "exclusions": [
-    {
-      "gbif_key": "4403872796",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2023-08-28",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946886222",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946899496",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946899548",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4947971673",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950681895",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950709286",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-08-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4950711713",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4954952961",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4955027198",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-09-25",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4978001701",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979740686",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-07",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979809786",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4979861817",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-08",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4989061711",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-11-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5105162748",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2024-10-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843603671",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-10",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843638908",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843689233",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5843704735",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5886278897",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-10-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5896581247",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6147116924",
-      "species": "Craterellus tubaeformis",
-      "event_date": "2025-11-05",
-      "reason": "pending_archive"
-    },
     {
       "gbif_key": "4523020340",
       "species": "Rubus chamaemorus",
@@ -191,18 +53,6 @@
       "gbif_key": "4600445838",
       "species": "Rubus chamaemorus",
       "event_date": "2024-03-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4863002710",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-11",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4863125788",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-12",
       "reason": "pending_archive"
     },
     {
@@ -248,21 +98,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4870310546",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-25",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4870336753",
       "species": "Rubus chamaemorus",
       "event_date": "2024-05-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4870371171",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-20",
       "reason": "pending_archive"
     },
     {
@@ -287,12 +125,6 @@
       "gbif_key": "4874675631",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4874687363",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-01",
       "reason": "pending_archive"
     },
     {
@@ -380,12 +212,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4874793352",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-04",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4874799574",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-01",
@@ -410,18 +236,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4874843147",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-29",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4874853976",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-05-29",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4874863353",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-04",
@@ -441,12 +255,6 @@
     },
     {
       "gbif_key": "4878550008",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4878557001",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-06",
       "reason": "pending_archive"
@@ -554,45 +362,15 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4898309448",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-17",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4898314073",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-15",
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4898318016",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-16",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4898320431",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-13",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4898320655",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-15",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4898338301",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-18",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4898338700",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-15",
       "reason": "pending_archive"
     },
     {
@@ -611,18 +389,6 @@
       "gbif_key": "4900072020",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900076079",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4900097407",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-19",
       "reason": "pending_archive"
     },
     {
@@ -698,12 +464,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4903318486",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-01",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4903325882",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-27",
@@ -725,12 +485,6 @@
       "gbif_key": "4903346187",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-30",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4903359463",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-23",
       "reason": "pending_archive"
     },
     {
@@ -863,12 +617,6 @@
       "gbif_key": "4905347532",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-27",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4905352032",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-07",
       "reason": "pending_archive"
     },
     {
@@ -1106,12 +854,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4907182588",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-14",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4907183122",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-07",
@@ -1124,21 +866,9 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4907198769",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-07",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4907209966",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-16",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4907212061",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-09",
       "reason": "pending_archive"
     },
     {
@@ -1202,12 +932,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4909808772",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-18",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4909809168",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-10",
@@ -1229,12 +953,6 @@
       "gbif_key": "4909836822",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4909840027",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-18",
       "reason": "pending_archive"
     },
     {
@@ -1301,12 +1019,6 @@
       "gbif_key": "4909897610",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-17",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4909900922",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-15",
       "reason": "pending_archive"
     },
     {
@@ -1628,12 +1340,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4920620744",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-30",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4920621214",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-27",
@@ -1679,12 +1385,6 @@
       "gbif_key": "4920652814",
       "species": "Rubus chamaemorus",
       "event_date": "2024-08-03",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4920661947",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-31",
       "reason": "pending_archive"
     },
     {
@@ -1910,12 +1610,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "4929510126",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-09-01",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "4929529013",
       "species": "Rubus chamaemorus",
       "event_date": "2024-08-29",
@@ -1991,12 +1685,6 @@
       "gbif_key": "4946884717",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-20",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "4946895156",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-09-15",
       "reason": "pending_archive"
     },
     {
@@ -2186,12 +1874,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5029041366",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-08-20",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5051981451",
       "species": "Rubus chamaemorus",
       "event_date": "2024-06-29",
@@ -2294,12 +1976,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5110323703",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-07-18",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5110359770",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-08",
@@ -2321,12 +1997,6 @@
       "gbif_key": "5130591178",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-22",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5130592160",
-      "species": "Rubus chamaemorus",
-      "event_date": "2024-06-22",
       "reason": "pending_archive"
     },
     {
@@ -2594,12 +2264,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5155886537",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-13",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5161213453",
       "species": "Rubus chamaemorus",
       "event_date": "2025-05-20",
@@ -2612,12 +2276,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5161365160",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-20",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5161461678",
       "species": "Rubus chamaemorus",
       "event_date": "2025-05-19",
@@ -2627,12 +2285,6 @@
       "gbif_key": "5168974523",
       "species": "Rubus chamaemorus",
       "event_date": "2025-05-24",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5169273430",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-05-26",
       "reason": "pending_archive"
     },
     {
@@ -2702,12 +2354,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5180030162",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-03",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5180040275",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-03",
@@ -2723,12 +2369,6 @@
       "gbif_key": "5180337329",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-06",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5184662744",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
       "reason": "pending_archive"
     },
     {
@@ -2759,12 +2399,6 @@
       "gbif_key": "5184782618",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5184830295",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-09",
       "reason": "pending_archive"
     },
     {
@@ -2888,12 +2522,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5201947633",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-21",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5201978915",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-25",
@@ -2951,12 +2579,6 @@
       "gbif_key": "5202116762",
       "species": "Rubus chamaemorus",
       "event_date": "2024-07-02",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5202122974",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-24",
       "reason": "pending_archive"
     },
     {
@@ -3032,12 +2654,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5212854516",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5212895742",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-30",
@@ -3101,12 +2717,6 @@
       "gbif_key": "5213208336",
       "species": "Rubus chamaemorus",
       "event_date": "2025-06-26",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5213209443",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-06-07",
       "reason": "pending_archive"
     },
     {
@@ -3245,12 +2855,6 @@
       "gbif_key": "5229089130",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-12",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5229110077",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-13",
       "reason": "pending_archive"
     },
     {
@@ -3662,12 +3266,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5287332959",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-11",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5287389555",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-09",
@@ -3701,12 +3299,6 @@
       "gbif_key": "5294646993",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-21",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5294669063",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-24",
       "reason": "pending_archive"
     },
     {
@@ -3782,12 +3374,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "5294793322",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-08-19",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "5294799045",
       "species": "Rubus chamaemorus",
       "event_date": "2025-08-14",
@@ -3851,12 +3437,6 @@
       "gbif_key": "5759107693",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-05",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5759112812",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-03",
       "reason": "pending_archive"
     },
     {
@@ -3989,12 +3569,6 @@
       "gbif_key": "5829677223",
       "species": "Rubus chamaemorus",
       "event_date": "2025-07-14",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "5829716309",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-24",
       "reason": "pending_archive"
     },
     {
@@ -4262,12 +3836,6 @@
       "reason": "pending_archive"
     },
     {
-      "gbif_key": "6115889506",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-09-18",
-      "reason": "pending_archive"
-    },
-    {
       "gbif_key": "6132929825",
       "species": "Rubus chamaemorus",
       "event_date": "2025-11-08",
@@ -4283,12 +3851,6 @@
       "gbif_key": "6275223387",
       "species": "Rubus chamaemorus",
       "event_date": "2025-09-09",
-      "reason": "pending_archive"
-    },
-    {
-      "gbif_key": "6323152370",
-      "species": "Rubus chamaemorus",
-      "event_date": "2025-07-10",
       "reason": "pending_archive"
     },
     {
@@ -4317,13 +3879,13 @@
     }
   ],
   "requests": {
-    "total": 566,
-    "total_weight": 7437,
-    "short": 539,
-    "short_weight": 3576,
+    "total": 633,
+    "total_weight": 7856,
+    "short": 606,
+    "short_weight": 3995,
     "errors": 0,
-    "pending": 654,
-    "pending_weight": 3991
+    "pending": 587,
+    "pending_weight": 3572
   },
   "complete": false,
   "attribution": "Open-Meteo / ERA5 CC BY 4.0; GBIF sources in input CSV",
