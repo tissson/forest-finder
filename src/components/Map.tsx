@@ -68,7 +68,7 @@ function stippleColor(speciesId: number): string {
   canvas.width = canvas.height = 1;
   const context = canvas.getContext("2d");
   if (!context) return token("--map-berry-low");
-  context.fillStyle = colors[speciesId] ?? colors[1];
+  context.fillStyle = colors[speciesId] ?? token("--mushroom");
   context.fillRect(0, 0, 1, 1);
   const pixel = context.getImageData(0, 0, 1, 1).data;
   return `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
@@ -215,6 +215,7 @@ export const Map: React.FC<MapProps> = ({
     if (!map || !isLoaded) return;
 
     const url = tileUrl(layer, obsDate);
+    let removePatternScaleListener: () => void = () => {};
     const stippling = new URLSearchParams(window.location.search).get("karta") === "d"
       && layer?.type === "species";
 
