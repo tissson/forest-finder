@@ -14,6 +14,7 @@ import {
   Popup,
   type LngLatBoundsLike,
   type MapLayerMouseEvent,
+  type ExpressionSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
@@ -39,6 +40,72 @@ const MAX_MAP_ZOOM = 16;
 const TILE_MIN_ZOOM = 5;
 const TILE_MAX_ZOOM = 12;
 const TILE_STYLE_VERSION = "species-v4-trees";
+const USE_HEATMAP = true;
+const DOT_LAYER_ID = "fungi-stipple-dots";
+const PATTERN_LAYER_ID = "fungi-stipple-patterns";
+
+// zone_id is the cell identifier emitted by the existing MVT, not a feature ID.
+// Multiplicative hashing remains safely within integer precision for these IDs.
+const CELL_HASH: ExpressionSpecification = ["%", ["*", ["to-number", ["get", "zone_id"]], 48271], 2147483647];
+const DOT_PERCENT: ExpressionSpecification = [
+  "interpolate", ["linear"], ["get", "score"],
+  0.2, 0, 0.35, 25, 0.5, 60, 0.7, 100,
+];
+
+// Resolve the existing semantic palette to sRGB for both MapLibre and canvas.
+function stippleColor(speciesId: number): string {
+  const styles = getComputedStyle(document.documentElement);
+  const token = (name: string) => styles.getPropertyValue(name).trim();
+  const colors: Record<number, string> = {
+    1: token("--mushroom"),
+    2: `color-mix(in srgb, ${token("--accent")} 68%, ${token("--foreground")})`,
+    3: token("--map-berry-low"),
+    4: `color-mix(in srgb, ${token("--destructive")} 85%, ${token("--map-berry-high")})`,
+    5: `color-mix(in srgb, ${token("--foreground")} 75%, ${token("--accent")})`,
+    6: `color-mix(in srgb, ${token("--mushroom")} 70%, ${token("--accent")})`,
+  };
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 1;
+  const context = canvas.getContext("2d");
+  if (!context) return token("--map-berry-low");
+  context.fillStyle = colors[speciesId] ?? token("--mushroom");
+  context.fillRect(0, 0, 1, 1);
+  const pixel = context.getImageData(0, 0, 1, 1).data;
+  return `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+}
+
+function addStippleImages(map: MapLibreMap, speciesId: number, color: string) {
+  // 128 CSS pixels per pattern; 2x raster avoids fuzzy dots on retina screens.
+  // Nested, seeded samples keep every pattern stable across pans and redraws.
+  for (let variant = 0; variant < 4; variant++) {
+    for (let density = 0; density < 4; density++) {
+      const imageId = `stipple-${speciesId}-${density}-${variant}`;
+      if (map.hasImage(imageId)) continue;
+      const canvas = document.createElement("canvas");
+      canvas.width = canvas.height = 256;
+      const context = canvas.getContext("2d");
+      if (!context) continue;
+      context.fillStyle = color;
+      let seed = 1709 + variant * 7919;
+      const random = () => {
+        seed = (seed * 48271) % 2147483647;
+        return seed / 2147483647;
+      };
+      const count = [12, 36, 78, 132][density] ?? 12;
+      const points: Array<[number, number]> = [];
+      while (points.length < count) {
+        const x = 7 + random() * 242;
+        const y = 7 + random() * 242;
+        if (points.some(([px, py]) => (px - x) ** 2 + (py - y) ** 2 < 70)) continue;
+        points.push([x, y]);
+        context.beginPath();
+        context.arc(x, y, 1.65 + random() * 0.5, 0, Math.PI * 2);
+        context.fill();
+      }
+      map.addImage(imageId, context.getImageData(0, 0, 256, 256), { pixelRatio: 2 });
+    }
+  }
+}
 
 // Sveriges geografiska begränsning [SW, NE]
 const SWEDEN_BOUNDS: LngLatBoundsLike = [
@@ -148,7 +215,12 @@ export const Map: React.FC<MapProps> = ({
     if (!map || !isLoaded) return;
 
     const url = tileUrl(layer, obsDate);
+    let removePatternScaleListener: () => void = () => {};
+    const stippling = new URLSearchParams(window.location.search).get("karta") === "d"
+      && layer?.type === "species";
 
+    if (map.getLayer(DOT_LAYER_ID)) map.removeLayer(DOT_LAYER_ID);
+    if (map.getLayer(PATTERN_LAYER_ID)) map.removeLayer(PATTERN_LAYER_ID);
     if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
     if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
     if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
@@ -161,11 +233,12 @@ export const Map: React.FC<MapProps> = ({
     });
 
     // Mjuk, sömlös värmekarta utan synliga rutor.
-    map.addLayer({
+    if (USE_HEATMAP) map.addLayer({
       id: HEATMAP_LAYER_ID,
       type: "heatmap",
       source: TILE_SOURCE_ID,
       "source-layer": TILE_SOURCE_LAYER,
+      layout: { visibility: stippling ? "none" : "visible" },
       paint: {
         "heatmap-weight": [
           "case",
@@ -219,6 +292,63 @@ export const Map: React.FC<MapProps> = ({
         "heatmap-opacity": 0.86,
       },
     });
+
+    if (stippling && layer?.type === "species") {
+      const color = stippleColor(layer.speciesId);
+      addStippleImages(map, layer.speciesId, color);
+      map.addLayer({
+        id: DOT_LAYER_ID,
+        type: "circle",
+        source: TILE_SOURCE_ID,
+        "source-layer": TILE_SOURCE_LAYER,
+        maxzoom: 9.5,
+        filter: ["<", ["%", CELL_HASH, 100], DOT_PERCENT],
+        paint: {
+          "circle-color": color,
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 5, 0.8, 9.5, 1.4],
+          "circle-opacity": ["interpolate", ["linear"], ["zoom"], 5, 0.6, 8.5, 0.68, 9.5, 0],
+          "circle-blur": 0,
+        },
+      });
+      map.addLayer({
+        id: PATTERN_LAYER_ID,
+        type: "symbol",
+        source: TILE_SOURCE_ID,
+        "source-layer": TILE_SOURCE_LAYER,
+        minzoom: 8.5,
+        layout: {
+          "icon-image": ["concat", `stipple-${layer.speciesId}-`,
+            ["to-string", ["step", ["get", "score"], 0, 0.35, 1, 0.5, 2, 0.7, 3]],
+            "-", ["to-string", ["%", CELL_HASH, 4]]],
+          // Web Mercator: a 2 km cell scales with 2^zoom / cos(latitude).
+          // Score positions are jittered by the existing tile, left untouched.
+          "icon-size": ["interpolate", ["exponential", 2], ["zoom"],
+            8, 0.2044, 9, 0.4088, 10, 0.8176, 11, 1.6352,
+            12, 3.2704, 13, 6.5408, 14, 13.0816, 15, 26.1632, 16, 52.3264],
+          "icon-allow-overlap": true,
+          "icon-ignore-placement": true,
+          "icon-pitch-alignment": "map",
+          "icon-rotation-alignment": "map",
+        },
+        paint: {
+          "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.5, 0, 9.5, 0.64],
+        },
+      });
+      // The same distance covers more screen pixels in northern Sweden.
+      // Layer paint/layout updates never replace the vector source.
+      const updatePatternScale = () => {
+        if (!map.getLayer(PATTERN_LAYER_ID)) return;
+        const latitudeScale = 0.5 / Math.cos(map.getCenter().lat * Math.PI / 180);
+        map.setLayoutProperty(PATTERN_LAYER_ID, "icon-size", [
+          "interpolate", ["exponential", 2], ["zoom"],
+          ...Array.from({ length: 9 }, (_, i) => [8 + i, 0.2044 * 2 ** i * latitudeScale]).flat(),
+        ]);
+      };
+      updatePatternScale();
+      map.on("moveend", updatePatternScale);
+      // Retain the callback locally for this layer's cleanup.
+      removePatternScaleListener = () => map.off("moveend", updatePatternScale);
+    }
 
     // Osynligt träffyta-lager så att man fortfarande kan klicka på en ruta.
     map.addLayer({
@@ -288,6 +418,9 @@ export const Map: React.FC<MapProps> = ({
       map.off("mouseleave", HIT_LAYER_ID, handleLeave);
       map.off("idle", handleIdle);
       map.off("error", handleSourceError);
+      removePatternScaleListener();
+      if (map.getLayer(DOT_LAYER_ID)) map.removeLayer(DOT_LAYER_ID);
+      if (map.getLayer(PATTERN_LAYER_ID)) map.removeLayer(PATTERN_LAYER_ID);
       if (map.getLayer(HIT_LAYER_ID)) map.removeLayer(HIT_LAYER_ID);
       if (map.getLayer(HEATMAP_LAYER_ID)) map.removeLayer(HEATMAP_LAYER_ID);
       if (map.getSource(TILE_SOURCE_ID)) map.removeSource(TILE_SOURCE_ID);
