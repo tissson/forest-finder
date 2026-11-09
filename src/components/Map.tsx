@@ -49,8 +49,21 @@ const PATTERN_LAYER_ID = "fungi-stipple-patterns";
 const CELL_HASH: ExpressionSpecification = ["%", ["*", ["to-number", ["get", "zone_id"]], 48271], 2147483647];
 const DOT_PERCENT: ExpressionSpecification = [
   "interpolate", ["linear"], ["get", "score"],
-  0.2, 0, 0.35, 25, 0.5, 60, 0.7, 100,
+  // Measured on z6–9: the old 0/25/60 curve kept only 25–40 % of cells ≥ 0.35.
+  0.2, 8, 0.35, 45, 0.5, 70, 0.7, 100,
 ];
+
+// Resolve a semantic CSS token (possibly color-mix) to an sRGB string for MapLibre.
+function resolveColor(value: string, alpha = 1): string {
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 1;
+  const context = canvas.getContext("2d");
+  if (!context) return value;
+  context.fillStyle = value;
+  context.fillRect(0, 0, 1, 1);
+  const pixel = context.getImageData(0, 0, 1, 1).data;
+  return `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, ${alpha})`;
+}
 
 // Resolve the existing semantic palette to sRGB for both MapLibre and canvas.
 function stippleColor(speciesId: number): string {
@@ -301,12 +314,16 @@ export const Map: React.FC<MapProps> = ({
         type: "circle",
         source: TILE_SOURCE_ID,
         "source-layer": TILE_SOURCE_LAYER,
-        maxzoom: 9.5,
+        maxzoom: 10,
         filter: ["<", ["%", CELL_HASH, 100], DOT_PERCENT],
         paint: {
           "circle-color": color,
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 5, 0.8, 9.5, 1.4],
-          "circle-opacity": ["interpolate", ["linear"], ["zoom"], 5, 0.6, 8.5, 0.68, 9.5, 0],
+          // Clearly visible on phones when zoomed out: 1.5 px at z5 → 2.5 px at z8.
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 5, 1.5, 8, 2.5, 10, 2.8],
+          "circle-opacity": ["interpolate", ["linear"], ["zoom"], 5, 0.85, 9.3, 0.85, 10, 0],
+          "circle-stroke-width": 0.5,
+          "circle-stroke-color": resolveColor(getComputedStyle(document.documentElement).getPropertyValue("--background").trim(), 0.45),
+          "circle-stroke-opacity": ["interpolate", ["linear"], ["zoom"], 9.3, 1, 10, 0],
           "circle-blur": 0,
         },
       });
@@ -315,7 +332,7 @@ export const Map: React.FC<MapProps> = ({
         type: "symbol",
         source: TILE_SOURCE_ID,
         "source-layer": TILE_SOURCE_LAYER,
-        minzoom: 8.5,
+        minzoom: 9.3,
         layout: {
           "icon-image": ["concat", `stipple-${layer.speciesId}-`,
             ["to-string", ["step", ["get", "score"], 0, 0.35, 1, 0.5, 2, 0.7, 3]],
@@ -331,7 +348,7 @@ export const Map: React.FC<MapProps> = ({
           "icon-rotation-alignment": "map",
         },
         paint: {
-          "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.5, 0, 9.5, 0.64],
+          "icon-opacity": ["interpolate", ["linear"], ["zoom"], 9.3, 0, 10, 0.85],
         },
       });
       // The same distance covers more screen pixels in northern Sweden.
