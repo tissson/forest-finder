@@ -346,8 +346,23 @@ export const Map: React.FC<MapProps> = ({
       };
       updatePatternScale();
       map.on("moveend", updatePatternScale);
+      // Diagnostics for ?karta=d only: count source cells vs. rendered dots on idle.
+      const logStippleCounts = () => {
+        if (!map.getLayer(DOT_LAYER_ID)) return;
+        const all = map.queryRenderedFeatures({ layers: [HIT_LAYER_ID] });
+        const dots = map.queryRenderedFeatures({ layers: [DOT_LAYER_ID] });
+        const above35 = all.filter((f) => Number(f.properties?.["score"]) >= 0.35).length;
+        console.info(
+          `[karta=d] z=${map.getZoom().toFixed(2)} celler=${all.length} >=0.35=${above35} prickar=${dots.length}`,
+        );
+      };
+      map.on("idle", logStippleCounts);
+      (window as unknown as { __stippleMap?: MapLibreMap }).__stippleMap = map;
       // Retain the callback locally for this layer's cleanup.
-      removePatternScaleListener = () => map.off("moveend", updatePatternScale);
+      removePatternScaleListener = () => {
+        map.off("moveend", updatePatternScale);
+        map.off("idle", logStippleCounts);
+      };
     }
 
     // Osynligt träffyta-lager så att man fortfarande kan klicka på en ruta.
